@@ -1,12 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 
 
 function SideBarColumn() {
     return (
-        <div className="right col-3">
-            <div className="w-clearfix white-wrapper">
+        <div className={ `right col-3` }>
+            <div className={ `w-clearfix white-wrapper` }>
                 <h2 className="small-heading">Date</h2>
                 <ul className="since">
                     <li>

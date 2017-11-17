@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import imgFace from '../images/face.svg';
+import imgLinkedin from '../images/linkedin.svg';
+import imgTwitter from '../images/twitter.svg';
+import imgInstagram from '../images/instagram.svg';
+
 
 function Footer() {
     return (
@@ -71,16 +76,16 @@ function Footer() {
     <div className="social-icons">
         <div className="social-link-group">
             <a className="social-icon-link" href="#">
-                <img src="images/face.svg" width="25"/>
+                <img src={imgFace} width="25"/>
             </a>
             <a className="social-icon-link" href="#">
-                <img src="images/instagram.svg" width="25"/>
+                <img src={imgInstagram} width="25"/>
             </a>
             <a className="social-icon-link" href="#">
-                <img src="images/twitter.svg" width="25"/>
+                <img src={imgTwitter} width="25"/>
             </a>
             <a className="social-icon-link" href="#">
-                <img src="images/linkedin.svg" width="25"/>
+                <img src={imgLinkedin} width="25"/>
             </a>
         </div>
         <h5>THE AFRICAN LAW LIBRARY</h5>

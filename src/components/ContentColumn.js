@@ -1,12 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 
 function ContentColumn() {
     return (
-        <div className="left col-9">
+        <div className={ `left col-9` }>
             <div className="search-result">
-                <div className="feed w-clearfix">
+                <div className={ `feed w-clearfix` }>
                     <h1>Search results: <span>mixed market</span></h1>
                     <h2>Mixed Market Act (2017)</h2>
                     <div className="text-block">
@@ -24,7 +22,7 @@ function ContentColumn() {
                     <div className="grey-rule"/>
                 </div>
 
-                <div className="feed w-clearfix">
+                <div className={ `feed w-clearfix` }>
                     <h2>State v/s National Commission (2000)</h2>
                     <div className="text-block">
                         <a href="#"> NIGERIA </a><a> &#160;| &#160; </a><a href="#">CASE LAW </a> &#160;|
@@ -42,7 +40,7 @@ function ContentColumn() {
                     <div className="grey-rule"/>
                 </div>
 
-                <div className="feed w-clearfix">
+                <div className={ `feed w-clearfix` }>
                     <h2>State v/s National Commission (2000)</h2>
                     <div className="text-block">
                         <a href="#"> NIGERIA </a><a> &#160;| &#160; </a><a href="#">CASE LAW </a> &#160;|
@@ -57,7 +55,7 @@ function ContentColumn() {
                         cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. <a
                             className="more" href="#">more...</a>
                     </p>
-                    <div className="grey-rule last"/>
+                    <div className={ `grey-rule last` }/>
                 </div>
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
+import mainLogo from '../images/logo.png';
 
 function TopBar() {
     return (
@@ -8,7 +7,7 @@ function TopBar() {
 
             <div className="container">
                 <a className="nav-brand" href="/">
-                    <img src="images/logo.png" width="75"/>
+                    <img src={mainLogo} width="75"/>
                 </a>
                 <div className="logotype">
                     <h1>African Law Library</h1>
@@ -18,12 +17,12 @@ function TopBar() {
                     <img src="images/th-menu.png"/>
                 </div>
 
-                <div className="search-form-container col-6">
+                <div className={ `search-form-container col-6` }>
                     <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
                         <div className="div-block w-clearfix">
                             <input className="text-field-2" data-name="Name" id="search" maxLength="256"
                                 name="name" placeholder="Search " type="text"/>
-                            <input className="submit-button w-button" data-wait="Please wait..." type="submit"
+                            <input className={ `submit-button w-button` } data-wait="Please wait..." type="submit"
                                 value="GO"/>
                         </div>
                     </form>
