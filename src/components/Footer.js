@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 function Footer() {
     return (
 <footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
+    <div className="container">
+        <div className="row">
+            <div className="col-4">
                 <ul>
                     <li>
                         <a href="">Policies</a>
@@ -24,7 +24,7 @@ function Footer() {
                 </ul>
             </div>
 
-            <div class="col-4">
+            <div className="col-4">
                 <ul>
                     <li>
                         <a href="">About Us</a>
@@ -47,39 +47,39 @@ function Footer() {
                 </ul>
             </div>
 
-            <div class="col-4">
+            <div className="col-4">
                 <p>Join over 14,000 people who receive weekly information</p>
-                <div class="w-form">
-                    <form class="w-clearfix" data-name="Email Form 2" id="email-form-2"
+                <div className="w-form">
+                    <form className="w-clearfix" data-name="Email Form 2" id="email-form-2"
                         name="email-form-2">
-                        <input class="newsletter-form" data-name="Email" id="email" maxlength="256"
+                        <input className="newsletter-form" data-name="Email" id="email" maxLength="256"
                             name="email" placeholder="Enter your email address" required="required"
                             type="email"/>
-                        <input class="submit-newsletter" data-wait="Please wait..." type="submit"
+                        <input className="submit-newsletter" data-wait="Please wait..." type="submit"
                             value=">"/>
                     </form>
-                    <div class="form-done">
+                    <div className="form-done">
                         <div>Thank you! Your submission has been received!</div>
                     </div>
-                    <div class="form-fail">
+                    <div className="form-fail">
                         <div>Oops! Something went wrong while submitting the form</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="social-icons">
-        <div class="social-link-group">
-            <a class="social-icon-link" href="#">
+    <div className="social-icons">
+        <div className="social-link-group">
+            <a className="social-icon-link" href="#">
                 <img src="images/face.svg" width="25"/>
             </a>
-            <a class="social-icon-link" href="#">
+            <a className="social-icon-link" href="#">
                 <img src="images/instagram.svg" width="25"/>
             </a>
-            <a class="social-icon-link" href="#">
+            <a className="social-icon-link" href="#">
                 <img src="images/twitter.svg" width="25"/>
             </a>
-            <a class="social-icon-link" href="#">
+            <a className="social-icon-link" href="#">
                 <img src="images/linkedin.svg" width="25"/>
             </a>
         </div>

@@ -21,7 +21,7 @@ function TopBar() {
                 <div className="search-form-container col-6">
                     <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
                         <div className="div-block w-clearfix">
-                            <input className="text-field-2" data-name="Name" id="search" maxlength="256"
+                            <input className="text-field-2" data-name="Name" id="search" maxLength="256"
                                 name="name" placeholder="Search " type="text"/>
                             <input className="submit-button w-button" data-wait="Please wait..." type="submit"
                                 value="GO"/>
