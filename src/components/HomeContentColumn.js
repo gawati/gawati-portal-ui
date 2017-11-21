@@ -1,26 +1,32 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import '../css/react-tabs.css';
+
+function getHomeTabs() {
+    return (
+        <Tabs selectedTabClassName="home-active-tab">
+            <div className="d-tabs">
+                <TabList className="tab-menu">
+                <Tab><a href="javascript:;" className={ `tab` }>Title 1</a></Tab>
+                <Tab><a href="javascript:;" className={ `tab` }>Title 2</a></Tab>
+                </TabList>
+            </div>
+            <div className={ `tabs-content w-tab-content` }>
+                <TabPanel className={ `tab-pane` }>
+                <h2>Any content 1</h2>
+                </TabPanel>
+                <TabPanel  className={ `tab-pane` }>
+                <h2>Any content 2</h2>
+                </TabPanel>
+            </div>
+         </Tabs>
+    )
+}
 
 function HomeContentColumn() {
     return (
 <div className={ `left col-9` }>
-        <Tabs>
-            <div className="d-tabs">
-        <TabList className="tab-menu">
-        <Tab><a href="#" className={ `tab` }>Title 1</a></Tab>
-        <Tab><a href="#" className={ `tab` }>Title 2</a></Tab>
-        </TabList>
-        </div>
-        <div className={ `tabs-content w-tab-content` }>
-        <TabPanel className={ `tab-pane` }>
-        <h2>Any content 1</h2>
-        </TabPanel>
-        <TabPanel  className={ `tab-pane` }>
-        <h2>Any content 2</h2>
-        </TabPanel>
-        </div>
-        </Tabs>
-
+      {getHomeTabs()}
         {/*
     <div className="d-tabs">
         <ul className="tab-menu">
