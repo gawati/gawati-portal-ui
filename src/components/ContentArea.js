@@ -5,18 +5,25 @@ import NotifBar from './NotifBar';
 import ContentColumn from './ContentColumn';
 import HomeContentColumn from './HomeContentColumn';
 import SideBarColumn from './SideBarColumn';
+import Section from './Section';
+import DivRow from './DivRow';
+import { Switch, Route } from 'react-router-dom';
 
 function ContentArea() {
     return (
-        <section className="section">
+        <Section>
             <div className="container">
-                <div className="row">
+                <DivRow altClasses="home-content-area">
                     <NotifBar />
-                    <HomeContentColumn />
+                    <Switch>
+                        <Route exact path="/" component={HomeContentColumn} />
+                        <Route exact path="/index.html" component={HomeContentColumn} />
+                        <Route path="/other.html" component={ContentColumn} />
+                    </Switch>
                     <SideBarColumn />
-                </div>
+                </DivRow>
             </div>
-        </section>
+        </Section>
     );
 }
 
