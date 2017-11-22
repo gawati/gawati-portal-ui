@@ -65,11 +65,11 @@
   }
   
   @media all and (max-width: 715px){
-    .homepage .feed{
+    .home-content-area .feed{
       width:100%;
     }
   
-    .homepage .section .container{
+    .home-content-area .section .container{
       padding-right: 15px;
       padding-left: 15px;
     }
@@ -88,7 +88,7 @@
       position: absolute;
       top: 0
     }
-    .homepage .search-form-container {
+    .home-content-area .search-form-container {
       display: inline-block;
     }
     .d-tabs .tab-menu li{

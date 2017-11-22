@@ -1,0 +1,9 @@
+/** used by Section.js **/
+.section{
+    padding-top: 20px;
+    padding-bottom: 50px;
+    background-color: #e0ddd7;
+    color: #1abc9c;
+    width:100%;
+    float: left;
+}
