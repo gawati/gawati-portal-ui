@@ -1,24 +1,13 @@
 import React from 'react';
 import DivFeed from '../components/DivFeed';
+import {homePageFilterWords} from '../constants';
 
 function ThemeIntro() {
     return (
     <DivFeed>
-        <h2>Theme of the month</h2>
-        <div className="text-block">
-            <a href="#"> AUTOR NAME </a>
-            <a> &#160;| &#160; </a>
-            <a href="#">CATEGORY</a>
-            <a> &#160;| &#160;</a>
-            <a href="#">July 25, 2017 </a>
-            <a> </a>
-        </div>
+        <h2>Theme of the month: { homePageFilterWords()["name"] }</h2>
         <a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius
-                enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros
-                dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus
-                nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
-                tristique posuere.</p>
+            <p>The theme of the month is elections !</p>
         </a>
         { /*
         <a className="more-button" href="#">

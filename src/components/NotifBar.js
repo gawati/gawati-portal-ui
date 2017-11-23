@@ -3,7 +3,7 @@ import bellIcon from '../images/bell.png';
 
 function NotifBar() {
     return (
-        <a href="#">
+        <a href="javascript:;">
             <img className="bell" src={bellIcon} width="27" />
         </a>
     );

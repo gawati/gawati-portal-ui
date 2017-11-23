@@ -366,6 +366,7 @@ body{
   .feed p{
     margin-top: 10px;
   }
+  /*
   .feed img{
     float: left;
     width: 100%;
@@ -374,6 +375,7 @@ body{
     margin-right: 2%;
     margin-top: 10px
   }
+  */
   .feed .text-block a:hover{
     color: #3898EC;
     text-decoration: underline;

@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import NotifBar from './NotifBar';
 import ContentColumn from './ContentColumn';
 import HomeContentColumn from './HomeContentColumn';

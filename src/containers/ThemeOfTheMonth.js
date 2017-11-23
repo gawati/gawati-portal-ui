@@ -1,12 +1,15 @@
 import React from 'react';
 import ThemeIntro from './ThemeIntro';
-import DivFeed from '../components/DivFeed';
-import linkIcon from '../images/export.png';
+import ThemeSummary from './ThemeSummary';
+
 
 function ThemeOfTheMonth() {
 return (
     <div className={ `tab-pane tab-active` } data-tab="t1">
         <ThemeIntro />
+        <ThemeSummary />
+        {
+            /*
         <div className={ `feed w-clearfix` }>
             <h2>This is the second tittle.</h2>
             <div className="text-block">
@@ -59,6 +62,7 @@ return (
             </div>
             <div className="grey-rule"/>
         </div>
+        */}
         <div className="button-wrapper">
             <a className={ `button w-button` } href="/all-posts">More posts&#160;→</a>
         </div>

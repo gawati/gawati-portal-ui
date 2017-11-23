@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
+
 import imgFace from '../images/face.svg';
 import imgLinkedin from '../images/linkedin.svg';
 import imgTwitter from '../images/twitter.svg';
@@ -15,16 +14,16 @@ function Footer() {
             <div className="col-4">
                 <ul>
                     <li>
-                        <a href="">Policies</a>
+                        <a href="javascript:;">Policies</a>
                     </li>
                     <li>
-                        <a href="">Privacy policy</a>
+                        <a href="javascript:;">Privacy policy</a>
                     </li>
                     <li>
-                        <a href="">Copyright</a>
+                        <a href="javascript:;">Copyright</a>
                     </li>
                     <li>
-                        <a href="">Terms of Service</a>
+                        <a href="javascript:;">Terms of Service</a>
                     </li>
                 </ul>
             </div>
@@ -32,22 +31,22 @@ function Footer() {
             <div className="col-4">
                 <ul>
                     <li>
-                        <a href="">About Us</a>
+                        <a href="javascript:;">About Us</a>
                     </li>
                     <li>
-                        <a href="">Who we are </a>
+                        <a href="javascript:;">Who we are </a>
                     </li>
                     <li>
-                        <a href="">What we do</a>
+                        <a href="javascript:;">What we do</a>
                     </li>
                     <li>
-                        <a href="">FAQ</a>
+                        <a href="javascript:;">FAQ</a>
                     </li>
                     <li>
-                        <a href="">Blog</a>
+                        <a href="javascript:;">Blog</a>
                     </li>
                     <li>
-                        <a href="">Contact Us</a>
+                        <a href="javascript:;">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -75,16 +74,16 @@ function Footer() {
     </div>
     <div className="social-icons">
         <div className="social-link-group">
-            <a className="social-icon-link" href="#">
+            <a className="social-icon-link" href="javascript:;">
                 <img src={imgFace} width="25"/>
             </a>
-            <a className="social-icon-link" href="#">
+            <a className="social-icon-link" href="javascript:;">
                 <img src={imgInstagram} width="25"/>
             </a>
-            <a className="social-icon-link" href="#">
+            <a className="social-icon-link" href="javascript:;">
                 <img src={imgTwitter} width="25"/>
             </a>
-            <a className="social-icon-link" href="#">
+            <a className="social-icon-link" href="javascript:;">
                 <img src={imgLinkedin} width="25"/>
             </a>
         </div>

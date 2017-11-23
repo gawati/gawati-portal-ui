@@ -2,7 +2,9 @@
   "name": "gawati-portal",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost",
   "dependencies": {
+    "axios": "^0.17.1",
     "bootstrap": "4.0.0-alpha.6",
     "moment": "^2.19.2",
     "react": "^16.1.1",
