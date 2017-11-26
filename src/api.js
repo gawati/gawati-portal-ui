@@ -3,7 +3,9 @@ import querystring from 'querystring';
 const GAWATI_APIS = {
     base_iri : '/gw/service',
     apis : {
-        'themes-summary' : '/themes/expressions/summary/'
+        'themes-summary' : '/themes/expressions/summary/',
+        'recent-summary' : '/recent/expressions/summary/',
+        'doc': '/doc/'
     }
 };
 

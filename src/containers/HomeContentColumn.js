@@ -1,35 +1,124 @@
 import React from 'react';
+import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import {apiGetCall} from '../api';
+import {homePageFilterWords} from '../constants';
+
 import ThemeOfTheMonth from '../containers/ThemeOfTheMonth';
+import RecentDocs from '../containers/RecentDocs';
+
 import '../css/react-tabs.css';
 import linkIcon from '../images/export.png';
 
-function getHomeTabs() {
-    return (
-        <Tabs selectedTabClassName="home-active-tab">
-                <div className="d-tabs">
-                    <TabList className="tab-menu">
-                    <Tab><a href="javascript:;" className={ `tab` }>In Focus</a></Tab>
-                    <Tab><a href="javascript:;" className={ `tab` }>Latest</a></Tab>
-                    </TabList>
-                </div>
-                <div className={ `tabs-content w-tab-content` }>
-                    <TabPanel className={ `tab-pane` }>
-                        <ThemeOfTheMonth />
-                    </TabPanel>
-                    <TabPanel  className={ `tab-pane` }>
-                        <h2>Any content 2</h2>
-                        </TabPanel>
-                </div>
-         </Tabs>
-    )
+class HomeContentColumn extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+            themes: {
+                content:  [],
+                loading: true
+            },
+            latest:  {
+                content:  [],
+                loading: true
+            }
+        };
+    }
+   
+    getRecentSummary() {
+        let apiRecentSummary = apiGetCall(
+            'recent-summary', {
+                count : 4,
+                from: 1,
+                to: 4
+            } 
+        );
+        axios.get(apiRecentSummary)
+            .then(response => {
+                const content = response.data.exprAbstracts.exprAbstract;
+                this.setState({ 
+                    latest: {
+                        loading: false, 
+                        content : content
+                    }
+                });
+            })
+            .catch(function(error) {
+                console.log("error in getRecentSummary()", error);
+            });
+    }
+
+
+    getThemesSummary() {
+        let apiThemesSummary = apiGetCall(
+            'themes-summary', {
+                themes : homePageFilterWords()["keywords"],
+                count : 4,
+                from: 1,
+                to: 4
+            } 
+        );
+        axios.get(apiThemesSummary)
+            .then(response => {
+                const content = response.data.exprAbstracts.exprAbstract;
+                console.log( content );
+                this.setState({ 
+                    themes: {
+                        loading: false, 
+                        content : content
+                    }
+                });
+            })
+            .catch(function(error) {
+                console.log("error in getThemesSummary()", error);
+            });
+    }
+
+    componentDidMount() {
+        this.getThemesSummary();
+        this.getRecentSummary();
+    }
+
+    render() {
+        let content;
+        content = 
+            <div className={ `left col-9` }>
+                <Tabs selectedTabClassName="home-active-tab">
+                        <div className="d-tabs">
+                            <TabList className="tab-menu">
+                            <Tab><a href="javascript:;" className="tab">In Focus</a></Tab>
+                            <Tab><a href="javascript:;" className="tab">Latest</a></Tab>
+                            </TabList>
+                        </div>
+                        <div className={ `tabs-content w-tab-content` }>
+                            <TabPanel className="tab-pane">
+                                {this.state.themes.loading ? <Loading tab="1" /> : 
+                                <ThemeOfTheMonth themes={this.state.themes.content} tab={1} /> }
+                            </TabPanel>
+                            <TabPanel  className="tab-pane">
+                            {this.state.latest.loading ? <Loading tab="2" /> : 
+                                <RecentDocs recentDocs={this.state.latest.content} tab={2} /> }
+                            </TabPanel>
+                        </div>
+                </Tabs>
+            </div>
+        return content;
+    }
+
 }
 
+const Loading = ({tab}) => 
+    <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
+        Loading...
+    </div>
+
+/*
 function HomeContentColumn() {
     return (
 <div className={ `left col-9` }>
       {getHomeTabs()}
-        {/*
+        {
     <div className="d-tabs">
         <ul className="tab-menu">
             <li>
@@ -284,11 +373,11 @@ function HomeContentColumn() {
             </div>
         </div>
     </div>
-        */ }
+         }
 
 
 </div>
     );
 }
-
+*/
 export default HomeContentColumn;

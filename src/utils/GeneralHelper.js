@@ -15,3 +15,6 @@ export function shortTitle(theTitle) {
         return stringCut(80, theTitle) + "...";
     }
 }
+
+export const prefixIri = (iri) => 
+     iri.startsWith('/') ? iri : "/" + iri;

@@ -1,13 +1,15 @@
 import React from 'react';
-import ThemeIntro from './ThemeIntro';
-import ThemeSummary from './ThemeSummary';
 
+import {homePageFilterWords} from '../constants';
+import {Aux} from '../utils/GeneralHelper';
 
-function ThemeOfTheMonth() {
-return (
-    <div className={ `tab-pane tab-active` } data-tab="t1">
+import DivFeed from '../components/DivFeed';
+import ExprAbstract from './ExprAbstract';
+
+const ThemeOfTheMonth = ({themes, tab}) =>
+    <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
         <ThemeIntro />
-        <ThemeSummary />
+        <ThemeSummary themes={themes} />
         {
             /*
         <div className={ `feed w-clearfix` }>
@@ -67,7 +69,31 @@ return (
             <a className={ `button w-button` } href="/all-posts">More posts&#160;→</a>
         </div>
     </div>
-);
+    ;
+
+const ThemeIntro = () => {
+        let homePageIntro = homePageFilterWords();
+        return (
+        <DivFeed>
+            <h2>Theme of the month: { homePageIntro["name"] }</h2>
+            <a>
+                <p>{ homePageIntro["description"] }</p>
+            </a>
+            <div className="grey-rule"/>
+        </DivFeed>        
+        );
 }
+
+const ThemeSummary = ({themes}) => 
+        <Aux>
+        {
+            themes.map(abstract => {
+                return (
+                <ExprAbstract key={abstract['expr-iri']} abstract={abstract} />   
+                )
+            })
+        }
+        </Aux>
+        ;
 
 export default ThemeOfTheMonth;
