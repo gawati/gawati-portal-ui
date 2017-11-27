@@ -2,11 +2,24 @@ import React from 'react';
 import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {apiGetCall} from '../api';
-import {prefixIri} from '../utils/GeneralHelper';
-
-
+import {prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/GeneralHelper';
+import {anPublication} from '../utils/AkomaNtoso';
+import DocumentBreadcrumb from './DocumentBreadcrumb';
+import DocumentNavBlock from './DocumentNavBlock';
+import DocumentSignature from './DocumentSignature';
 import '../css/react-tabs.css';
 import linkIcon from '../images/export.png';
+
+
+const DocumentLoading = () => 
+    <div className={ `left col-9`}>
+        <div className="search-result">
+        Loading...
+        </div>
+    </div>;
+
+const DocumentTitle = ({doc, type}) =>
+    <h1>{anPublication(doc, type)['showAs']}</h1>;
 
 class DocumentContentColumn extends React.Component {
     
@@ -16,7 +29,8 @@ class DocumentContentColumn extends React.Component {
             lang: this.props.match.params['lang'],
             iri: prefixIri(this.props.match.params['iri']),
             loading: true,
-            document: {
+            docType : '',
+            doc: {
             }
         };
     }
@@ -29,11 +43,11 @@ class DocumentContentColumn extends React.Component {
         );
         axios.get(apiDoc)
             .then(response => {
-                console.log(" Response ", response.data);
-                const doc = response.data.akomaNtoso;
+                const doc = response.data;
                 this.setState({
                     loading: false,
-                    doc: doc
+                    doc: doc,
+                    docType: getDocumentType(doc)
                 });
                 /*
                 const content = response.data.exprAbstracts.exprAbstract;
@@ -54,55 +68,49 @@ class DocumentContentColumn extends React.Component {
    
     componentDidMount() {
         this.getDocument(this.state.iri);
+        
     }
 
     render() {
-        let content;
-        content = 
-<div className={ `left col-9`}>
-<div className="search-result">
-    <div className="breadcrumb-gw">
-        <span className=""><a href="#">Home</a> &gt; <a href="#">Legislation</a> &gt; <a href="#"
-                >Kenya</a> &gt;</span>
-        <span>Mixed Market Act (2017)</span>
-    </div>
+        if (this.state.doc === undefined || isEmpty(this.state.doc)) {
+            return (
+                <DocumentLoading />
+            );
+        } else {        
+            console.log("DOC TYPES ", getDocTypes(), getDocType('act'));
+            let content = 
+            <div className={ `left col-9`}>
+                <div className="search-result">
+                    <DocumentBreadcrumb doc={this.state.doc} type={this.state.docType} />
+                    <div className={ `feed w-clearfix`}>
+                    <DocumentTitle doc={this.state.doc} type={this.state.docType} />
+                    <DocumentNavBlock doc={this.state.doc} type={this.state.docType} />
+                    <DocumentSignature doc={this.state.doc} type={this.state.docType} />
 
-    <div className={ `feed w-clearfix`}>
-        <h1>Mixed Market Act (2017)</h1>
-        <div className="text-block">
-            <a href="#"> KENYA </a><a> &#160;| &#160; </a><a href="#">LEGISLATION </a> &#160;|
-            &#160; Date: 21, Jan, 2011 &#160;| &#160; <a href="#">ENGLISH</a> &#160;| &#160;
-            Code: CAP 42 </div>
-
-        <div className="document-warning"> This document has been&#160;<a href="#">digitally
-                signed</a>&#160;and provided by&#160;<a href="#">National Council of Law
-                Reporting, Kenya</a>
-        </div>
-
-        <div className="document-download">
-            <div className={ `col-3 left`}>
-                <a href="#">Back to search</a>
-            </div>
-            <div className={ `col-9 right`}>
-                <ul>
-                    <li>
-                        <a href="#">Subscribe</a>
-                    </li>
-                    <li>
-                        <a href="#">Copy Reference</a>
-                    </li>
-                    <li>
-                        <a href="#">Download PDF</a>
-                    </li>
-                    <li>
-                        <a href="#">Download XML</a>
-                    </li>
-                    <li>
-                        <a href="#">Share</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                    <div className="document-download">
+                        <div className={ `col-3 left`}>
+                            <a href="#">Back to search</a>
+                        </div>
+                        <div className={ `col-9 right`}>
+                            <ul>
+                                <li>
+                                    <a href="#">Subscribe</a>
+                                </li>
+                                <li>
+                                    <a href="#">Copy Reference</a>
+                                </li>
+                                <li>
+                                    <a href="#">Download PDF</a>
+                                </li>
+                                <li>
+                                    <a href="#">Download XML</a>
+                                </li>
+                                <li>
+                                    <a href="#">Share</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
         <div className="part-of"> Part of the <a href="#"> Mixed Market Act 1991</a>. Work <a
                 href="#">Search within this Work</a> &#160;| &#160;<a href="#">Timeline of the
@@ -200,12 +208,14 @@ class DocumentContentColumn extends React.Component {
 </div>;
     return content;
     }
-
+    }
 }
 
+/*
 const Loading = ({tab}) => 
     <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
         Loading...
     </div>;
+*/
 
 export default DocumentContentColumn;

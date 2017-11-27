@@ -6,3 +6,6 @@ export const homePageFilterWords = () => ({
     "description": "The theme of the month is Trade !",
     "keywords":["trade", "goods", "supplies", "finance", "budget", "Taxe"]
 })
+
+export const documentTypes = () => ["act", "doc", "judgment"];
+

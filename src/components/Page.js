@@ -5,7 +5,6 @@ import {Aux} from '../utils/GeneralHelper';
 
 import PageUpperBorder from './PageUpperBorder';
 import TopBar from './TopBar';
-import ContentArea from './ContentArea';
 import HomeContentArea from './HomeContentArea';
 import DocumentContentArea from './DocumentContentArea';
 import Footer from './Footer';
@@ -19,7 +18,6 @@ function Page(){
             <Route exact path="/" component={HomeContentArea} />
             <Route exact path="/index.html" component={HomeContentArea} />
             <Route path="/document.html/_lang/:lang/_iri/:iri*" component={DocumentContentArea} />
-            <Route path="/other.html" component={ContentArea} />
         </Switch>
         <Footer />
     </Aux>
