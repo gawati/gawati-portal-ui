@@ -1,12 +1,18 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+import DivFeed from '../components/DivFeed';
+
 import {apiGetCall} from '../api';
-import {prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/GeneralHelper';
+import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/GeneralHelper';
 import {anPublication} from '../utils/AkomaNtoso';
+
 import DocumentBreadcrumb from './DocumentBreadcrumb';
 import DocumentNavBlock from './DocumentNavBlock';
 import DocumentSignature from './DocumentSignature';
+import DocumentActions from './DocumentActions';
 import '../css/react-tabs.css';
 import linkIcon from '../images/export.png';
 
@@ -20,6 +26,71 @@ const DocumentLoading = () =>
 
 const DocumentTitle = ({doc, type}) =>
     <h1>{anPublication(doc, type)['showAs']}</h1>;
+
+
+const DocumentPartOf = ({doc, type}) => {
+    return (
+        <div className="part-of"> Part of the <a href="#"> Mixed Market Act 1991</a>. Work <a
+        href="#">Search within this Work</a> &#160;| &#160;<a href="#">Timeline of the
+        Work</a>
+        </div>
+    );
+}
+
+const DocumentTagCloud = ({doc, type}) => {
+    return (
+        <div className="tag-cloud" >
+            <span className="text-span-14">act </span><span className="text-span-13">Administrative
+                </span><span className="text-span-27">assigned </span><span>body </span><span
+                className="text-span-15">cabinet </span><span>case </span><span className="text-span-28"
+                >chief </span><span className="text-span-20">citizen </span><span>citizenship
+                </span><span>commission </span><span className="text-span-21">contolled
+                </span><span>copy </span><span>corporate </span><span className="text-span-30"
+                >deleted</span> deparment <span className="text-span-22">digital </span><span
+                className="text-span-12">director</span>
+            <span className="text-span-23">document </span>electronic <span>entity </span><span
+                className="text-span-29">exempt </span><span>form </span><span className="text-span-16"
+                >generated </span><span className="text-span-17">government
+                </span><span>individual</span>
+            <span className="text-span-19">information </span><span className="text-span-18"
+                >justice</span>
+        </div>
+    );
+}
+
+const DocumentMetadataInfo = ({doc, type}) => {
+    return (
+        <Tabs selectedTabClassName="home-active-tab">
+            <div className="d-tabs">
+                <TabList className="tab-menu">
+                <Tab><a href="javascript:;" className="tab">Metadata</a></Tab>
+                <Tab><a href="javascript:;" className="tab">PDF</a></Tab>
+                </TabList>
+            </div>
+            <div className={ `tabs-content w-tab-content` }>
+                <TabPanel className="tab-pane">
+                    <div className={ `tab-pane tab-active` } data-tab="t1">
+                        <DivFeed>
+                            <h2>Loading...1...</h2>
+                        </DivFeed>
+                    </div>
+                </TabPanel>
+                <TabPanel  className="tab-pane">
+                    <div className={ `tab-pane tab-active` } data-tab="t2">
+                        <DivFeed>
+                            <h2>Loading...2...</h2>
+                        </DivFeed>
+                    </div>            
+                </TabPanel>
+            </div>
+        </Tabs>    
+    );
+}
+ 
+DocumentMetadataInfo.propTypes = {
+    doc: PropTypes.object.isRequired,
+    type: PropTypes.string.isRequired
+}
 
 class DocumentContentColumn extends React.Component {
     
@@ -83,58 +154,34 @@ class DocumentContentColumn extends React.Component {
                 <div className="search-result">
                     <DocumentBreadcrumb doc={this.state.doc} type={this.state.docType} />
                     <div className={ `feed w-clearfix`}>
-                    <DocumentTitle doc={this.state.doc} type={this.state.docType} />
-                    <DocumentNavBlock doc={this.state.doc} type={this.state.docType} />
-                    <DocumentSignature doc={this.state.doc} type={this.state.docType} />
-
-                    <div className="document-download">
-                        <div className={ `col-3 left`}>
-                            <a href="#">Back to search</a>
-                        </div>
-                        <div className={ `col-9 right`}>
-                            <ul>
-                                <li>
-                                    <a href="#">Subscribe</a>
-                                </li>
-                                <li>
-                                    <a href="#">Copy Reference</a>
-                                </li>
-                                <li>
-                                    <a href="#">Download PDF</a>
-                                </li>
-                                <li>
-                                    <a href="#">Download XML</a>
-                                </li>
-                                <li>
-                                    <a href="#">Share</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <DocumentTitle doc={this.state.doc} type={this.state.docType} />
+                        <DocumentNavBlock doc={this.state.doc} type={this.state.docType} />
+                        <DocumentSignature doc={this.state.doc} type={this.state.docType} />
+                        <DocumentActions doc={this.state.doc} type={this.state.docType} />
+                        <DocumentMetadataInfo doc={this.state.doc} type={this.state.docType} />
                     </div>
+                </div>
+            </div>
+            ;
+    return content;
+    }
+    }
+}
 
-        <div className="part-of"> Part of the <a href="#"> Mixed Market Act 1991</a>. Work <a
-                href="#">Search within this Work</a> &#160;| &#160;<a href="#">Timeline of the
-                Work</a>
-        </div>
+/*
+const Loading = ({tab}) => 
+    <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
+        Loading...
+    </div>;
+*/
 
-        <div className="tag-cloud" >
-            <span className="text-span-14">act </span><span className="text-span-13">Administrative
-                </span><span className="text-span-27">assigned </span><span>body </span><span
-                className="text-span-15">cabinet </span><span>case </span><span className="text-span-28"
-                >chief </span><span className="text-span-20">citizen </span><span>citizenship
-                </span><span>commission </span><span className="text-span-21">contolled
-                </span><span>copy </span><span>corporate </span><span className="text-span-30"
-                >deleted</span> deparment <span className="text-span-22">digital </span><span
-                className="text-span-12">director</span>
-            <span className="text-span-23">document </span>electronic <span>entity </span><span
-                className="text-span-29">exempt </span><span>form </span><span className="text-span-16"
-                >generated </span><span className="text-span-17">government
-                </span><span>individual</span>
-            <span className="text-span-19">information </span><span className="text-span-18"
-                >justice</span>
-        </div>
+export default DocumentContentColumn;
 
-        <div className="d-tabs">
+
+/**
+ * 
+ *         
+ * <div className="d-tabs">
             <ul className="tab-menu">
                 <li>
                     <a href="#" className={ `tab active`}>Content</a>
@@ -142,7 +189,8 @@ class DocumentContentColumn extends React.Component {
             </ul>
         </div>
 
-        <div className={ `tabs-content w-tab-content`}>
+
+    <div className={ `tabs-content w-tab-content`}>
             <div className={ `tab-pane tab-active`} data-tab="t1">
                 <div className={ `feed clearfix`}>
                     <div className="paginations">
@@ -203,19 +251,6 @@ class DocumentContentColumn extends React.Component {
   
         </div>
 
-    </div>
-</div>
-</div>;
-    return content;
-    }
-    }
-}
 
-/*
-const Loading = ({tab}) => 
-    <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
-        Loading...
-    </div>;
-*/
 
-export default DocumentContentColumn;
+ */

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {getDocumentType, isEmpty, shortTitle, getDocType} from '../utils/GeneralHelper';
+import {shortTitle, getDocType} from '../utils/GeneralHelper';
 import {anPublication, anFRBRcountry} from '../utils/AkomaNtoso';
 
 const CategoryLink = ({type}) => 

@@ -1,5 +1,6 @@
 import React from 'react';
 import mainLogo from '../images/logo.png';
+import mobileButton from '../images/th-menu.png';
 
 function TopBar() {
     return (
@@ -7,14 +8,14 @@ function TopBar() {
 
             <div className="container">
                 <a className="nav-brand" href="/">
-                    <img src={mainLogo} width="75"/>
+                    <img alt="AIF" src={mainLogo} width="75"/>
                 </a>
                 <div className="logotype">
                     <h1>African Law Library</h1>
                     <h2>innovative access to law</h2>
                 </div>
                 <div className="mobile-button">
-                    <img src="images/th-menu.png"/>
+                    <img alt="menu" src={mobileButton} />
                 </div>
 
                 <div className={ `search-form-container col-6` }>
