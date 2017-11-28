@@ -17,7 +17,7 @@ function Page(){
         <Switch>
             <Route exact path="/" component={HomeContentArea} />
             <Route exact path="/index.html" component={HomeContentArea} />
-            <Route path="/document.html/_lang/:lang/_iri/:iri*" component={DocumentContentArea} />
+            <Route path="/doc/_lang/:lang/_iri/:iri*" component={DocumentContentArea} />
         </Switch>
         <Footer />
     </Aux>

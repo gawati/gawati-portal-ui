@@ -16,7 +16,9 @@ const CountryLink = ({doc, type}) =>
 const LanguageLink = ({doc, type}) => {
     let langObj =  getLangCodeAlpha3b(anFRBRlanguage(doc, type)['language']) ;
     if (langObj !== undefined) {
-        let langEng = langObj.desc.find(obj => obj.lang === 'eng' )['content'];
+        let langEng = Array.isArray(langObj.desc) ? 
+            langObj.desc.find(obj => obj.lang === 'eng' )['content'] :
+            langObj.desc.content;
         return (
             <NavLink to="/">{langEng}</NavLink>
         );
