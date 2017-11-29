@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {Aux, getDocType, getLangCodeAlpha3b} from '../utils/GeneralHelper';
+import {Aux, getDocType, getLangCodeAlpha3b, displayDate} from '../utils/GeneralHelper';
 import {anPublication, anFRBRcountry, anExprFRBRdate, anFRBRlanguage, anFRBRnumber} from '../utils/AkomaNtoso';
 import moment from 'moment';
 
@@ -30,7 +30,7 @@ const LanguageLink = ({doc, type}) => {
 }
  
 const DocumentDate = ({doc, type}) =>
-     <Aux>{moment(anExprFRBRdate(doc, type).date).format('MMMM D YYYY')}</Aux> ;
+     <Aux>{displayDate(anExprFRBRdate(doc, type).date)}</Aux> ;
 
 const DocumentNumber = ({doc, type}) =>
      <Aux>{anFRBRnumber(doc, type)['showAs']}</Aux> ;     

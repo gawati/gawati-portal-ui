@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import DivFeed from '../components/DivFeed';
-import {shortTitle} from '../utils/GeneralHelper';
+import {shortTitle, displayDate} from '../utils/GeneralHelper';
 import {documentServer} from '../constants.js';
 import '../css/ExprAbstract.css';
 
@@ -41,7 +41,7 @@ const ExprAbstract = ({abstract}) => (
             <div className="text-block">
                 <a href="#"> {abstract.country.showAs} </a> &#160;| &#160; 
                 <a href="#">{abstract.language.showAs}</a> &#160;| &#160;
-                <a href="#">{abstract.date[1].value} </a>
+                <a href="#">{displayDate(abstract.date[1].value)} </a>
             </div>  
             <ThumbnailAbstract abstract={abstract} />
             <p>{abstract.publishedAs}</p>

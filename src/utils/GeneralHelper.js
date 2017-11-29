@@ -1,6 +1,7 @@
 import {documentTypes} from '../constants';
 import docTypes from '../configs/docTypes.json';
 import languageCodes from '../configs/languageCodes.json';
+import moment from 'moment';
 
 export const Aux = props => props.children;
 
@@ -32,3 +33,5 @@ export const getDocTypes = () => docTypes.docTypes ;
 export const getDocType = (findType) => getDocTypes().find(dType => dType['akn-type'] === findType) ;
 
 export const getLangCodeAlpha3b = (alpha3b) => languageCodes.langs.lang.find(lingo => lingo['alpha3b'] === alpha3b ) ;
+
+export const displayDate = (date) => moment(date).format('MMMM D YYYY') ;

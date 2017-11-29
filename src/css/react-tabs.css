@@ -3,3 +3,9 @@
     color: #fff!important;
     text-decoration: none!important;
 }
+
+/** for pure react tabs **/
+
+.react-tabs__tab-list {
+    margin:0 0 1px !important;
+}

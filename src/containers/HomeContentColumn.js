@@ -82,6 +82,7 @@ class HomeContentColumn extends React.Component {
 
     render() {
         let content;
+        /*
         content = 
             <div className={ `left col-9` }>
                 <Tabs selectedTabClassName="home-active-tab">
@@ -103,6 +104,24 @@ class HomeContentColumn extends React.Component {
                         </div>
                 </Tabs>
             </div>
+            */
+        content = 
+        <div className={ `left col-9` }>
+            <Tabs>
+                <TabList>
+                    <Tab>In Focus</Tab>
+                    <Tab>Latest</Tab>
+                </TabList>
+                <TabPanel>
+                {this.state.themes.loading ? <Loading tab="1" /> : 
+                    <ThemeOfTheMonth themes={this.state.themes.content} tab={1} /> }
+                </TabPanel>
+                <TabPanel>
+                {this.state.latest.loading ? <Loading tab="2" /> : 
+                    <RecentDocs recentDocs={this.state.latest.content} tab={2} /> }
+                </TabPanel>
+            </Tabs>
+        </div>
         return content;
     }
 
