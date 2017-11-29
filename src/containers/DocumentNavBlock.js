@@ -1,8 +1,9 @@
 import React from 'react';
+
 import { NavLink } from 'react-router-dom';
-import {Aux, getDocType, getLangCodeAlpha3b, displayDate} from '../utils/GeneralHelper';
-import {anPublication, anFRBRcountry, anExprFRBRdate, anFRBRlanguage, anFRBRnumber} from '../utils/AkomaNtoso';
-import moment from 'moment';
+
+import {Aux, getDocType, getLangCodeAlpha3b, displayDate} from '../utils/generalhelper';
+import {anPublication, anFRBRcountry, anExprFRBRdate, anFRBRlanguage, anFRBRnumber} from '../utils/akomantoso';
 
 const CategoryLink = ({type}) => 
     <NavLink to="/">{ getDocType(type)['category']}</NavLink>;

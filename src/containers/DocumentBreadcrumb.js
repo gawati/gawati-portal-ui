@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {shortTitle, getDocType} from '../utils/GeneralHelper';
-import {anPublication, anFRBRcountry} from '../utils/AkomaNtoso';
+import {shortTitle, getDocType} from '../utils/generalhelper';
+import {anPublication, anFRBRcountry} from '../utils/akomantoso';
 
 const CategoryLink = ({type}) => 
     <NavLink to="/">{ getDocType(type)['category']}</NavLink>;

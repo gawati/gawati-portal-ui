@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {homePageFilterWords} from '../constants';
-import {Aux} from '../utils/GeneralHelper';
+import {Aux} from '../utils/generalhelper';
 
 import DivFeed from '../components/DivFeed';
 import ExprAbstract from './ExprAbstract';

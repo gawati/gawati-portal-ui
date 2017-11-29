@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import DivFeed from '../components/DivFeed';
-import {shortTitle, displayDate} from '../utils/GeneralHelper';
+import {shortTitle, displayDate} from '../utils/generalhelper';
 import {documentServer} from '../constants.js';
 import '../css/ExprAbstract.css';
 

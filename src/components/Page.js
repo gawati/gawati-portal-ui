@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import {Aux} from '../utils/GeneralHelper';
+import {Aux} from '../utils/generalhelper';
 
 import PageUpperBorder from './PageUpperBorder';
 import TopBar from './TopBar';

@@ -6,8 +6,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
-import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/GeneralHelper';
-import {anPublication} from '../utils/AkomaNtoso';
+import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/generalhelper';
+import {anPublication} from '../utils/akomantoso';
 import ExprAbstract from './ExprAbstract';
 
 import '../css/react-tabs.css';

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { anBody, anBodyComponentRef, anExprFRBRthis } from '../utils/AkomaNtoso';
+import { anBody, anBodyComponentRef, anExprFRBRthis } from '../utils/akomantoso';
 import { documentServer } from '../constants';
-import { substringBeforeLastMatch } from '../utils/StringHelper';
+import { substringBeforeLastMatch } from '../utils/stringhelper';
 
 const DocumentPdfLink = ({doc, type}) => {
     let body = anBody(doc, type);
