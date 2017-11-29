@@ -9,6 +9,7 @@ import {apiGetCall} from '../api';
 import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/generalhelper';
 import {anPublication} from '../utils/akomantoso';
 import ExprAbstract from './ExprAbstract';
+import Pagination from '../components/Pagination';
 
 import '../css/react-tabs.css';
 import 'react-tabs/style/react-tabs.css';
@@ -104,6 +105,18 @@ class ListContentColumn extends React.Component {
                         )
                     })
                     }
+                    <DivFeed>
+                    <Pagination count={this.state.count} 
+                                from={this.state.from} 
+                                to={this.state.to} 
+                                lang={this.state.lang} 
+                                totalPage={this.state.totalPages}
+                                records={this.state.records} />
+                    </DivFeed>
+                </div>
+                
+                <div className="button-wrapper">
+                   
                 </div>
             </div>
             ;

@@ -35,3 +35,16 @@ export const getDocType = (findType) => getDocTypes().find(dType => dType['akn-t
 export const getLangCodeAlpha3b = (alpha3b) => languageCodes.langs.lang.find(lingo => lingo['alpha3b'] === alpha3b ) ;
 
 export const displayDate = (date) => moment(date).format('MMMM D YYYY') ;
+
+export const range = ((n) => [...Array(n).keys()] ) ;
+
+export const rangeMinMax = ((min, max , step = 1) => {
+    // return a array from min to max, inclusive, in steps of step.
+    // if step is not integer, then max may not be included
+    // http://xahlee.info/js/javascript_range_array.html
+    // version 2017-04-20
+    const arr = [];
+    const totalSteps = Math.floor((max - min)/step);
+    for (let ii = 0; ii <= totalSteps; ii++ ) { arr.push(ii * step + min) }
+    return arr;
+} );
