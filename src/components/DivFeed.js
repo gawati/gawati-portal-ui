@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-function DivFeed({children}) {
+function DivFeed({customClass, children}) {
     return (
-        <div className={ `feed w-clearfix` }>
+        <div className={ `feed w-clearfix  ${customClass || ''}` }>
             { children }
         </div>
     );
