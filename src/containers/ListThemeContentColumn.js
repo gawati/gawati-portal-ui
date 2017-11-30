@@ -28,7 +28,7 @@ const DocumentLoading = () =>
 
 
 
-class ListContentColumn extends React.Component {
+class ListThemeContentColumn extends React.Component {
     
     constructor(props) {
         super(props);
@@ -37,6 +37,7 @@ class ListContentColumn extends React.Component {
             count: this.props.match.params['count'],
             from: this.props.match.params['from'],
             to: this.props.match.params['to'],
+            themes : this.props.match.params['themes'],
             records: 0,
             totalPages: 0,
             orderedBy: '',
@@ -48,7 +49,7 @@ class ListContentColumn extends React.Component {
    
     getListing(paramsObj) {
         let apiRecent = apiGetCall(
-            'recent-summary', 
+            'themes-summary', 
             paramsObj
         );
         axios.get(apiRecent)
@@ -75,7 +76,7 @@ class ListContentColumn extends React.Component {
 
    
     componentDidMount() {
-        this.getListing({count: this.state.count, from: this.state.from, to: this.state.to});
+        this.getListing({themes: this.state.themes.split("|") , count: this.state.count, from: this.state.from, to: this.state.to});
     }
 
     componentDidUpdate() {
@@ -145,5 +146,5 @@ const Loading = ({tab}) =>
     </div>;
 */
 
-export default ListContentColumn;
+export default ListThemeContentColumn;
 

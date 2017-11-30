@@ -1,0 +1,28 @@
+ul.gw-pager {margin: auto; width: 60%; padding-bottom:40px;}
+.gw-pager>.active>a, .gw-pager>.active>a:focus, .gw-pager>.active>a:hover, .gw-pager>.active>span, 
+.gw-pager>.active>span:focus, .gw-pager>.active>span:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.gw-pager>li>a, .gw-pager>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    /* background-color: #fff; */
+    border: 1px solid #ddd;
+}
+
+.gw-pager>.disabled>a, .gw-pager>.disabled>a:focus, .gw-pager>.disabled>a:hover, .gw-pager>.disabled>span, .gw-pager>.disabled>span:focus, .gw-pager>.disabled>span:hover {
+    color: #777;
+    cursor: not-allowed;
+    /* background-color: #fff; */
+    border-color: #ddd;
+}
