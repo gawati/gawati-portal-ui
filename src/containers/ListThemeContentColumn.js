@@ -10,7 +10,7 @@ import {apiGetCall} from '../api';
 import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/generalhelper';
 import {anPublication} from '../utils/akomantoso';
 import ExprAbstract from './ExprAbstract';
-import Paginator from '../components/Paginator';
+import ThemeListPaginator from '../components/ThemeListPaginator';
 
 import '../css/react-tabs.css';
 import 'react-tabs/style/react-tabs.css';
@@ -52,6 +52,7 @@ class ListThemeContentColumn extends React.Component {
             'themes-summary', 
             paramsObj
         );
+        console.log(" API RECENT ", apiRecent);
         axios.get(apiRecent)
             .then(response => {
                 const items = response.data.exprAbstracts;
@@ -95,6 +96,7 @@ class ListThemeContentColumn extends React.Component {
 
     generatePagination = () => {
         var pagination = {
+            themes: this.state.themes,
             count: this.state.count,
             from: this.state.from,
             to: this.state.to,
@@ -102,7 +104,7 @@ class ListThemeContentColumn extends React.Component {
             totalPages: this.state.totalPages,
             records: this.state.records
         };
-        Object.keys(pagination).map(k => pagination[k] = k === 'lang' ? pagination[k] : parseInt(pagination[k]));
+        Object.keys(pagination).map(k => pagination[k] = k === 'lang' | k === 'themes' ? pagination[k] : parseInt(pagination[k]));
         return pagination;  
     }
 
@@ -117,11 +119,16 @@ class ListThemeContentColumn extends React.Component {
             let content = 
             <div className={ `left col-9`}>
                 <div className="search-result">
-                    <h1 className="listingHeading">Recent Documents</h1>
+                    <h1 className="listingHeading">Theme</h1>
                     <DivFeed>
-                        <Paginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                        <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                     </DivFeed>
                     {
+                    console.log( " state listing ", this.state)
+                    }
+                    {
+                    !Array.isArray(this.state.listing) ?
+                    <ExprAbstract key={this.state.listing['expr-iri']} abstract={this.state.listing} /> :    
                     this.state.listing.map(abstract => {
                         return (
                         <ExprAbstract key={abstract['expr-iri']} abstract={abstract} />   
@@ -129,7 +136,7 @@ class ListThemeContentColumn extends React.Component {
                     })
                     }
                 <DivFeed>
-                <Paginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                    <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                 </DivFeed>
                 </div>
             </div>

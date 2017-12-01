@@ -72,7 +72,6 @@ class Paginator extends React.Component {
             endIndex: endIndex,
             pages: pages
         };
-        console.log( " PGN ", pgn);
         return pgn;
     }
 
@@ -96,7 +95,6 @@ class Paginator extends React.Component {
         let pgn = this.props.pagination; 
         let currentPage = this.getCurrentPage(pgn.to, pgn.count);
         let pagerObject = this.getPager(pgn.records, currentPage, pgn.count);
-        console.log( "PAGINATION  PAGEROBJECT ", currentPage, pgn, pagerObject);
         return (
             <ul className="gw-pager">
                 {

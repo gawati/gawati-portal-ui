@@ -11,7 +11,7 @@ const RecentDocs = ({recentDocs, tab}) =>
         <RecentIntro />
         <RecentSummary recentDocs={recentDocs} />
         <div className="button-wrapper">
-            <a className={ `button w-button` } href="/all-posts">More posts&#160;→</a>
+        <a className={ `button w-button` } href={ `/recent/_lang/eng/_count/10/_from/1/_to/10`}>More posts&#160;→</a>
         </div>
     </div>
     ;

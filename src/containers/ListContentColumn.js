@@ -10,7 +10,7 @@ import {apiGetCall} from '../api';
 import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/generalhelper';
 import {anPublication} from '../utils/akomantoso';
 import ExprAbstract from './ExprAbstract';
-import Paginator from '../components/Paginator';
+import RecentListPaginator from '../components/RecentListPaginator';
 
 import '../css/react-tabs.css';
 import 'react-tabs/style/react-tabs.css';
@@ -118,7 +118,7 @@ class ListContentColumn extends React.Component {
                 <div className="search-result">
                     <h1 className="listingHeading">Recent Documents</h1>
                     <DivFeed>
-                        <Paginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                        <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                     </DivFeed>
                     {
                     this.state.listing.map(abstract => {
@@ -128,7 +128,7 @@ class ListContentColumn extends React.Component {
                     })
                     }
                 <DivFeed>
-                <Paginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                 </DivFeed>
                 </div>
             </div>

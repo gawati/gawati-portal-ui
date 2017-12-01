@@ -66,7 +66,7 @@ const ThemeOfTheMonth = ({themes, tab}) =>
         </div>
         */}
         <div className="button-wrapper">
-            <a className={ `button w-button` } href="/all-posts">More posts&#160;→</a>
+            <a className={ `button w-button` } href={ `/themes/_lang/eng/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>More posts&#160;→</a>
         </div>
     </div>
     ;
