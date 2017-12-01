@@ -2,14 +2,14 @@
   "name": "gawati-portal",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://lex.akomantoso.com",
-  "homepage": "http://lex.akomantoso.com/portalv2",
+  "proxy": "http://localhost",
+  "homepage": "http://localhost/v2",
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "4.0.0-alpha.6",
     "moment": "^2.19.2",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "react-tabs": "^2.1.1"

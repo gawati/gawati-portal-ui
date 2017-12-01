@@ -13,16 +13,15 @@ import Footer from './Footer';
 function Page(){
    return (
     <Aux>
-        <TopBar />
+        <Route path="*" component={TopBar} />
         <Switch>
             <Route exact path="/" component={HomeContentArea} />
             <Route exact path="/index.html" component={HomeContentArea} />
             <Route path="/doc/_lang/:lang/_iri/:iri*" component={DocumentContentArea} />
             <Route path="/recent/_lang/:lang/_count/:count/_from/:from/_to/:to" component={ListContentArea} />
             <Route path="/themes/_lang/:lang/_themes/:themes/_count/:count/_from/:from/_to/:to" component={ListContentArea} />
-            
         </Switch>
-        <Footer />
+        <Route path="*" component={Footer} />
     </Aux>
    );
 }

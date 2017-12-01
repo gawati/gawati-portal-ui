@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import {homePageFilterWords} from '../constants';
 import {Aux} from '../utils/generalhelper';
@@ -11,7 +12,7 @@ const RecentDocs = ({recentDocs, tab}) =>
         <RecentIntro />
         <RecentSummary recentDocs={recentDocs} />
         <div className="button-wrapper">
-        <a className={ `button w-button` } href={ `/recent/_lang/eng/_count/10/_from/1/_to/10`}>More posts&#160;→</a>
+        <NavLink className={ `button w-button` } to={ `/recent/_lang/eng/_count/10/_from/1/_to/10`}>More posts&#160;→</NavLink>
         </div>
     </div>
     ;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {homePageFilterWords} from '../constants';
 import {Aux} from '../utils/generalhelper';
-
+import { NavLink } from 'react-router-dom';
 import DivFeed from '../components/DivFeed';
 import ExprAbstract from './ExprAbstract';
 
@@ -66,7 +66,7 @@ const ThemeOfTheMonth = ({themes, tab}) =>
         </div>
         */}
         <div className="button-wrapper">
-            <a className={ `button w-button` } href={ `/themes/_lang/eng/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>More posts&#160;→</a>
+            <NavLink className={ `button w-button` } to={ `/themes/_lang/eng/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>More posts&#160;→</NavLink>
         </div>
     </div>
     ;

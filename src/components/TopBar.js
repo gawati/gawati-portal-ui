@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import mainLogo from '../images/logo.png';
 import mobileButton from '../images/th-menu.png';
 
@@ -7,9 +8,9 @@ function TopBar() {
         <header className="navigation-bar">
 
             <div className="container">
-                <a className="nav-brand" href="/">
+                <NavLink className="nav-brand" to="/">
                     <img alt="AIF" src={mainLogo} width="75"/>
-                </a>
+                </NavLink>
                 <div className="logotype">
                     <h1>African Law Library</h1>
                     <h2>innovative access to law</h2>
