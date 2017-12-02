@@ -48,3 +48,9 @@ export const rangeMinMax = ((min, max , step = 1) => {
     for (let ii = 0; ii <= totalSteps; ii++ ) { arr.push(ii * step + min) }
     return arr;
 } );
+
+export const randomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+};    

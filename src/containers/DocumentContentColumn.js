@@ -6,15 +6,17 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
-import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/generalhelper';
-import {anPublication} from '../utils/akomantoso';
+import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType, displayDate, randomInt} from '../utils/generalhelper';
+import {anPublication, anFRBRnumber, anKeywords} from '../utils/akomantoso';
+import {gawatiDateEntryInForce} from '../utils/gawati';
 
 import DocumentBreadcrumb from './DocumentBreadcrumb';
 import DocumentNavBlock from './DocumentNavBlock';
 import DocumentSignature from './DocumentSignature';
 import DocumentActions from './DocumentActions';
-import '../css/react-tabs.css';
 import 'react-tabs/style/react-tabs.css';
+import '../css/react-tabs.css';
+import '../css/DocumentTagCloud.css';
 import linkIcon from '../images/export.png';
 
 
@@ -39,6 +41,31 @@ const DocumentPartOf = ({doc, type}) => {
 }
 
 const DocumentTagCloud = ({doc, type}) => {
+    let kws = anKeywords(doc, type);
+    if (Array.isArray(kws)) {
+        return (
+            <div className="tag-cloud">
+            <strong>TAGS:</strong>&#160;
+                {
+                kws.map(
+                    (item) => {
+                        let randint = randomInt(14, 28);
+                        return (
+                        <span className={ `text-span-${randint} tag-item` }>{item.showAs} </span>
+                        );
+                    }
+                )
+                }
+            </div>
+        );
+    } else {
+        return (
+            <div className="tag-cloud">
+            <span className="text-span-18">{kws.showAs}</span>
+            </div>
+        );
+    }
+        /*
     return (
         <div className="tag-cloud" >
             <span className="text-span-14">act </span><span className="text-span-13">Administrative
@@ -56,10 +83,23 @@ const DocumentTagCloud = ({doc, type}) => {
             <span className="text-span-19">information </span><span className="text-span-18"
                 >justice</span>
         </div>
-    );
+    ); 
+    */
 }
 
-const DocumentMetadataInfo = ({doc, type}) => {
+
+const DocumentMetadata = ({doc, type}) => {
+    console.log("DOCUMENTMETADATA DOC TYPE ", doc, type);
+    return(
+        <ul className="metadata">
+            <li><strong>Document Number:</strong> {anFRBRnumber(doc, type).showAs}</li>
+            <li><strong>Entry into Force date:</strong>  {displayDate(gawatiDateEntryInForce(doc, type).date)}</li>
+            <li><strong>Themes:</strong>  {}</li>
+        </ul>
+    );
+} 
+
+const DocumentContentInfo = ({doc, type}) => {
     return (
         <Tabs>
         <TabList>
@@ -68,7 +108,7 @@ const DocumentMetadataInfo = ({doc, type}) => {
         </TabList>
         <TabPanel>
           <DivFeed>
-            
+            <DocumentMetadata doc={doc} type={type} />
            </DivFeed>
         </TabPanel>
         <TabPanel>
@@ -78,7 +118,7 @@ const DocumentMetadataInfo = ({doc, type}) => {
     );
 }
  
-DocumentMetadataInfo.propTypes = {
+DocumentContentInfo.propTypes = DocumentMetadata.propTypes = {
     doc: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired
 }
@@ -149,7 +189,8 @@ class DocumentContentColumn extends React.Component {
                         <DocumentNavBlock doc={this.state.doc} type={this.state.docType} />
                         <DocumentSignature doc={this.state.doc} type={this.state.docType} />
                         <DocumentActions doc={this.state.doc} type={this.state.docType} />
-                        <DocumentMetadataInfo doc={this.state.doc} type={this.state.docType} />
+                        <DocumentTagCloud doc={this.state.doc} type={this.state.docType} />
+                        <DocumentContentInfo doc={this.state.doc} type={this.state.docType} />
                     </div>
                 </div>
             </div>

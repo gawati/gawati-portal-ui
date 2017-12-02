@@ -21,6 +21,11 @@ export const anExprFRBRthis = (doc, type) => anFRBRExpression(doc, type).FRBRthi
 
 export const anExprFRBRuri = (doc, type) => anFRBRExpression(doc, type).FRBRuri ;
 
+export const anClassification = (doc, type) => anMeta(doc, type).classification ;
+
+export const anKeywords = (doc, type) => anClassification(doc, type).keyword ;
+
+export const anProprietary = (doc, type) => anMeta(doc, type).proprietary ;
 
 export const anBody = (doc, type) => {
     let bodyProp = 
@@ -31,3 +36,4 @@ export const anBody = (doc, type) => {
 }
 
 export const anBodyComponentRef = (body) =>  body.book.componentRef ;
+
