@@ -83,6 +83,8 @@ class HomeContentColumn extends React.Component {
     render() {
         let content;
         /*
+        * BOOTSTRAP + REACT TABS
+        *
         content = 
             <div className={ `left col-9` }>
                 <Tabs selectedTabClassName="home-active-tab">
@@ -105,6 +107,10 @@ class HomeContentColumn extends React.Component {
                 </Tabs>
             </div>
             */
+
+        /**
+         * PURE REACT TABS
+         */    
         content = 
         <div className={ `left col-9` }>
             <Tabs>
@@ -133,6 +139,9 @@ const Loading = ({tab}) =>
     </div>
 
 /*
+**
+** BOOTSTRAP TABS
+**
 function HomeContentColumn() {
     return (
 <div className={ `left col-9` }>

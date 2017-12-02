@@ -6,8 +6,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
-import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType, displayDate, randomInt} from '../utils/generalhelper';
-import {anPublication, anFRBRnumber, anKeywords} from '../utils/akomantoso';
+import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType, displayDate, randomInt, insertIntoArray} from '../utils/generalhelper';
+import {anPublication, anFRBRnumber, anKeywords, anTLCConcept} from '../utils/akomantoso';
 import {gawatiDateEntryInForce} from '../utils/gawati';
 
 import DocumentBreadcrumb from './DocumentBreadcrumb';
@@ -51,7 +51,7 @@ const DocumentTagCloud = ({doc, type}) => {
                     (item) => {
                         let randint = randomInt(14, 28);
                         return (
-                        <span className={ `text-span-${randint} tag-item` }>{item.showAs} </span>
+                        <span key={item.value} className={ `text-span-${randint} tag-item` }>{item.showAs} </span>
                         );
                     }
                 )
@@ -87,6 +87,25 @@ const DocumentTagCloud = ({doc, type}) => {
     */
 }
 
+const getThemes = (doc, type) => {
+    let tlcc = anTLCConcept(doc, type);
+    if (Array.isArray(tlcc)) {
+       let tlccArr = 
+        insertIntoArray(
+            tlcc.filter(
+                concept => concept.href.startsWith('/ontology/Concept')
+            ).map(
+                concept => <span className="text-span-19" key={concept.eId}>{concept.showAs}</span>
+            ),
+            ' \u00B7 '
+        );
+        return tlccArr;
+    } else {
+        return (
+            <span className="text-span-19">{tlcc.showAs}</span>
+        )
+    }
+};
 
 const DocumentMetadata = ({doc, type}) => {
     console.log("DOCUMENTMETADATA DOC TYPE ", doc, type);
@@ -94,7 +113,7 @@ const DocumentMetadata = ({doc, type}) => {
         <ul className="metadata">
             <li><strong>Document Number:</strong> {anFRBRnumber(doc, type).showAs}</li>
             <li><strong>Entry into Force date:</strong>  {displayDate(gawatiDateEntryInForce(doc, type).date)}</li>
-            <li><strong>Themes:</strong>  {}</li>
+            <li><strong>Themes:</strong>  {getThemes(doc, type)}</li>
         </ul>
     );
 } 

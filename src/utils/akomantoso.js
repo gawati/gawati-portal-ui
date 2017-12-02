@@ -13,17 +13,21 @@ export const anFRBRcountry = (doc, type) => anFRBRWork(doc, type).FRBRcountry ;
 
 export const anFRBRnumber = (doc, type) => anFRBRWork(doc, type).FRBRnumber ;
 
-export const anFRBRlanguage = (doc, type) => anFRBRExpression(doc, type).FRBRlanguage ;
+export const anFRBRlanguage = (doc, type) => anFRBRExpression(doc, type).FRBRlanguage || undefined  ;
 
-export const anExprFRBRdate = (doc, type) => anFRBRExpression(doc, type).FRBRdate ;
+export const anExprFRBRdate = (doc, type) => anFRBRExpression(doc, type).FRBRdate || undefined ;
 
-export const anExprFRBRthis = (doc, type) => anFRBRExpression(doc, type).FRBRthis ;
+export const anExprFRBRthis = (doc, type) => anFRBRExpression(doc, type).FRBRthis || undefined ;
 
-export const anExprFRBRuri = (doc, type) => anFRBRExpression(doc, type).FRBRuri ;
+export const anExprFRBRuri = (doc, type) => anFRBRExpression(doc, type).FRBRuri || undefined ;
 
 export const anClassification = (doc, type) => anMeta(doc, type).classification ;
 
-export const anKeywords = (doc, type) => anClassification(doc, type).keyword ;
+export const anKeywords = (doc, type) => anClassification(doc, type).keyword || undefined ;
+
+export const anReferences = (doc, type) => anMeta(doc, type).references || undefined ;
+
+export const anTLCConcept = (doc, type) => anReferences(doc, type).TLCConcept || undefined
 
 export const anProprietary = (doc, type) => anMeta(doc, type).proprietary ;
 
