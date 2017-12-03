@@ -2,8 +2,11 @@
   "name": "gawati-portal",
   "version": "2.0.1",
   "private": true,
-  "proxy": "http://lexafrica.akomantoso.com",
-  "Shomepage": "http://lexafrica.akomantoso.com/v2",
+  "proxy": "http://localhost",
+  "lexafrica-proxy": "http://lexafrica.akomantoso.com",
+  "lexafrica-homepage": "http://lexafrica.akomantoso.com/v2",
+  "alldev-proxy": "https://alldev.gawati.org",
+  "alldev-homepage": "https://alldev.gawati.org/v2",
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "4.0.0-alpha.6",
