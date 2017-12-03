@@ -7,7 +7,7 @@ import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
 import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType, displayDate, randomInt, insertIntoArray} from '../utils/generalhelper';
-import {anPublication, anFRBRnumber, anKeywords, anTLCConcept} from '../utils/akomantoso';
+import {anPublication, anFRBRnumber, anKeywords, anTLCConcept, anExprFRBRdate, anBody} from '../utils/akomantoso';
 import {gawatiDateEntryInForce} from '../utils/gawati';
 
 import DocumentBreadcrumb from './DocumentBreadcrumb';
@@ -17,7 +17,9 @@ import DocumentActions from './DocumentActions';
 import 'react-tabs/style/react-tabs.css';
 import '../css/react-tabs.css';
 import '../css/DocumentTagCloud.css';
+import '../css/DocumentPDF.css';
 import linkIcon from '../images/export.png';
+import { substringBeforeLastMatch } from '../utils/stringhelper';
 
 
 const DocumentLoading = () => 
@@ -112,11 +114,38 @@ const DocumentMetadata = ({doc, type}) => {
     return(
         <ul className="metadata">
             <li><strong>Document Number:</strong> {anFRBRnumber(doc, type).showAs}</li>
-            <li><strong>Entry into Force date:</strong>  {displayDate(gawatiDateEntryInForce(doc, type).date)}</li>
+            <li><strong>Entry into Force date:</strong>  {  anExprFRBRdate(doc, type).date  /*displayDate(gawatiDateEntryInForce(doc, type).date)*/}</li>
             <li><strong>Themes:</strong>  {getThemes(doc, type)}</li>
         </ul>
     );
-} 
+}; 
+
+const DocumentPDF = ({doc, type}) => {
+    let body = anBody(doc, type);
+    
+    let mainDocument ;
+    if (Array.isArray(body.book)) {
+        mainDocument = body.book.filter(book => book.refersTo === '#mainDocument');
+    } else {
+        mainDocument = body.book;
+    }
+    
+    let cRef = mainDocument.componentRef;
+    let pdfLink = substringBeforeLastMatch(cRef.src, "/") + "/" + cRef.alt ;
+    return (
+    <Aux>
+        <br />
+        <div className="pdfview">
+        <object data={`${pdfLink}#page=1`} type="application/pdf" width="100%" height="100%">
+            <iframe src={`${pdfLink}#page=1`} width="100%" height="100%" >
+            This browser does not support PDFs. Please download the PDF to view it:
+                <a href={`${pdfLink}`}>Download PDF</a>
+            </iframe>
+        </object>
+        </div>
+    </Aux>	
+    );
+};
 
 const DocumentContentInfo = ({doc, type}) => {
     return (
@@ -131,7 +160,9 @@ const DocumentContentInfo = ({doc, type}) => {
            </DivFeed>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 2</h2>
+          <DivFeed>
+            <DocumentPDF doc={doc} type={type} />
+          </DivFeed>
         </TabPanel>
       </Tabs>
     );

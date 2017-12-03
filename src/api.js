@@ -5,7 +5,8 @@ const GAWATI_APIS = {
     apis : {
         'themes-summary' : '/themes/expressions/summary/',
         'recent-summary' : '/recent/expressions/summary/',
-        'doc': '/doc/'
+        'doc': '/doc/',
+        'search-grouped': '/searchac/' 
     }
 };
 

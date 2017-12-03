@@ -75,16 +75,16 @@ function Footer() {
     <div className="social-icons">
         <div className="social-link-group">
             <a className="social-icon-link" href="javascript:;">
-                <img src={imgFace} width="25"/>
+                <img alt="facebook" src={imgFace} width="25"/>
             </a>
             <a className="social-icon-link" href="javascript:;">
-                <img src={imgInstagram} width="25"/>
+                <img alt="instagram" src={imgInstagram} width="25"/>
             </a>
             <a className="social-icon-link" href="javascript:;">
-                <img src={imgTwitter} width="25"/>
+                <img alt="twitter" src={imgTwitter} width="25"/>
             </a>
             <a className="social-icon-link" href="javascript:;">
-                <img src={imgLinkedin} width="25"/>
+                <img alt="linkedin" src={imgLinkedin} width="25"/>
             </a>
         </div>
         <h5>THE AFRICAN LAW LIBRARY</h5>

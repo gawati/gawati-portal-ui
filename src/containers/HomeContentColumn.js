@@ -75,9 +75,9 @@ class HomeContentColumn extends React.Component {
             });
     }
 
-    componentDidMount() {
-        this.getThemesSummary();
+    componentDidMount() {        
         this.getRecentSummary();
+        this.getThemesSummary();
     }
 
     render() {
@@ -115,16 +115,16 @@ class HomeContentColumn extends React.Component {
         <div className={ `left col-9` }>
             <Tabs>
                 <TabList>
-                    <Tab>In Focus</Tab>
                     <Tab>Latest</Tab>
+                    <Tab>In Focus</Tab>
                 </TabList>
                 <TabPanel>
-                {this.state.themes.loading ? <Loading tab="1" /> : 
-                    <ThemeOfTheMonth themes={this.state.themes.content} tab={1} /> }
+                {this.state.latest.loading ? <Loading tab="1" /> : 
+                    <RecentDocs recentDocs={this.state.latest.content} tab={1} /> }
                 </TabPanel>
                 <TabPanel>
-                {this.state.latest.loading ? <Loading tab="2" /> : 
-                    <RecentDocs recentDocs={this.state.latest.content} tab={2} /> }
+                {this.state.themes.loading ? <Loading tab="2" /> : 
+                    <ThemeOfTheMonth themes={this.state.themes.content} tab={2} /> }
                 </TabPanel>
             </Tabs>
         </div>
