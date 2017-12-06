@@ -1,4 +1,5 @@
 import querystring from 'querystring';
+import {dataProxyServer} from './constants';
 
 const GAWATI_APIS = {
     base_iri : '/gw/service',
@@ -12,7 +13,7 @@ const GAWATI_APIS = {
 
 export function apiUrl(apiName) {
     if (GAWATI_APIS.apis.hasOwnProperty(apiName)) {
-        return GAWATI_APIS.base_iri + GAWATI_APIS.apis[apiName] ;
+        return dataProxyServer() + GAWATI_APIS.base_iri + GAWATI_APIS.apis[apiName] ;
     } else {
         console.log(" Unknown API call ", apiName);
         return false;

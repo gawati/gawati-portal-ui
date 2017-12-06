@@ -1,5 +1,9 @@
 
-export const documentServer = () => "http://lexafrica.akomantoso.com"
+export const gawati = () => window.gawati ;
+
+export const documentServer = () => gawati().GAWATI_DOCUMENT_SERVER ;
+
+export const dataProxyServer = () => gawati().GAWATI_PROXY ;
 
 export const homePageFilterWords = () => ({
     "name":"Trade",

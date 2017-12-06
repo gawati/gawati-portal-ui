@@ -2,14 +2,13 @@
   "name": "gawati-portal",
   "version": "2.0.1",
   "private": true,
-  "proxy": "http://localhost",
-  "lexafrica-proxy": "http://lexafrica.akomantoso.com",
-  "lexafrica-homepage": "http://lexafrica.akomantoso.com/v2",
-  "alldev-proxy": "https://alldev.gawati.org",
-  "alldev-homepage": "https://alldev.gawati.org/v2",
+  "xproxy": "http://localhost",
+  "xhomepage": "http://localhost:9000",
+  "homepage" : ".",
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "4.0.0-alpha.6",
+    "express": "^4.16.2",
     "moment": "^2.19.2",
     "react": "^16.2.0",
     "react-autosuggest": "^9.3.2",
@@ -17,7 +16,8 @@
     "react-pdf": "^2.4.1",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
-    "react-tabs": "^2.1.1"
+    "react-tabs": "^2.1.1",
+    "serialize-javascript": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
