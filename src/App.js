@@ -6,6 +6,7 @@ import Page from './components/Page';
 
 class App extends Component {
   render() {
+    //console.log("process.env", process.env);
     return (
       <Page />
     );

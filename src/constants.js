@@ -3,7 +3,8 @@ export const gawati = () => window.gawati ;
 
 export const documentServer = () => gawati().GAWATI_DOCUMENT_SERVER ;
 
-export const dataProxyServer = () => gawati().GAWATI_PROXY ;
+export const dataProxyServer = () => 
+    process.env.NODE_ENV === 'development' ? "" : gawati().GAWATI_PROXY ;
 
 export const homePageFilterWords = () => ({
     "name":"Trade",

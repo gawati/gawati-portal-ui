@@ -9,7 +9,9 @@ import {apiGetCall} from '../api.js';
 import mainLogo from '../images/logo.png';
 import mobileButton from '../images/th-menu.png';
 
+import '../css/Autosuggest.css';
 import '../css/SiteSearchAutoComplete.css';
+
 
 const Logo = () =>
     <NavLink className="nav-brand" to="/">
@@ -30,8 +32,9 @@ const SiteHeading = () =>
 
 
 class SiteSearchAutoComplete extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        console.log(" PROPS SITESEARCH ", this.props);
         this.state = {
             loading: false,
             value: '',
@@ -172,9 +175,6 @@ class SiteSearchAutoComplete extends React.Component {
         // Autosuggest will pass through all these props to the input.
         return (
             <div>
-              <div className="status">
-                <strong>Status:</strong> {status}
-              </div>
               <Autosuggest 
                 suggestions={suggestions}
                 multiSection={true}
@@ -197,18 +197,15 @@ const SearchBox = () =>
     <div className={ `search-form-container col-6` }>
         <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
             <div className="div-block w-clearfix">
-                { /*
-                <SiteSearchAutoComplete className="text-field-2" data-name="Name" id="search" maxLength="256" />
-                    */    
-                }
-            
+               <SiteSearchAutoComplete /> 
+                {/*
                 <input className="text-field-2" data-name="Name" id="search" maxLength="256"
                     name="name" placeholder="Search " type="text"/>
                
                 <input className={ `submit-button w-button` } data-wait="Please wait..." type="submit"
                     value="GO"/>
-                     
-                
+                */
+                }
             </div>
         </form>
     </div>
