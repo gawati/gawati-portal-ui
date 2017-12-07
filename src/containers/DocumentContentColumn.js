@@ -229,7 +229,7 @@ class DocumentContentColumn extends React.Component {
                 <DocumentLoading />
             );
         } else {        
-            console.log("DOC TYPES ", getDocTypes(), getDocType('act'));
+            //console.log("DOC TYPES ", getDocTypes(), getDocType('act'));
             let content = 
             <div className={ `left col-9`}>
                 <div className="search-result">
@@ -249,13 +249,6 @@ class DocumentContentColumn extends React.Component {
     }
     }
 }
-
-/*
-const Loading = ({tab}) => 
-    <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
-        Loading...
-    </div>;
-*/
 
 export default DocumentContentColumn;
 

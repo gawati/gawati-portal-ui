@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 
-import {stringCut} from '../utils/generalhelper';
+import {stringCut, displayDate} from '../utils/generalhelper';
 import {apiGetCall} from '../api.js';
 
 import mainLogo from '../images/logo.png';
@@ -34,7 +34,7 @@ const SiteHeading = () =>
 class SiteSearchAutoComplete extends React.Component {
     constructor(props) {
         super(props);
-        console.log(" PROPS SITESEARCH ", this.props);
+        //console.log(" PROPS SITESEARCH ", this.props);
         this.state = {
             loading: false,
             value: '',
@@ -70,19 +70,20 @@ class SiteSearchAutoComplete extends React.Component {
     getSearchResultsAsync = (value) => {
         const inputValue = value.trim().toLowerCase();
         const inputLength = inputValue.length;
-        console.log( "Calling search grouped ");
+        //console.log( "Calling search grouped ");
         let apiRecent = apiGetCall(
             'search-grouped', 
             {query: inputValue}
         );
         axios.get(apiRecent)
             .then(response => {
-                console.log (" Response. data ", response.data.searchGroups);
+                //console.log (" Response. data ", response.data.searchGroups);
                 const items = response.data.searchGroups.searchGroup;
-                console.log(" ITEMS ", items);
+                //console.log(" ITEMS ", items);
+                const filtered = items.filter(item => item.hasOwnProperty('searchResult'));
                 this.setState({
                     loading: false,
-                    suggestions: items
+                    suggestions: filtered
                 });
             })
             .catch(function(error) {
@@ -99,12 +100,12 @@ class SiteSearchAutoComplete extends React.Component {
     // Autosuggest will call this function every time you need to update suggestions.
     // You already implemented this logic above, so just use it.
     onSuggestionsFetchRequested = ({ value }) => {
-        console.log(" onSuggestionsFetchRequested ", value);
+        //console.log(" onSuggestionsFetchRequested ", value);
         this.getSuggestionsAsync(value);
     };
 
     shouldRenderSuggestions = (value) => {
-        console.log(" should fetch ", value);
+        //console.log(" should fetch ", value);
         return value.trim().length > 2;
     }
       
@@ -117,31 +118,34 @@ class SiteSearchAutoComplete extends React.Component {
     };
 
     renderSectionTitle = (section) => {
-        console.log(" renderSectionTItle ", section);
+        //console.log(" renderSectionTItle ", section);
         return (
-          <strong>{ " Section TItle "}</strong>
+          <strong>{ section.label }</strong>
         );
     };
 
     getSectionSuggestions = (section) => {
-        console.log(" getSectionSuggestions ", section);
+        //console.log(" getSectionSuggestions ", section);
         return section.searchResult || [];
     };
 
-    renderSuggestion = (suggestion) => (
+    renderSuggestion = (suggestion) => {
+        let itemDate = displayDate(suggestion.exprAbstract.date[1].value) || suggestion.exprAbstract.date[1].value ;
+        return (
         <div className="ui-ac-item-render">
             <div className="ui-ac-item-render-content">
                 <h3>{   stringCut(199, suggestion.exprAbstract.publishedAs || "unknown")  }</h3>
-                <nav class="ui-act-item-meta">
+                <nav className="ui-act-item-meta">
                 <ol>
-                    <li><span class="ui-ac-item-type">{suggestion.exprAbstract.type.name}</span></li>
-                    <li><span class="ui-ac-item-country">{suggestion.exprAbstract.country.showAs}</span></li>
-                    <li><span class="ui-ac-item-date">{suggestion.exprAbstract.date[1].value }</span></li>
+                    <li><span className="ui-ac-item-type">{suggestion.exprAbstract.type.name}</span></li>
+                    <li><span className="ui-ac-item-country">{suggestion.exprAbstract.country.showAs}</span></li>
+                    <li><span className="ui-ac-item-date">{itemDate}</span></li>
                 </ol>
                 </nav>
             </div>
         </div>
-      );
+        );
+    };
       
       /**
             <div className="ui-ac-item-render">
@@ -159,18 +163,36 @@ class SiteSearchAutoComplete extends React.Component {
 
        */
 
+    /**
+    * We render a custom input component to pass in the data-loading prop which is
+    * used to set the css spinner
+    */
+    renderInputComponent = inputProps => {
+        //console.log( " RENDER INPUT ", inputProps);
+        return (
+            <input data-loading={ inputProps.loading } {...inputProps} />
+        );
+    };
+
+    onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) => {
+        console.log(
+            "event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method ", 
+            event, suggestion, suggestionValue, suggestionIndex, sectionIndex, method
+        );
+    }
 
     getSuggestionValue = (suggestion) => suggestion.sid || suggestion.name ;  
 
     render() {
       
-        const { value, suggestions, isLoading } = this.state;
+        const { value, suggestions, loading } = this.state;
         const inputProps = {
-          placeholder: "Type 'c'",
+          placeholder: "Type anything",
           value,
+          loading: loading ? "yes" : "no",
           onChange: this.onChange
         };
-        const status = (isLoading ? 'Loading...' : 'Type to load suggestions');
+        const status = (loading ? 'Loading...' : 'Type to load suggestions');
         console.log( " STATE ", this.state);
         // Autosuggest will pass through all these props to the input.
         return (
@@ -180,11 +202,13 @@ class SiteSearchAutoComplete extends React.Component {
                 multiSection={true}
                 onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                onSuggestionSelected={this.onSuggestionSelected}
                 getSuggestionValue={this.getSuggestionValue}
                 renderSuggestion={this.renderSuggestion}
                 shouldRenderSuggestions={this.shouldRenderSuggestions}
                 renderSectionTitle={this.renderSectionTitle}
                 getSectionSuggestions={this.getSectionSuggestions}
+                renderInputComponent={this.renderInputComponent}
                 inputProps={inputProps} />
                 <input className={ `submit-button w-button` } data-wait="Please wait..." type="submit"
                     value="GO"/>

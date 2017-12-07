@@ -2,7 +2,10 @@
   
 
   .ui-ac-item-render {
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /*font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;*/
+    color: #74737a;
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
     text-transform:capitalize;
   }
 
@@ -51,3 +54,11 @@
       opacity: 0.5;
   
     }
+
+   input[data-loading="yes"] {    
+    background-color: #ffffff;
+    background-image: url("http://loadinggif.com/images/image-selection/3.gif");
+    background-size: 25px 25px;
+    background-position:right center;
+    background-repeat: no-repeat;
+}
