@@ -3,8 +3,25 @@ import docTypes from '../configs/docTypes.json';
 import languageCodes from '../configs/languageCodes.json';
 import moment from 'moment';
 
+/**
+ * Use this to wrap multiple elements when returning a component from render()
+ * e.g. 
+ * if you you have to return:
+ * 
+ *  <input /><button />
+ * 
+ * You can wrap it in <Aux> and return it without being forced to wrap it in a <div>
+ * There is no visual or layout impact of <Aux>
+ * 
+ * @param {*} props 
+ */
 export const Aux = props => props.children;
 
+/**
+ * Shortens a string at the ith character
+ * @param {integer} i 
+ * @param {string} text 
+ */
 export const stringCut = (i, text) => {
     var short = text.substr(0, i);
     if (/^\S/.test(text.substr(i)))
@@ -12,6 +29,10 @@ export const stringCut = (i, text) => {
     return short;
 };
 
+/**
+ * Returns a shortened string as per gawati shortened requirements
+ * @param {string} theTitle 
+ */
 export const shortTitle = (theTitle) => {
     if (theTitle.length <= 80) {
         return theTitle;
@@ -20,14 +41,26 @@ export const shortTitle = (theTitle) => {
     }
 };
 
-
+/**
+ * Prefixes a `/` on a IRI if it isnt present
+ * @param {string} iri 
+ */
 export const prefixIri = (iri) => 
      iri.startsWith('/') ? iri : "/" + iri;
 
+/**
+ * Gets the document type of an Akoma Ntoso JSON object
+ * @param {object} doc 
+ */
 export const getDocumentType = (doc) => Object.keys(doc.akomaNtoso)[0] ;
 
+/**
+ * Checks if an object is empty
+ * @param {object} obj 
+ */
 export const isEmpty =  (obj) => 
     Object.keys(obj).length === 0 && obj.constructor === Object ;
+
 
 export const getDocTypes = () => docTypes.docTypes ;
 
@@ -39,6 +72,12 @@ export const displayDate = (date) => moment(date).format('MMMM D YYYY') ;
 
 export const range = ((n) => [...Array(n).keys()] ) ;
 
+/**
+ * Returns an array of a range of numbers
+ * @param {integer} min 
+ * @param {integer} max 
+ * @param {integer} step 
+ */
 export const rangeMinMax = ((min, max , step = 1) => {
     // return a array from min to max, inclusive, in steps of step.
     // if step is not integer, then max may not be included

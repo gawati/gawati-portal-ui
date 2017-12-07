@@ -1,9 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import DivFeed from '../components/DivFeed';
 import {shortTitle, displayDate} from '../utils/generalhelper';
 import {documentServer} from '../constants.js';
+
+import DocumentLink from './DocumentLink';
+import DivFeed from '../components/DivFeed';
+
 import '../css/ExprAbstract.css';
 
 /**
@@ -24,11 +27,6 @@ const ThumbnailAbstract = ({abstract}) => {
 }
 
 
-const DocumentLink = ({abstract, children}) => {
-    return (
-        <Link to={'/doc/_lang/en/_iri' + abstract['expr-iri']}>{children}</Link>
-    );
-}
     
 
 /**
