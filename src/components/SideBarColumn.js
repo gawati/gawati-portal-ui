@@ -1,11 +1,21 @@
 import React from 'react';
-
+import Filter from '../containers/Filter';
 
 function SideBarColumn() {
     return (
         <div className={ `right col-3` }>
             <div className={ `w-clearfix white-wrapper` }>
-                <h2 className="small-heading">Date</h2>
+                <Filter />
+                <p className="cc-law-libray">The African Law Library</p>
+            </div>
+        </div>
+    );
+}
+
+export default SideBarColumn;
+
+/**
+   <h2 className="small-heading">Date</h2>
                 <ul className="since">
                     <li>
                         <a href="javascript:;">Since 2017 100 + </a>
@@ -17,8 +27,7 @@ function SideBarColumn() {
                         <a href="javascript:;">Since 2015 400 + </a>
                     </li>
                     <li className="date-selection">
-                      {
-                          /*
+
                         <div>
                         <a href="javascript:;" className="between-button">+ Between </a>
                         <br/>
@@ -30,8 +39,7 @@ function SideBarColumn() {
                             className="this-date"/>
 
                     </div>
-                        */
-                      }
+
                     </li>
                 </ul>
 
@@ -131,12 +139,6 @@ function SideBarColumn() {
                     </li>
                 </ul>
 
-                <div className="grey-rule"/>
-
-                <p className="cc-law-libray">The African Law Library</p>
-            </div>
-        </div>
-    );
-}
-
-export default SideBarColumn;
+                <div className="grey-rule"/> 
+ 
+ */

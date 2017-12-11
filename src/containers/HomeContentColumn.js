@@ -49,7 +49,7 @@ class HomeContentColumn extends React.Component {
             });
     }
 
-
+    
     getThemesSummary() {
         let apiThemesSummary = apiGetCall(
             'themes-summary', {

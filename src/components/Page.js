@@ -8,6 +8,7 @@ import TopBar from './TopBar';
 import HomeContentArea from './HomeContentArea';
 import DocumentContentArea from './DocumentContentArea';
 import ListContentArea from './ListContentArea';
+import SearchContentArea from './SearchContentArea';
 import Footer from './Footer';
 
 function Page(){
@@ -20,6 +21,7 @@ function Page(){
             <Route path="/doc/_lang/:lang/_iri/:iri*" component={DocumentContentArea} />
             <Route path="/recent/_lang/:lang/_count/:count/_from/:from/_to/:to" component={ListContentArea} />
             <Route path="/themes/_lang/:lang/_themes/:themes/_count/:count/_from/:from/_to/:to" component={ListContentArea} />
+            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bycountry/:country" component={SearchContentArea} />
         </Switch>
         <Route path="*" component={Footer} />
     </Aux>

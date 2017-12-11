@@ -8,7 +8,9 @@ import moment from 'moment';
  * e.g. 
  * if you you have to return:
  * 
- *  <input /><button />
+ * .. code-block::html
+ * 
+ *      <input /><button />
  * 
  * You can wrap it in <Aux> and return it without being forced to wrap it in a <div>
  * There is no visual or layout impact of <Aux>
@@ -95,6 +97,22 @@ export const randomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 };    
 
+export const roundto100 = (num) => {
+    if (num > 99) {
+        return Math.floor(num/100) * 100 ;
+    } else {
+        return num;
+    } 
+};
+
+export const roundto100Filter = (num) => {
+    if (num > 99) {
+        return Math.floor(num/100) * 100 + " +" ;
+    } else {
+        return num;
+    } 
+};
+
 export const insertIntoArray = (arr, value) => {
         return arr.reduce((result, element, index, array) => {
             result.push(element);
@@ -104,3 +122,13 @@ export const insertIntoArray = (arr, value) => {
             return result;
         }, []);
     };
+
+/**
+ * Checks if the object is an array, if an array returns it as is, 
+ * otherwise coerces it into an array and returns the array.
+ * This is used because XML to JSON returns arrays with single items
+ * as objects. So we force it an array for such edge cases.
+ * @param {object} obj any object 
+ */
+export const coerceIntoArray = (obj) => 
+    Array.isArray(obj) ? obj : [obj] || [];
