@@ -20,8 +20,8 @@ function Page(){
             <Route exact path="/index.html" component={HomeContentArea} />
             <Route path="/doc/_lang/:lang/_iri/:iri*" component={DocumentContentArea} />
             <Route path="/recent/_lang/:lang/_count/:count/_from/:from/_to/:to" component={ListContentArea} />
-            <Route path="/themes/_lang/:lang/_themes/:themes/_count/:count/_from/:from/_to/:to" component={ListContentArea} />
-            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bycountry/:country" component={SearchContentArea} />
+            <Route path="/themes/_lang/:lang/_themes/:themes/_count/:count/_from/:from/_to/:to*" component={ListContentArea} />
+            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bycountry/:country*" component={SearchContentArea} />
         </Switch>
         <Route path="*" component={Footer} />
     </Aux>

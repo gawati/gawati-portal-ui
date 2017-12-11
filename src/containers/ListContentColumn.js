@@ -82,6 +82,14 @@ class ListContentColumn extends React.Component {
        // this.getListing({})
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.getListing({
+            count: parseInt(nextProps.match.params.count),
+            from: parseInt(nextProps.match.params.from),
+            to: parseInt(nextProps.match.params.to)
+        });
+    }
+
     onChangePage(newPage) {
         console.log (" NEW PAGE ", newPage);
         this.getListing(newPage);

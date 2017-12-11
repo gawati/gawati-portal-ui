@@ -66,7 +66,6 @@ const FilterLang = ({filterType, filter}) => {
 
 
 const FilterKeywords = ({filterType, filter}) => {
-    console.log(" filter filterType ", filterType, filter);
     let keywords = coerceIntoArray(filter.keyword);
     return (
         <Aux>
@@ -85,7 +84,12 @@ const FilterKeywords = ({filterType, filter}) => {
     );      
 };
 
-
+/**
+ * This class provides the UI filter component provided on the right
+ * 
+ * @class Filter
+ * @extends {React.Component}
+ */
 class Filter extends React.Component {
     constructor(props) {
         super(props);
@@ -95,6 +99,11 @@ class Filter extends React.Component {
         };
     }
 
+    /**
+     * Queries the service for the short filter cache.
+     * 
+     * @memberof Filter
+     */
     getFilters() {
         let shortFilterCache = apiGetCall(
             'short-filter-cache', {}
@@ -106,14 +115,13 @@ class Filter extends React.Component {
                     loading: false,
                     filter: content.filter
                 });
-                console.log(" short filter cache ", content);
             })
             .catch(function(error) {
                 console.log("error in getFilters()", error);
             });
     }
 
-    componentDidMount() {        
+    componentDidMount() {
         this.getFilters();
     }
 
@@ -128,7 +136,6 @@ class Filter extends React.Component {
             );
         } else {
             let filterType = filterTypes();
-
             return (
                 <Aux>
                     <FilterDate filterType={filterType.FILTER_DATE} filter={this.getFilterFor('FILTER_DATE')} />
