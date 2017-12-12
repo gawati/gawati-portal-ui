@@ -8,7 +8,8 @@ const GAWATI_APIS = {
         'recent-summary' : '/recent/expressions/summary/',
         'doc': '/doc/',
         'search-grouped': '/searchac/' ,
-        'short-filter-cache': '/short-filter-cache/'
+        'short-filter-cache': '/short-filter-cache/',
+        'search-by-year': '/search/year/'
     }
 };
 

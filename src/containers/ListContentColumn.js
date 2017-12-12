@@ -136,7 +136,7 @@ class ListContentColumn extends React.Component {
                     })
                     }
                 <DivFeed>
-                <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                    <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                 </DivFeed>
                 </div>
             </div>

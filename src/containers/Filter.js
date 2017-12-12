@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
 
 import {Aux, coerceIntoArray, roundto100Filter} from '../utils/generalhelper';
@@ -83,6 +84,15 @@ const FilterKeywords = ({filterType, filter}) => {
         </Aux>
     );      
 };
+
+FilterLang.propTypes = FilterKeywords.propTypes = FilterCountry.propTypes =  FilterDate.propTypes = {
+    filterType: PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        key: PropTypes.string.isRequired
+    }).isRequired,
+    filter: PropTypes.object.isRequired
+};
+
 
 /**
  * This class provides the UI filter component provided on the right

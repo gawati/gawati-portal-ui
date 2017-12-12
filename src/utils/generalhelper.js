@@ -132,3 +132,12 @@ export const insertIntoArray = (arr, value) => {
  */
 export const coerceIntoArray = (obj) => 
     Array.isArray(obj) ? obj : [obj] || [];
+
+export const filterMap = (obj, blacklist) => {
+    let filteredObject = {};
+    let objKeys = new Set(Object.keys(obj));
+    blacklist.forEach(item => objKeys.delete(item));
+    [...objKeys].forEach(key => filteredObject[key] = obj[key]);
+    return filteredObject;
+}
+
