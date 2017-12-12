@@ -1,5 +1,9 @@
+dist: precise
 language: node_js
 node_js:
+  - "6"
   - "8"
-before_script:
-  - npm run build
+install: true
+env:
+  global:
+    - USE_YARN=no
