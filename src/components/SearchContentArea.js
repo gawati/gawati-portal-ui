@@ -1,7 +1,7 @@
 import React from 'react';
 
 import NotifBar from './NotifBar';
-import SearchContentColumn from '../containers/SearchContentColumn';
+import SearchContentColumnYear from '../containers/SearchContentColumnYear';
 import SideBarColumn from './SideBarColumn';
 import Section from './Section';
 import DivRow from './DivRow';
@@ -12,7 +12,7 @@ function SearchContentArea({ match }) {
             <div className="container">
                 <DivRow>
                     <NotifBar />
-                    <SearchContentColumn match={match} />
+                    <SearchContentColumnYear match={match} />
                     <SideBarColumn  />
                 </DivRow>
             </div>

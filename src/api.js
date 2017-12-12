@@ -9,7 +9,10 @@ const GAWATI_APIS = {
         'doc': '/doc/',
         'search-grouped': '/searchac/' ,
         'short-filter-cache': '/short-filter-cache/',
-        'search-by-year': '/search/year/'
+        'search-by-year': '/search/year/',
+        'search-by-language' : '/search/language/',
+        'search-by-subject' : '/search/keyword/',
+        'search-by-country' : '/search/country/'
     }
 };
 
