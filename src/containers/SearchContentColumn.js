@@ -73,11 +73,6 @@ class SearchContentColumn extends React.Component {
         console.log (" NEW PAGE ", newPage);
         this.setState({loading: true});
         this.getSearch(newPage);
-        //this.setState({loading: true}, 
-        //    () => {
-        //        this.getListing({count: newPage.count, from: newPage.from, to: newPage.to});
-        //    }
-        //);
     }
 
     generatePagination = () => {
