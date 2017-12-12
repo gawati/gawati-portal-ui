@@ -4,6 +4,11 @@ node_js:
   - "6"
   - "8"
 install: true
+cache:
+  directories:
+    - node_modules
+script:
+  - npm run build
 env:
   global:
     - USE_YARN=no
