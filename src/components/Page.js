@@ -3,12 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 
 import {Aux} from '../utils/generalhelper';
 
-import PageUpperBorder from './PageUpperBorder';
+//import PageUpperBorder from './PageUpperBorder';
 import TopBar from './TopBar';
 import HomeContentArea from './HomeContentArea';
 import DocumentContentArea from './DocumentContentArea';
 import ListContentArea from './ListContentArea';
-import SearchContentArea from './SearchContentArea';
 import Footer from './Footer';
 
 function Page(){

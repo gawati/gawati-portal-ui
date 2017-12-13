@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {apiGetCall} from '../api';
+import {isInt, coerceIntoArray} from '../utils/generalhelper';
 import DivFeed from '../components/DivFeed';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
@@ -30,17 +31,12 @@ class SearchContentColumnCountry extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-        /*    lang: this.props.match.params['lang'],
-            count: this.props.match.params['count'],
-            from: this.props.match.params['from'],
-            to: this.props.match.params['to'],
-            year: this.props.match.params['year'],*/
             totalPages: 0,
             loading: true,
             listing: undefined
         };
         Object.assign(this.state, this.props.match.params);
-        console.log( " PROPS SEARCHCONTENT OCLUMN", props);
+        console.log( " PROPS SEARCHCONTENT OCLUMN", this.state);
     }
 
     getSearch(paramsObj) {
@@ -62,7 +58,7 @@ class SearchContentColumnCountry extends React.Component {
                     totalPages: parseInt(items.totalpages),
                     orderedBy: items.orderedby,
                     currentPage: parseInt(items.currentpage),
-                    listing: items.exprAbstract
+                    listing: coerceIntoArray(items.exprAbstract)
                 });
             })
             .catch(function(error) {
@@ -71,14 +67,13 @@ class SearchContentColumnCountry extends React.Component {
     }
 
     onChangePage(newPage) {
-        console.log (" NEW PAGE ", newPage);
         this.setState({loading: true});
         this.getSearch(newPage);
 
     }
 
     generatePagination = () => {
-        console.log( " GENPAGN STATE ", this.state);
+        
         var pagination = {
             country: this.state.country,
             count: this.state.count,
@@ -88,11 +83,11 @@ class SearchContentColumnCountry extends React.Component {
             totalPages: this.state.totalPages,
             records: this.state.records
         };
-        Object.keys(pagination).map(k => pagination[k] = k === 'lang' || k === 'country' ? pagination[k] : parseInt(pagination[k]));
+        Object.keys(pagination).map(k => pagination[k] = !isInt(pagination[k]) ? pagination[k] : parseInt(pagination[k]));
         // we set the linkUrl prop on the pagination object, so the paginator knows how to render the URLs
         let linkUrl = "/search/_lang/{lang}/_count/{count}/_from/{from}/_to/{to}/_bycountry/{country}";
         pagination.linkUrl = linkUrl; 
-        console.log( " GENPAGN PAGN ", pagination);
+        
         return pagination;  
     }
 
@@ -107,9 +102,8 @@ class SearchContentColumnCountry extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log( " NEXT PROPS ", nextProps);
         this.getSearch({
-            country: parseInt(nextProps.match.params.country),
+            country: nextProps.match.params.country,
             count: parseInt(nextProps.match.params.count),
             from: parseInt(nextProps.match.params.from),
             to: parseInt(nextProps.match.params.to)
@@ -126,7 +120,7 @@ class SearchContentColumnCountry extends React.Component {
             let content = 
             <div className={ `left col-9`}>
                 <div className="search-result">
-                    <h1 className="listingHeading">Document Results <small>for the Country {this.state.country} </small></h1>
+                    <h1 className="listingHeading">Document Results <small>for the county {this.state.country} </small></h1>
                     <DivFeed>
                         <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                     </DivFeed>
