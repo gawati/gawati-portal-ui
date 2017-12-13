@@ -1,19 +1,13 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:8' 
-            args '-p 3000:3000' 
-        }
-
-    }
-    environment {
-            CI = 'false'
-        }
+    agent any
+     
+    // this tool will be used for all stages/steps except over-written
+    tools {nodejs "Node 8.9.2"}
+     
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
-                sh 'npm install' 
-                sh 'npm run build'
+                sh 'npm --version'
             }
         }
     }
