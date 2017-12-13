@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     def packageFile = readJSON file: 'package.json'
-                    sh "tar -cvjf /var/www/html/dl.gawati.org/dev/portal-server-${packageFile.version}.tbz ."
+                    sh "cd build; tar -cvjf /var/www/html/dl.gawati.org/dev/portal-ui-${packageFile.version}.tbz ."
                 }
             }
         }
