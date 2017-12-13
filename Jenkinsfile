@@ -4,10 +4,11 @@ pipeline {
             image 'node:8' 
             args '-p 3000:3000' 
         }
-        environment {
+
+    }
+    environment {
             CI = 'false'
         }
-    }
     stages {
         stage('Build') { 
             steps {
