@@ -1,46 +1,20 @@
 import React from 'react';
 import axios from 'axios';
+import {coerceIntoArray, isInt} from '../utils/generalhelper';
 import {apiGetCall} from '../api';
 import DivFeed from '../components/DivFeed';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
+import BaseSearchContentColumn from './BaseSearchContentColumn';
+import ListingLoading from '../components/ListingLoading';
 
 import '../css/ListingContentColumn.css';
 
 
-
-const UnderDevelopment = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
-        Under Development
-        </div>
-    </div>;
-
-
-const DocumentLoading = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
-        Searching...
-        </div>
-    </div>;
-
-
-class SearchContentColumnLanguage extends React.Component {
+class SearchContentColumnLanguage extends BaseSearchContentColumn {
     
     constructor(props) {
         super(props);
-        this.state = {
-        /*    lang: this.props.match.params['lang'],
-            count: this.props.match.params['count'],
-            from: this.props.match.params['from'],
-            to: this.props.match.params['to'],
-            year: this.props.match.params['year'],*/
-            totalPages: 0,
-            loading: true,
-            listing: undefined
-        };
-        Object.assign(this.state, this.props.match.params);
-        console.log( " PROPS SEARCHCONTENT OCLUMN", props);
     }
 
     getSearch(paramsObj) {
@@ -51,7 +25,6 @@ class SearchContentColumnLanguage extends React.Component {
         axios.get(apiRecent)
             .then(response => {
                 const items = response.data.exprAbstracts;
-                console.log(" ITEMS ", paramsObj);
                 this.setState({
                     loading: false,
                     doclang: paramsObj.doclang,
@@ -62,19 +35,12 @@ class SearchContentColumnLanguage extends React.Component {
                     totalPages: parseInt(items.totalpages),
                     orderedBy: items.orderedby,
                     currentPage: parseInt(items.currentpage),
-                    listing: items.exprAbstract
+                    listing: coerceIntoArray(items.exprAbstract)
                 });
             })
             .catch(function(error) {
                 console.log("error in getSearch()", error);
             });
-    }
-
-    onChangePage(newPage) {
-        console.log (" NEW PAGE ", newPage);
-        this.setState({loading: true});
-        this.getSearch(newPage);
-
     }
 
     generatePagination = () => {
@@ -89,7 +55,7 @@ class SearchContentColumnLanguage extends React.Component {
             totalPages: this.state.totalPages,
             records: this.state.records
         };
-        Object.keys(pagination).map(k => pagination[k] = k.endsWith('lang') ? pagination[k] : parseInt(pagination[k]));
+        Object.keys(pagination).map(k => pagination[k] = isInt(pagination[k]) === false ? pagination[k] : parseInt(pagination[k]));
         // we set the linkUrl prop on the pagination object, so the paginator knows how to render the URLs
         console.log (" PAGINATION GEN ", pagination);
         let linkUrl = "/search/_lang/{lang}/_count/{count}/_from/{from}/_to/{to}/_bylang/{doclang}";
@@ -98,14 +64,8 @@ class SearchContentColumnLanguage extends React.Component {
         return pagination;  
     }
 
-
-   
     componentDidMount() {
         this.getSearch({doclang: this.state.doclang, count: this.state.count, from: this.state.from, to: this.state.to});
-    }
-
-    componentDidUpdate() {
-       // this.getListing({})
     }
 
     componentWillReceiveProps(nextProps) {
@@ -119,16 +79,18 @@ class SearchContentColumnLanguage extends React.Component {
     }    
 
     render() {
-        if (this.state.listing === undefined ) {
+        if (this.state.loading === true || this.state.listing === undefined ) {
             return (
-                <DocumentLoading />
+                <ListingLoading>
+                   <h1 className="listingHeading">Document Results</h1>
+                </ListingLoading>
             );
         } else {        
             let pagination = this.generatePagination() ;
             let content = 
             <div className={ `left col-9`}>
                 <div className="search-result">
-                    <h1 className="listingHeading">Document Results <small>for the Language {this.state.doclang} </small></h1>
+                    <h1 className="listingHeading">Document Results <small>for the Language {this.state.doclang} </small></h1>;
                     <DivFeed>
                         <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                     </DivFeed>
@@ -150,12 +112,6 @@ class SearchContentColumnLanguage extends React.Component {
     }
 }
 
-/*
-const Loading = ({tab}) => 
-    <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
-        Loading...
-    </div>;
-*/
 
 export default SearchContentColumnLanguage;
 

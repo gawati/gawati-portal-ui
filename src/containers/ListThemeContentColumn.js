@@ -7,24 +7,16 @@ import {NavLink} from 'react-router-dom';
 import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
-import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/generalhelper';
+import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType, isInt, coerceIntoArray} from '../utils/generalhelper';
 import {anPublication} from '../utils/akomantoso';
 import ExprAbstract from './ExprAbstract';
 import ThemeListPaginator from '../components/ThemeListPaginator';
-
+import ListingLoading from '../components/ListingLoading';
 import '../css/react-tabs.css';
 import 'react-tabs/style/react-tabs.css';
 import '../css/ListingContentColumn.css';
 
 import linkIcon from '../images/export.png';
-
-
-const DocumentLoading = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
-        Loading...
-        </div>
-    </div>;
 
 
 
@@ -66,7 +58,7 @@ class ListThemeContentColumn extends React.Component {
                     totalPages: parseInt(items.totalpages),
                     orderedBy: items.orderedby,
                     currentPage: parseInt(items.currentpage),
-                    listing: items.exprAbstract
+                    listing: coerceIntoArray(items.exprAbstract)
                 });
             })
             .catch(function(error) {
@@ -86,6 +78,7 @@ class ListThemeContentColumn extends React.Component {
 
     onChangePage(newPage) {
         console.log (" NEW PAGE ", newPage);
+        this.setState({loading: true});
         this.getListing(newPage);
         //this.setState({loading: true}, 
         //    () => {
@@ -104,15 +97,17 @@ class ListThemeContentColumn extends React.Component {
             totalPages: this.state.totalPages,
             records: this.state.records
         };
-        Object.keys(pagination).map(k => pagination[k] = k === 'lang' | k === 'themes' ? pagination[k] : parseInt(pagination[k]));
+        Object.keys(pagination).map(k => pagination[k] = isInt(pagination[k]) === false ? pagination[k] : parseInt(pagination[k]));
         return pagination;  
     }
 
 
     render() {
-        if (this.state.listing === undefined ) {
+        if (this.state.loading === true || this.state.listing === undefined ) {
             return (
-                <DocumentLoading />
+                <ListingLoading>
+                     <h1 className="listingHeading">Theme</h1>
+                </ListingLoading>
             );
         } else {        
             let pagination = this.generatePagination() ;

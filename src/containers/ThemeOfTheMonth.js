@@ -4,74 +4,17 @@ import {homePageFilterWords} from '../constants';
 import {Aux} from '../utils/generalhelper';
 import { NavLink } from 'react-router-dom';
 import DivFeed from '../components/DivFeed';
+import GwSpinner from '../components/GwSpinner'
 import ExprAbstract from './ExprAbstract';
 
-const ThemeOfTheMonth = ({themes, tab}) =>
+const ThemeOfTheMonth = ({loading, themes, tab}) =>
     <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
-        <ThemeIntro />
-        <ThemeSummary themes={themes} />
-        {
-            /*
-        <div className={ `feed w-clearfix` }>
-            <h2>This is the second tittle.</h2>
-            <div className="text-block">
-                <a href="#"> AUTOR NAME </a>
-                <a> &#160;| &#160; </a>
-                <a href="#">CATEGORY</a>
-                <a> &#160;| &#160;</a>
-                <a href="#">July 25, 2017 </a>
-                <a> </a>
-            </div>
-            <a>
-                <img src="images/thumbnail.jpg"/>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius
-                    enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros
-                    dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus
-                    nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
-                    tristique posuere.</p>
-            </a>
-            <div className={ `div-block-18 w-clearfix` }>
-                <a> </a>
-                <a className="more-button" href="#">
-                    <img src={ linkIcon } />
-                </a>
-            </div>
-            <div className="grey-rule"/>
-        </div>
-        <div className={ `feed w-clearfix` }>
-            <h2>This is the tittle after the second</h2>
-            <div className="text-block">
-                <a href="#"> AUTOR NAME </a>
-                <a> &#160;| &#160; </a>
-                <a href="#">CATEGORY</a>
-                <a> &#160;| &#160;</a>
-                <a href="#">July 25, 2017 </a>
-                <a> </a>
-            </div>
-            <a>
-                <img src="images/thumbnail.jpg"/>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius
-                    enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros
-                    dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus
-                    nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
-                    tristique posuere.</p>
-            </a>
-            <div className={ `div-block-18 w-clearfix` }>
-                <a> </a>
-                <a className="more-button" href="#">
-                    <img src={ linkIcon }  />
-                </a>
-            </div>
-            <div className="grey-rule"/>
-        </div>
-        */}
-        <div className="button-wrapper">
-            <NavLink className={ `button w-button` } to={ `/themes/_lang/eng/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>More posts&#160;→</NavLink>
-        </div>
+        <ThemeIntro loading={loading} />
+        {getThemeSummary(loading, themes, tab)}
     </div>
     ;
 
-const ThemeIntro = () => {
+const ThemeIntro = ({loading}) => {
         let homePageIntro = homePageFilterWords();
         return (
         <DivFeed>
@@ -80,8 +23,24 @@ const ThemeIntro = () => {
                 <p>{ homePageIntro["description"] }</p>
             </a>
             <div className="grey-rule"/>
+            {loading === true ? <GwSpinner />: <noscript /> }
         </DivFeed>        
         );
+}
+
+const getThemeSummary = (loading, themes, tab) => {
+    if (loading === true) {
+        return (<noscript />);
+    } else {
+        return (
+            <Aux>
+                <ThemeSummary themes={themes} />
+                <div className="button-wrapper">
+                    <NavLink className={ `button w-button` } to={ `/themes/_lang/eng/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>More posts&#160;→</NavLink>
+                </div>
+            </Aux>
+        );
+    }
 }
 
 const ThemeSummary = ({themes}) => 

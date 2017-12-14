@@ -11,21 +11,14 @@ import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from 
 import {anPublication} from '../utils/akomantoso';
 import ExprAbstract from './ExprAbstract';
 import RecentListPaginator from '../components/RecentListPaginator';
+import GwSpinner from '../components/GwSpinner';
+import ListingLoading from '../components/ListingLoading';
 
 import '../css/react-tabs.css';
 import 'react-tabs/style/react-tabs.css';
 import '../css/ListingContentColumn.css';
 
 import linkIcon from '../images/export.png';
-
-
-const DocumentLoading = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
-        Loading...
-        </div>
-    </div>;
-
 
 
 class ListContentColumn extends React.Component {
@@ -92,6 +85,7 @@ class ListContentColumn extends React.Component {
 
     onChangePage(newPage) {
         console.log (" NEW PAGE ", newPage);
+        this.setState({loading: true});
         this.getListing(newPage);
         //this.setState({loading: true}, 
         //    () => {
@@ -115,9 +109,11 @@ class ListContentColumn extends React.Component {
 
 
     render() {
-        if (this.state.listing === undefined ) {
+        if (this.state.loading === true || this.state.listing === undefined ) {
             return (
-                <DocumentLoading />
+                <ListingLoading>
+                    <h1 className="listingHeading">Recent Documents</h1>
+                </ListingLoading>
             );
         } else {        
             let pagination = this.generatePagination() ;

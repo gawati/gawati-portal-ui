@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+
 import {apiGetCall} from '../api';
 import {homePageFilterWords} from '../constants';
 
@@ -75,7 +77,7 @@ class HomeContentColumn extends React.Component {
             });
     }
 
-    componentDidMount() {        
+    componentDidMount() {      
         this.getRecentSummary();
         this.getThemesSummary();
     }
@@ -119,12 +121,10 @@ class HomeContentColumn extends React.Component {
                     <Tab>In Focus</Tab>
                 </TabList>
                 <TabPanel>
-                {this.state.latest.loading ? <Loading tab="1" /> : 
-                    <RecentDocs recentDocs={this.state.latest.content} tab={1} /> }
+                    <RecentDocs loading={this.state.latest.loading} recentDocs={this.state.latest.content} tab={`1`} /> 
                 </TabPanel>
                 <TabPanel>
-                {this.state.themes.loading ? <Loading tab="2" /> : 
-                    <ThemeOfTheMonth themes={this.state.themes.content} tab={2} /> }
+                    <ThemeOfTheMonth loading={this.state.themes.loading} themes={this.state.themes.content} tab={2} />
                 </TabPanel>
             </Tabs>
         </div>

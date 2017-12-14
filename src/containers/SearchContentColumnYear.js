@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {apiGetCall} from '../api';
+import {isInt, coerceIntoArray} from '../utils/generalhelper';
 import DivFeed from '../components/DivFeed';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
@@ -30,11 +31,6 @@ class SearchContentColumnYear extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-        /*    lang: this.props.match.params['lang'],
-            count: this.props.match.params['count'],
-            from: this.props.match.params['from'],
-            to: this.props.match.params['to'],
-            year: this.props.match.params['year'],*/
             totalPages: 0,
             loading: true,
             listing: undefined
@@ -62,7 +58,7 @@ class SearchContentColumnYear extends React.Component {
                     totalPages: parseInt(items.totalpages),
                     orderedBy: items.orderedby,
                     currentPage: parseInt(items.currentpage),
-                    listing: items.exprAbstract
+                    listing: coerceIntoArray(items.exprAbstract)
                 });
             })
             .catch(function(error) {
@@ -71,7 +67,6 @@ class SearchContentColumnYear extends React.Component {
     }
 
     onChangePage(newPage) {
-        console.log (" NEW PAGE ", newPage);
         this.setState({loading: true});
         this.getSearch(newPage);
 
@@ -100,10 +95,6 @@ class SearchContentColumnYear extends React.Component {
    
     componentDidMount() {
         this.getSearch({year: this.state.year, count: this.state.count, from: this.state.from, to: this.state.to});
-    }
-
-    componentDidUpdate() {
-       // this.getListing({})
     }
 
     componentWillReceiveProps(nextProps) {

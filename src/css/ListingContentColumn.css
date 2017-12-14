@@ -6,3 +6,8 @@
 .feed {
     width: 100%;
 }
+
+.wide100 {
+    width:100%;
+    float: left;
+}
