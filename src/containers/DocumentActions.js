@@ -3,6 +3,7 @@ import React from 'react';
 import { anBody, anBodyComponentRef, anExprFRBRthis } from '../utils/akomantoso';
 import { dataProxyServer, documentServer } from '../constants';
 import { substringBeforeLastMatch } from '../utils/stringhelper';
+import { apiUrl } from '../api';
 
 const DocumentPdfLink = ({doc, type}) => {
     let body = anBody(doc, type);
@@ -17,7 +18,7 @@ const DocumentPdfLink = ({doc, type}) => {
 }
 
 const DocumentXmlLink = ({doc, type}) => {
-    let proxyUrl = '/gw/doc/xml/' + "?iri=" + anExprFRBRthis(doc, type).value; 
+    let proxyUrl = apiUrl('doc-xml') + "?iri=" + anExprFRBRthis(doc, type).value; 
     let url = dataProxyServer() + proxyUrl ;
     return (
         <a href={ url } title="XML download" target="_blank">XML</a>
