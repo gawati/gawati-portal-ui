@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { anBody, anBodyComponentRef, anExprFRBRthis } from '../utils/akomantoso';
-import { documentServer } from '../constants';
+import { dataProxyServer, documentServer } from '../constants';
 import { substringBeforeLastMatch } from '../utils/stringhelper';
 
 const DocumentPdfLink = ({doc, type}) => {
@@ -17,8 +17,8 @@ const DocumentPdfLink = ({doc, type}) => {
 }
 
 const DocumentXmlLink = ({doc, type}) => {
-    let proxyUrl = '/gw/portal/xml/' + "?iri=" + anExprFRBRthis(doc, type).value; 
-    let url = documentServer() + proxyUrl ;
+    let proxyUrl = '/gw/doc/xml/' + "?iri=" + anExprFRBRthis(doc, type).value; 
+    let url = dataProxyServer() + proxyUrl ;
     return (
         <a href={ url } title="XML download" target="_blank">XML</a>
     );

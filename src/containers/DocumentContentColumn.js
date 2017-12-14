@@ -7,6 +7,8 @@ import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
 import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType, displayDate, randomInt, insertIntoArray} from '../utils/generalhelper';
+import { substringBeforeLastMatch } from '../utils/stringhelper';
+import {documentServer} from '../constants';
 import {anPublication, anFRBRnumber, anKeywords, anTLCConcept, anExprFRBRdate, anBody} from '../utils/akomantoso';
 import {gawatiDateEntryInForce} from '../utils/gawati';
 
@@ -19,7 +21,7 @@ import '../css/react-tabs.css';
 import '../css/DocumentTagCloud.css';
 import '../css/DocumentPDF.css';
 import linkIcon from '../images/export.png';
-import { substringBeforeLastMatch } from '../utils/stringhelper';
+
 
 
 const DocumentLoading = () => 
@@ -110,7 +112,6 @@ const getThemes = (doc, type) => {
 };
 
 const DocumentMetadata = ({doc, type}) => {
-    console.log("DOCUMENTMETADATA DOC TYPE ", doc, type);
     return(
         <ul className="metadata">
             <li><strong>Document Number:</strong> {anFRBRnumber(doc, type).showAs}</li>
@@ -131,7 +132,7 @@ const DocumentPDF = ({doc, type}) => {
     }
     
     let cRef = mainDocument.componentRef;
-    let pdfLink = substringBeforeLastMatch(cRef.src, "/") + "/" + cRef.alt ;
+    let pdfLink = documentServer() + substringBeforeLastMatch(cRef.src, "/") + "/" + cRef.alt ;
     return (
     <Aux>
         <br />
@@ -201,15 +202,6 @@ class DocumentContentColumn extends React.Component {
                     doc: doc,
                     docType: getDocumentType(doc)
                 });
-                /*
-                const content = response.data.exprAbstracts.exprAbstract;
-                this.setState({ 
-                    latest: {
-                        loading: false, 
-                        content : content
-                    }
-                });
-                */
             })
             .catch(function(error) {
                 console.log("error in getDocument()", error);
