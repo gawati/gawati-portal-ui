@@ -3,6 +3,10 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
 import ToggleDisplay from '../component_utils/ToggleDisplay';
+import Select from 'react-select';
+import createClass from 'create-react-class';
+import 'react-select/dist/react-select.css';
+
 import {Aux, coerceIntoArray, roundto100Filter} from '../utils/generalhelper';
 import {filterTypes} from '../constants.js';
 import {apiGetCall} from '../api.js';
@@ -103,6 +107,118 @@ class FilterCountry extends BaseFilter {
         );
     }
 }
+
+class FilterCountry2 extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+			value: [],
+        };
+        this.handleSelectChange = this.handleSelectChange.bind(this)
+    }
+    countries = coerceIntoArray(this.props.filter.country).map(function(countryObj) {
+        return {
+            label: countryObj['#text'],
+            value: countryObj['code'],
+            count: countryObj['count']
+        }
+    })
+    handleSelectChange (value) {
+        this.setState({value});
+    }
+    render () {
+        return (
+            <Aux>
+                <h2 className="small-heading">{this.props.filterType.label}</h2>
+                <Select
+                    closeOnSelect={false}
+                    disabled={false}
+                    multi
+                    onChange={this.handleSelectChange}
+                    // optionComponent={CountrySelectOption}
+                    options={this.countries}
+                    placeholder="Select countries"
+                    removeSelected={true}
+                    rtl={false}
+                    simpleValue
+                    value={this.state.value}
+                />
+                <div className="grey-rule"/>
+            </Aux>
+        );
+    }
+}
+
+const CountrySelectOption = createClass({
+	propTypes: {
+		children: PropTypes.node,
+		className: PropTypes.string,
+		isDisabled: PropTypes.bool,
+		isFocused: PropTypes.bool,
+		isSelected: PropTypes.bool,
+		onFocus: PropTypes.func,
+		onSelect: PropTypes.func,
+		option: PropTypes.object.isRequired,
+	},
+	handleMouseDown (event) {
+		event.preventDefault();
+		event.stopPropagation();
+		this.props.onSelect(this.props.option, event);
+	},
+	handleMouseEnter (event) {
+		this.props.onFocus(this.props.option, event);
+	},
+	handleMouseMove (event) {
+		if (this.props.isFocused) return;
+		this.props.onFocus(this.props.option, event);
+	},
+    onCheckChange : function (value) {
+    },
+	render () {
+		return (
+			<div className="Select-value" 
+                title={this.props.option.label}
+                style={{display: 'block'}}
+                onMouseDown={this.handleMouseDown}
+				onMouseEnter={this.handleMouseEnter}
+				onMouseMove={this.handleMouseMove}
+				title={this.props.option.title}>
+                
+                <input type="checkbox" defaultChecked={false} onChange={this.onCheckChange} style={{float:'left'}}/>   
+				<span className="Select-value-label">
+				    {this.props.option.label}	
+				</span>
+			</div>
+		);
+	}
+});
+
+const CountrySelectValue = createClass({
+	propTypes: {
+		children: PropTypes.node,
+		placeholder: PropTypes.string,
+		value: PropTypes.object
+	},
+	render () {
+		var gravatarStyle = {
+			borderRadius: 3,
+			display: 'inline-block',
+			marginRight: 10,
+			position: 'relative',
+			top: -2,
+			verticalAlign: 'middle',
+		};
+		return (
+			<div className="Select-value" title={this.props.value.title}>
+				<span className="Select-value-label">
+					{this.props.value}
+					{this.props.children}
+				</span>
+			</div>
+		);
+	}
+});
+
   
 
 class FilterLang extends BaseFilter {
