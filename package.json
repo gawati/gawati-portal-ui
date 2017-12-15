@@ -1,6 +1,6 @@
 {
   "name": "gawati-portal",
-  "version": "2.0.5",
+  "version": "2.0.5-dev",
   "private": true,
   "proxy": "http://localhost",
   "xhomepage": "http://localhost:9000",
