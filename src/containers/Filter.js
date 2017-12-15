@@ -61,7 +61,7 @@ class FilterDate extends BaseFilter {
     }
 }
 
-class FilterCountry extends React.Component {
+class FilterCountry extends BaseFilter {
 
     listItem = (countryObj) =>
         <li key={ `country-${countryObj.code}` }>
@@ -205,26 +205,6 @@ class FilterKeywords extends BaseFilter {
     }
 }
 
-/*
-const FilterKeywords = ({filterType, filter}) => {
-    let keywords = coerceIntoArray(filter.keyword);
-    return (
-        <Aux>
-            <h2 className="small-heading">{filterType.label}</h2>
-            <ul> {
-                keywords.map(
-                    keywordObj =>
-                    <li key={ `lang-${keywordObj.value}` }>
-                        <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_bysubject/${keywordObj.value}/` }>{keywordObj['showAs']} {roundto100Filter(parseInt(keywordObj.count))}</NavLink>
-                    </li>
-                )  
-            }
-            </ul>
-            <div className="grey-rule"/>
-        </Aux>
-    );      
-};
-*/
 
 FilterLang.propTypes = FilterKeywords.propTypes = FilterCountry.propTypes =  FilterDate.propTypes = {
     filterType: PropTypes.shape({
