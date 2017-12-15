@@ -10,6 +10,7 @@ const GAWATI_APIS = {
         'doc-xml':'/doc/xml/',
         'search-grouped': '/searchac/' ,
         'short-filter-cache': '/short-filter-cache/',
+        'smart-filter-cache': '/smart-filter-cache/',
         'search-by-year': '/search/year/',
         'search-by-language' : '/search/language/',
         'search-by-subject' : '/search/keyword/',
