@@ -21,6 +21,7 @@ import '../css/SiteSearchAutoComplete.css';
 class SiteSearchAutoComplete extends React.Component {
     constructor(props) {
         super(props);
+        console.log(" HISTORY ", this.props.history);
         this.state = {
             loading: false,
             value: '',

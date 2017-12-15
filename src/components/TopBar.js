@@ -27,28 +27,35 @@ const SearchBox = () =>
     <div className={ `search-form-container col-6` }>
         <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
             <div className="div-block w-clearfix">
-               <SiteSearchAutoComplete /> 
+               <SiteSearchAutoComplete  /> 
             </div>
         </form>
     </div>
     ;
 
-function TopBar() {
-    return (
-        <header className="navigation-bar">
-
-            <div className="container">
-                <Logo />
-                <SiteHeading />
-                <div className="mobile-button">
-                    <img alt="menu" src={mobileButton} />
-                </div>
-                <SearchBox />
-            </div>
-            <div className="w-nav-overlay" data-wf-ignore=""/>
-        </header>
-   
-    );
-}
-
+    class TopBar extends React.Component {
+        
+            constructor(props) {
+                super(props);
+            }
+        
+            render() {
+            return (
+                <header className="navigation-bar">
+        
+                    <div className="container">
+                        <Logo />
+                        <SiteHeading />
+                        <div className="mobile-button">
+                            <img alt="menu" src={mobileButton} />
+                        </div>
+                        <SearchBox />
+                    </div>
+                    <div className="w-nav-overlay" data-wf-ignore=""/>
+                </header>
+           
+            );
+        }
+        
+        }
 export default TopBar;

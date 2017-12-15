@@ -3,9 +3,14 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
 import ToggleDisplay from '../component_utils/ToggleDisplay';
-import Select from 'react-select';
-import createClass from 'create-react-class';
-import 'react-select/dist/react-select.css';
+// !+ERROR_DEPRECATED_USE(AH, 2017-12-15) This createClass should not be used,
+// it is from React 15, and is incompatible with React 16 since using it requires 
+// importing the create-react-class library, which has older dependencies and causes startup to 
+// fail from a clean build. We write everything as ES6 / ES2015
+// so this syntax should not be used. Moving to a branch, and revering package.json changes
+//import Select from 'react-select';
+//import createClass from 'create-react-class';
+//import 'react-select/dist/react-select.css';
 
 import {Aux, coerceIntoArray, roundto100Filter} from '../utils/generalhelper';
 import {filterTypes} from '../constants.js';
@@ -108,6 +113,7 @@ class FilterCountry extends BaseFilter {
     }
 }
 
+/** *
 class FilterCountry2 extends React.Component {
     constructor(props) {
         super(props);
@@ -218,8 +224,8 @@ const CountrySelectValue = createClass({
 		);
 	}
 });
-
-  
+**/
+    
 
 class FilterLang extends BaseFilter {
 

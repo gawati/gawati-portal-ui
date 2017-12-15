@@ -215,6 +215,14 @@ class DocumentContentColumn extends React.Component {
         
     }
 
+    /**
+     * This is required to ensure the page content refreshes when the url param changes for the route
+     * @param {object} nextProps 
+     */
+    componentWillReceiveProps(nextProps) {
+        this.getDocument(prefixIri(nextProps.match.params['iri']));
+    }    
+
     render() {
         if (this.state.doc === undefined || isEmpty(this.state.doc)) {
             return (
