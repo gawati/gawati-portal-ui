@@ -13,15 +13,14 @@ const DocumentPdfLink = ({doc, type}) => {
     let refAlt = cRef.alt;
     let url = documentServer() + substringBeforeLastMatch(refSrc, "/") + "/" + refAlt;
     return (
-        <a href={ url } title={ `open ${refAlt} in a new window` } target="_blank">PDF</a>
+        <a href={ url } title={ `open ${refAlt} in a new window` } download={ refAlt } >PDF</a>
     );
 }
 
 const DocumentXmlLink = ({doc, type}) => {
-    let proxyUrl = apiUrl('doc-xml') + "?iri=" + anExprFRBRthis(doc, type).value; 
-    let url = dataProxyServer() + proxyUrl ;
+    let url = apiUrl('doc-xml') + "?iri=" + anExprFRBRthis(doc, type).value; 
     return (
-        <a href={ url } title="XML download" target="_blank">XML</a>
+        <a href={ url } title="XML download" download="document.xml" >XML</a>
     );
 }
 
