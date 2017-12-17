@@ -1,5 +1,5 @@
 import React from 'react';
-import Filter from '../containers/Filter';
+import Filter from '../containers/filter/Filter';
 
 function SideBarColumn() {
     return (
