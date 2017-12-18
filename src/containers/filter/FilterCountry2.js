@@ -1,4 +1,6 @@
 import React from 'react';
+import BaseFilter from './BaseFilter';
+import PropTypes from 'prop-types';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
