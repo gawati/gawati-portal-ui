@@ -16,6 +16,7 @@ import FilterCountry from './FilterCountry';
 import FilterDate from './FilterDate';
 import FilterLang from './FilterLang';
 import FilterKeywords from './FilterKeywords';
+//import FilterCountry2 from './FilterCountry2';
 
 import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper';
 import {filterTypes} from '../../constants.js';
@@ -192,6 +193,7 @@ class Filter extends React.Component {
             let filterType = filterTypes();
             return (
                 <Aux>
+                    { /** <FilterCountry2  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } /> **/ }
                     <FilterDate filterType={filterType.FILTER_DATE} filter={this.getFilterFor('FILTER_DATE')} showExpanded={ false } />
                     <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } />
                     <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  />
