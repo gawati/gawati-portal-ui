@@ -17,54 +17,31 @@ class FilterKeywords extends BaseFilter {
         super(props);
         this.state = {
 			value: [],
-            matches:[],
-            createable: false,
-            loading: false
         };
     }
 
-    onChange = (value) =>
+    onChange = (value) =>   
 		this.setState({
 			value: value,
 		});
-
 
     getKeywords (input) {
         if (!input) {
 			return Promise.resolve({ options: [] });
 		} else {
-            return Promise.resolve({ options: [
-                {
-                    value: "trade",
-                    label: "Trade"
-                },
-                {
-                    value: "goods",
-                    label: "Goods"
-                },
-                {
-                    value: "supplies",
-                    label: "Supplies"
-                }
-            ] });
+            let keywordMatches = apiGetCall(
+                'keyword', {
+                    kw : input
+                } 
+            );
+            return axios.get(keywordMatches)
+                .then(response => {
+                    return { options: response.data.matches };
+                })
+                .catch(error => {
+                    console.log("error in keywords API", error);
+                });
         }
-
-		// let keywordMatches = apiGetCall(
-        //     'keywords', {
-        //         query : input
-        //     } 
-        // );
-        // axios.get(keywordMatches)
-        //     .then(response => {
-        //         const matches = response.data;
-        //         this.setState({
-        //             loading: false,
-        //             matches: matches,
-        //         });
-        //     })
-        //     .catch(error => {
-        //         console.log("error in keywords API", error);
-        //     });
 	}
 
     selectKeyword (value, event) {
@@ -74,9 +51,7 @@ class FilterKeywords extends BaseFilter {
     }
     
     render() {
-        const AsyncComponent = this.state.creatable
-			? Select.AsyncCreatable
-			: Select.Async;
+        const AsyncComponent = Select.Async;
         let filterType = this.props.filterType;
         let filter = this.props.filter;
         let keywords = coerceIntoArray(filter.keyword);
@@ -88,8 +63,8 @@ class FilterKeywords extends BaseFilter {
                     loadOptions={this.getKeywords}
                     multi={true}
                     onChange={this.onChange}
-                    // onValueClick={this.selectKeyword}
                     value={this.state.value}
+                    labelKey='showAs'
                     />
                 <div className="grey-rule"/>
             </Aux>

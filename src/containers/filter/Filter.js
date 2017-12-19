@@ -5,7 +5,6 @@ import FilterCountry from './FilterCountry';
 import FilterDate from './FilterDate';
 import FilterLang from './FilterLang';
 import FilterKeywords from './FilterKeywords';
-//import FilterCountry2 from './FilterCountry2';
 
 // import FilterCountry from './FilterCountry2';
 // import FilterDate from './FilterDate2';
