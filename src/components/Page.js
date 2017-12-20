@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import {Aux} from '../utils/generalhelper';
+import {getRoute} from '../utils/routeshelper';
 
 //import PageUpperBorder from './PageUpperBorder';
 import TopBar from './TopBar';
@@ -17,13 +18,13 @@ function Page(){
         <Switch>
             <Route exact path="/" component={HomeContentArea} />
             <Route exact path="/index.html" component={HomeContentArea} />
-            <Route path="/doc/_lang/:lang/_iri/:iri*" component={DocumentContentArea} />
-            <Route path="/recent/_lang/:lang/_count/:count/_from/:from/_to/:to" component={ListContentArea} />
-            <Route path="/themes/_lang/:lang/_themes/:themes/_count/:count/_from/:from/_to/:to*" component={ListContentArea} />
-            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bycountry/:country*" component={ListContentArea} />
-            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_byyear/:year*" component={ListContentArea} />
-            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bylang/:doclang*" component={ListContentArea} />
-            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bysubject/:kw*" component={ListContentArea} />
+            <Route path={ getRoute('doc-iri') } component={DocumentContentArea} />
+            <Route path={ getRoute('recent') } component={ListContentArea} />
+            <Route path={ getRoute('themes') } component={ListContentArea} />
+            <Route path={ getRoute('search-country') } component={ListContentArea} />
+            <Route path={ getRoute('search-year') } component={ListContentArea} />
+            <Route path={ getRoute('search-doclang') } component={ListContentArea} />
+            <Route path={ getRoute('search-keyword') } component={ListContentArea} />
         </Switch>
         <Route path="*" component={Footer} />
     </Aux>

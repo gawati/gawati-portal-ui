@@ -7,7 +7,7 @@ import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 import BaseSearchContentColumn from './BaseSearchContentColumn';
 import ListingLoading from '../components/ListingLoading';
-
+import GwSpinner from '../components/GwSpinner'
 import '../css/ListingContentColumn.css';
 
 
@@ -111,6 +111,7 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
             return (
                 <ListingLoading>
                     <h1 className="listingHeading">Document Results</h1>
+                     <GwSpinner />
                 </ListingLoading>
             );
         } else {        
@@ -125,7 +126,7 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
                     {
                     this.state.listing.map(abstract => {
                         return (
-                        <ExprAbstract key={abstract['expr-iri']} abstract={abstract} />   
+                        <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
                         )
                     })
                     }

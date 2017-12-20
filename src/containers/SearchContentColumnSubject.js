@@ -137,7 +137,7 @@ class SearchContentColumnSubject extends React.Component {
                     {
                     this.state.listing.map(abstract => {
                         return (
-                        <ExprAbstract key={abstract['expr-iri']} abstract={abstract} />   
+                        <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
                         )
                     })
                     }

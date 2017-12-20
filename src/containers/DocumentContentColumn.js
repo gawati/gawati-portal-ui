@@ -229,18 +229,18 @@ class DocumentContentColumn extends React.Component {
                 <DocumentLoading />
             );
         } else {        
-            //console.log("DOC TYPES ", getDocTypes(), getDocType('act'));
+            console.log("DOC TYPES ", this.props.match);
             let content = 
             <div className={ `left col-9`}>
                 <div className="search-result">
-                    <DocumentBreadcrumb doc={this.state.doc} type={this.state.docType} />
+                    <DocumentBreadcrumb doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
                     <div className={ `feed w-clearfix`}>
-                        <DocumentTitle doc={this.state.doc} type={this.state.docType} />
-                        <DocumentNavBlock doc={this.state.doc} type={this.state.docType} />
-                        <DocumentSignature doc={this.state.doc} type={this.state.docType} />
-                        <DocumentActions doc={this.state.doc} type={this.state.docType} />
-                        <DocumentTagCloud doc={this.state.doc} type={this.state.docType} />
-                        <DocumentContentInfo doc={this.state.doc} type={this.state.docType} />
+                        <DocumentTitle doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+                        <DocumentNavBlock doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+                        <DocumentSignature doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+                        <DocumentActions doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+                        <DocumentTagCloud doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+                        <DocumentContentInfo doc={this.state.doc} type={this.state.docType}  lang={this.props.match.params.lang} />
                     </div>
                 </div>
             </div>

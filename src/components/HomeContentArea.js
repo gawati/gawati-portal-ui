@@ -6,18 +6,26 @@ import SideBarColumn from './SideBarColumn';
 import Section from './Section';
 import DivRow from './DivRow';
 
-function HomeContentArea() {
-    return (
-        <Section>
-            <div className="container">
-                <DivRow altClasses="home-content-area">
-                    <NotifBar />
-                    <HomeContentColumn />
-                    <SideBarColumn />
-                </DivRow>
-            </div>
-        </Section>
-    );
+class HomeContentArea extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <Section>
+                <div className="container">
+                    <DivRow altClasses="home-content-area">
+                        <NotifBar />
+                        <HomeContentColumn />
+                        <SideBarColumn />
+                    </DivRow>
+                </div>
+            </Section>
+        );
+    
+    }
 }
 
 export default HomeContentArea;

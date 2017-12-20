@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import {coerceIntoArray, isInt} from '../utils/generalhelper';
+import {coerceIntoArray, isInt, getLangCodeAlpha3b, getLangDesc} from '../utils/generalhelper';
 import {apiGetCall} from '../api';
 import DivFeed from '../components/DivFeed';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 import BaseSearchContentColumn from './BaseSearchContentColumn';
 import ListingLoading from '../components/ListingLoading';
+import GwSpinner from '../components/GwSpinner';
 
 import '../css/ListingContentColumn.css';
 
@@ -44,7 +45,6 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
     }
 
     generatePagination = () => {
-        console.log (" PAGIN STATE ", this.state);
         var pagination = {
             lang: this.state.lang,
             doclang: this.state.doclang,
@@ -57,7 +57,6 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
         };
         Object.keys(pagination).map(k => pagination[k] = isInt(pagination[k]) === false ? pagination[k] : parseInt(pagination[k]));
         // we set the linkUrl prop on the pagination object, so the paginator knows how to render the URLs
-        console.log (" PAGINATION GEN ", pagination);
         let linkUrl = "/search/_lang/{lang}/_count/{count}/_from/{from}/_to/{to}/_bylang/{doclang}";
         pagination.linkUrl = linkUrl; 
         
@@ -83,14 +82,16 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
             return (
                 <ListingLoading>
                    <h1 className="listingHeading">Document Results</h1>
+                   <GwSpinner />
                 </ListingLoading>
             );
         } else {        
             let pagination = this.generatePagination() ;
+            console.log(" LANG ", this.state.doclang, getLangDesc(this.state.doclang));
             let content = 
             <div className={ `left col-9`}>
                 <div className="search-result">
-                    <h1 className="listingHeading">Document Results <small>for the Language {this.state.doclang} </small></h1>;
+                    <h1 className="listingHeading">Document Results <small>for the Language {getLangDesc(this.state.doclang).content} </small></h1>;
                     <DivFeed>
                         <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                     </DivFeed>

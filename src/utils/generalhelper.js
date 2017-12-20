@@ -1,6 +1,6 @@
 import {documentTypes} from '../constants';
 import docTypes from '../configs/docTypes.json';
-import languageCodes from '../configs/languageCodes.json';
+import languageCodes from '../configs/shortLanguageCodes.json';
 import moment from 'moment';
 
 /**
@@ -63,12 +63,26 @@ export const getDocumentType = (doc) => Object.keys(doc.akomaNtoso)[0] ;
 export const isEmpty =  (obj) => 
     Object.keys(obj).length === 0 && obj.constructor === Object ;
 
+export const defaultLang = () => ({
+    "lang": "eng",
+    "content": "English"
+});
 
 export const getDocTypes = () => docTypes.docTypes ;
 
 export const getDocType = (findType) => getDocTypes().find(dType => dType['akn-type'] === findType) ;
 
 export const getLangCodeAlpha3b = (alpha3b) => languageCodes.langs.lang.find(lingo => lingo['alpha3b'] === alpha3b ) ;
+
+export const getLangDesc = (alpha3b) => {
+    let langAlpha = getLangCodeAlpha3b(alpha3b);
+    if (langAlpha !== undefined) {
+        let descArr = coerceIntoArray(langAlpha.desc);
+        let langDesc = descArr.find( desc => desc.lang == alpha3b) || descArr.find( desc => desc.lang == "eng");
+        return langDesc;
+    }
+    return defaultLang();
+};
 
 export const displayDate = (date) => moment(date).format('MMMM D YYYY') ;
 

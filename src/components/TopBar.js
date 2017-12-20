@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
-
-
+import {Version} from '../utils/versionhelper';
 import mainLogo from '../images/logo.png';
 import mobileButton from '../images/th-menu.png';
 
@@ -33,7 +31,7 @@ const SearchBox = () =>
     </div>
     ;
 
-    class TopBar extends React.Component {
+class TopBar extends React.Component {
         
             constructor(props) {
                 super(props);
@@ -42,7 +40,7 @@ const SearchBox = () =>
             render() {
             return (
                 <header className="navigation-bar">
-        
+                    <Version />
                     <div className="container">
                         <Logo />
                         <SiteHeading />
