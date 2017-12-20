@@ -1,14 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
-import FilterCountry from './FilterCountry';
+// import FilterCountry from './FilterCountry';
 import FilterDate from './FilterDate';
-import FilterLang from './FilterLang';
+// import FilterLang from './FilterLang';
 import FilterKeywords from './FilterKeywords';
 
-// import FilterCountry from './FilterCountry2';
+import FilterCountry from './FilterCountry2';
 // import FilterDate from './FilterDate2';
-// import FilterLang from './FilterLang2';
+import FilterLang from './FilterLang2';
 // import FilterKeywords from './FilterKeywords2';
 
 import {filterTypes} from '../../constants.js';
@@ -27,8 +28,39 @@ class Filter extends React.Component {
         super(props);
         this.state = {
             loading: true,
-            filter: []
+            filter: [],
+            countryValue: '',
+            yearValue: '',
+            langValue: '',
+            keyValue: ''
         };
+        this.setCountryValue = this.setCountryValue.bind(this);
+        this.setLangValue = this.setLangValue.bind(this);
+        this.gotoSearchPage = this.gotoSearchPage.bind(this);
+    }
+
+    setCountryValue (countryValue ){
+        this.setState({countryValue});
+        setTimeout(() => {
+            this.gotoSearchPage();
+        });
+        
+    }
+
+    setLangValue (langValue ){
+        this.setState({langValue});
+        setTimeout(() => {
+            this.gotoSearchPage();
+        });
+    }
+
+    gotoSearchPage () {
+        var paramsString = '/#/search/_lang/eng/_count/10/_from/1/_to/10/';
+        var bycountry = this.state.countryValue.length ? '_bycountry/' + this.state.countryValue + '/' : '';
+        var bylang = this.state.langValue.length ? '_bylang/' + this.state.langValue + '/' : ''
+        paramsString = paramsString + bycountry + bylang;
+        const { router } = this.context;
+        router.history.push(paramsString);    
     }
 
     /**
@@ -72,8 +104,8 @@ class Filter extends React.Component {
                 <Aux>
                     { /** <FilterCountry2  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } /> **/ }
                     <FilterDate filterType={filterType.FILTER_DATE} filter={this.getFilterFor('FILTER_DATE')} showExpanded={ false } />
-                    <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } />
-                    <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  />
+                    <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } setCountryValue={ this.setCountryValue } />
+                    <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  setLangValue={ this.setLangValue } />
                     <FilterKeywords   filterType={filterType.FILTER_KEYWORD}  filter={this.getFilterFor('FILTER_KEYWORD')} showExpanded={ false } />
                 </Aux>
             );        
@@ -82,5 +114,9 @@ class Filter extends React.Component {
 
 };
 
+
+Filter.contextTypes = {
+    router: PropTypes.object
+}
 
 export default Filter;

@@ -29,12 +29,12 @@ class FilterKeywords extends BaseFilter {
         if (!input) {
 			return Promise.resolve({ options: [] });
 		} else {
-            let keywordMatches = apiGetCall(
+            let keywordApi = apiGetCall(
                 'keyword', {
                     kw : input
                 } 
             );
-            return axios.get(keywordMatches)
+            return axios.get(keywordApi)
                 .then(response => {
                     return { options: response.data.matches };
                 })

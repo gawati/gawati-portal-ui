@@ -7,9 +7,10 @@ import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper'
 
 class FilterLang extends BaseFilter {
 
-
-    handleSelectChange = (value) => 
-        this.setState({value: value});
+    handleSelectChange = (value) => {
+        this.setState({value});
+        this.props.setLangValue(value);
+    }
     
     render() {
         let filterType = this.props.filterType;
@@ -49,5 +50,9 @@ FilterLang.propTypes = {
         filter: PropTypes.object.isRequired,
         showExpanded: PropTypes.bool.isRequired
     };
+
+FilterLang.contextTypes = {
+  router: PropTypes.object
+}    
 
 export default FilterLang;

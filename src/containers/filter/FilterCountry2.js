@@ -8,9 +8,22 @@ import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper'
 
 class FilterCountry extends BaseFilter {
 
-    handleSelectChange = (value) => 
+    constructor(props) {
+        super(props);
+        this.state = {
+
+            // value: this.props.match.params.country,
+            // I'M HERE NOW
+            loading: true,
+            listing: undefined
+        };
+    }
+
+    handleSelectChange = (value) => {
         this.setState({value});
-    
+        this.props.setCountryValue(value)
+    }
+
     render () {
         let filterType = this.props.filterType;
         let filter = this.props.filter ;
