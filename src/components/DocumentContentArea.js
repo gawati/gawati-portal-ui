@@ -6,18 +6,25 @@ import SideBarColumn from './SideBarColumn';
 import Section from './Section';
 import DivRow from './DivRow';
 
-function DocumentContentArea({ match }) {
-    return (
-        <Section>
-            <div className="container">
-                <DivRow>
-                    <NotifBar />
-                    <DocumentContentColumn match={match} />
-                    <SideBarColumn  />
-                </DivRow>
-            </div>
-        </Section>
-    );
+class DocumentContentArea extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <Section>
+                <div className="container">
+                    <DivRow>
+                        <NotifBar />
+                        <DocumentContentColumn match={this.props.match} />
+                        <SideBarColumn  match={this.props.match}/>
+                    </DivRow>
+                </div>
+            </Section>
+        );
+    }
+    
 }
 
 export default DocumentContentArea;

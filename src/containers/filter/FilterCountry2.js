@@ -12,8 +12,7 @@ class FilterCountry extends BaseFilter {
         super(props);
         this.state = {
 
-            // value: this.props.match.params.country,
-            // I'M HERE NOW
+            value: this.props.match.params.country,
             loading: true,
             listing: undefined
         };
