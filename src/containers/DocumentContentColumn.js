@@ -16,6 +16,10 @@ import DocumentBreadcrumb from './DocumentBreadcrumb';
 import DocumentNavBlock from './DocumentNavBlock';
 import DocumentSignature from './DocumentSignature';
 import DocumentActions from './DocumentActions';
+import DocumentTagCloud from './DocumentTagCloud';
+
+import GwSpinner from '../components/GwSpinner'
+
 import 'react-tabs/style/react-tabs.css';
 import '../css/react-tabs.css';
 import '../css/DocumentTagCloud.css';
@@ -27,7 +31,7 @@ import linkIcon from '../images/export.png';
 const DocumentLoading = () => 
     <div className={ `left col-9`}>
         <div className="search-result">
-        Loading...
+            <GwSpinner />
         </div>
     </div>;
 
@@ -44,52 +48,7 @@ const DocumentPartOf = ({doc, type}) => {
     );
 }
 
-const DocumentTagCloud = ({doc, type}) => {
-    let kws = anKeywords(doc, type);
-    if (Array.isArray(kws)) {
-        return (
-            <div className="tag-cloud">
-            <strong>TAGS:</strong>&#160;
-                {
-                kws.map(
-                    (item) => {
-                        let randint = randomInt(14, 28);
-                        return (
-                        <span key={item.value} className={ `text-span-${randint} tag-item` }>{item.showAs} </span>
-                        );
-                    }
-                )
-                }
-            </div>
-        );
-    } else {
-        return (
-            <div className="tag-cloud">
-            <span className="text-span-18">{kws.showAs}</span>
-            </div>
-        );
-    }
-        /*
-    return (
-        <div className="tag-cloud" >
-            <span className="text-span-14">act </span><span className="text-span-13">Administrative
-                </span><span className="text-span-27">assigned </span><span>body </span><span
-                className="text-span-15">cabinet </span><span>case </span><span className="text-span-28"
-                >chief </span><span className="text-span-20">citizen </span><span>citizenship
-                </span><span>commission </span><span className="text-span-21">contolled
-                </span><span>copy </span><span>corporate </span><span className="text-span-30"
-                >deleted</span> deparment <span className="text-span-22">digital </span><span
-                className="text-span-12">director</span>
-            <span className="text-span-23">document </span>electronic <span>entity </span><span
-                className="text-span-29">exempt </span><span>form </span><span className="text-span-16"
-                >generated </span><span className="text-span-17">government
-                </span><span>individual</span>
-            <span className="text-span-19">information </span><span className="text-span-18"
-                >justice</span>
-        </div>
-    ); 
-    */
-}
+
 
 const getThemes = (doc, type) => {
     let tlcc = anTLCConcept(doc, type);
