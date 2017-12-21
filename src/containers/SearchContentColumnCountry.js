@@ -47,6 +47,7 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
                 this.setState({
                     loading: false,
                     country: paramsObj.country,
+                    doclang: paramsObj.doclang,
                     from: parseInt(items.itemsfrom),
                     count: parseInt(items.pagesize),
                     to: parseInt(items.itemsfrom) + parseInt(items.pagesize) - 1,
@@ -72,6 +73,7 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
         
         var pagination = {
             country: this.state.country,
+            doclang: this.state.doclang,
             count: this.state.count,
             from: this.state.from,
             to: this.state.to,
@@ -90,7 +92,13 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
 
    
     componentDidMount() {
-        this.getSearch({country: this.state.country, count: this.state.count, from: this.state.from, to: this.state.to});
+        this.getSearch({
+            country: this.state.country,
+            count: this.state.count,
+            doclang: this.state.doclang,
+            from: this.state.from,
+            to: this.state.to
+        });
     }
 
     componentDidUpdate() {
@@ -102,7 +110,8 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
             country: nextProps.match.params.country,
             count: parseInt(nextProps.match.params.count),
             from: parseInt(nextProps.match.params.from),
-            to: parseInt(nextProps.match.params.to)
+            to: parseInt(nextProps.match.params.to),
+            doclang: nextProps.match.params.doclang
         });
     }    
 

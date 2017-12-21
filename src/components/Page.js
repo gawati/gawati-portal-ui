@@ -20,7 +20,7 @@ function Page(){
             <Route path="/doc/_lang/:lang/_iri/:iri*" component={DocumentContentArea} />
             <Route path="/recent/_lang/:lang/_count/:count/_from/:from/_to/:to" component={ListContentArea} />
             <Route path="/themes/_lang/:lang/_themes/:themes/_count/:count/_from/:from/_to/:to*" component={ListContentArea} />
-            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bycountry/:country*" component={ListContentArea} />
+            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bycountry/:country/_bylang/:doclang" component={ListContentArea} />
             <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_byyear/:year*" component={ListContentArea} />
             <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bylang/:doclang*" component={ListContentArea} />
             <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bysubject/:kw*" component={ListContentArea} />

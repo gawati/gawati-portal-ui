@@ -8,7 +8,6 @@ import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper'
 class FilterLang extends BaseFilter {
 
     handleSelectChange = (value) => {
-        this.setState({value});
         this.props.setLangValue(value);
     }
     
@@ -34,7 +33,7 @@ class FilterLang extends BaseFilter {
                     removeSelected={true}
                     rtl={false}
                     simpleValue
-                    value={this.state.value}
+                    value={this.props.match.params.doclang}
                 />
                 <div className="grey-rule"/>
             </Aux>

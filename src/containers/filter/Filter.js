@@ -29,17 +29,17 @@ class Filter extends React.Component {
         this.state = {
             loading: true,
             filter: [],
-            countryValue: '',
+            countryValue: this.props.match.params.country || '',
             yearValue: '',
-            langValue: '',
+            langValue: this.props.match.params.doclang || '',
             keyValue: ''
         };
-        this.setCountryValue = this.setCountryValue.bind(this);
-        this.setLangValue = this.setLangValue.bind(this);
-        this.gotoSearchPage = this.gotoSearchPage.bind(this);
+        // this.setCountryValue = this.setCountryValue.bind(this);
+        // this.setLangValue = this.setLangValue.bind(this);
+        // this.gotoSearchPage = this.gotoSearchPage.bind(this);
     }
 
-    setCountryValue (countryValue ){
+    setCountryValue = (countryValue ) => {
         this.setState({countryValue});
         setTimeout(() => {
             this.gotoSearchPage();
@@ -47,15 +47,15 @@ class Filter extends React.Component {
         
     }
 
-    setLangValue (langValue ){
+    setLangValue = (langValue ) => {
         this.setState({langValue});
         setTimeout(() => {
             this.gotoSearchPage();
         });
     }
 
-    gotoSearchPage () {
-        var paramsString = 'search/_lang/eng/_count/10/_from/1/_to/10/';
+    gotoSearchPage = () => {
+        var paramsString = '/search/_lang/eng/_count/10/_from/1/_to/10/';
         var bycountry = this.state.countryValue.length ? '_bycountry/' + this.state.countryValue + '/' : '';
         var bylang = this.state.langValue.length ? '_bylang/' + this.state.langValue + '/' : ''
         paramsString = paramsString + bycountry + bylang;
