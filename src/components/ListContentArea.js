@@ -28,7 +28,7 @@ class ListContentArea extends React.Component{
                         <Switch>
                             <Route path="/recent/_lang/:lang/_count/:count/_from/:from/_to/:to" component={ListContentColumn} />
                             <Route path="/themes/_lang/:lang/_themes/:themes/_count/:count/_from/:from/_to/:to" component={ListThemeContentColumn} />
-                            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bycountry/:country/_bylang/:doclang" component={SearchContentColumnCountry} />
+                            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/json/:search" component={SearchContentColumnCountry} />
                             <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bycountry/:country" component={SearchContentColumnCountry} />
                             <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_byyear/:year*" component={SearchContentColumnYear} />
                             <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bylang/:doclang*" component={SearchContentColumnLanguage} />

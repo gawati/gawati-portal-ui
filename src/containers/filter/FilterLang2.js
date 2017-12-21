@@ -8,7 +8,7 @@ import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper'
 class FilterLang extends BaseFilter {
 
     handleSelectChange = (value) => {
-        this.props.setLangValue(value);
+        this.props.setFilterValue('langs', value)
     }
     
     render() {
@@ -19,7 +19,16 @@ class FilterLang extends BaseFilter {
                 label: lang['#text'] + ' (' + roundto100Filter(lang['count']) + ')',
                 value: lang['code']
             })
-        );    
+        );
+        let value = '';
+        if (this.props.match.params.search) {
+            var search = JSON.parse(decodeURIComponent(this.props.match.params.search));
+            if (search.langs) {
+                value = search.langs.map(
+                        (country) => country.code 
+                    ).join(',')
+            }
+        }    
         return (
             <Aux>
                 <h2 className="small-heading">{filterType.label}</h2>
@@ -33,7 +42,7 @@ class FilterLang extends BaseFilter {
                     removeSelected={true}
                     rtl={false}
                     simpleValue
-                    value={this.props.match.params.doclang}
+                    value={value}
                 />
                 <div className="grey-rule"/>
             </Aux>

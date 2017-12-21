@@ -26,41 +26,54 @@ import {Aux} from '../../utils/generalhelper';
 class Filter extends React.Component {
     constructor(props) {
         super(props);
+        var search = {};
+        if (this.props.match.params.search) {
+            search = JSON.parse(decodeURIComponent(this.props.match.params.search)).search;
+        }
+
         this.state = {
             loading: true,
             filter: [],
-            countryValue: this.props.match.params.country || '',
             yearValue: '',
-            langValue: this.props.match.params.doclang || '',
-            keyValue: ''
+            keyValue: '',
+            search: search
         };
         // this.setCountryValue = this.setCountryValue.bind(this);
         // this.setLangValue = this.setLangValue.bind(this);
         // this.gotoSearchPage = this.gotoSearchPage.bind(this);
     }
 
-    setCountryValue = (countryValue ) => {
-        this.setState({countryValue});
+    setFilterValue = (filterName, filterValue) => {
+        var filters = Object.assign({}, this.state.search);
+        filters[filterName] = filterValue.split().map(
+            (value) => {return {code: value};} 
+        )
+        this.setState({search: filters});
         setTimeout(() => {
             this.gotoSearchPage();
         });
         
     }
 
-    setLangValue = (langValue ) => {
-        this.setState({langValue});
-        setTimeout(() => {
-            this.gotoSearchPage();
-        });
-    }
-
     gotoSearchPage = () => {
-        var paramsString = '/search/_lang/eng/_count/10/_from/1/_to/10/';
-        var bycountry = this.state.countryValue.length ? '_bycountry/' + this.state.countryValue + '/' : '';
-        var bylang = this.state.langValue.length ? '_bylang/' + this.state.langValue + '/' : ''
-        paramsString = paramsString + bycountry + bylang;
+        var paramsString = '/search/_lang/eng/_count/10/_from/1/_to/10/json/';
+        // var search = {
+        //     search: {
+        //         countries: this.state.countryValue.split(',').map((country) => {
+        //             return {
+        //                 code: country
+        //             }
+        //         }),
+        //         langs: this.state.langValue.split(',').map((lang) => {
+        //             return {
+        //                 code: lang
+        //             }
+        //         })
+                
+        //     }
+        // }
         const { router } = this.context;
-        router.history.push(paramsString);    
+        router.history.push(paramsString + encodeURIComponent(JSON.stringify(this.state.search)));    
     }
 
     /**
@@ -103,8 +116,8 @@ class Filter extends React.Component {
             return (
                 <Aux>
                     <FilterDate filterType={filterType.FILTER_DATE} filter={this.getFilterFor('FILTER_DATE')} showExpanded={ false } />
-                    <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } setCountryValue={ this.setCountryValue } match={this.props.match}/>
-                    <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  setLangValue={ this.setLangValue } match={this.props.match}/>
+                    <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={this.props.match}/>
+                    <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  setFilterValue={ this.setFilterValue } match={this.props.match}/>
                     <FilterKeywords   filterType={filterType.FILTER_KEYWORD}  filter={this.getFilterFor('FILTER_KEYWORD')} showExpanded={ false } />
                 </Aux>
             );        

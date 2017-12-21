@@ -9,7 +9,7 @@ import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper'
 class FilterCountry extends BaseFilter {
 
     handleSelectChange = (value) => {
-        this.props.setCountryValue(value)
+        this.props.setFilterValue('countries', value)
     }
 
     render () {
@@ -21,6 +21,15 @@ class FilterCountry extends BaseFilter {
                 value: countryObj['code']
             })
         );    
+        let value = '';
+        if (this.props.match.params.search) {
+            var search = JSON.parse(decodeURIComponent(this.props.match.params.search))
+            if (search.countries) {
+                value = search.countries.map(
+                        (country) => country.code 
+                    ).join(',')
+            }
+        }
         return (
             <Aux>
                 <h2 className="small-heading">{filterType.label}</h2>
@@ -34,7 +43,7 @@ class FilterCountry extends BaseFilter {
                     removeSelected={true}
                     rtl={false}
                     simpleValue
-                    value={this.props.match.params.country}
+                    value={value}
                 />
                 <div className="grey-rule"/>
             </Aux>
