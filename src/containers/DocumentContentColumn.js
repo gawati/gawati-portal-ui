@@ -19,7 +19,8 @@ import DocumentActions from './DocumentActions';
 import 'react-tabs/style/react-tabs.css';
 import '../css/react-tabs.css';
 import '../css/DocumentTagCloud.css';
-import '../css/DocumentPDF.css';
+// import '../css/DocumentPDF.css';
+import PDF from 'react-pdf-js';
 import linkIcon from '../images/export.png';
 
 
@@ -137,12 +138,12 @@ const DocumentPDF = ({doc, type}) => {
     <Aux>
         <br />
         <div className="pdfview">
-        <object data={`${pdfLink}#page=1`} type="application/pdf" width="100%" height="100%">
+        <PDF file={`${pdfLink}#page=1`} fillWidth>
             <iframe src={`${pdfLink}#page=1`} width="100%" height="100%" >
             This browser does not support PDFs. Please download the PDF to view it:
                 <a href={`${pdfLink}`}>Download PDF</a>
             </iframe>
-        </object>
+        </PDF>
         </div>
     </Aux>	
     );
