@@ -9,24 +9,6 @@ import ListingLoading from '../components/ListingLoading';
 import GwSpinner from '../components/GwSpinner'
 import '../css/ListingContentColumn.css';
 
-
-
-const UnderDevelopment = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
-        Under Development
-        </div>
-    </div>;
-
-
-const DocumentLoading = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
-        Searching...
-        </div>
-    </div>;
-
-
 class SearchContentColumnYear extends React.Component {
     
     constructor(props) {

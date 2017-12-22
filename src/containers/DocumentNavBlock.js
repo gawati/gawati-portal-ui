@@ -2,9 +2,9 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import {Aux, getDocType, getLangCodeAlpha3b, displayDate, getLangDesc, versionInfo} from '../utils/generalhelper';
+import {Aux, getDocType, displayDate, getLangDesc} from '../utils/generalhelper';
 import {setInRoute} from '../utils/routeshelper';
-import {anPublication, anFRBRcountry, anExprFRBRdate, anFRBRlanguage, anFRBRnumber} from '../utils/akomantoso';
+import {anFRBRcountry, anExprFRBRdate, anFRBRlanguage, anFRBRnumber} from '../utils/akomantoso';
 import moment from 'moment';
 
 const CategoryLink = ({type}) => 

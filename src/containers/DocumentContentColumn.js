@@ -6,17 +6,16 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
-import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType, displayDate, randomInt, insertIntoArray} from '../utils/generalhelper';
-import { substringBeforeLastMatch } from '../utils/stringhelper';
-import {documentServer} from '../constants';
-import {anPublication, anFRBRnumber, anKeywords, anTLCConcept, anExprFRBRdate, anBody} from '../utils/akomantoso';
-import {gawatiDateEntryInForce} from '../utils/gawati';
+import { prefixIri, isEmpty, getDocumentType, insertIntoArray} from '../utils/generalhelper';
+import {anPublication, anFRBRnumber, anTLCConcept, anExprFRBRdate} from '../utils/akomantoso';
+
 
 import DocumentBreadcrumb from './DocumentBreadcrumb';
 import DocumentNavBlock from './DocumentNavBlock';
 import DocumentSignature from './DocumentSignature';
 import DocumentActions from './DocumentActions';
 import DocumentTagCloud from './DocumentTagCloud';
+import DocumentPDF from './DocumentPDF';
 
 import GwSpinner from '../components/GwSpinner'
 
@@ -38,7 +37,7 @@ const DocumentLoading = () =>
 const DocumentTitle = ({doc, type}) =>
     <h1>{anPublication(doc, type)['showAs']}</h1>;
 
-
+/*
 const DocumentPartOf = ({doc, type}) => {
     return (
         <div className="part-of"> Part of the <a href="#"> Mixed Market Act 1991</a>. Work <a
@@ -47,7 +46,7 @@ const DocumentPartOf = ({doc, type}) => {
         </div>
     );
 }
-
+*/
 
 
 const getThemes = (doc, type) => {
@@ -80,32 +79,6 @@ const DocumentMetadata = ({doc, type}) => {
     );
 }; 
 
-const DocumentPDF = ({doc, type}) => {
-    let body = anBody(doc, type);
-    
-    let mainDocument ;
-    if (Array.isArray(body.book)) {
-        mainDocument = body.book.filter(book => book.refersTo === '#mainDocument');
-    } else {
-        mainDocument = body.book;
-    }
-    
-    let cRef = mainDocument.componentRef;
-    let pdfLink = documentServer() + substringBeforeLastMatch(cRef.src, "/") + "/" + cRef.alt ;
-    return (
-    <Aux>
-        <br />
-        <div className="pdfview">
-        <object data={`${pdfLink}#page=1`} type="application/pdf" width="100%" height="100%">
-            <iframe src={`${pdfLink}#page=1`} width="100%" height="100%" >
-            This browser does not support PDFs. Please download the PDF to view it:
-                <a href={`${pdfLink}`}>Download PDF</a>
-            </iframe>
-        </object>
-        </div>
-    </Aux>	
-    );
-};
 
 const DocumentContentInfo = ({doc, type}) => {
     return (

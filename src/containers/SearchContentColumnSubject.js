@@ -7,6 +7,7 @@ import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 
 import '../css/ListingContentColumn.css';
+import GwSpinner from '../components/GwSpinner';
 
 
 
@@ -21,7 +22,7 @@ const UnderDevelopment = () =>
 const DocumentLoading = () => 
     <div className={ `left col-9`}>
         <div className="search-result">
-        Searching...
+         <GwSpinner />
         </div>
     </div>;
 
@@ -111,7 +112,6 @@ class SearchContentColumnSubject extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log( " NEXT PROPS ", nextProps);
         this.getSearch({
             kw: nextProps.match.params.kw,
             count: parseInt(nextProps.match.params.count),
