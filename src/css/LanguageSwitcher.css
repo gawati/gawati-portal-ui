@@ -4,7 +4,7 @@
     background:none!important;
     border:none; 
     padding:0!important;
-    font-size:12px;
+    font-size:11px;
     /*optional*/
     font-family:arial,sans-serif;  /*input has OS specific font-family*/
     /* color:#069; */
@@ -12,4 +12,8 @@
     /*text-decoration:underline;*/
     cursor:pointer;
     text-transform: uppercase; 
+}
+
+.ui-lang-highlight {
+    background-color: #e0ddd7;
 }

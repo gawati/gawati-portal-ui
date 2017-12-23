@@ -23,6 +23,7 @@ class Page extends React.Component {
    render() {
         return (
             <Aux>
+
                 <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} />
                 <Switch>
                     <Route exact path="/" component={HomeContentArea} />

@@ -51,7 +51,6 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
             count: this.state.count,
             from: this.state.from,
             to: this.state.to,
-            lang: this.state.lang,
             totalPages: this.state.totalPages,
             records: this.state.records
         };

@@ -1,9 +1,9 @@
 import React from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import moment from 'moment';
 
 import {shortTitle, displayDate, defaultLang} from '../utils/generalhelper';
-import {getRoute, setInRoute} from '../utils/routeshelper';
+import {setInRoute} from '../utils/routeshelper';
 import {documentServer} from '../constants.js';
 
 import DocumentLink from './DocumentLink';
@@ -37,9 +37,9 @@ const ThumbnailAbstract = ({abstract}) => {
  */
 class ExprAbstract extends React.Component {
 
-    constructor(props) {
+/*     constructor(props) {
         super(props);
-    }
+    } */
 
     countryLink = (pageLang, abstract) =>
         setInRoute(

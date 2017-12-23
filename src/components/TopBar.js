@@ -11,7 +11,7 @@ import mobileButton from '../images/th-menu.png';
 
 const Logo = () =>
     <NavLink className="nav-brand" to="/">
-    <img alt="AIF" src={mainLogo} width="75"/>
+        <img alt="AIF" src={mainLogo} width="75"/>
     </NavLink>
     ;
 
@@ -22,16 +22,20 @@ const SiteHeading = () =>
     </div>
     ;
 
-const TopBarUpper = ({i18n}) =>
-   <div className="col-12">
-        <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "paddingBottom":"20px", "color": "red"} }>{
-            "current version = " + versionInfo().version
-        }
-        </div>
-        <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"20px"} }>
-           <LanguageSwitcher i18n={i18n} />
-        </div>
-    </div>
+const TopBarUpper = ({i18n, match}) => {
+        console.log(" MATCH TOPBARUPPER ", match);
+        return (
+            <div className="col-12">
+                <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "paddingBottom":"20px", "color": "red"} }>{
+                    "current version = " + versionInfo().version
+                }
+                </div>
+                <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"20px"} }>
+                <LanguageSwitcher i18n={i18n} match={match} />
+                </div>
+            </div>
+        );
+};
     ;
 
 const SearchBox = () =>
@@ -48,13 +52,13 @@ class TopBar extends React.Component {
         
     constructor(props) {
         super(props);
-        console.log(" PROP TOPBAR ", props);
+        console.log(" PROP TOPBAR ", props.match.params);
     }
         
     render() {
         return (
             <header className="navigation-bar">
-                <TopBarUpper i18n={this.props.i18n} />
+                <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
                 <div className="container">
                     <Logo />
                     <SiteHeading />

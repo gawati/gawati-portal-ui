@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom';
 import BasePaginator from './BasePaginator';
 
 class ThemeListPaginator extends BasePaginator {
-    constructor(props) {
+/*     constructor(props) {
         super(props);
     }
-
+ */
     pageLink = (pager, lang, themes, count, from, to, text) => 
         <Link to={ 
             "/themes/_lang/"+ lang + 
