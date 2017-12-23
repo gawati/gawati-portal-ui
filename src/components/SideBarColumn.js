@@ -3,9 +3,9 @@ import Filter from '../containers/filter/Filter';
 
 class SideBarColumn extends React.Component {
     
-    constructor(props) {
+/*     constructor(props) {
         super(props);
-    }
+    } */
 
     render() {
         return (

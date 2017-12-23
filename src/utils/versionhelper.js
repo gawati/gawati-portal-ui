@@ -1,5 +1,6 @@
 import React from 'react';
-import version from '../../package.json'
+import {Aux} from './generalhelper';
+import version from '../../package.json';
 
 /**
  * Provides access to the information in package.json
@@ -14,7 +15,12 @@ export const versionInfo = () => version;
  * Shows the version number in a component
  */
 export const Version = () =>
-    <div style={ {"textAlign": "center", "width":"100%", "color": "red"} }>{
+<Aux>
+    <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "color": "red"} }>{
         "current version = " + versionInfo().version
     }
-    </div>;
+    </div>
+    <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px"} }>
+        Some text
+    </div>
+</Aux>

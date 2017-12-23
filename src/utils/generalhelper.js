@@ -78,7 +78,7 @@ export const getLangDesc = (alpha3b) => {
     let langAlpha = getLangCodeAlpha3b(alpha3b);
     if (langAlpha !== undefined) {
         let descArr = coerceIntoArray(langAlpha.desc);
-        let langDesc = descArr.find( desc => desc.lang == alpha3b) || descArr.find( desc => desc.lang == "eng");
+        let langDesc = descArr.find( desc => desc.lang === alpha3b) || descArr.find( desc => desc.lang === "eng");
         return langDesc;
     }
     return defaultLang();

@@ -1,5 +1,6 @@
 import routeConfigs from '../configs/routes.json';
-
+import React from 'react';
+import { Route } from 'react-router-dom';
 /**
  * This is the default Route
  */
@@ -44,4 +45,20 @@ export const setInRoute = (routeName, params) => {
         }
     });
     return updatedRouteArr.join("/");
+};
+
+const renderMergedProps = (component, ...rest) => {
+    const finalProps = Object.assign({}, ...rest);
+    console.log(" MERGED PROPS ", finalProps);
+    return (
+      React.createElement(component, finalProps)
+    );
+};
+  
+export const PropsRoute = ({ component, ...rest }) => {
+    return (
+      <Route {...rest} render={routeProps => {
+        return renderMergedProps(component, routeProps, rest);
+      }}/>
+    );
 };

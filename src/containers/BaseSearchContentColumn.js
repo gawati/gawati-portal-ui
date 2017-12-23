@@ -1,10 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-import {apiGetCall} from '../api';
-import {isInt, coerceIntoArray} from '../utils/generalhelper';
-import DivFeed from '../components/DivFeed';
-import ExprAbstract from './ExprAbstract';
-import SearchListPaginator from '../components/SearchListPaginator';
 
 import '../css/ListingContentColumn.css';
 
