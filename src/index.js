@@ -5,7 +5,7 @@ import './polyfills';
 /* import BrowserRouter from 'react-router-dom' */
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
-
+import './i18n';
 //import './index.css';
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap.css';

@@ -1,0 +1,15 @@
+.ui-lang-item {padding:5px;}
+
+.ui-lang-item > button {
+    background:none!important;
+    border:none; 
+    padding:0!important;
+    font-size:12px;
+    /*optional*/
+    font-family:arial,sans-serif;  /*input has OS specific font-family*/
+    /* color:#069; */
+    color: #a9a9a9;
+    /*text-decoration:underline;*/
+    cursor:pointer;
+    text-transform: uppercase; 
+}

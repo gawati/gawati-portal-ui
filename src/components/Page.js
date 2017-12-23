@@ -11,24 +11,34 @@ import DocumentContentArea from './DocumentContentArea';
 import ListContentArea from './ListContentArea';
 import Footer from './Footer';
 
-function Page(){
-   return (
-    <Aux>
-        <Route path="*" component={TopBar} />
-        <Switch>
-            <Route exact path="/" component={HomeContentArea} />
-            <Route exact path="/index.html" component={HomeContentArea} />
-            <Route path={ getRoute('doc-iri') } component={DocumentContentArea} />
-            <Route path={ getRoute('recent') } component={ListContentArea} />
-            <Route path={ getRoute('themes') } component={ListContentArea} />
-            <Route path={ getRoute('search-country') } component={ListContentArea} />
-            <Route path={ getRoute('search-year') } component={ListContentArea} />
-            <Route path={ getRoute('search-doclang') } component={ListContentArea} />
-            <Route path={ getRoute('search-keyword') } component={ListContentArea} />
-        </Switch>
-        <Route path="*" component={Footer} />
-    </Aux>
-   );
+import {PropsRoute} from '../utils/routeshelper';
+
+class Page extends React.Component {
+
+   constructor(props) {
+       super(props);
+       console.log( " PROPS PAGE ", props);
+   } 
+
+   render() {
+        return (
+            <Aux>
+                <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} />
+                <Switch>
+                    <Route exact path="/" component={HomeContentArea} />
+                    <Route exact path="/index.html" component={HomeContentArea} />
+                    <Route path={ getRoute('doc-iri') } component={DocumentContentArea} />
+                    <Route path={ getRoute('recent') } component={ListContentArea} />
+                    <Route path={ getRoute('themes') } component={ListContentArea} />
+                    <Route path={ getRoute('search-country') } component={ListContentArea} />
+                    <Route path={ getRoute('search-year') } component={ListContentArea} />
+                    <Route path={ getRoute('search-doclang') } component={ListContentArea} />
+                    <Route path={ getRoute('search-keyword') } component={ListContentArea} />
+                </Switch>
+                <Route path="*" component={Footer} />
+            </Aux>
+        );
+   } 
 }
 
 

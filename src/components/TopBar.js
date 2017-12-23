@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {Version} from '../utils/versionhelper';
+import {versionInfo} from '../utils/versionhelper';
+import {T} from '../utils/i18nhelper';
+import SiteSearchAutoComplete from '../containers/SiteSearchAutoComplete';
+import LanguageSwitcher from '../containers/LanguageSwitcher';
+
 import mainLogo from '../images/logo.png';
 import mobileButton from '../images/th-menu.png';
-
-import SiteSearchAutoComplete from '../containers/SiteSearchAutoComplete';
 
 
 const Logo = () =>
@@ -15,11 +17,22 @@ const Logo = () =>
 
 const SiteHeading = () =>
     <div className="logotype">
-        <h1>African Law Library</h1>
-        <h2>innovative access to law</h2>
+        <h1>{ T("african law library")}</h1>
+        <h2>{ T("innovative access to law") }</h2>
     </div>
     ;
 
+const TopBarUpper = ({i18n}) =>
+   <div className="col-12">
+        <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "paddingBottom":"20px", "color": "red"} }>{
+            "current version = " + versionInfo().version
+        }
+        </div>
+        <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"20px"} }>
+           <LanguageSwitcher i18n={i18n} />
+        </div>
+    </div>
+    ;
 
 const SearchBox = () =>
     <div className={ `search-form-container col-6` }>
@@ -33,26 +46,27 @@ const SearchBox = () =>
 
 class TopBar extends React.Component {
         
-            constructor(props) {
-                super(props);
-            }
+    constructor(props) {
+        super(props);
+        console.log(" PROP TOPBAR ", props);
+    }
         
-            render() {
-            return (
-                <header className="navigation-bar">
-                    <Version />
-                    <div className="container">
-                        <Logo />
-                        <SiteHeading />
-                        <div className="mobile-button">
-                            <img alt="menu" src={mobileButton} />
-                        </div>
-                        <SearchBox />
+    render() {
+        return (
+            <header className="navigation-bar">
+                <TopBarUpper i18n={this.props.i18n} />
+                <div className="container">
+                    <Logo />
+                    <SiteHeading />
+                    <div className="mobile-button">
+                        <img alt="menu" src={mobileButton} />
                     </div>
-                    <div className="w-nav-overlay" data-wf-ignore=""/>
-                </header>
-           
-            );
-        }
+                    <SearchBox />
+                </div>
+                <div className="w-nav-overlay" data-wf-ignore=""/>
+            </header>
+        
+        );
+    }
     }
 export default TopBar;
