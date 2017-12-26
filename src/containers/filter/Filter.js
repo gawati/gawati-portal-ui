@@ -44,10 +44,12 @@ class Filter extends React.Component {
     }
 
     setFilterValue = (filterName, filterValue) => {
+        console.log(" STATE.SEARCH ", this.state.search);
         var filters = Object.assign({}, this.state.search);
-        filters[filterName] = filterValue.split().map(
-            (value) => {return {code: value};} 
-        )
+        filters[filterName] = filterValue ; 
+        //filters[filterName] = filterValue.split().map(
+        //    (value) => {return {code: value};} 
+        //)
         this.setState({search: filters});
         setTimeout(() => {
             this.gotoSearchPage();
