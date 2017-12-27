@@ -5,26 +5,9 @@ import {isInt, coerceIntoArray} from '../utils/generalhelper';
 import DivFeed from '../components/DivFeed';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
-
+import ListingLoading from '../components/ListingLoading';
+import GwSpinner from '../components/GwSpinner'
 import '../css/ListingContentColumn.css';
-
-
-
-const UnderDevelopment = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
-        Under Development
-        </div>
-    </div>;
-
-
-const DocumentLoading = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
-        Searching...
-        </div>
-    </div>;
-
 
 class SearchContentColumnYear extends React.Component {
     
@@ -109,7 +92,10 @@ class SearchContentColumnYear extends React.Component {
     render() {
         if (this.state.listing === undefined ) {
             return (
-                <DocumentLoading />
+                <ListingLoading>
+                    <h1 className="listingHeading">Document Results</h1>
+                     <GwSpinner />
+                </ListingLoading>
             );
         } else {        
             let pagination = this.generatePagination() ;
@@ -123,7 +109,7 @@ class SearchContentColumnYear extends React.Component {
                     {
                     this.state.listing.map(abstract => {
                         return (
-                        <ExprAbstract key={abstract['expr-iri']} abstract={abstract} />   
+                        <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
                         )
                     })
                     }

@@ -6,20 +6,24 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
-import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType, displayDate, randomInt, insertIntoArray} from '../utils/generalhelper';
-import { substringBeforeLastMatch } from '../utils/stringhelper';
-import {documentServer} from '../constants';
-import {anPublication, anFRBRnumber, anKeywords, anTLCConcept, anExprFRBRdate, anBody} from '../utils/akomantoso';
-import {gawatiDateEntryInForce} from '../utils/gawati';
+import { prefixIri, isEmpty, getDocumentType, insertIntoArray} from '../utils/generalhelper';
+import {anPublication, anFRBRnumber, anTLCConcept, anExprFRBRdate} from '../utils/akomantoso';
+
 
 import DocumentBreadcrumb from './DocumentBreadcrumb';
 import DocumentNavBlock from './DocumentNavBlock';
 import DocumentSignature from './DocumentSignature';
 import DocumentActions from './DocumentActions';
+import DocumentTagCloud from './DocumentTagCloud';
+import DocumentPDF from './DocumentPDF';
+
+import GwSpinner from '../components/GwSpinner'
+
 import 'react-tabs/style/react-tabs.css';
 import '../css/react-tabs.css';
 import '../css/DocumentTagCloud.css';
-import '../css/DocumentPDF.css';
+// import '../css/DocumentPDF.css';
+//import PDF from 'react-pdf-js';
 import linkIcon from '../images/export.png';
 
 
@@ -27,14 +31,14 @@ import linkIcon from '../images/export.png';
 const DocumentLoading = () => 
     <div className={ `left col-9`}>
         <div className="search-result">
-        Loading...
+            <GwSpinner />
         </div>
     </div>;
 
 const DocumentTitle = ({doc, type}) =>
     <h1>{anPublication(doc, type)['showAs']}</h1>;
 
-
+/*
 const DocumentPartOf = ({doc, type}) => {
     return (
         <div className="part-of"> Part of the <a href="#"> Mixed Market Act 1991</a>. Work <a
@@ -43,53 +47,8 @@ const DocumentPartOf = ({doc, type}) => {
         </div>
     );
 }
+*/
 
-const DocumentTagCloud = ({doc, type}) => {
-    let kws = anKeywords(doc, type);
-    if (Array.isArray(kws)) {
-        return (
-            <div className="tag-cloud">
-            <strong>TAGS:</strong>&#160;
-                {
-                kws.map(
-                    (item) => {
-                        let randint = randomInt(14, 28);
-                        return (
-                        <span key={item.value} className={ `text-span-${randint} tag-item` }>{item.showAs} </span>
-                        );
-                    }
-                )
-                }
-            </div>
-        );
-    } else {
-        return (
-            <div className="tag-cloud">
-            <span className="text-span-18">{kws.showAs}</span>
-            </div>
-        );
-    }
-        /*
-    return (
-        <div className="tag-cloud" >
-            <span className="text-span-14">act </span><span className="text-span-13">Administrative
-                </span><span className="text-span-27">assigned </span><span>body </span><span
-                className="text-span-15">cabinet </span><span>case </span><span className="text-span-28"
-                >chief </span><span className="text-span-20">citizen </span><span>citizenship
-                </span><span>commission </span><span className="text-span-21">contolled
-                </span><span>copy </span><span>corporate </span><span className="text-span-30"
-                >deleted</span> deparment <span className="text-span-22">digital </span><span
-                className="text-span-12">director</span>
-            <span className="text-span-23">document </span>electronic <span>entity </span><span
-                className="text-span-29">exempt </span><span>form </span><span className="text-span-16"
-                >generated </span><span className="text-span-17">government
-                </span><span>individual</span>
-            <span className="text-span-19">information </span><span className="text-span-18"
-                >justice</span>
-        </div>
-    ); 
-    */
-}
 
 const getThemes = (doc, type) => {
     let tlcc = anTLCConcept(doc, type);
@@ -121,7 +80,7 @@ const DocumentMetadata = ({doc, type}) => {
     );
 }; 
 
-const DocumentPDF = ({doc, type}) => {
+/* const DocumentPDF = ({doc, type}) => {
     let body = anBody(doc, type);
     
     let mainDocument ;
@@ -137,16 +96,16 @@ const DocumentPDF = ({doc, type}) => {
     <Aux>
         <br />
         <div className="pdfview">
-        <object data={`${pdfLink}#page=1`} type="application/pdf" width="100%" height="100%">
+        <PDF file={`${pdfLink}#page=1`} fillWidth>
             <iframe src={`${pdfLink}#page=1`} width="100%" height="100%" >
             This browser does not support PDFs. Please download the PDF to view it:
                 <a href={`${pdfLink}`}>Download PDF</a>
             </iframe>
-        </object>
+        </PDF>
         </div>
     </Aux>	
     );
-};
+}; */
 
 const DocumentContentInfo = ({doc, type}) => {
     return (
@@ -229,18 +188,18 @@ class DocumentContentColumn extends React.Component {
                 <DocumentLoading />
             );
         } else {        
-            //console.log("DOC TYPES ", getDocTypes(), getDocType('act'));
+            console.log("DOC TYPES ", this.props.match);
             let content = 
             <div className={ `left col-9`}>
                 <div className="search-result">
-                    <DocumentBreadcrumb doc={this.state.doc} type={this.state.docType} />
+                    <DocumentBreadcrumb doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
                     <div className={ `feed w-clearfix`}>
-                        <DocumentTitle doc={this.state.doc} type={this.state.docType} />
-                        <DocumentNavBlock doc={this.state.doc} type={this.state.docType} />
-                        <DocumentSignature doc={this.state.doc} type={this.state.docType} />
-                        <DocumentActions doc={this.state.doc} type={this.state.docType} />
-                        <DocumentTagCloud doc={this.state.doc} type={this.state.docType} />
-                        <DocumentContentInfo doc={this.state.doc} type={this.state.docType} />
+                        <DocumentTitle doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+                        <DocumentNavBlock doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+                        <DocumentSignature doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+                        <DocumentActions doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+                        <DocumentTagCloud doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+                        <DocumentContentInfo doc={this.state.doc} type={this.state.docType}  lang={this.props.match.params.lang} />
                     </div>
                 </div>
             </div>

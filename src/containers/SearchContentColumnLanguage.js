@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import {coerceIntoArray, isInt} from '../utils/generalhelper';
+import {coerceIntoArray, isInt, getLangCodeAlpha3b, getLangDesc} from '../utils/generalhelper';
 import {apiGetCall} from '../api';
 import DivFeed from '../components/DivFeed';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 import BaseSearchContentColumn from './BaseSearchContentColumn';
 import ListingLoading from '../components/ListingLoading';
+import GwSpinner from '../components/GwSpinner';
 
 import '../css/ListingContentColumn.css';
 
@@ -51,7 +52,6 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
             count: this.state.count,
             from: this.state.from,
             to: this.state.to,
-            lang: this.state.lang,
             totalPages: this.state.totalPages,
             records: this.state.records
         };
@@ -83,14 +83,16 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
             return (
                 <ListingLoading>
                    <h1 className="listingHeading">Document Results</h1>
+                   <GwSpinner />
                 </ListingLoading>
             );
         } else {        
             let pagination = this.generatePagination() ;
+            console.log(" LANG ", this.state.doclang, getLangDesc(this.state.doclang));
             let content = 
             <div className={ `left col-9`}>
                 <div className="search-result">
-                    <h1 className="listingHeading">Document Results <small>for the Language {this.state.doclang} </small></h1>;
+                    <h1 className="listingHeading">Document Results <small>for the Language {getLangDesc(this.state.doclang).content} </small></h1>;
                     <DivFeed>
                         <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                     </DivFeed>

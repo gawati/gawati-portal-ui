@@ -5,12 +5,13 @@ import axios from 'axios';
 
 import {stringCut, displayDate, Aux} from '../utils/generalhelper';
 import {apiGetCall} from '../api.js';
-
+import { T } from '../utils/i18nhelper';
 
 import DocumentLink from '../containers/DocumentLink';
 
 import '../css/Autosuggest.css';
 import '../css/SiteSearchAutoComplete.css';
+
 
 /**
  * Implementation that wraps React Auto-Suggest for use in the main search box
@@ -163,7 +164,7 @@ class SiteSearchAutoComplete extends React.Component {
     render() {
         const { value, suggestions, loading } = this.state;
         const inputProps = {
-          placeholder: "Type at least 3 letters",
+          placeholder: T("type at least 3 letters"),
           value,
           loading: loading ? "yes" : "no",
           onChange: this.onChange

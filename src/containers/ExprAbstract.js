@@ -1,7 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
+import moment from 'moment';
 
-import {shortTitle, displayDate} from '../utils/generalhelper';
+import {shortTitle, displayDate, defaultLang} from '../utils/generalhelper';
+import {setInRoute} from '../utils/routeshelper';
 import {documentServer} from '../constants.js';
 
 import DocumentLink from './DocumentLink';
@@ -33,22 +35,69 @@ const ThumbnailAbstract = ({abstract}) => {
  * Renders an exprAbstract item of a document on the server
  * @param {object} abstract 
  */
-const ExprAbstract = ({abstract}) => (
-        <DivFeed key={abstract['expr-iri']}>
-            <h2>{shortTitle(abstract.publishedAs)}</h2>
-            <div className="text-block">
-                <a href="#"> {abstract.country.showAs} </a> &#160;| &#160; 
-                <a href="#">{abstract.language.showAs}</a> &#160;| &#160;
-                <a href="#">{displayDate(abstract.date[1].value)} </a>
-            </div>  
-            <ThumbnailAbstract abstract={abstract} />
-            <p>{abstract.publishedAs}</p>
-            <div className="div-block-18 w-clearfix">
-                <DocumentLink abstract={abstract}>more...</DocumentLink>
-            </div>
-            <div className="grey-rule"></div>                      
-        </DivFeed>
-);
+class ExprAbstract extends React.Component {
+
+/*     constructor(props) {
+        super(props);
+    } */
+
+    countryLink = (pageLang, abstract) =>
+        setInRoute(
+            "search-country", {
+                from: 1,
+                to: 10,
+                count: 10,
+                lang: pageLang,
+                country: abstract.country.value                
+            }
+        );
+    
+    langLink = (pageLang, abstract) =>
+        setInRoute(
+            "search-doclang", {
+                from: 1,
+                to: 10,
+                count: 10,
+                lang: pageLang,
+                doclang: abstract.language.value                
+            }
+        );
+
+    yearLink = (pageLang, abstract) =>
+        setInRoute(
+            "search-year", {
+                from: 1,
+                to: 10,
+                count: 10,
+                lang: pageLang,
+                year: moment(abstract.date[1].value, "YYYY-MM-DD").year()          
+            }
+        );
+
+    render() {
+        let abstract = this.props.abstract ;
+        let pageLang = this.props.match ? this.props.match.params['lang'] : defaultLang().lang ; 
+        let yearLink = this.yearLink(pageLang, abstract);
+        let langLink = this.langLink(pageLang, abstract);
+        let countryLink = this.countryLink(pageLang, abstract);
+        return (
+            <DivFeed key={abstract['expr-iri']}>
+                <h2>{shortTitle(abstract.publishedAs)}</h2>
+                <div className="text-block">
+                    <NavLink to={ countryLink }> {abstract.country.showAs} </NavLink> &#160;| &#160; 
+                    <NavLink to={ langLink }>{abstract.language.showAs}</NavLink> &#160;| &#160;
+                    <NavLink to={ yearLink }>{displayDate(abstract.date[1].value)} </NavLink>
+                </div>  
+                <ThumbnailAbstract abstract={abstract} />
+                <p>{abstract.publishedAs}</p>
+                <div className="div-block-18 w-clearfix">
+                    <DocumentLink abstract={abstract}>more...</DocumentLink>
+                </div>
+                <div className="grey-rule"></div>                      
+            </DivFeed>
+        );
+    }
+}
 
 export default ExprAbstract;
 

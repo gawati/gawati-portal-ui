@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import {apiGetCall} from '../api';
 import {homePageFilterWords} from '../constants';
+import {T} from '../utils/i18nhelper';
 
 import ThemeOfTheMonth from '../containers/ThemeOfTheMonth';
 import RecentDocs from '../containers/RecentDocs';
@@ -117,8 +118,8 @@ class HomeContentColumn extends React.Component {
         <div className={ `left col-9` }>
             <Tabs>
                 <TabList>
-                    <Tab>Latest</Tab>
-                    <Tab>In Focus</Tab>
+                    <Tab>{ T("latest") }</Tab>
+                    <Tab>{ T("in focus") }</Tab>
                 </TabList>
                 <TabPanel>
                     <RecentDocs loading={this.state.latest.loading} recentDocs={this.state.latest.content} tab={`1`} /> 

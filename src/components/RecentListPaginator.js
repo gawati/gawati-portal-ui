@@ -3,9 +3,6 @@ import {Link} from 'react-router-dom';
 import BasePaginator from './BasePaginator';
 
 class RecentListPaginator extends BasePaginator {
-    constructor(props) {
-        super(props);
-    }
 
     pageLink = (pager, lang, count, from, to, text) => 
         <Link to={ 

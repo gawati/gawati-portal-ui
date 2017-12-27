@@ -6,12 +6,13 @@ import SideBarColumn from './SideBarColumn';
 import Section from './Section';
 import DivRow from './DivRow';
 
-class HomeContentArea extends React.Component{
+class HomeContentArea extends React.Component {
+
     constructor(props) {
         super(props);
     }
-    
-    render () {
+
+    render() {
         return (
             <Section>
                 <div className="container">
@@ -23,6 +24,7 @@ class HomeContentArea extends React.Component{
                 </div>
             </Section>
         );
+    
     }
     
 }

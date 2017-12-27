@@ -2,11 +2,9 @@ import React from 'react';
 import Filter from '../containers/filter/Filter';
 
 class SideBarColumn extends React.Component{
-    constructor(props) {
-        super(props);
-    }
 
-    render () {
+
+    render() {
         return (
             <div className={ `right col-3` }>
                 <div className={ `w-clearfix white-wrapper` }>

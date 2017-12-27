@@ -9,9 +9,6 @@ import BasePaginator from './BasePaginator';
  * The Paginator URL routes have been factored out, They are passed in as string templates. 
  */
 class SearchListPaginator extends BasePaginator {
-    constructor(props) {
-        super(props);
-    }
 
 
     /**

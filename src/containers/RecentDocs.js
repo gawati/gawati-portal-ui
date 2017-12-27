@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import {homePageFilterWords} from '../constants';
 import {Aux} from '../utils/generalhelper';
 
 import DivFeed from '../components/DivFeed';
