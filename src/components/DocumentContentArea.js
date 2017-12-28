@@ -13,7 +13,7 @@ function DocumentContentArea({ match }) {
                 <DivRow>
                     <NotifBar />
                     <DocumentContentColumn match={match} />
-                    <SideBarColumn  />
+                    <SideBarColumn match={match} />
                 </DivRow>
             </div>
         </Section>

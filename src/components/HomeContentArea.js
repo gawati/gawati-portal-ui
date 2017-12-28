@@ -19,7 +19,7 @@ class HomeContentArea extends React.Component {
                     <DivRow altClasses="home-content-area">
                         <NotifBar />
                         <HomeContentColumn />
-                        <SideBarColumn />
+                        <SideBarColumn match={this.props.match}/>
                     </DivRow>
                 </div>
             </Section>

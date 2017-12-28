@@ -8,7 +8,7 @@ class SideBarColumn extends React.Component{
         return (
             <div className={ `right col-3` }>
                 <div className={ `w-clearfix white-wrapper` }>
-                    <Filter />
+                    <Filter match={this.props.match} />
                     <p className="cc-law-libray">The African Law Library</p>
                 </div>
             </div>

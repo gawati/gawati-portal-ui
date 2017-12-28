@@ -18,25 +18,33 @@ import SideBarColumn from './SideBarColumn';
 import Section from './Section';
 import DivRow from './DivRow';
 
-function ListContentArea({ match }) {
-    return (
-        <Section>
-            <div className="container">
-                <DivRow>
-                    <NotifBar />
-                    <Switch>
-                        <Route path={ getRoute('recent') } component={ListContentColumn} />
-                        <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
-                        <Route path={ getRoute('search-country') } component={SearchContentColumnCountry} />
-                        <Route path={ getRoute('search-year') } component={SearchContentColumnYear} />
-                        <Route path={ getRoute('search-doclang') } component={SearchContentColumnLanguage} />
-                        <Route path={ getRoute('search-keyword') } component={SearchContentColumnSubject} />
-                    </Switch>
-                    <SideBarColumn  />
-                </DivRow>
-            </div>
-        </Section>
-    );
+class ListContentArea extends React.Component{
+    constructor(props) {
+        super(props);
+    }
+    
+    render () {
+        return (
+            <Section>
+                <div className="container">
+                    <DivRow>
+                        <NotifBar />
+                        <Switch>
+                            <Route path={ getRoute('recent') } component={ListContentColumn} />
+                            <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
+                            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/json/:search" component={SearchContentColumnCountry} />
+                            <Route path={ getRoute('search-country') } component={SearchContentColumnCountry} />
+                            <Route path={ getRoute('search-year') } component={SearchContentColumnYear} />
+                            <Route path={ getRoute('search-doclang') } component={SearchContentColumnLanguage} />
+                            <Route path={ getRoute('search-keyword') } component={SearchContentColumnSubject} />
+                        </Switch>
+                        <SideBarColumn  match={this.props.match}/>
+                    </DivRow>
+                </div>
+            </Section>
+        );
+    }
+    
 }
 
 export default ListContentArea;

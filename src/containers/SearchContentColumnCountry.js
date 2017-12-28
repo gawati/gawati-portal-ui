@@ -32,12 +32,13 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
             listing: undefined
         };
         Object.assign(this.state, this.props.match.params);
+        this.state.search = JSON.parse(decodeURIComponent(this.props.match.params.search)).search;
         console.log( " PROPS SEARCHCONTENT OCLUMN", this.state);
     }
 
     getSearch(paramsObj) {
         let apiRecent = apiGetCall(
-            'search-by-country', 
+            'search', 
             paramsObj
         );
         axios.get(apiRecent)
@@ -46,11 +47,11 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
                 console.log(" ITEMS ", items);
                 this.setState({
                     loading: false,
-                    country: paramsObj.country,
                     from: parseInt(items.itemsfrom),
                     count: parseInt(items.pagesize),
                     to: parseInt(items.itemsfrom) + parseInt(items.pagesize) - 1,
                     records: parseInt(items.records),
+                    search: JSON.parse(decodeURIComponent(paramsObj.search)),
                     totalPages: parseInt(items.totalpages),
                     orderedBy: items.orderedby,
                     currentPage: parseInt(items.currentpage),
@@ -71,7 +72,7 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
     generatePagination = () => {
         
         var pagination = {
-            country: this.state.country,
+            search: this.state.search,
             count: this.state.count,
             from: this.state.from,
             to: this.state.to,
@@ -90,7 +91,12 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
 
    
     componentDidMount() {
-        this.getSearch({country: this.state.country, count: this.state.count, from: this.state.from, to: this.state.to});
+        this.getSearch({
+            search: encodeURIComponent(JSON.stringify(this.state.search)),
+            count: this.state.count,
+            from: this.state.from,
+            to: this.state.to
+        });
     }
 
     componentDidUpdate() {
@@ -99,10 +105,11 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
 
     componentWillReceiveProps(nextProps) {
         this.getSearch({
-            country: nextProps.match.params.country,
+            search: encodeURIComponent(nextProps.match.params.search),
             count: parseInt(nextProps.match.params.count),
             from: parseInt(nextProps.match.params.from),
-            to: parseInt(nextProps.match.params.to)
+            to: parseInt(nextProps.match.params.to),
+            doclang: nextProps.match.params.doclang
         });
     }    
 

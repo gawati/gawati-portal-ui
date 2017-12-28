@@ -52,7 +52,6 @@ class TopBar extends React.Component {
         
     constructor(props) {
         super(props);
-        console.log(" PROP TOPBAR ", props.match.params);
     }
         
     render() {
