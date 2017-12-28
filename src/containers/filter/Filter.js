@@ -1,21 +1,143 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import {NavLink} from 'react-router-dom';
 
-// import FilterCountry from './FilterCountry';
+// !+ERROR_DEPRECATED_USE(AH, 2017-12-15) This createClass should not be used,
+// it is from React 15, and is incompatible with React 16 since using it requires 
+// importing the create-react-class library, which has older dependencies and causes startup to 
+// fail from a clean build. We write everything as ES6 / ES2015
+// so this syntax should not be used. Moving to a branch, and revering package.json changes
+//import Select from 'react-select';
+//import createClass from 'create-react-class';
+//import 'react-select/dist/react-select.css';
+
+import FilterCountry from './FilterCountry';
 import FilterDate from './FilterDate';
-// import FilterLang from './FilterLang';
+import FilterLang from './FilterLang';
 import FilterKeywords from './FilterKeywords';
+//import FilterCountry2 from './FilterCountry2';
 
-import FilterCountry from './FilterCountry2';
-// import FilterDate from './FilterDate2';
-import FilterLang from './FilterLang2';
-// import FilterKeywords from './FilterKeywords2';
-
+import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper';
 import {filterTypes} from '../../constants.js';
 import {apiGetCall} from '../../api.js';
 
-import {Aux} from '../../utils/generalhelper';
+
+
+/** *
+class FilterCountry2 extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+			value: [],
+        };
+        this.handleSelectChange = this.handleSelectChange.bind(this)
+    }
+    countries = coerceIntoArray(this.props.filter.country).map(function(countryObj) {
+        return {
+            label: countryObj['#text'],
+            value: countryObj['code'],
+            count: countryObj['count']
+        }
+    })
+    handleSelectChange (value) {
+        this.setState({value});
+    }
+    render () {
+        return (
+            <Aux>
+                <h2 className="small-heading">{this.props.filterType.label}</h2>
+                <Select
+                    closeOnSelect={false}
+                    disabled={false}
+                    multi
+                    onChange={this.handleSelectChange}
+                    // optionComponent={CountrySelectOption}
+                    options={this.countries}
+                    placeholder="Select countries"
+                    removeSelected={true}
+                    rtl={false}
+                    simpleValue
+                    value={this.state.value}
+                />
+                <div className="grey-rule"/>
+            </Aux>
+        );
+    }
+}
+
+const CountrySelectOption = createClass({
+	propTypes: {
+		children: PropTypes.node,
+		className: PropTypes.string,
+		isDisabled: PropTypes.bool,
+		isFocused: PropTypes.bool,
+		isSelected: PropTypes.bool,
+		onFocus: PropTypes.func,
+		onSelect: PropTypes.func,
+		option: PropTypes.object.isRequired,
+	},
+	handleMouseDown (event) {
+		event.preventDefault();
+		event.stopPropagation();
+		this.props.onSelect(this.props.option, event);
+	},
+	handleMouseEnter (event) {
+		this.props.onFocus(this.props.option, event);
+	},
+	handleMouseMove (event) {
+		if (this.props.isFocused) return;
+		this.props.onFocus(this.props.option, event);
+	},
+    onCheckChange : function (value) {
+    },
+	render () {
+		return (
+			<div className="Select-value" 
+                title={this.props.option.label}
+                style={{display: 'block'}}
+                onMouseDown={this.handleMouseDown}
+				onMouseEnter={this.handleMouseEnter}
+				onMouseMove={this.handleMouseMove}
+				title={this.props.option.title}>
+                
+                <input type="checkbox" defaultChecked={false} onChange={this.onCheckChange} style={{float:'left'}}/>   
+				<span className="Select-value-label">
+				    {this.props.option.label}	
+				</span>
+			</div>
+		);
+	}
+});
+
+const CountrySelectValue = createClass({
+	propTypes: {
+		children: PropTypes.node,
+		placeholder: PropTypes.string,
+		value: PropTypes.object
+	},
+	render () {
+		var gravatarStyle = {
+			borderRadius: 3,
+			display: 'inline-block',
+			marginRight: 10,
+			position: 'relative',
+			top: -2,
+			verticalAlign: 'middle',
+		};
+		return (
+			<div className="Select-value" title={this.props.value.title}>
+				<span className="Select-value-label">
+					{this.props.value}
+					{this.props.children}
+				</span>
+			</div>
+		);
+	}
+});
+**/
+    
+
 
 /**
  * This class provides the UI filter component provided on the right
@@ -26,56 +148,10 @@ import {Aux} from '../../utils/generalhelper';
 class Filter extends React.Component {
     constructor(props) {
         super(props);
-        var search = {};
-        if (this.props.match.params.search) {
-            search = JSON.parse(decodeURIComponent(this.props.match.params.search)).search;
-        }
-
         this.state = {
             loading: true,
-            filter: [],
-            yearValue: '',
-            keyValue: '',
-            search: search
+            filter: []
         };
-        // this.setCountryValue = this.setCountryValue.bind(this);
-        // this.setLangValue = this.setLangValue.bind(this);
-        // this.gotoSearchPage = this.gotoSearchPage.bind(this);
-    }
-
-    setFilterValue = (filterName, filterValue) => {
-        console.log(" STATE.SEARCH ", this.state.search);
-        var filters = Object.assign({}, this.state.search);
-        filters[filterName] = filterValue ; 
-        //filters[filterName] = filterValue.split().map(
-        //    (value) => {return {code: value};} 
-        //)
-        this.setState({search: filters});
-        setTimeout(() => {
-            this.gotoSearchPage();
-        });
-        
-    }
-
-    gotoSearchPage = () => {
-        var paramsString = '/search/_lang/eng/_count/10/_from/1/_to/10/json/';
-        // var search = {
-        //     search: {
-        //         countries: this.state.countryValue.split(',').map((country) => {
-        //             return {
-        //                 code: country
-        //             }
-        //         }),
-        //         langs: this.state.langValue.split(',').map((lang) => {
-        //             return {
-        //                 code: lang
-        //             }
-        //         })
-                
-        //     }
-        // }
-        const { router } = this.context;
-        router.history.push(paramsString + encodeURIComponent(JSON.stringify(this.state.search)));    
     }
 
     /**
@@ -117,9 +193,10 @@ class Filter extends React.Component {
             let filterType = filterTypes();
             return (
                 <Aux>
+                    { /** <FilterCountry2  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } /> **/ }
                     <FilterDate filterType={filterType.FILTER_DATE} filter={this.getFilterFor('FILTER_DATE')} showExpanded={ false } />
-                    <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={this.props.match}/>
-                    <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  setFilterValue={ this.setFilterValue } match={this.props.match}/>
+                    <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } />
+                    <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  />
                     <FilterKeywords   filterType={filterType.FILTER_KEYWORD}  filter={this.getFilterFor('FILTER_KEYWORD')} showExpanded={ false } />
                 </Aux>
             );        
@@ -128,9 +205,5 @@ class Filter extends React.Component {
 
 };
 
-
-Filter.contextTypes = {
-    router: PropTypes.object
-}
 
 export default Filter;
