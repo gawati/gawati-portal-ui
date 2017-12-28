@@ -1,11 +1,8 @@
 import React from 'react';
 import Filter from '../containers/filter/Filter';
 
-class SideBarColumn extends React.Component {
-    
-/*     constructor(props) {
-        super(props);
-    } */
+class SideBarColumn extends React.Component{
+
 
     render() {
         return (
