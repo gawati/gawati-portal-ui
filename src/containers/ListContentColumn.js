@@ -25,6 +25,7 @@ class ListContentColumn extends React.Component {
     
     constructor(props) {
         super(props);
+        console.log (" LISTCONTENTCOLUMN PARAMS ", this.props.match.params);
         this.state = {
             lang: this.props.match.params['lang'],
             count: this.props.match.params['count'],
