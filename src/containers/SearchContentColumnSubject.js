@@ -112,7 +112,6 @@ class SearchContentColumnSubject extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log( " NEXT PROPS ", nextProps);
         this.getSearch({
             kw: nextProps.match.params.kw,
             count: parseInt(nextProps.match.params.count),

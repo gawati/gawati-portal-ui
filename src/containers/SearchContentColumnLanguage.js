@@ -45,7 +45,6 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
     }
 
     generatePagination = () => {
-        console.log (" PAGIN STATE ", this.state);
         var pagination = {
             lang: this.state.lang,
             doclang: this.state.doclang,
@@ -57,7 +56,6 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
         };
         Object.keys(pagination).map(k => pagination[k] = isInt(pagination[k]) === false ? pagination[k] : parseInt(pagination[k]));
         // we set the linkUrl prop on the pagination object, so the paginator knows how to render the URLs
-        console.log (" PAGINATION GEN ", pagination);
         let linkUrl = "/search/_lang/{lang}/_count/{count}/_from/{from}/_to/{to}/_bylang/{doclang}";
         pagination.linkUrl = linkUrl; 
         

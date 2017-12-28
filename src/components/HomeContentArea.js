@@ -26,7 +26,6 @@ class HomeContentArea extends React.Component {
         );
     
     }
-    
 }
 
 export default HomeContentArea;
