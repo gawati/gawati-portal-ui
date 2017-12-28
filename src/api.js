@@ -6,6 +6,7 @@ const GAWATI_APIS = {
     apis : {
         'doc': '/doc/',
         'doc-xml': '/doc/xml/',
+        'filter': '/search/filter/',
         'keyword': '/keyword/',
         'recent-summary' : '/recent/expressions/summary/',
         'search-by-country' : '/search/country/',
