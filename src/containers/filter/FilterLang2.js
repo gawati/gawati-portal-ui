@@ -30,23 +30,13 @@ class FilterLang extends BaseFilter {
     render() {
         let filterType = this.props.filterType;
         let langs = this.langs;
-        //let filter = this.props.filter;
-/*         let langs = coerceIntoArray(filter.lang).map( 
-                lang => ({
-                label: lang['#text'] + ' (' + roundto100Filter(lang['count']) + ')',
-                value: lang['code']
-            })
-        ); */
         let value = [];
-        if (this.props.match.params.search) {
-            var search = JSON.parse(decodeURIComponent(this.props.match.params.search));
+        if (this.props.match.params.q) {
+            var search = JSON.parse(decodeURIComponent(this.props.match.params.q));
             if (search.langs) {
                 value = search.langs.map(
                     langCode => langs.find( lang => lang.value === langCode)
                 );
-/*                 value = search.langs.map(
-                        (country) => country.code 
-                    ).join(',') */
             }
         }    
         return (

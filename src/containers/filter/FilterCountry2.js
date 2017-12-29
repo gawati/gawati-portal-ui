@@ -1,10 +1,13 @@
 import React from 'react';
-import BaseFilter from './BaseFilter';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 
-import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper';
+import BaseFilter from './BaseFilter';
+
+import { Aux, coerceIntoArray, roundto100Filter } from '../../utils/generalhelper';
+import { convertEncodedStringToObject } from '../../utils/routeshelper';
+
+import 'react-select/dist/react-select.css';
 
 class FilterCountry extends BaseFilter {
 
@@ -17,7 +20,7 @@ class FilterCountry extends BaseFilter {
                     value: countryObj['code']
                 })
             );    
-        
+        console.log (" COUNTRIES ", this.countries);
     }
     
     handleSelectChange = (value) => {
@@ -44,13 +47,14 @@ class FilterCountry extends BaseFilter {
         //    })
         //);    
         let value = [];
-        if (this.props.match.params.search) {
+        if (this.props.match.params.q) {
             // if there is a search url param look for the countries filter
-            var search = JSON.parse(decodeURIComponent(this.props.match.params.search));
+            var search = convertEncodedStringToObject(this.props.match.params.q);
             if (search.countries) {
               // if there is a countries filter, then it has the country code, we need to send the full object 
               // for react-select to set the selection, so for each code find the countries matching and send an 
-              // array of these country objects as the value with the updated count
+              // array of these country objects as the value with the updated count.
+              // we need to do this to set the display count "Kenya 200+" along with the country code
               value = search.countries.map(
                     countryCode => countries.find( country => country.value === countryCode)
                 );
@@ -75,5 +79,15 @@ class FilterCountry extends BaseFilter {
         );
     }
 }
+
+FilterCountry.propTypes = {
+    filterType: PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        key: PropTypes.string.isRequired
+    }).isRequired,
+    filter: PropTypes.object.isRequired,
+    setFilterValue: PropTypes.func.isRequired,
+    showExpanded: PropTypes.bool.isRequired
+};
 
 export default FilterCountry;

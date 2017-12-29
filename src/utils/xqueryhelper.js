@@ -1,3 +1,9 @@
+/**
+ * This module provides a middle-ware to convert a query JSON to an XQUery format 
+ * understandable by the back-end.
+ */
+
+
 
 /**
  * Specifies the filter configuration
@@ -34,7 +40,7 @@ const filterConfig = {
 
 /**
  * This returns an XQuery query which is sent to the data server
- * as a server side query
+ * as a server side query. Takes a filter JSON object provided by the client.
  * @param {object} filter incoming filter object from client
  * This is typically sent in the format as below: 
  * { 
@@ -49,15 +55,16 @@ export const xQueryFilterBuilder = (filter) => {
     for (let filterName in filter) {
         
         let cfg = filterConfig[filterName];
-        
-        let attrQuery = filter[filterName].map(
-            value =>`${cfg.xqueryAttr} eq '${value}'`
-        ).join(" or ");
-        
-        xQuery.push(
-            `[${cfg.xqueryElementXPath}[ ${attrQuery} ]]`
-        );
-    
+        console.log(" FILTER -> FILTER NAME ", filterName, filter[filterName]);
+        if (filter[filterName].length > 0 ) {
+            let attrQuery = filter[filterName].map(
+                value =>`${cfg.xqueryAttr} eq '${value}'`
+            ).join(" or ");
+            
+            xQuery.push(
+                `[${cfg.xqueryElementXPath}[ ${attrQuery} ]]`
+            );
+        }
     }
     return xQuery;
 };

@@ -12,6 +12,8 @@ import {anPublication} from '../utils/akomantoso';
 import ExprAbstract from './ExprAbstract';
 import ThemeListPaginator from '../components/ThemeListPaginator';
 import ListingLoading from '../components/ListingLoading';
+import DivListing from '../components/DivListing';
+
 import '../css/react-tabs.css';
 import 'react-tabs/style/react-tabs.css';
 import '../css/ListingContentColumn.css';
@@ -51,13 +53,13 @@ class ListThemeContentColumn extends React.Component {
                 console.log(" ITEMS ", items);
                 this.setState({
                     loading: false,
-                    from: parseInt(items.itemsfrom),
-                    count: parseInt(items.pagesize),
-                    to: parseInt(items.itemsfrom) + parseInt(items.pagesize) - 1,
-                    records: parseInt(items.records),
-                    totalPages: parseInt(items.totalpages),
+                    from: parseInt(items.itemsfrom, 10),
+                    count: parseInt(items.pagesize, 10),
+                    to: parseInt(items.itemsfrom, 10) + parseInt(items.pagesize, 10) - 1,
+                    records: parseInt(items.records, 10),
+                    totalPages: parseInt(items.totalpages, 10),
                     orderedBy: items.orderedby,
-                    currentPage: parseInt(items.currentpage),
+                    currentPage: parseInt(items.currentpage, 10),
                     listing: coerceIntoArray(items.exprAbstract)
                 });
             })
@@ -112,12 +114,11 @@ class ListThemeContentColumn extends React.Component {
         } else {        
             let pagination = this.generatePagination() ;
             let content = 
-            <div className={ `left col-9`}>
-                <div className="search-result">
-                    <h1 className="listingHeading">Theme</h1>
-                    <DivFeed>
-                        <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
-                    </DivFeed>
+            <DivListing>
+                <h1 className="listingHeading">Theme</h1>
+                <DivFeed>
+                    <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                </DivFeed>
                     {
                     console.log( " state listing ", this.state)
                     }
@@ -133,10 +134,9 @@ class ListThemeContentColumn extends React.Component {
                 <DivFeed>
                     <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                 </DivFeed>
-                </div>
-            </div>
+            </DivListing>
             ;
-    return content;
+            return content;
     }
     }
 }

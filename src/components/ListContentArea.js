@@ -33,7 +33,7 @@ class ListContentArea extends React.Component{
                         <Switch>
                             <Route path={ getRoute('recent') } component={ListContentColumn} />
                             <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
-                            <Route path="/filter/_lang/:lang/_count/:count/_from/:from/_to/:to/_q/:q" component={SearchContentColumnFilter} />
+                            <Route path={ getRoute('filter') } component={SearchContentColumnFilter} />
                             <Route path={ getRoute('search-country') } component={SearchContentColumnCountry} />
                             <Route path={ getRoute('search-year') } component={SearchContentColumnYear} />
                             <Route path={ getRoute('search-doclang') } component={SearchContentColumnLanguage} />

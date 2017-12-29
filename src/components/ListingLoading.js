@@ -1,13 +1,13 @@
 import React from 'react';
 import GwSpinner from './GwSpinner';
+import DivListing from './DivListing';
+
 const ListingLoading = ({children}) => {
         return (
-            <div className={ `left col-9`}>
-            <div className="search-result">
+            <DivListing>
                 {children}
                 <GwSpinner />
-            </div>
-            </div>
+            </DivListing>
         );
     };
 

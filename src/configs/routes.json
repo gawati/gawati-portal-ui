@@ -4,12 +4,12 @@
         "name": "doc-iri"
     },
     {
-        "route": "/recent/_lang/:lang/_count/:count/_from/:from/_to/:to",
-        "name": "recent"
+        "route": "/filter/_lang/:lang/_count/:count/_from/:from/_to/:to/_q/:q*",
+        "name": "filter"
     },
     {
-        "route": "/themes/_lang/:lang/_themes/:themes/_count/:count/_from/:from/_to/:to*",
-        "name": "themes"
+        "route": "/recent/_lang/:lang/_count/:count/_from/:from/_to/:to",
+        "name": "recent"
     },
     {
         "route": "/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bycountry/:country*",
@@ -26,5 +26,9 @@
     {
         "route": "/search/_lang/:lang/_count/:count/_from/:from/_to/:to/_bysubject/:kw*",
         "name": "search-keyword"
+    },
+    {
+        "route": "/themes/_lang/:lang/_themes/:themes/_count/:count/_from/:from/_to/:to*",
+        "name": "themes"
     }
 ]}

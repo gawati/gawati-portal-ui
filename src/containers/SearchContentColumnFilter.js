@@ -1,27 +1,20 @@
 import React from 'react';
 import axios from 'axios';
+
 import {apiGetCall} from '../api';
 import {isInt, coerceIntoArray} from '../utils/generalhelper';
 import {xQueryFilterBuilder} from '../utils/xqueryhelper';
+import {convertEncodedStringToObject} from '../utils/routeshelper';
+
 import DivFeed from '../components/DivFeed';
+import DivListing from '../components/DivListing';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 import BaseSearchContentColumn from './BaseSearchContentColumn';
 import ListingLoading from '../components/ListingLoading';
 import GwSpinner from '../components/GwSpinner'
+
 import '../css/ListingContentColumn.css';
-
-
-
-
-
-const DocumentLoading = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
-        Searching...
-        </div>
-    </div>;
-
 
 class SearchContentColumnFilter extends BaseSearchContentColumn {
     
@@ -36,13 +29,12 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             loading: true,
             listing: undefined
         };
-        //console.log(" PROPS PARAMS SearchContentColumnFilter ", this.props.match.params);
-        //Object.assign(this.state, this.props.match.params);
-        console.log(" XQUERY FILTER ", xQueryFilterBuilder(this.convertEncodedStringToObject(this.props.match.params.q)).join(''));
-
-        this.state.q = xQueryFilterBuilder(this.convertEncodedStringToObject(this.props.match.params.q)).join('');
-        //console.log(" THIS.STATE ", this.state, this.convertEncodedStringToObject(this.props.match.params.q));
+        console.log(" XQUERY FILTER ", this.convertRoutePropToXQuery(this.props.match.params.q));
+        this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
     }
+
+    convertRoutePropToXQuery = (paramQ) => 
+        xQueryFilterBuilder(convertEncodedStringToObject(paramQ)).join(''); 
 
     getSearch(paramsObj) {
         console.log( " GET SEARCH ", paramsObj);
@@ -53,19 +45,31 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         axios.get(apiRecent)
             .then(response => {
                 const items = response.data.exprAbstracts;
-                console.log(" ITEMS ", items);
-                this.setState({
-                    loading: false,
-                    from: parseInt(items.itemsfrom),
-                    count: parseInt(items.pagesize),
-                    to: parseInt(items.itemsfrom) + parseInt(items.pagesize) - 1,
-                    records: parseInt(items.records),
-                    q: JSON.stringify(paramsObj.q),
-                    totalPages: parseInt(items.totalpages),
-                    orderedBy: items.orderedby,
-                    currentPage: parseInt(items.currentpage),
-                    listing: coerceIntoArray(items.exprAbstract)
-                });
+                if (parseInt(items.records, 10) === 0) {
+                    this.setState({
+                        loading: false,
+                        from:0,
+                        count:0,
+                        to:0,
+                        records: parseInt(items.records, 10),
+                        q: paramsObj.q
+                    })
+                } else {
+                    console.log(" ITEMS ", items);
+                    this.setState({
+                        loading: false,
+                        from: parseInt(items.itemsfrom, 10),
+                        count: parseInt(items.pagesize, 10),
+                        to: parseInt(items.itemsfrom, 10) + parseInt(items.pagesize, 10) - 1,
+                        records: parseInt(items.records, 10),
+                        q: JSON.stringify(paramsObj.q),
+                        totalPages: parseInt(items.totalpages, 10),
+                        orderedBy: items.orderedby,
+                        currentPage: parseInt(items.currentpage, 10),
+                        listing: coerceIntoArray(items.exprAbstract)
+                    });
+                }
+
             })
             .catch(function(error) {
                 console.log("error in getSearch()", error);
@@ -88,7 +92,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             totalPages: this.state.totalPages,
             records: this.state.records
         };
-        Object.keys(pagination).map(k => pagination[k] = !isInt(pagination[k]) ? pagination[k] : parseInt(pagination[k]));
+        Object.keys(pagination).map(k => pagination[k] = !isInt(pagination[k]) ? pagination[k] : parseInt(pagination[k], 10));
         // we set the linkUrl prop on the pagination object, so the paginator knows how to render the URLs
         let linkUrl = "/search/_lang/{lang}/_count/{count}/_from/{from}/_to/{to}/_bycountry/{country}";
         pagination.linkUrl = linkUrl; 
@@ -96,10 +100,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         return pagination;  
     }
 
-    convertObjectToEncodedString = (obj) => encodeURIComponent(JSON.stringify(obj)) ;
-    
-    convertEncodedStringToObject = (aString) => JSON.parse(decodeURIComponent(aString)) ;
-   
     componentDidMount() {
         this.getSearch({
             q: this.state.q,
@@ -111,59 +111,62 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     }
 
     componentWillReceiveProps(nextProps) {
-        /** 
+        // we need to always convert the url query to a back-end XQuery
         this.getSearch({
-            xQueryFilterBuilder(this.convertEncodedStringToObject(nextProps.match.params.q)).join('')
-            q: (nextProps.match.params.q),
-            count: parseInt(nextProps.match.params.count),
-            from: parseInt(nextProps.match.params.from),
-            to: parseInt(nextProps.match.params.to),
-            doclang: nextProps.match.params.doclang
+            q: this.convertRoutePropToXQuery(nextProps.match.params.q),
+            count: parseInt(nextProps.match.params.count, 10),
+            from: parseInt(nextProps.match.params.from, 10),
+            to: parseInt(nextProps.match.params.to, 10)
         });
-        **/
     }    
+
+    renderDocumentLoading = () =>
+        <ListingLoading>
+            <h1 className="listingHeading">Document Results</h1>
+            <GwSpinner />
+        </ListingLoading> ;
+
+    renderNoDocumentsFound = () =>
+        <DivListing>
+            <h1 className="listingHeading">Document Results</h1>
+            <div>No Documents Found</div>
+        </DivListing> ;
+
+    renderListing = () => {
+        let pagination = this.generatePagination() ;
+        let content = 
+            <DivListing>
+                <h1 className="listingHeading">Document Results</h1>
+                <DivFeed>
+                    <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage.bind(this))} />
+                </DivFeed>
+                {
+                this.state.listing.map(abstract => {
+                    return (
+                    <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
+                    )
+                })
+                }
+                <DivFeed>
+                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                </DivFeed>
+            </DivListing>
+        ;
+         return content;
+    };
 
     render() {
         if (this.state.loading === true || this.state.listing === undefined ) {
-            return (
-                <ListingLoading>
-                    <h1 className="listingHeading">Document Results</h1>
-                     <GwSpinner />
-                </ListingLoading>
-            );
-        } else {        
-            let pagination = this.generatePagination() ;
-            let content = 
-            <div className={ `left col-9`}>
-                <div className="search-result">
-                    <h1 className="listingHeading">Document Results</h1>
-                    <DivFeed>
-                        <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage.bind(this))} />
-                    </DivFeed>
-                    {
-                    this.state.listing.map(abstract => {
-                        return (
-                        <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
-                        )
-                    })
-                    }
-                    <DivFeed>
-                        <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
-                    </DivFeed>
-                </div>
-            </div>
-            ;
-    return content;
-    } 
+            return this.renderDocumentLoading();
+        } else 
+        if (parseInt(this.state.records) === 0 || this.state.listing === undefined) {
+            return this.renderNoDocumentsFound();
+        } else {
+            return this.renderListing();
+        }   
     }
 }
 
-/*
-const Loading = ({tab}) => 
-    <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
-        Loading...
-    </div>;
-*/
 
 export default SearchContentColumnFilter;
 

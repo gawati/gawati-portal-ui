@@ -12,6 +12,7 @@ import {anPublication} from '../utils/akomantoso';
 import ExprAbstract from './ExprAbstract';
 import RecentListPaginator from '../components/RecentListPaginator';
 import GwSpinner from '../components/GwSpinner';
+import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
 
 import '../css/react-tabs.css';
@@ -119,24 +120,22 @@ class ListContentColumn extends React.Component {
         } else {        
             let pagination = this.generatePagination() ;
             let content = 
-            <div className={ `left col-9`}>
-                <div className="search-result">
-                    <h1 className="listingHeading">Recent Documents</h1>
+                <DivListing>
+                        <h1 className="listingHeading">Recent Documents</h1>
+                        <DivFeed>
+                            <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                        </DivFeed>
+                        {
+                        this.state.listing.map(abstract => {
+                            return (
+                            <ExprAbstract key={abstract['expr-iri']} abstract={abstract} />   
+                            )
+                        })
+                        }
                     <DivFeed>
                         <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                     </DivFeed>
-                    {
-                    this.state.listing.map(abstract => {
-                        return (
-                        <ExprAbstract key={abstract['expr-iri']} abstract={abstract} />   
-                        )
-                    })
-                    }
-                <DivFeed>
-                    <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
-                </DivFeed>
-                </div>
-            </div>
+                </DivListing>
             ;
     return content;
     }

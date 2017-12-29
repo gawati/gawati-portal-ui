@@ -31,7 +31,7 @@ class Page extends React.Component {
                     <Route path={ getRoute('doc-iri') } component={DocumentContentArea} />
                     <Route path={ getRoute('recent') } component={ListContentArea} />
                     <Route path={ getRoute('themes') } component={ListContentArea} />
-                    <Route path="/filter/_lang/:lang/_count/:count/_from/:from/_to/:to/_q/:q" component={ListContentArea} />
+                    <Route path={ getRoute('filter') } component={ListContentArea} />
                     <Route path={ getRoute('search-country') } component={ListContentArea} />
                     <Route path={ getRoute('search-year') } component={ListContentArea} />
                     <Route path={ getRoute('search-doclang') } component={ListContentArea} />
