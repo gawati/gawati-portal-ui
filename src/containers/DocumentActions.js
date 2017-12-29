@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { anBody, anBodyComponentRef, anExprFRBRthis } from '../utils/akomantoso';
-import { dataProxyServer, documentServer } from '../constants';
+import { documentServer } from '../constants';
 import { substringBeforeLastMatch } from '../utils/stringhelper';
 import { apiUrl } from '../api';
 
@@ -28,15 +28,15 @@ const DocumentXmlLink = ({doc, type}) => {
 const DocumentActions = ({doc, type}) => 
         <div className="document-download">
             <div className={ `col-3 left`}>
-                <a href="#">Back to search</a>
+                <a href="/">Back to search</a>
             </div>
             <div className={ `col-9 right`}>
                 <ul>
                     <li>
-                        <a href="#">Subscribe</a>
+                        <a href="/">Subscribe</a>
                     </li>
                     <li>
-                        <a href="#">Copy Reference</a>
+                        <a href="/">Copy Reference</a>
                     </li>
                     <li>
                         <DocumentXmlLink doc={doc} type={type} />
@@ -45,7 +45,7 @@ const DocumentActions = ({doc, type}) =>
                         <DocumentPdfLink doc={doc} type={type} />
                     </li>
                     <li>
-                        <a href="#">Share</a>
+                        <a href="/">Share</a>
                     </li>
                 </ul>
             </div>

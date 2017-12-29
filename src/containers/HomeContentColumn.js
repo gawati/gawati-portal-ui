@@ -11,7 +11,6 @@ import ThemeOfTheMonth from '../containers/ThemeOfTheMonth';
 import RecentDocs from '../containers/RecentDocs';
 
 import '../css/react-tabs.css';
-import linkIcon from '../images/export.png';
 
 class HomeContentColumn extends React.Component {
     
@@ -84,6 +83,7 @@ class HomeContentColumn extends React.Component {
     }
 
     render() {
+        const { latest, themes } = this.state;
         let content;
         /*
         * BOOTSTRAP + REACT TABS
@@ -122,10 +122,10 @@ class HomeContentColumn extends React.Component {
                     <Tab>{ T("in focus") }</Tab>
                 </TabList>
                 <TabPanel>
-                    <RecentDocs loading={this.state.latest.loading} recentDocs={this.state.latest.content} tab={`1`} /> 
+                    <RecentDocs loading={latest.loading} recentDocs={latest.content} tab={1} /> 
                 </TabPanel>
                 <TabPanel>
-                    <ThemeOfTheMonth loading={this.state.themes.loading} themes={this.state.themes.content} tab={2} />
+                    <ThemeOfTheMonth loading={themes.loading} themes={themes.content} tab={2} />
                 </TabPanel>
             </Tabs>
         </div>
@@ -133,11 +133,6 @@ class HomeContentColumn extends React.Component {
     }
 
 }
-
-const Loading = ({tab}) => 
-    <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
-        Loading...
-    </div>
 
 /*
 **

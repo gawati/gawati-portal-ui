@@ -1,4 +1,4 @@
-import {documentTypes} from '../constants';
+//import {documentTypes} from '../constants';
 import docTypes from '../configs/docTypes.json';
 import languageCodes from '../configs/shortLanguageCodes.json';
 import moment from 'moment';

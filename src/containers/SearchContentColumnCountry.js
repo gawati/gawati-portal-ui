@@ -49,14 +49,14 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
                 console.log(" ITEMS ", items);
                 this.setState({
                     loading: false,
-                    from: parseInt(items.itemsfrom),
-                    count: parseInt(items.pagesize),
-                    to: parseInt(items.itemsfrom) + parseInt(items.pagesize) - 1,
-                    records: parseInt(items.records),
+                    from: parseInt(items.itemsfrom, 10),
+                    count: parseInt(items.pagesize, 10),
+                    to: parseInt(items.itemsfrom, 10) + parseInt(items.pagesize, 10) - 1,
+                    records: parseInt(items.records, 10),
                     search: JSON.parse(decodeURIComponent(paramsObj.search)),
-                    totalPages: parseInt(items.totalpages),
+                    totalPages: parseInt(items.totalpages, 10),
                     orderedBy: items.orderedby,
-                    currentPage: parseInt(items.currentpage),
+                    currentPage: parseInt(items.currentpage, 10),
                     listing: coerceIntoArray(items.exprAbstract)
                 });
             })
@@ -82,7 +82,7 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
             totalPages: this.state.totalPages,
             records: this.state.records
         };
-        Object.keys(pagination).map(k => pagination[k] = !isInt(pagination[k]) ? pagination[k] : parseInt(pagination[k]));
+        Object.keys(pagination).map(k => pagination[k] = !isInt(pagination[k]) ? pagination[k] : parseInt(pagination[k], 10));
         // we set the linkUrl prop on the pagination object, so the paginator knows how to render the URLs
         let linkUrl = "/search/_lang/{lang}/_count/{count}/_from/{from}/_to/{to}/_bycountry/{country}";
         pagination.linkUrl = linkUrl; 
@@ -108,9 +108,9 @@ class SearchContentColumnCountry extends BaseSearchContentColumn {
     componentWillReceiveProps(nextProps) {
         this.getSearch({
             search: encodeURIComponent(nextProps.match.params.search),
-            count: parseInt(nextProps.match.params.count),
-            from: parseInt(nextProps.match.params.from),
-            to: parseInt(nextProps.match.params.to),
+            count: parseInt(nextProps.match.params.count, 10),
+            from: parseInt(nextProps.match.params.from, 10),
+            to: parseInt(nextProps.match.params.to, 10),
             doclang: nextProps.match.params.doclang
         });
     }    
@@ -156,4 +156,3 @@ const Loading = ({tab}) =>
 */
 
 export default SearchContentColumnCountry;
-

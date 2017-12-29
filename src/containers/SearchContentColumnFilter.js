@@ -156,10 +156,11 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     };
 
     render() {
-        if (this.state.loading === true || this.state.listing === undefined ) {
+        const { loading, listing, records } = this.state;
+        if (loading === true || listing === undefined ) {
             return this.renderDocumentLoading();
         } else 
-        if (parseInt(this.state.records) === 0 || this.state.listing === undefined) {
+        if (parseInt(records, 10) === 0 || listing === undefined) {
             return this.renderNoDocumentsFound();
         } else {
             return this.renderListing();

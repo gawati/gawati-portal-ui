@@ -25,9 +25,6 @@ import '../css/react-tabs.css';
 import '../css/DocumentTagCloud.css';
 // import '../css/DocumentPDF.css';
 //import PDF from 'react-pdf-js';
-import linkIcon from '../images/export.png';
-
-
 
 const DocumentLoading = () => 
     <DivListing>

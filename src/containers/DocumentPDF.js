@@ -1,5 +1,4 @@
 import React from 'react';
-import {Aux} from '../utils/generalhelper';
 import {substringBeforeLastMatch } from '../utils/stringhelper';
 import {documentServer} from '../constants';
 import {anBody} from '../utils/akomantoso';

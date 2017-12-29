@@ -107,7 +107,9 @@ class Filter extends React.Component {
 
     
     render() {
-        if (this.state.loading === true) {
+        const { loading } = this.state;
+        const { match } = this.props;
+        if (loading === true) {
             return (
                 <Aux>
                     <div>Loading ... </div>
@@ -118,8 +120,8 @@ class Filter extends React.Component {
             return (
                 <Aux>
                     <FilterDate filterType={filterType.FILTER_DATE} filter={this.getFilterFor('FILTER_DATE')} showExpanded={ false } />
-                    <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={this.props.match}/>
-                    <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  setFilterValue={ this.setFilterValue } match={this.props.match}/>
+                    <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={match}/>
+                    <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  setFilterValue={ this.setFilterValue } match={match}/>
                     <FilterKeywords   filterType={filterType.FILTER_KEYWORD}  filter={this.getFilterFor('FILTER_KEYWORD')} showExpanded={ false } />
                 </Aux>
             );        

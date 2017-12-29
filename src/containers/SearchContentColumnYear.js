@@ -38,13 +38,13 @@ class SearchContentColumnYear extends React.Component {
                 this.setState({
                     loading: false,
                     year: paramsObj.year,
-                    from: parseInt(items.itemsfrom),
-                    count: parseInt(items.pagesize),
-                    to: parseInt(items.itemsfrom) + parseInt(items.pagesize) - 1,
-                    records: parseInt(items.records),
-                    totalPages: parseInt(items.totalpages),
+                    from: parseInt(items.itemsfrom, 10),
+                    count: parseInt(items.pagesize, 10),
+                    to: parseInt(items.itemsfrom, 10) + parseInt(items.pagesize, 10) - 1,
+                    records: parseInt(items.records, 10),
+                    totalPages: parseInt(items.totalpages, 10),
                     orderedBy: items.orderedby,
-                    currentPage: parseInt(items.currentpage),
+                    currentPage: parseInt(items.currentpage, 10),
                     listing: coerceIntoArray(items.exprAbstract)
                 });
             })
@@ -70,7 +70,7 @@ class SearchContentColumnYear extends React.Component {
             totalPages: this.state.totalPages,
             records: this.state.records
         };
-        Object.keys(pagination).map(k => pagination[k] = k === 'lang' ? pagination[k] : parseInt(pagination[k]));
+        Object.keys(pagination).map(k => pagination[k] = k === 'lang' ? pagination[k] : parseInt(pagination[k], 10));
         // we set the linkUrl prop on the pagination object, so the paginator knows how to render the URLs
         let linkUrl = "/search/_lang/{lang}/_count/{count}/_from/{from}/_to/{to}/_byyear/{year}";
         pagination.linkUrl = linkUrl; 
@@ -86,10 +86,10 @@ class SearchContentColumnYear extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.getSearch({
-            year: parseInt(nextProps.match.params.year),
-            count: parseInt(nextProps.match.params.count),
-            from: parseInt(nextProps.match.params.from),
-            to: parseInt(nextProps.match.params.to)
+            year: parseInt(nextProps.match.params.year, 10),
+            count: parseInt(nextProps.match.params.count, 10),
+            from: parseInt(nextProps.match.params.from, 10),
+            to: parseInt(nextProps.match.params.to, 10)
         });
     }    
 
@@ -134,4 +134,3 @@ const Loading = ({tab}) =>
 */
 
 export default SearchContentColumnYear;
-

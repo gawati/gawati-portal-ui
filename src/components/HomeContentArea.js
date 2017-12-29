@@ -8,18 +8,15 @@ import DivRow from './DivRow';
 
 class HomeContentArea extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
+        const {match} = this.props;
         return (
             <Section>
                 <div className="container">
                     <DivRow altClasses="home-content-area">
                         <NotifBar />
                         <HomeContentColumn />
-                        <SideBarColumn match={this.props.match}/>
+                        <SideBarColumn match={match}/>
                     </DivRow>
                 </div>
             </Section>
