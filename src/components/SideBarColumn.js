@@ -1,5 +1,5 @@
 import React from 'react';
-import Filter from '../containers/filter/Filter';
+import Filter from '../containers/filter/Filter2';
 
 class SideBarColumn extends React.Component{
 

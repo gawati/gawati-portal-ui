@@ -9,7 +9,7 @@ class FilterCountry extends BaseFilter {
     
         listItem = (countryObj) =>
             <li key={ `country-${countryObj.code}` }>
-                <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_bycountry/${countryObj.code}/` }>{countryObj['#text']} {roundto100Filter(parseInt(countryObj.count))}</NavLink>
+                <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_bycountry/${countryObj.code}/` }>{countryObj['#text']} {roundto100Filter(parseInt(countryObj.count, 10))}</NavLink>
             </li>
         ;   
     

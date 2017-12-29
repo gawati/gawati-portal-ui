@@ -1,23 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import {NavLink} from 'react-router-dom';
 
 import DivFeed from '../components/DivFeed';
-
-import {apiGetCall} from '../api';
-import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType, isInt, coerceIntoArray} from '../utils/generalhelper';
-import {anPublication} from '../utils/akomantoso';
 import ExprAbstract from './ExprAbstract';
 import ThemeListPaginator from '../components/ThemeListPaginator';
 import ListingLoading from '../components/ListingLoading';
-import '../css/react-tabs.css';
-import 'react-tabs/style/react-tabs.css';
+import DivListing from '../components/DivListing';
+
+import {apiGetCall} from '../api';
+import { isInt, coerceIntoArray} from '../utils/generalhelper';
+
 import '../css/ListingContentColumn.css';
-
-import linkIcon from '../images/export.png';
-
 
 
 class ListThemeContentColumn extends React.Component {
@@ -44,20 +37,18 @@ class ListThemeContentColumn extends React.Component {
             'themes-summary', 
             paramsObj
         );
-        console.log(" API RECENT ", apiRecent);
         axios.get(apiRecent)
             .then(response => {
                 const items = response.data.exprAbstracts;
-                console.log(" ITEMS ", items);
                 this.setState({
                     loading: false,
-                    from: parseInt(items.itemsfrom),
-                    count: parseInt(items.pagesize),
-                    to: parseInt(items.itemsfrom) + parseInt(items.pagesize) - 1,
-                    records: parseInt(items.records),
-                    totalPages: parseInt(items.totalpages),
+                    from: parseInt(items.itemsfrom, 10),
+                    count: parseInt(items.pagesize, 10),
+                    to: parseInt(items.itemsfrom, 10) + parseInt(items.pagesize, 10) - 1,
+                    records: parseInt(items.records, 10),
+                    totalPages: parseInt(items.totalpages, 10),
                     orderedBy: items.orderedby,
-                    currentPage: parseInt(items.currentpage),
+                    currentPage: parseInt(items.currentpage, 10),
                     listing: coerceIntoArray(items.exprAbstract)
                 });
             })
@@ -97,7 +88,7 @@ class ListThemeContentColumn extends React.Component {
             totalPages: this.state.totalPages,
             records: this.state.records
         };
-        Object.keys(pagination).map(k => pagination[k] = isInt(pagination[k]) === false ? pagination[k] : parseInt(pagination[k]));
+        Object.keys(pagination).map(k => pagination[k] = isInt(pagination[k]) === false ? pagination[k] : parseInt(pagination[k], 10));
         return pagination;  
     }
 
@@ -112,12 +103,11 @@ class ListThemeContentColumn extends React.Component {
         } else {        
             let pagination = this.generatePagination() ;
             let content = 
-            <div className={ `left col-9`}>
-                <div className="search-result">
-                    <h1 className="listingHeading">Theme</h1>
-                    <DivFeed>
-                        <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
-                    </DivFeed>
+            <DivListing>
+                <h1 className="listingHeading">Theme</h1>
+                <DivFeed>
+                    <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                </DivFeed>
                     {
                     console.log( " state listing ", this.state)
                     }
@@ -133,10 +123,9 @@ class ListThemeContentColumn extends React.Component {
                 <DivFeed>
                     <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
                 </DivFeed>
-                </div>
-            </div>
+            </DivListing>
             ;
-    return content;
+            return content;
     }
     }
 }

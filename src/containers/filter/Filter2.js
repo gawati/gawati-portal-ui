@@ -12,13 +12,14 @@ import FilterCountry from './FilterCountry2';
 import FilterLang from './FilterLang2';
 // import FilterKeywords from './FilterKeywords2';
 
-import {filterTypes} from '../../constants.js';
-import {apiGetCall} from '../../api.js';
+import { filterTypes } from '../../constants.js';
+import { apiGetCall } from '../../api.js';
 
-import {Aux} from '../../utils/generalhelper';
+import { Aux, defaultLang, defaultListCount } from '../../utils/generalhelper';
+import { getRoute, setInRoute, convertEncodedStringToObject, convertObjectToEncodedString } from '../../utils/routeshelper';
 
 /**
- * This class provides the UI filter component provided on the right
+ * This class provides the UI filter component provided on the right in the sidebar
  * 
  * @class Filter
  * @extends {React.Component}
@@ -26,56 +27,45 @@ import {Aux} from '../../utils/generalhelper';
 class Filter extends React.Component {
     constructor(props) {
         super(props);
-        var search = {};
-        if (this.props.match.params.search) {
-            search = JSON.parse(decodeURIComponent(this.props.match.params.search)).search;
+        var q = {};
+        if (this.props.match.params.q) {
+            q = convertEncodedStringToObject(this.props.match.params.q);
         }
-
         this.state = {
             loading: true,
             filter: [],
             yearValue: '',
             keyValue: '',
-            search: search
+            q: q
         };
-        // this.setCountryValue = this.setCountryValue.bind(this);
-        // this.setLangValue = this.setLangValue.bind(this);
-        // this.gotoSearchPage = this.gotoSearchPage.bind(this);
+
     }
 
+    /**
+     * This is called by the child filters - and is passed as a prop to individual child filters
+     */
     setFilterValue = (filterName, filterValue) => {
-        console.log(" STATE.SEARCH ", this.state.search);
-        var filters = Object.assign({}, this.state.search);
+        console.log(" STATE.SEARCH ", this.state.q);
+        var filters = Object.assign({}, this.state.q);
         filters[filterName] = filterValue ; 
-        //filters[filterName] = filterValue.split().map(
-        //    (value) => {return {code: value};} 
-        //)
-        this.setState({search: filters});
-        setTimeout(() => {
-            this.gotoSearchPage();
-        });
-        
+        this.setState({q: filters});
+        setTimeout(() => 
+            this.gotoSearchPage()
+        );
     }
 
     gotoSearchPage = () => {
-        var paramsString = '/search/_lang/eng/_count/10/_from/1/_to/10/json/';
-        // var search = {
-        //     search: {
-        //         countries: this.state.countryValue.split(',').map((country) => {
-        //             return {
-        //                 code: country
-        //             }
-        //         }),
-        //         langs: this.state.langValue.split(',').map((lang) => {
-        //             return {
-        //                 code: lang
-        //             }
-        //         })
-                
-        //     }
-        // }
+        let newParams = {...this.props.match.params};
+        if (!newParams.hasOwnProperty('lang')) {
+            newParams.lang = defaultLang().lang;
+        }
+        newParams.count = defaultListCount();
+        newParams.from = 1;
+        newParams.to = defaultListCount();
+        newParams.q = convertObjectToEncodedString(this.state.q);
+        const updatedSearchUrl = setInRoute("filter", newParams);
         const { router } = this.context;
-        router.history.push(paramsString + encodeURIComponent(JSON.stringify(this.state.search)));    
+        router.history.push(updatedSearchUrl);    
     }
 
     /**
@@ -85,11 +75,12 @@ class Filter extends React.Component {
      */
     getFilters() {
         let shortFilterCache = apiGetCall(
-            'smart-filter-cache', {}
+            'short-filter-cache', {}
         );
         axios.get(shortFilterCache)
             .then(response => {
                 const content = response.data;
+                console.log( " GET FILTER :", content);
                 this.setState({
                     loading: false,
                     filter: content.filter
@@ -104,8 +95,17 @@ class Filter extends React.Component {
         this.getFilters();
     }
 
-    getFilterFor = (filterType ) => this.state.filter.find(obj => obj.name === filterTypes()[filterType].key);
+    /**
+     * Retrieves a filter object from state for a specific type
+     * @param {object} a filter type as defined in constants.js
+     */
+    getFilterFor = (filterType ) => 
+        this.state.filter.find(
+                obj => 
+                    obj.name === filterTypes()[filterType].key
+                );
 
+    
     render() {
         if (this.state.loading === true) {
             return (

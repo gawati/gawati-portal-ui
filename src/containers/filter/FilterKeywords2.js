@@ -5,7 +5,6 @@ import {NavLink} from 'react-router-dom';
 import ToggleDisplay from '../../component_utils/ToggleDisplay';
 import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper';
 import Select from 'react-select';
-import fetch from 'isomorphic-fetch';
 import {apiGetCall} from '../../api.js';
 import axios from 'axios';
 

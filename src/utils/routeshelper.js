@@ -47,6 +47,11 @@ export const setInRoute = (routeName, params) => {
     return updatedRouteArr.join("/");
 };
 
+
+export const convertObjectToEncodedString = (obj) => encodeURIComponent(JSON.stringify(obj)) ;
+    
+export const convertEncodedStringToObject = (aString) => JSON.parse(decodeURIComponent(aString)) ;
+
 const renderMergedProps = (component, ...rest) => {
     const finalProps = Object.assign({}, ...rest);
     console.log(" MERGED PROPS ", finalProps);

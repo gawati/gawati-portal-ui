@@ -11,6 +11,7 @@ import SearchContentColumnYear from '../containers/SearchContentColumnYear';
 import SearchContentColumnCountry from '../containers/SearchContentColumnCountry';
 import SearchContentColumnLanguage from '../containers/SearchContentColumnLanguage';
 import SearchContentColumnSubject from '../containers/SearchContentColumnSubject';
+import SearchContentColumnFilter from '../containers/SearchContentColumnFilter';
 
 
 
@@ -32,7 +33,7 @@ class ListContentArea extends React.Component{
                         <Switch>
                             <Route path={ getRoute('recent') } component={ListContentColumn} />
                             <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
-                            <Route path="/search/_lang/:lang/_count/:count/_from/:from/_to/:to/json/:search" component={SearchContentColumnCountry} />
+                            <Route path={ getRoute('filter') } component={SearchContentColumnFilter} />
                             <Route path={ getRoute('search-country') } component={SearchContentColumnCountry} />
                             <Route path={ getRoute('search-year') } component={SearchContentColumnYear} />
                             <Route path={ getRoute('search-doclang') } component={SearchContentColumnLanguage} />

@@ -10,10 +10,6 @@ import moment from 'moment';
 const CategoryLink = ({type}) => 
     <NavLink to="/">{ getDocType(type)['category']}</NavLink>;
 
-const HomeLink = () => 
-    <NavLink to="/">Home</NavLink>;
-
-
 const countryLink = (pageLang, country) =>
     setInRoute(
         "search-country", {

@@ -68,6 +68,8 @@ export const defaultLang = () => ({
     "content": "English"
 });
 
+export const defaultListCount = () => 10;
+
 export const getDocTypes = () => docTypes.docTypes ;
 
 export const getDocType = (findType) => getDocTypes().find(dType => dType['akn-type'] === findType) ;

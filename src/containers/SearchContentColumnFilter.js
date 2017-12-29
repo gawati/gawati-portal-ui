@@ -1,0 +1,172 @@
+import React from 'react';
+import axios from 'axios';
+
+import {apiGetCall} from '../api';
+import {isInt, coerceIntoArray} from '../utils/generalhelper';
+import {xQueryFilterBuilder} from '../utils/xqueryhelper';
+import {convertEncodedStringToObject} from '../utils/routeshelper';
+
+import DivFeed from '../components/DivFeed';
+import DivListing from '../components/DivListing';
+import ExprAbstract from './ExprAbstract';
+import SearchListPaginator from '../components/SearchListPaginator';
+import BaseSearchContentColumn from './BaseSearchContentColumn';
+import ListingLoading from '../components/ListingLoading';
+import GwSpinner from '../components/GwSpinner'
+
+import '../css/ListingContentColumn.css';
+
+class SearchContentColumnFilter extends BaseSearchContentColumn {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+            lang: this.props.match.params['lang'],
+            from: this.props.match.params['from'],
+            to: this.props.match.params['to'],
+            count: this.props.match.params['count'],
+            totalPages: 0,
+            loading: true,
+            listing: undefined
+        };
+        console.log(" XQUERY FILTER ", this.convertRoutePropToXQuery(this.props.match.params.q));
+        this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
+    }
+
+    convertRoutePropToXQuery = (paramQ) => 
+        xQueryFilterBuilder(convertEncodedStringToObject(paramQ)).join(''); 
+
+    getSearch(paramsObj) {
+        console.log( " GET SEARCH ", paramsObj);
+        let apiRecent = apiGetCall(
+            'filter', 
+            paramsObj
+        );
+        axios.get(apiRecent)
+            .then(response => {
+                const items = response.data.exprAbstracts;
+                if (parseInt(items.records, 10) === 0) {
+                    this.setState({
+                        loading: false,
+                        from:0,
+                        count:0,
+                        to:0,
+                        records: parseInt(items.records, 10),
+                        q: paramsObj.q
+                    })
+                } else {
+                    console.log(" ITEMS ", items);
+                    this.setState({
+                        loading: false,
+                        from: parseInt(items.itemsfrom, 10),
+                        count: parseInt(items.pagesize, 10),
+                        to: parseInt(items.itemsfrom, 10) + parseInt(items.pagesize, 10) - 1,
+                        records: parseInt(items.records, 10),
+                        q: JSON.stringify(paramsObj.q),
+                        totalPages: parseInt(items.totalpages, 10),
+                        orderedBy: items.orderedby,
+                        currentPage: parseInt(items.currentpage, 10),
+                        listing: coerceIntoArray(items.exprAbstract)
+                    });
+                }
+
+            })
+            .catch(function(error) {
+                console.log("error in getSearch()", error);
+            });
+    }
+
+    onChangePage(newPage) {
+        this.setState({loading: true});
+        this.getSearch(newPage);
+    }
+
+    generatePagination = () => {
+        
+        var pagination = {
+            q: JSON.stringify(this.state.q),
+            count: this.state.count,
+            from: this.state.from,
+            to: this.state.to,
+            lang: this.state.lang,
+            totalPages: this.state.totalPages,
+            records: this.state.records
+        };
+        Object.keys(pagination).map(k => pagination[k] = !isInt(pagination[k]) ? pagination[k] : parseInt(pagination[k], 10));
+        // we set the linkUrl prop on the pagination object, so the paginator knows how to render the URLs
+        let linkUrl = "/search/_lang/{lang}/_count/{count}/_from/{from}/_to/{to}/_bycountry/{country}";
+        pagination.linkUrl = linkUrl; 
+        
+        return pagination;  
+    }
+
+    componentDidMount() {
+        this.getSearch({
+            q: this.state.q,
+            count: this.state.count,
+            from: this.state.from,
+            to: this.state.to
+        });
+        
+    }
+
+    componentWillReceiveProps(nextProps) {
+        // we need to always convert the url query to a back-end XQuery
+        this.getSearch({
+            q: this.convertRoutePropToXQuery(nextProps.match.params.q),
+            count: parseInt(nextProps.match.params.count, 10),
+            from: parseInt(nextProps.match.params.from, 10),
+            to: parseInt(nextProps.match.params.to, 10)
+        });
+    }    
+
+    renderDocumentLoading = () =>
+        <ListingLoading>
+            <h1 className="listingHeading">Document Results</h1>
+            <GwSpinner />
+        </ListingLoading> ;
+
+    renderNoDocumentsFound = () =>
+        <DivListing>
+            <h1 className="listingHeading">Document Results</h1>
+            <div>No Documents Found</div>
+        </DivListing> ;
+
+    renderListing = () => {
+        let pagination = this.generatePagination() ;
+        let content = 
+            <DivListing>
+                <h1 className="listingHeading">Document Results</h1>
+                <DivFeed>
+                    <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage.bind(this))} />
+                </DivFeed>
+                {
+                this.state.listing.map(abstract => {
+                    return (
+                    <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
+                    )
+                })
+                }
+                <DivFeed>
+                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                </DivFeed>
+            </DivListing>
+        ;
+         return content;
+    };
+
+    render() {
+        if (this.state.loading === true || this.state.listing === undefined ) {
+            return this.renderDocumentLoading();
+        } else 
+        if (parseInt(this.state.records) === 0 || this.state.listing === undefined) {
+            return this.renderNoDocumentsFound();
+        } else {
+            return this.renderListing();
+        }   
+    }
+}
+
+
+export default SearchContentColumnFilter;
+

@@ -1,30 +1,22 @@
 import React from 'react';
 import axios from 'axios';
+
 import {apiGetCall} from '../api';
 import {coerceIntoArray} from '../utils/generalhelper';
+
 import DivFeed from '../components/DivFeed';
+import DivListing from '../components/DivListing';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 
 import '../css/ListingContentColumn.css';
 import GwSpinner from '../components/GwSpinner';
 
-
-
-const UnderDevelopment = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
-        Under Development
-        </div>
-    </div>;
-
-
 const DocumentLoading = () => 
-    <div className={ `left col-9`}>
-        <div className="search-result">
+    <DivListing>
          <GwSpinner />
-        </div>
-    </div>;
+    </DivListing>
+    ;
 
 
 class SearchContentColumnSubject extends React.Component {
@@ -88,7 +80,6 @@ class SearchContentColumnSubject extends React.Component {
             count: this.state.count,
             from: this.state.from,
             to: this.state.to,
-            lang: this.state.lang,
             totalPages: this.state.totalPages,
             records: this.state.records
         };
@@ -128,24 +119,22 @@ class SearchContentColumnSubject extends React.Component {
         } else {        
             let pagination = this.generatePagination() ;
             let content = 
-            <div className={ `left col-9`}>
-                <div className="search-result">
-                    <h1 className="listingHeading">Document Results <small>for the Subject {this.state.kw} </small></h1>
-                    <DivFeed>
-                        <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
-                    </DivFeed>
-                    {
-                    this.state.listing.map(abstract => {
-                        return (
-                        <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
-                        )
-                    })
-                    }
-                    <DivFeed>
-                        <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
-                    </DivFeed>
-                </div>
-            </div>
+            <DivListing>
+                <h1 className="listingHeading">Document Results <small>for the Subject {this.state.kw} </small></h1>
+                <DivFeed>
+                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                </DivFeed>
+                {
+                this.state.listing.map(abstract => {
+                    return (
+                    <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
+                    )
+                })
+                }
+                <DivFeed>
+                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                </DivFeed>
+            </DivListing>
             ;
     return content;
     }

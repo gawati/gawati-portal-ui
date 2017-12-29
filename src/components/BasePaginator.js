@@ -1,6 +1,6 @@
 import React from 'react';
-import {rangeMinMax, isEmpty} from '../utils/generalhelper';
-import {Link} from 'react-router-dom';
+import {rangeMinMax} from '../utils/generalhelper';
+
 import '../css/Paginator.css';
 
 class BasePaginator extends React.Component {
