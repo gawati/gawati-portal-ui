@@ -19,6 +19,7 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
     
     constructor(props) {
         super(props);
+        this.onChangePage = this.onChangePage.bind(this);
     }
 
     getSearch(paramsObj) {
@@ -100,7 +101,7 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
             <DivListing>
                 <h1 className="listingHeading">Document Results <small>for the Language {getLangDesc(this.state.doclang).content} </small></h1>;
                 <DivFeed>
-                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage} />
                 </DivFeed>
                 {
                 this.state.listing.map(abstract => {
@@ -110,7 +111,7 @@ class SearchContentColumnLanguage extends BaseSearchContentColumn {
                 })
                 }
                 <DivFeed>
-                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage} />
                 </DivFeed>
             </DivListing>
             ;

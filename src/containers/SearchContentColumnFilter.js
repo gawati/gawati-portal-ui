@@ -31,6 +31,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         };
         console.log(" XQUERY FILTER ", this.convertRoutePropToXQuery(this.props.match.params.q));
         this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
+        this.onChangePage = this.onChangePage.bind(this);
     }
 
     convertRoutePropToXQuery = (paramQ) => 
@@ -138,7 +139,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             <DivListing>
                 <h1 className="listingHeading">Document Results</h1>
                 <DivFeed>
-                    <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage.bind(this))} />
+                    <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
                 </DivFeed>
                 {
                 this.state.listing.map(abstract => {
@@ -148,7 +149,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 })
                 }
                 <DivFeed>
-                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage} />
                 </DivFeed>
             </DivListing>
         ;

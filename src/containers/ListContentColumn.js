@@ -26,7 +26,7 @@ class ListContentColumn extends React.Component {
             loading: true,
             listing: undefined
         };
-      
+        this.onChangePage = this.onChangePage.bind(this);
     }
    
     getListing(paramsObj) {
@@ -105,7 +105,7 @@ class ListContentColumn extends React.Component {
                 <DivListing>
                         <h1 className="listingHeading">Recent Documents</h1>
                         <DivFeed>
-                            <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                            <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage} />
                         </DivFeed>
                         {
                         this.state.listing.map(abstract => {
@@ -115,7 +115,7 @@ class ListContentColumn extends React.Component {
                         })
                         }
                     <DivFeed>
-                        <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                        <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage} />
                     </DivFeed>
                 </DivListing>
             ;

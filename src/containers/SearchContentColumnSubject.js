@@ -35,6 +35,7 @@ class SearchContentColumnSubject extends React.Component {
         };
         Object.assign(this.state, this.props.match.params);
         console.log( " PROPS SEARCHCONTENT OCLUMN", props);
+        this.onChangePage = this.onChangePage.bind(this);
     }
 
     getSearch(paramsObj) {
@@ -122,7 +123,7 @@ class SearchContentColumnSubject extends React.Component {
             <DivListing>
                 <h1 className="listingHeading">Document Results <small>for the Subject {this.state.kw} </small></h1>
                 <DivFeed>
-                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage} />
                 </DivFeed>
                 {
                 this.state.listing.map(abstract => {
@@ -132,7 +133,7 @@ class SearchContentColumnSubject extends React.Component {
                 })
                 }
                 <DivFeed>
-                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage} />
                 </DivFeed>
             </DivListing>
             ;

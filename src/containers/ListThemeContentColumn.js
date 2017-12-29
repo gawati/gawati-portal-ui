@@ -29,7 +29,7 @@ class ListThemeContentColumn extends React.Component {
             loading: true,
             listing: undefined
         };
-      
+        this.onChangePage = this.onChangePage.bind(this);
     }
    
     getListing(paramsObj) {
@@ -106,7 +106,7 @@ class ListThemeContentColumn extends React.Component {
             <DivListing>
                 <h1 className="listingHeading">Theme</h1>
                 <DivFeed>
-                    <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                    <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage} />
                 </DivFeed>
                     {
                     console.log( " state listing ", this.state)
@@ -121,7 +121,7 @@ class ListThemeContentColumn extends React.Component {
                     })
                     }
                 <DivFeed>
-                    <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage.bind(this)} />
+                    <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage} />
                 </DivFeed>
             </DivListing>
             ;
