@@ -2,6 +2,7 @@ import React from 'react';
 import BaseFilter from './BaseFilter';
 import PropTypes from 'prop-types';
 import {NavLink} from 'react-router-dom';
+
 import ToggleDisplay from '../../component_utils/ToggleDisplay';
 import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper';
 
@@ -10,7 +11,7 @@ class FilterDate extends BaseFilter {
         listItem = (dateObj) =>
             <li key={ `year-${dateObj.year}` }>
                 <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_byyear/${dateObj.year}/` }>
-                    {dateObj.year} {roundto100Filter(parseInt(dateObj.count))}
+                    {dateObj.year} {roundto100Filter(parseInt(dateObj.count, 10))}
                 </NavLink>
             </li>
         ;       

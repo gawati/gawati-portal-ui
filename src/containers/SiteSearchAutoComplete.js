@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 
@@ -62,7 +62,6 @@ class SiteSearchAutoComplete extends React.Component {
 
     getSearchResultsAsync = (value) => {
         const inputValue = value.trim().toLowerCase();
-        const inputLength = inputValue.length;
         //console.log( "Calling search grouped ");
         let apiRecent = apiGetCall(
             'search-grouped', 
@@ -169,7 +168,6 @@ class SiteSearchAutoComplete extends React.Component {
           loading: loading ? "yes" : "no",
           onChange: this.onChange
         };
-        const status = (loading ? 'Loading...' : 'Type to load suggestions');
         // Autosuggest will pass through all these props to the input.
         return (
             <Aux>

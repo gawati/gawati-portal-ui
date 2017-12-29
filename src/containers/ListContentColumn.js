@@ -1,32 +1,20 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import {NavLink} from 'react-router-dom';
-
-import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
-import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType} from '../utils/generalhelper';
-import {anPublication} from '../utils/akomantoso';
+
+import DivFeed from '../components/DivFeed';
 import ExprAbstract from './ExprAbstract';
 import RecentListPaginator from '../components/RecentListPaginator';
-import GwSpinner from '../components/GwSpinner';
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
 
-import '../css/react-tabs.css';
-import 'react-tabs/style/react-tabs.css';
 import '../css/ListingContentColumn.css';
-
-import linkIcon from '../images/export.png';
-
 
 class ListContentColumn extends React.Component {
     
     constructor(props) {
         super(props);
-        console.log (" LISTCONTENTCOLUMN PARAMS ", this.props.match.params);
         this.state = {
             lang: this.props.match.params['lang'],
             count: this.props.match.params['count'],
@@ -52,13 +40,13 @@ class ListContentColumn extends React.Component {
                 console.log(" ITEMS ", items);
                 this.setState({
                     loading: false,
-                    from: parseInt(items.itemsfrom),
-                    count: parseInt(items.pagesize),
-                    to: parseInt(items.itemsfrom) + parseInt(items.pagesize) - 1,
-                    records: parseInt(items.records),
-                    totalPages: parseInt(items.totalpages),
+                    from: parseInt(items.itemsfrom, 10),
+                    count: parseInt(items.pagesize, 10),
+                    to: parseInt(items.itemsfrom, 10) + parseInt(items.pagesize, 10) - 1,
+                    records: parseInt(items.records, 10),
+                    totalPages: parseInt(items.totalpages, 10),
                     orderedBy: items.orderedby,
-                    currentPage: parseInt(items.currentpage),
+                    currentPage: parseInt(items.currentpage, 10),
                     listing: items.exprAbstract
                 });
             })
@@ -79,21 +67,15 @@ class ListContentColumn extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.getListing({
-            count: parseInt(nextProps.match.params.count),
-            from: parseInt(nextProps.match.params.from),
-            to: parseInt(nextProps.match.params.to)
+            count: parseInt(nextProps.match.params.count, 10),
+            from: parseInt(nextProps.match.params.from, 10),
+            to: parseInt(nextProps.match.params.to, 10)
         });
     }
 
     onChangePage(newPage) {
-        console.log (" NEW PAGE ", newPage);
         this.setState({loading: true});
         this.getListing(newPage);
-        //this.setState({loading: true}, 
-        //    () => {
-        //        this.getListing({count: newPage.count, from: newPage.from, to: newPage.to});
-        //    }
-        //);
     }
 
     generatePagination = () => {
@@ -105,7 +87,7 @@ class ListContentColumn extends React.Component {
             totalPages: this.state.totalPages,
             records: this.state.records
         };
-        Object.keys(pagination).map(k => pagination[k] = k === 'lang' ? pagination[k] : parseInt(pagination[k]));
+        Object.keys(pagination).map(k => pagination[k] = k === 'lang' ? pagination[k] : parseInt(pagination[k], 10));
         return pagination;  
     }
 

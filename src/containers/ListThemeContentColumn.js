@@ -1,25 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import {NavLink} from 'react-router-dom';
 
 import DivFeed from '../components/DivFeed';
-
-import {apiGetCall} from '../api';
-import {Aux, prefixIri, getDocumentType, getDocTypes, isEmpty, getDocType, isInt, coerceIntoArray} from '../utils/generalhelper';
-import {anPublication} from '../utils/akomantoso';
 import ExprAbstract from './ExprAbstract';
 import ThemeListPaginator from '../components/ThemeListPaginator';
 import ListingLoading from '../components/ListingLoading';
 import DivListing from '../components/DivListing';
 
-import '../css/react-tabs.css';
-import 'react-tabs/style/react-tabs.css';
+import {apiGetCall} from '../api';
+import { isInt, coerceIntoArray} from '../utils/generalhelper';
+
 import '../css/ListingContentColumn.css';
-
-import linkIcon from '../images/export.png';
-
 
 
 class ListThemeContentColumn extends React.Component {
@@ -46,11 +37,9 @@ class ListThemeContentColumn extends React.Component {
             'themes-summary', 
             paramsObj
         );
-        console.log(" API RECENT ", apiRecent);
         axios.get(apiRecent)
             .then(response => {
                 const items = response.data.exprAbstracts;
-                console.log(" ITEMS ", items);
                 this.setState({
                     loading: false,
                     from: parseInt(items.itemsfrom, 10),
@@ -99,7 +88,7 @@ class ListThemeContentColumn extends React.Component {
             totalPages: this.state.totalPages,
             records: this.state.records
         };
-        Object.keys(pagination).map(k => pagination[k] = isInt(pagination[k]) === false ? pagination[k] : parseInt(pagination[k]));
+        Object.keys(pagination).map(k => pagination[k] = isInt(pagination[k]) === false ? pagination[k] : parseInt(pagination[k], 10));
         return pagination;  
     }
 

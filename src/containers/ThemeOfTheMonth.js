@@ -1,14 +1,15 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import {homePageFilterWords} from '../constants';
 import {Aux} from '../utils/generalhelper';
-import { NavLink } from 'react-router-dom';
+
 import DivFeed from '../components/DivFeed';
 import GwSpinner from '../components/GwSpinner'
 import ExprAbstract from './ExprAbstract';
 
 const ThemeOfTheMonth = ({loading, themes, tab}) =>
-    <div className={ `tab-pane tab-active` } data-tab="t`${tab}`">
+    <div className={ `tab-pane tab-active` } data-tab={ `t${tab}` }>
         <ThemeIntro loading={loading} />
         {getThemeSummary(loading, themes, tab)}
     </div>

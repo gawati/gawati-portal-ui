@@ -15,7 +15,7 @@ import FilterLang from './FilterLang2';
 import { filterTypes } from '../../constants.js';
 import { apiGetCall } from '../../api.js';
 
-import { Aux } from '../../utils/generalhelper';
+import { Aux, defaultLang, defaultListCount } from '../../utils/generalhelper';
 import { getRoute, setInRoute, convertEncodedStringToObject, convertObjectToEncodedString } from '../../utils/routeshelper';
 
 /**
@@ -56,6 +56,12 @@ class Filter extends React.Component {
 
     gotoSearchPage = () => {
         let newParams = {...this.props.match.params};
+        if (!newParams.hasOwnProperty('lang')) {
+            newParams.lang = defaultLang().lang;
+        }
+        newParams.count = defaultListCount();
+        newParams.from = 1;
+        newParams.to = defaultListCount();
         newParams.q = convertObjectToEncodedString(this.state.q);
         const updatedSearchUrl = setInRoute("filter", newParams);
         const { router } = this.context;

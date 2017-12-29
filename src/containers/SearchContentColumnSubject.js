@@ -12,15 +12,6 @@ import SearchListPaginator from '../components/SearchListPaginator';
 import '../css/ListingContentColumn.css';
 import GwSpinner from '../components/GwSpinner';
 
-
-
-const UnderDevelopment = () => 
-    <DivListing>
-        Under Development
-    </DivListing>
-    ;
-
-
 const DocumentLoading = () => 
     <DivListing>
          <GwSpinner />
@@ -89,7 +80,6 @@ class SearchContentColumnSubject extends React.Component {
             count: this.state.count,
             from: this.state.from,
             to: this.state.to,
-            lang: this.state.lang,
             totalPages: this.state.totalPages,
             records: this.state.records
         };

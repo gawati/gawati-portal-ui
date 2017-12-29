@@ -49,11 +49,6 @@ const SearchBox = () =>
     ;
 
 class TopBar extends React.Component {
-        
-    constructor(props) {
-        super(props);
-    }
-        
     render() {
         return (
             <header className="navigation-bar">
@@ -71,5 +66,6 @@ class TopBar extends React.Component {
         
         );
     }
-    }
+}
+
 export default TopBar;
