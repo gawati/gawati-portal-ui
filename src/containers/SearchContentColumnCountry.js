@@ -14,16 +14,6 @@ import GwSpinner from '../components/GwSpinner'
 
 import '../css/ListingContentColumn.css';
 
-
-
-
-
-const DocumentLoading = () => 
-    <DivListing>
-        <GwSpinner />
-    </DivListing>;
-
-
 class SearchContentColumnCountry extends BaseSearchContentColumn {
     
     constructor(props) {

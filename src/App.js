@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import './App.css';
-import { I18n, Trans } from 'react-i18next';
+import { I18n /* , Trans */ } from 'react-i18next';
 import Page from './components/Page';
 
 

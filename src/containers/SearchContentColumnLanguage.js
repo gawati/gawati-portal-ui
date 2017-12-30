@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import {coerceIntoArray, isInt, getLangCodeAlpha3b, getLangDesc} from '../utils/generalhelper';
+import {coerceIntoArray, isInt, getLangDesc} from '../utils/generalhelper';
 import {apiGetCall} from '../api';
 
 import DivFeed from '../components/DivFeed';

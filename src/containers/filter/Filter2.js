@@ -16,7 +16,7 @@ import { filterTypes } from '../../constants.js';
 import { apiGetCall } from '../../api.js';
 
 import { Aux, defaultLang, defaultListCount } from '../../utils/generalhelper';
-import { getRoute, setInRoute, convertEncodedStringToObject, convertObjectToEncodedString } from '../../utils/routeshelper';
+import { setInRoute, convertEncodedStringToObject, convertObjectToEncodedString } from '../../utils/routeshelper';
 
 /**
  * This class provides the UI filter component provided on the right in the sidebar

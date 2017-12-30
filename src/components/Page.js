@@ -15,11 +15,6 @@ import {PropsRoute} from '../utils/routeshelper';
 
 class Page extends React.Component {
 
-   constructor(props) {
-       super(props);
-       console.log( " PROPS PAGE ", props);
-   } 
-
    render() {
         return (
             <Aux>
