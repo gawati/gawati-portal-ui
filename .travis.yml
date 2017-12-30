@@ -9,7 +9,7 @@ cache:
     - node_modules
 script:
   - npm install
-  - CI=false npm run build
+  - npm run build
 env:
   global:
     - USE_YARN=no
