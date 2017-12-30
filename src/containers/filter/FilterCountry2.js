@@ -1,13 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import Select from 'react-select';
 
 import BaseFilter from './BaseFilter';
 
 import { Aux, coerceIntoArray, roundto100Filter } from '../../utils/generalhelper';
-import { convertEncodedStringToObject } from '../../utils/routeshelper';
+import { convertEncodedStringToObject, convertObjectToEncodedString, setInRoute } from '../../utils/routeshelper';
 
 import 'react-select/dist/react-select.css';
+
+const LinkItems = ({countries}) => 
+    <Aux>
+    {
+        countries.slice(0,2).map( 
+            country => <LinkItem key={ `url-link-${country.code}` } country={ country } />
+        ).reduce(
+            (prev, curr) => [prev, ', ', curr]
+        )                    
+    }
+    </Aux>     
+    ;
+
+const LinkItem = ({country}) => {
+    const url = setInRoute(
+        'filter', 
+        {
+            lang: 'en', 
+            from: 1, 
+            count: 10, 
+            to: 10, 
+            q: convertObjectToEncodedString(
+                {"countries": [country.value]}
+            )
+        } 
+    );
+    return (
+        <NavLink to={ url }>{country.label}</NavLink>
+    );
+};
+
 
 class FilterCountry extends BaseFilter {
 
@@ -24,10 +56,6 @@ class FilterCountry extends BaseFilter {
     }
     
     handleSelectChange = (value) => {
-        // value contains the chosen object(s)
-        console.log( " VALUE ___ ", value);
-        console.log( " CHOSEN ", value.map( chosen => chosen.value ));
-        // send an array of countries 
         this.props.setFilterValue('countries', value.map( chosen => chosen.value ));
     }
 
@@ -39,13 +67,6 @@ class FilterCountry extends BaseFilter {
     render () {
         let filterType = this.props.filterType;
         let countries = this.countries;
-        //let filter = this.props.filter ;
-        //let countries = coerceIntoArray(filter.country).map( 
-        //    countryObj => ({
-        //        label: countryObj['#text'] + ' (' + roundto100Filter(countryObj['count']) + ')',
-        //        value: countryObj['code']
-        //    })
-        //);    
         let value = [];
         if (this.props.match.params.q) {
             // if there is a search url param look for the countries filter
@@ -74,6 +95,9 @@ class FilterCountry extends BaseFilter {
                     rtl={false}
                     value={value}
                 />
+                <small>
+                    <LinkItems countries={ countries } />...
+                </small>
                 <div className="grey-rule"/>
             </Aux>
         );

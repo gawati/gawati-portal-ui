@@ -83,21 +83,31 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     }
 
     generatePagination = () => {
-        
+        const { count, from, to, lang, totalPages, records } = this.state ;
+        const { q } = this.props.match.params ; 
         var pagination = {
-            q: JSON.stringify(this.state.q),
-            count: this.state.count,
-            from: this.state.from,
-            to: this.state.to,
-            lang: this.state.lang,
-            totalPages: this.state.totalPages,
-            records: this.state.records
+            q: q,
+            count: count,
+            from: from,
+            to: to,
+            lang: lang,
+            totalPages: totalPages,
+            records: records
         };
         Object.keys(pagination).map(k => pagination[k] = !isInt(pagination[k]) ? pagination[k] : parseInt(pagination[k], 10));
         // we set the linkUrl prop on the pagination object, so the paginator knows how to render the URLs
+        /** 
+         *  !+LINK_ROUTE(KOHSAH, 2017-12-31)
+         *  use config based route instead
+         */
+        /** 
         let linkUrl = "/search/_lang/{lang}/_count/{count}/_from/{from}/_to/{to}/_bycountry/{country}";
         pagination.linkUrl = linkUrl; 
-        
+        **/
+
+        let linkRoute = "filter";
+        pagination.linkRoute = linkRoute;
+
         return pagination;  
     }
 

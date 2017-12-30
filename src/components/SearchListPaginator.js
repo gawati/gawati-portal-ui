@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {stringTemplate} from '../utils/stringhelper';
+//import {stringTemplate} from '../utils/stringhelper';
 import {filterMap} from '../utils/generalhelper';
 import BasePaginator from './BasePaginator';
+import { setInRoute } from '../utils/routeshelper';
 
 /**
  * Generic Search List Paginator implementation
@@ -12,38 +13,20 @@ class SearchListPaginator extends BasePaginator {
 
 
     /**
-     * Generates the Link url from passed in linkUrl property in the object.
+     * !+LINK_ROUTE(kohsah, 2017-12-31) Switching to using linkRoute instead of hard-coded link URL
+     * Generates the Link url from passed in linkRoute property in the object.
      * It is the responsibility of the caller component to pass in the right 
-     * linkUrl corresponding to the pagination object.
+     * linkRoute corresponding to the pagination object.
      * 
      * @param {object} pagination object passed as a prop
      * @memberof SearchListPaginator
      */
     pageLinkEval = (pgn) => {
-        let st = stringTemplate(pgn.linkUrl, pgn);
+        let st = setInRoute(pgn.linkRoute, pgn);
         return (
         <Link to={st} onClick={() => this.handleChangePage(pgn) }>{ pgn.text }</Link>
         );
     }
-
-    /** 
-    pageLink = (lang, year, count, from, to, text) => 
-        <Link to={ 
-            "/search/_lang/"+ lang + 
-            "/_count/"+ count +
-            "/_from/" + from  +
-            "/_to/" + to + 
-            "/_byyear/" + year  
-            } onClick={() => this.handleChangePage({lang: lang, year: year, count: count, from: from, to: to, text: text})}>
-            { text }
-        </Link>;
-
-    pageNavLink = (disableCondition, lang, year, count, from, to, text) =>
-            <li className={ disableCondition ? "disabled": ""}>
-                {disableCondition ? <span>{ text } </span> : this.pageLink(lang, year, count, from, to, text) }
-            </li>
-        ;
-            */
 
     /**
      * Generates the link container, based on a passed in boolean condition
