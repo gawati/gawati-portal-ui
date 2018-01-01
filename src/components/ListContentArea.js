@@ -22,7 +22,7 @@ import DivRow from './DivRow';
 class ListContentArea extends React.Component{
 
     render () {
-        const { match } = this.props;
+        const { match, i18n } = this.props;
         return (
             <Section>
                 <div className="container">
@@ -37,7 +37,7 @@ class ListContentArea extends React.Component{
                             <Route path={ getRoute('search-doclang') } component={SearchContentColumnLanguage} />
                             <Route path={ getRoute('search-keyword') } component={SearchContentColumnSubject} />
                         </Switch>
-                        <SideBarColumn  match={match}/>
+                        <SideBarColumn  match={match} i18n={ i18n } />
                     </DivRow>
                 </div>
             </Section>

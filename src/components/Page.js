@@ -21,16 +21,16 @@ class Page extends React.Component {
 
                 <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} />
                 <Switch>
-                    <Route exact path="/" component={HomeContentArea} />
-                    <Route exact path="/index.html" component={HomeContentArea} />
-                    <Route path={ getRoute('doc-iri') } component={DocumentContentArea} />
-                    <Route path={ getRoute('recent') } component={ListContentArea} />
-                    <Route path={ getRoute('themes') } component={ListContentArea} />
-                    <Route path={ getRoute('filter') } component={ListContentArea} />
-                    <Route path={ getRoute('search-country') } component={ListContentArea} />
-                    <Route path={ getRoute('search-year') } component={ListContentArea} />
-                    <Route path={ getRoute('search-doclang') } component={ListContentArea} />
-                    <Route path={ getRoute('search-keyword') } component={ListContentArea} />
+                    <PropsRoute exact path="/" component={HomeContentArea}  i18n={this.props.i18n} />
+                    <PropsRoute exact path="/index.html" component={HomeContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path={ getRoute('themes') } component={ListContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path={ getRoute('filter') } component={ListContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path={ getRoute('search-country') } component={ListContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path={ getRoute('search-year') } component={ListContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path={ getRoute('search-doclang') } component={ListContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path={ getRoute('search-keyword') } component={ListContentArea} i18n={this.props.i18n} />
                 </Switch>
                 <Route path="*" component={Footer} />
             </Aux>

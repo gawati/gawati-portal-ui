@@ -1,4 +1,5 @@
 import routeConfigs from '../configs/routes.json';
+
 import React from 'react';
 import { Route } from 'react-router-dom';
 /**

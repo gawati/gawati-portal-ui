@@ -30,11 +30,18 @@
 const filterConfig = {
     'countries': {
       xqueryElementXPath: './/an:FRBRcountry',
-      xqueryAttr: '@value'
+      xqueryAttr: '@value',
+      xqueryAttrType: 'string'
     },
     'langs': {
       xqueryElementXPath: './/an:FRBRlanguage',
-      xqueryAttr: '@language'
+      xqueryAttr: '@language',
+      xqueryAttrType: 'string'
+    },
+    'years': {
+      xqueryElementXPath: './/an:FRBRdate',
+      xqueryAttr: 'year-from-date(@date)',
+      xqueryAttrType: 'int'
     }
 };
 
@@ -55,10 +62,12 @@ export const xQueryFilterBuilder = (filter) => {
     for (let filterName in filter) {
         
         let cfg = filterConfig[filterName];
-        console.log(" FILTER -> FILTER NAME ", filterName, filter[filterName]);
         if (filter[filterName].length > 0 ) {
             let attrQuery = filter[filterName].map(
-                value =>`${cfg.xqueryAttr} eq '${value}'`
+                value => {
+                    let qValue = cfg.xqueryAttrType === 'int' ? value : `'${value}'` ;
+                    return `${cfg.xqueryAttr} eq ${qValue}`;
+                }
             ).join(" or ");
             
             xQuery.push(

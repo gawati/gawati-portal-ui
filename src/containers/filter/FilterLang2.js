@@ -2,8 +2,13 @@ import React from 'react';
 import BaseFilter from './BaseFilter';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+
+import FilterLinkItems from './FilterLinkItems';
+
+import {T} from '../../utils/i18nhelper';
 import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper';
+
+import 'react-select/dist/react-select.css';
 
 class FilterLang extends BaseFilter {
 
@@ -41,7 +46,7 @@ class FilterLang extends BaseFilter {
         }    
         return (
             <Aux>
-                <h2 className="small-heading">{filterType.label}</h2>
+                <h2 className="small-heading">{T(filterType.label)}</h2>
                 <Select
                     closeOnSelect={false}
                     disabled={false}
@@ -53,6 +58,9 @@ class FilterLang extends BaseFilter {
                     rtl={false}
                     value={value}
                 />
+                <small>
+                    <FilterLinkItems items={ langs } type="langs" />...
+                </small>
                 <div className="grey-rule"/>
             </Aux>
         );                

@@ -1,45 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import Select from 'react-select';
 
 import BaseFilter from './BaseFilter';
+import FilterLinkItems from './FilterLinkItems';
 
+import {T} from '../../utils/i18nhelper';
 import { Aux, coerceIntoArray, roundto100Filter } from '../../utils/generalhelper';
-import { convertEncodedStringToObject, convertObjectToEncodedString, setInRoute } from '../../utils/routeshelper';
+import { convertEncodedStringToObject } from '../../utils/routeshelper';
 
 import 'react-select/dist/react-select.css';
-
-const LinkItems = ({countries}) => 
-    <Aux>
-    {
-        countries.slice(0,2).map( 
-            country => <LinkItem key={ `url-link-${country.code}` } country={ country } />
-        ).reduce(
-            (prev, curr) => [prev, ', ', curr]
-        )                    
-    }
-    </Aux>     
-    ;
-
-const LinkItem = ({country}) => {
-    const url = setInRoute(
-        'filter', 
-        {
-            lang: 'en', 
-            from: 1, 
-            count: 10, 
-            to: 10, 
-            q: convertObjectToEncodedString(
-                {"countries": [country.value]}
-            )
-        } 
-    );
-    return (
-        <NavLink to={ url }>{country.label}</NavLink>
-    );
-};
-
 
 class FilterCountry extends BaseFilter {
 
@@ -51,8 +21,7 @@ class FilterCountry extends BaseFilter {
                     label: countryObj['#text'] + ' (' + roundto100Filter(countryObj['count']) + ')',
                     value: countryObj['code']
                 })
-            );    
-        console.log (" COUNTRIES ", this.countries);
+            );
     }
     
     handleSelectChange = (value) => {
@@ -83,7 +52,7 @@ class FilterCountry extends BaseFilter {
         }
         return (
             <Aux>
-                <h2 className="small-heading">{filterType.label}</h2>
+                <h2 className="small-heading">{T(filterType.label)}</h2>
                 <Select
                     closeOnSelect={false}
                     disabled={false}
@@ -96,7 +65,7 @@ class FilterCountry extends BaseFilter {
                     value={value}
                 />
                 <small>
-                    <LinkItems countries={ countries } />...
+                    <FilterLinkItems items={ countries } type="countries" />...
                 </small>
                 <div className="grey-rule"/>
             </Aux>
