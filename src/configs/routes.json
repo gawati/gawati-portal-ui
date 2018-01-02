@@ -1,7 +1,7 @@
 {"routes":[
     {
         "route": "/content/_lang/:lang/_page/:page*",
-        "name": "content"
+        "name": "content"g
     },
     {
         "route": "/doc/_lang/:lang/_iri/:iri*",
