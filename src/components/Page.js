@@ -9,6 +9,7 @@ import TopBar from './TopBar';
 import HomeContentArea from './HomeContentArea';
 import DocumentContentArea from './DocumentContentArea';
 import ListContentArea from './ListContentArea';
+import PageContentArea from './PageContentArea';
 import Footer from './Footer';
 
 import {PropsRoute} from '../utils/routeshelper';
@@ -23,6 +24,7 @@ class Page extends React.Component {
                 <Switch>
                     <PropsRoute exact path="/" component={HomeContentArea}  i18n={this.props.i18n} />
                     <PropsRoute exact path="/index.html" component={HomeContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path={ getRoute('content') } component={PageContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('themes') } component={ListContentArea} i18n={this.props.i18n} />
