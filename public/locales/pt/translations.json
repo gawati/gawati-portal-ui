@@ -6,11 +6,8 @@
     "latest": "mais recentes",
     "in focus": "em foco",
     "year": "ano",
-    "Year": "Ano",
     "country": "país",
-    "Country": "País",
     "language": "língua",
-    "Language": "Língua",
     "subjects": "Assuntos",
     "more": "mais",
     "policies": "condições",
@@ -22,5 +19,8 @@
     "what we do": "o que fazemos",
     "faq": "Perguntas Freqüentes",
     "blog": "blog",
-    "contact us": "Contate-nos"
+    "contact us": "Contate-nos",
+    "Year": "Ano",
+    "Country": "País",
+    "Language": "Língua"
 }
