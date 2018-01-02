@@ -42,7 +42,12 @@ const filterConfig = {
       xqueryElementXPath: './/an:FRBRdate',
       xqueryAttr: 'year-from-date(@date)',
       xqueryAttrType: 'int'
-    }
+    },
+    'keywords': {
+      xqueryElementXPath: './/an:classification/an:keyword',
+      xqueryAttr: '@value',
+      xqueryAttrType: 'string'
+    } 
 };
 
 /**

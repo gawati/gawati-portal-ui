@@ -1,9 +1,8 @@
 import React from 'react';
 import BaseFilter from './BaseFilter';
 import PropTypes from 'prop-types';
-import {NavLink} from 'react-router-dom';
-import ToggleDisplay from '../../component_utils/ToggleDisplay';
-import {Aux, coerceIntoArray, roundto100Filter} from '../../utils/generalhelper';
+import {Aux} from '../../utils/generalhelper';
+import { convertEncodedStringToObject } from '../../utils/routeshelper';
 import Select from 'react-select';
 import {apiGetCall} from '../../api.js';
 import axios from 'axios';
@@ -14,17 +13,14 @@ class FilterKeywords extends BaseFilter {
 
     constructor(props) {
         super(props);
-        this.state = {
-			value: [],
-        };
+        this.getKeywords = this.getKeywords.bind(this);
     }
 
-    onChange = (value) =>   
-		this.setState({
-			value: value,
-		});
+    handleSelectChange = (value) => {
+        this.props.setFilterValue('keywords', value.map( chosen => chosen.value ));
+    }
 
-    getKeywords (input) {
+    getKeywords(input) {
         if (!input) {
 			return Promise.resolve({ options: [] });
 		} else {
@@ -43,17 +39,20 @@ class FilterKeywords extends BaseFilter {
         }
 	}
 
-    selectKeyword (value, event) {
-        this.setState({
-            value: value
-        })
-    }
-    
     render() {
         const AsyncComponent = Select.Async;
         let filterType = this.props.filterType;
-        let filter = this.props.filter;
-        let keywords = coerceIntoArray(filter.keyword);
+        let value = [];
+        if (this.props.match.params.q) {
+            var search = convertEncodedStringToObject(this.props.match.params.q);
+            if (search.keywords) {
+              value = search.keywords.map(
+                     (keyword) => {
+                         return {value: keyword}
+                     }
+                );
+            }
+        }
         return (
             <Aux>
                 <h2 className="small-heading">{filterType.label}</h2>
@@ -61,9 +60,10 @@ class FilterKeywords extends BaseFilter {
                     backspaceRemoves={true}
                     loadOptions={this.getKeywords}
                     multi={true}
-                    onChange={this.onChange}
-                    value={this.state.value}
-                    labelKey='showAs'
+                    onChange={this.handleSelectChange}
+                    value={value}
+                    labelKey='value'
+                    valueKey='value'
                     />
                 <div className="grey-rule"/>
             </Aux>

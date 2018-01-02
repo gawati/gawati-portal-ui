@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // import FilterCountry from './FilterCountry';
 import FilterDate from './FilterDate2';
 // import FilterLang from './FilterLang';
-import FilterKeywords from './FilterKeywords';
+import FilterKeywords from './FilterKeywords2';
 
 import FilterCountry from './FilterCountry2';
 // import FilterDate from './FilterDate2';
@@ -122,7 +122,7 @@ class Filter extends React.Component {
                     <FilterDate filterType={filterType.FILTER_DATE} filter={this.getFilterFor('FILTER_DATE')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
                     <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
                     <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
-                    <FilterKeywords   filterType={filterType.FILTER_KEYWORD}  filter={this.getFilterFor('FILTER_KEYWORD')} showExpanded={ false } i18n={ i18n } />
+                    <FilterKeywords   filterType={filterType.FILTER_KEYWORD}  filter={this.getFilterFor('FILTER_KEYWORD')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
                 </Aux>
             );        
         }
