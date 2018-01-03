@@ -1,12 +1,18 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
+
+import { defaultLang } from '../utils/generalhelper';
 
 import imgFace from '../images/face.svg';
 import imgLinkedin from '../images/linkedin.svg';
 import imgTwitter from '../images/twitter.svg';
 import imgInstagram from '../images/instagram.svg';
 
+const ContentLink = ({lang, page, children}) =>
+    <NavLink to={ `/content/_lang/${lang}/_page/${page}` }>{children}</NavLink>;
 
-function Footer() {
+function Footer({match, i18n}) {
+    let lang = match.params.lang || defaultLang().langUI ;
     return (
     <footer>
         <div className="container">
@@ -14,16 +20,16 @@ function Footer() {
                 <div className="col-4">
                     <ul>
                         <li>
-                            <a href="/">Policies</a>
+                            <ContentLink lang={lang} page="policies">Policies</ContentLink>
                         </li>
                         <li>
-                            <a href="/">Privacy policy</a>
+                            <ContentLink lang={lang} page="privacy_policy">Privacy Policy</ContentLink>
                         </li>
                         <li>
-                            <a href="/">Copyright</a>
+                            <ContentLink lang={lang} page="copyright">Copyright</ContentLink>
                         </li>
                         <li>
-                            <a href="/">Terms of Service</a>
+                            <ContentLink lang={lang} page="terms_of_service">Terms of Service</ContentLink>
                         </li>
                     </ul>
                 </div>
@@ -31,19 +37,19 @@ function Footer() {
                 <div className="col-4">
                     <ul>
                         <li>
-                            <a href="/">About Us</a>
+                            <ContentLink lang={lang} page="terms_of_service">Terms of Service</ContentLink>
                         </li>
                         <li>
-                            <a href="/">Who we are </a>
+                            <ContentLink lang={lang} page="who_we_are">Who We Are</ContentLink>
                         </li>
                         <li>
-                            <a href="/">What we do</a>
+                            <ContentLink lang={lang} page="what_we_do">What We Do</ContentLink>
                         </li>
                         <li>
-                            <a href="/">FAQ</a>
+                            <ContentLink lang={lang} page="faq">FAQ</ContentLink>
                         </li>
                         <li>
-                            <a href="/">Blog</a>
+                            <a href="https://www.gawati.org">Blog</a>
                         </li>
                         <li>
                             <a href="/">Contact Us</a>
