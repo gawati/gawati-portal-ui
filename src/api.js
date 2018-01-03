@@ -4,6 +4,7 @@ import {dataProxyServer} from './constants';
 const GAWATI_APIS = {
     base_iri : '/gw/service',
     apis : {
+        'content': '/content/',
         'doc': '/doc/',
         'doc-xml': '/doc/xml/',
         'filter': '/search/filter/',

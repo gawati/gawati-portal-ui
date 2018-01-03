@@ -1,5 +1,9 @@
 {"routes":[
     {
+        "route": "/content/_lang/:lang/_page/:page*",
+        "name": "content"
+    },
+    {
         "route": "/doc/_lang/:lang/_iri/:iri*",
         "name": "doc-iri"
     },
