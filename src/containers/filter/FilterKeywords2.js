@@ -1,11 +1,13 @@
 import React from 'react';
-import BaseFilter from './BaseFilter';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
+import axios from 'axios';
+
+import BaseFilter from './BaseFilter';
+
+import {apiGetCall} from '../../api.js';
 import {Aux} from '../../utils/generalhelper';
 import { convertEncodedStringToObject } from '../../utils/routeshelper';
-import Select from 'react-select';
-import {apiGetCall} from '../../api.js';
-import axios from 'axios';
 
 import 'react-select/dist/react-select.css';
 
@@ -31,6 +33,7 @@ class FilterKeywords extends BaseFilter {
             );
             return axios.get(keywordApi)
                 .then(response => {
+                    console.log(" MATCHES : ", response.data.matches);
                     return { options: response.data.matches };
                 })
                 .catch(error => {
@@ -62,8 +65,9 @@ class FilterKeywords extends BaseFilter {
                     multi={true}
                     onChange={this.handleSelectChange}
                     value={value}
-                    labelKey='value'
+                    labelKey='showAs'
                     valueKey='value'
+                    matchProp='label'
                     />
                 <div className="grey-rule"/>
             </Aux>
