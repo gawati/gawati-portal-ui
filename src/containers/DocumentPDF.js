@@ -130,13 +130,39 @@ class DocumentPDF extends React.Component {
 */
 class DocumentPDF extends React.Component {
     state = {
-      numPages: null,
+      numPages: 1,
       pageNumber: 1,
     }
   
     onDocumentLoad = ({ numPages }) => {
-        console.log( " NUM PAGES ", numPages);
       this.setState({ numPages });
+    }
+
+    handlePrevious = () => {
+    this.setState({ pageNumber: this.state.pageNumber - 1 });
+    }
+    
+    handleNext = () => {
+    this.setState({ pageNumber: this.state.pageNumber + 1 });
+    }
+
+    renderPagination = (page, pages) => {
+        let previousButton = <li className="previous active" onClick={this.handlePrevious}><a><i className="fa fa-arrow-left"></i> Previous</a></li>;
+        if (page === 1) {
+          previousButton = <li className="previous disabled"><a><i className="fa fa-arrow-left"></i> Previous</a></li>;
+        }
+        let nextButton = <li className="next active" onClick={this.handleNext}><a>Next <i className="fa fa-arrow-right"></i></a></li>;
+        if (page === pages) {
+          nextButton = <li className="next disabled"><a >Next <i className="fa fa-arrow-right"></i></a></li>;
+        }
+        return (
+          <nav>
+            <ul className="gw-pager">
+              {previousButton}
+              {nextButton}
+            </ul>
+          </nav>
+          );
     }
   
     render() {
@@ -153,6 +179,7 @@ class DocumentPDF extends React.Component {
       
       let cRef = mainDocument.componentRef;
       let pdfLink = documentServer() + substringBeforeLastMatch(cRef.src, "/") + "/" + cRef.alt ;
+      let pagination = this.renderPagination(this.state.pageNumber, this.state.numPages);
       return (
         <div>
           <Document
@@ -160,20 +187,13 @@ class DocumentPDF extends React.Component {
             onLoadSuccess={this.onDocumentLoad}
           >
             {
-                /** !+FIX_THIS add a paginator here since this loads all the pages, we need to show 
-                 * page by page
-                 */
-                Array.from(
-                  new Array(numPages),
-                  (el, index) => (
-                    <Page
-                      key={`page_${index + 1}`}
-                      pageNumber={index + 1}
-                    />
-                  ),
-                )
+              <Page
+                key={`page_${this.state.pageNumber}`}
+                pageNumber={this.state.pageNumber}
+              />
               }
           </Document>
+          { pagination }
           <p>Page {pageNumber} of {numPages}</p>
         </div>
       );
