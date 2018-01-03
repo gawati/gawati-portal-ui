@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 import {Aux} from '../utils/generalhelper';
 import {getRoute} from '../utils/routeshelper';
@@ -34,7 +34,7 @@ class Page extends React.Component {
                     <PropsRoute path={ getRoute('search-doclang') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-keyword') } component={ListContentArea} i18n={this.props.i18n} />
                 </Switch>
-                <Route path="*" component={Footer} />
+                <PropsRoute path="*" component={Footer}  i18n={this.props.i18n}  />
             </Aux>
         );
    } 
