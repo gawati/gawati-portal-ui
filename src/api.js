@@ -9,6 +9,7 @@ const GAWATI_APIS = {
         'doc-xml': '/doc/xml/',
         'filter': '/search/filter/',
         'keyword': '/keyword/',
+        'keyword-value': '/keywordValue/',
         'recent-summary' : '/recent/expressions/summary/',
         'search-by-country' : '/search/country/',
         'search-by-language' : '/search/language/',

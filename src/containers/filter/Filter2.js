@@ -75,7 +75,7 @@ class Filter extends React.Component {
      */
     getFilters() {
         let shortFilterCache = apiGetCall(
-            'short-filter-cache', {}
+            'smart-filter-cache', {}
         );
         axios.get(shortFilterCache)
             .then(response => {

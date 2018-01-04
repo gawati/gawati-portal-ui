@@ -16,10 +16,50 @@ class FilterKeywords extends BaseFilter {
     constructor(props) {
         super(props);
         this.getKeywords = this.getKeywords.bind(this);
+        this.state = {
+            keywordLabels: []
+        };
     }
 
     handleSelectChange = (value) => {
         this.props.setFilterValue('keywords', value.map( chosen => chosen.value ));
+    }
+
+
+
+    componentDidMount() {
+        this.keywordsUILoad(this.props);
+     }
+
+    componentWillReceiveProps(nextProps) {
+        // we need to always convert the url query to a back-end XQuery
+        this.keywordsUILoad(nextProps);
+    }    
+
+    keywordsUILoad(props) {
+        if (props.match.params.q) {
+            var search = convertEncodedStringToObject(props.match.params.q);
+            if (search.keywords) {
+                console.log( "COMP DID MOUNT - SEARCH KEYWORDS ", search.keywords);
+                this.getKeywordLabels(search.keywords);
+            }
+        }
+    }
+
+    getKeywordLabels(input) {
+        let keywordValueApi = apiGetCall(
+            'keyword-value', {
+                kwv : input
+            } 
+        );
+        axios.get(keywordValueApi)
+            .then(response => {
+                console.log (" RESPONSE DATA ", response.data.found);
+                this.setState({ "keywordLabels": response.data.found });
+            })
+            .catch(error => {
+                console.log("error in keywordsValue API", error);
+            });
     }
 
     getKeywords(input) {
@@ -49,9 +89,12 @@ class FilterKeywords extends BaseFilter {
         if (this.props.match.params.q) {
             var search = convertEncodedStringToObject(this.props.match.params.q);
             if (search.keywords) {
-              value = search.keywords.map(
+                console.log( " SEARCH KEYWORDS ", search.keywords, this.state.keywordLabels);
+                value = search.keywords.map(
                      (keyword) => {
-                         return {value: keyword}
+                         let foundLabeledKw = this.state.keywordLabels.find( (kwl) => kwl.value === keyword);
+                         console.log(" foundLabledKW ", foundLabeledKw);
+                         return foundLabeledKw;
                      }
                 );
             }

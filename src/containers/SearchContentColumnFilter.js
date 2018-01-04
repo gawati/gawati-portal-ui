@@ -29,7 +29,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             loading: true,
             listing: undefined
         };
-        console.log(" XQUERY FILTER ", this.convertRoutePropToXQuery(this.props.match.params.q));
         this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
         this.onChangePage = this.onChangePage.bind(this);
     }
