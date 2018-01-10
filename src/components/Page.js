@@ -20,7 +20,7 @@ class Page extends React.Component {
         return (
             <Aux>
 
-                <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} />
+                <PropsRoute path="/:routeName/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} />
                 <Switch>
                     <PropsRoute exact path="/" component={HomeContentArea}  i18n={this.props.i18n} />
                     <PropsRoute exact path="/index.html" component={HomeContentArea} i18n={this.props.i18n} />
