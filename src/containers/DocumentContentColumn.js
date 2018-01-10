@@ -15,13 +15,9 @@ import DocumentNavBlock from './DocumentNavBlock';
 import DocumentSignature from './DocumentSignature';
 import DocumentActions from './DocumentActions';
 import DocumentTagCloud from './DocumentTagCloud';
-<<<<<<< HEAD
-import DocumentPDF from './DocumentPDF2';
-=======
 import DocumentPDF from './DocumentPDF';
 
 import GwSpinner from '../components/GwSpinner'
->>>>>>> 3ae78e01a5741a89b1a4aee7f8c73baed33cf6f0
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
 
