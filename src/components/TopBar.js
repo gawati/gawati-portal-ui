@@ -23,11 +23,10 @@ const SiteHeading = () =>
     ;
 
 const TopBarUpper = ({i18n, match}) => {
-        console.log(" MATCH TOPBARUPPER ", match);
         return (
             <div className="col-12">
                 <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "paddingBottom":"20px", "color": "red"} }>{
-                    "current version = " + versionInfo().version
+                     " version = " + versionInfo().version
                 }
                 </div>
                 <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"20px"} }>

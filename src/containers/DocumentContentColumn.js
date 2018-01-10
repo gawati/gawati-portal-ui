@@ -16,9 +16,8 @@ import DocumentSignature from './DocumentSignature';
 import DocumentActions from './DocumentActions';
 import DocumentTagCloud from './DocumentTagCloud';
 import DocumentPDF from './DocumentPDF2';
-
-import GwSpinner from '../components/GwSpinner'
 import DivListing from '../components/DivListing';
+import ListingLoading from '../components/ListingLoading';
 
 import 'react-tabs/style/react-tabs.css';
 import '../css/react-tabs.css';
@@ -26,11 +25,7 @@ import '../css/DocumentTagCloud.css';
 // import '../css/DocumentPDF.css';
 //import PDF from 'react-pdf-js';
 
-const DocumentLoading = () => 
-    <DivListing>
-        <GwSpinner />
-    </DivListing>
-    ;
+
 
 const DocumentTitle = ({doc, type}) =>
     <h1>{anPublication(doc, type)['showAs']}</h1>;
@@ -182,7 +177,9 @@ class DocumentContentColumn extends React.Component {
     render() {
         if (this.state.doc === undefined || isEmpty(this.state.doc)) {
             return (
-                <DocumentLoading />
+                <ListingLoading>
+                    <h2>Loading...</h2>
+                </ListingLoading>
             );
         } else {        
             console.log("DOC TYPES ", this.props.match);
