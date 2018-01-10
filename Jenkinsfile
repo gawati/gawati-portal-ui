@@ -31,9 +31,9 @@ pipeline {
                     def packageFile = readJSON file: 'package.json'
                     sh "cd build ; tar -cvjf $DLD/portal-ui-${packageFile.version}.tbz ."
                     sh "cd build ; zip -r - . > $DLD/portal-ui-${packageFile.version}.zip"
-                    sh "[ -L $DLD/portal-ui-latest.zip ] && rm -f $DLD/portal-ui-latest.zip"
+                    sh "[ -L $DLD/portal-ui-latest.zip ] && rm -f $DLD/portal-ui-latest.zip ; exit 0"
                     sh "[ -e $DLD/portal-ui-latest.zip ] || ln -s portal-ui-${packageFile.version}.zip $DLD/portal-ui-latest.zip"
-                    sh "[ -L $DLD/portal-ui-latest.tbz ] && rm -f $DLD/portal-ui-latest.tbz"
+                    sh "[ -L $DLD/portal-ui-latest.tbz ] && rm -f $DLD/portal-ui-latest.tbz ; exit 0"
                     sh "[ -e $DLD/portal-ui-latest.tbz ] || ln -s portal-ui-${packageFile.version}.tbz $DLD/portal-ui-latest.tbz"
                 }
             }
