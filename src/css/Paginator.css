@@ -3,7 +3,7 @@ ul.gw-pager {margin: auto; width: 60%; padding-bottom:40px;}
 .gw-pager>.active>span:focus, .gw-pager>.active>span:hover {
     z-index: 2;
     color: #fff;
-    cursor: default;
+    cursor: pointer;
     background-color: #337ab7;
     border-color: #337ab7;
 }
