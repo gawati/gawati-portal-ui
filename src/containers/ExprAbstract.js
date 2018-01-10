@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import moment from 'moment';
 
 import {shortTitle, displayDate, defaultLang} from '../utils/generalhelper';
-import {setInRoute} from '../utils/routeshelper';
+import {convertObjectToEncodedString, setInRoute} from '../utils/routeshelper';
 import {documentServer} from '../constants.js';
 
 import DocumentLink from './DocumentLink';
@@ -43,34 +43,40 @@ class ExprAbstract extends React.Component {
 
     countryLink = (pageLang, abstract) =>
         setInRoute(
-            "search-country", {
+            "filter", {
                 from: 1,
                 to: 10,
                 count: 10,
                 lang: pageLang,
-                country: abstract.country.value                
+                q: convertObjectToEncodedString(
+                    {countries: [abstract.country.value]}
+                )
             }
         );
     
     langLink = (pageLang, abstract) =>
         setInRoute(
-            "search-doclang", {
+            "filter", {
                 from: 1,
                 to: 10,
                 count: 10,
                 lang: pageLang,
-                doclang: abstract.language.value                
+                q: convertObjectToEncodedString(
+                    {langs: [abstract.language.value]}
+                )
             }
         );
 
     yearLink = (pageLang, abstract) =>
         setInRoute(
-            "search-year", {
+            "filter", {
                 from: 1,
                 to: 10,
                 count: 10,
                 lang: pageLang,
-                year: moment(abstract.date[1].value, "YYYY-MM-DD").year()          
+                q: convertObjectToEncodedString(
+                    {years: [moment(abstract.date[1].value, "YYYY-MM-DD").year()]}
+                )
             }
         );
 
