@@ -48,6 +48,24 @@ export const setInRoute = (routeName, params) => {
     return updatedRouteArr.join("/");
 };
 
+export const editInRoute = (params, match) => {
+    let routeArr = match.path.split("/");
+    let updatedRouteArr = routeArr.map( part => {
+        if (part.startsWith(":")) {
+            let partName = part.replace(":", "").replace("*", "");
+            if (params[partName])
+                return params[partName];
+            else
+                return match.params[partName];
+        } else if (part.startsWith("*")) {
+            return match.params['0'];
+        } else {
+            return part;
+        }
+    });
+    return updatedRouteArr.join("/");
+};
+
 
 export const convertObjectToEncodedString = (obj) => encodeURIComponent(JSON.stringify(obj)) ;
     
