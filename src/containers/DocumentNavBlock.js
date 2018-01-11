@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import {Aux, getDocType, displayDate, getLangDesc} from '../utils/generalhelper';
-import {setInRoute} from '../utils/routeshelper';
+import {convertObjectToEncodedString, setInRoute} from '../utils/routeshelper';
 import {anFRBRcountry, anExprFRBRdate, anFRBRlanguage, anFRBRnumber} from '../utils/akomantoso';
 import moment from 'moment';
 
@@ -12,14 +12,16 @@ const CategoryLink = ({type}) =>
 
 const countryLink = (pageLang, country) =>
     setInRoute(
-        "search-country", {
+        "filter", {
             from: 1,
             to: 10,
             count: 10,
             lang: pageLang,
-            country: country                
+            q: convertObjectToEncodedString(
+                {countries: [country]}
+            )
         }
-    );        
+    );
 
 const CountryLink = ({doc, type, lang}) => {
     let country = anFRBRcountry(doc, type);
@@ -32,12 +34,14 @@ const CountryLink = ({doc, type, lang}) => {
 
 const langLink = (pageLang, docLang) =>
     setInRoute(
-        "search-doclang", {
+        "filter", {
             from: 1,
             to: 10,
             count: 10,
             lang: pageLang,
-            doclang: docLang                
+            q: convertObjectToEncodedString(
+                {langs: [docLang]}
+            )
         }
     );    
 
@@ -51,12 +55,14 @@ const LanguageLink = ({doc, type, lang}) => {
 
 const yearLink = (pageLang, year) => 
     setInRoute(
-        "search-year", {
+        "filter", {
             from: 1,
             to: 10,
             count: 10,
             lang: pageLang,
-            year: year          
+            q: convertObjectToEncodedString(
+                {years: [year]}
+            )
         }
     );
 
@@ -69,14 +75,16 @@ const DocumentDate = ({doc, type, lang}) => {
 }
 
 const DocumentNumber = ({doc, type}) =>
-     <Aux>{anFRBRnumber(doc, type)['showAs']}</Aux> ;     
+     <Aux>{anFRBRnumber(doc, type)['showAs']}</Aux> ;
 
 const DocumentNavBlock = ({doc, type, lang}) => {
     return (
     <div className="text-block">
-        <CountryLink doc={doc} type={type} lang={lang} />  &#160;| &#160; <CategoryLink type={type}  /> &#160;|
-        &#160; <DocumentDate doc={doc} type={type} lang={lang} /> &#160;| &#160; <LanguageLink doc={doc} type={type}  lang={lang} /> &#160;| &#160;
-        <DocumentNumber doc={doc} type={type} /> 
+        <CountryLink doc={doc} type={type} lang={lang} />  &#160;|
+        &#160;<CategoryLink type={type}  /> &#160;|
+        &#160;<DocumentDate doc={doc} type={type} lang={lang} /> &#160;|
+        &#160;<LanguageLink doc={doc} type={type}  lang={lang} /> &#160;|
+        &#160;<DocumentNumber doc={doc} type={type} /> 
     </div>
     );
 }
