@@ -22,12 +22,14 @@ class Page extends React.Component {
             <Aux>
                 <Switch>
                     <PropsRoute exact path="/:routeName/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} />
-                    <Redirect exact from="/" to="/index.html"component={TopBar} i18n={this.props.i18n} />
-                    <PropsRoute component={TopBar} i18n={this.props.i18n} />
+                    <Redirect exact from="/" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} />
+                    <Redirect exact from="/index.html" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} />
+                    <PropsRoute path="/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} />
+                    <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} />
                 </Switch>
                 <Switch>
-                    <PropsRoute exact path="/" component={HomeContentArea}  i18n={this.props.i18n} />
-                    <PropsRoute exact path="/index.html" component={HomeContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path="/_lang/:lang" component={HomeContentArea}  i18n={this.props.i18n} />
+                    /* <PropsRoute exact path="/index.html" component={HomeContentArea} i18n={this.props.i18n} /> */
                     <PropsRoute path={ getRoute('content') } component={PageContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} />
