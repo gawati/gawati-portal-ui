@@ -48,6 +48,13 @@ export const setInRoute = (routeName, params) => {
     return updatedRouteArr.join("/");
 };
 
+/**
+ * Modifies the parameter values in the present route.  Only the parameters
+ * available in the supplied map are changed.  The rest of the route is
+ * unchanged.
+ * @param {object} supplied parameter key-value map
+ * @param {object} match object
+ */
 export const editInRoute = (params, match) => {
     let routeArr = match.path.split("/");
     let updatedRouteArr = routeArr.map( part => {
