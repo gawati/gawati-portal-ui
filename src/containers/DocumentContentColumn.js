@@ -17,7 +17,6 @@ import DocumentActions from './DocumentActions';
 import DocumentTagCloud from './DocumentTagCloud';
 import DocumentPDF from './DocumentPDF';
 
-import GwSpinner from '../components/GwSpinner'
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
 

@@ -29,7 +29,6 @@ class Page extends React.Component {
                 </Switch>
                 <Switch>
                     <PropsRoute path="/_lang/:lang" component={HomeContentArea}  i18n={this.props.i18n} />
-                    /* <PropsRoute exact path="/index.html" component={HomeContentArea} i18n={this.props.i18n} /> */
                     <PropsRoute path={ getRoute('content') } component={PageContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} />
