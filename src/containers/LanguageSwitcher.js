@@ -6,7 +6,9 @@ import '../css/LanguageSwitcher.css';
 
 const LanguageSwitcher = ({i18n, match}) => {
     console.log(" LanguageSwitcher ", i18n, i18n.language);
-    if (i18n.language != match.params.lang) i18n.changeLanguage(match.params.lang);
+    if ( (i18n.language != match.params.lang) && (match.params.lang) ) {
+        i18n.changeLanguage(match.params.lang);
+    }
     return (
         <ul className="list-inline"> 
         {
@@ -18,7 +20,7 @@ const LanguageSwitcher = ({i18n, match}) => {
             ) 
         }
         </ul>
-    );
+    ); 
 }
 ;
 
