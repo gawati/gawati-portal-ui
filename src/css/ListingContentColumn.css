@@ -4,6 +4,9 @@
 }
 
 .feed {
+    display: inline-block;
+    float: none !important;
+    vertical-align: bottom;
     width: 100%;
 }
 
