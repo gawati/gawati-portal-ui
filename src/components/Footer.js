@@ -2,6 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 import { defaultLang } from '../utils/generalhelper';
+import {T} from '../utils/i18nhelper';
 
 import imgFace from '../images/face.svg';
 import imgLinkedin from '../images/linkedin.svg';
@@ -20,16 +21,16 @@ function Footer({match, i18n}) {
                 <div className="col-4">
                     <ul>
                         <li>
-                            <ContentLink lang={lang} page="policies">Policies</ContentLink>
+                            <ContentLink lang={lang} page="policies">{T("Policies")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="privacy_policy">Privacy Policy</ContentLink>
+                            <ContentLink lang={lang} page="privacy_policy">{T("Privacy Policy")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="copyright">Copyright</ContentLink>
+                            <ContentLink lang={lang} page="copyright">{T("Copyright")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="terms_of_service">Terms of Service</ContentLink>
+                            <ContentLink lang={lang} page="terms_of_service">{T("Terms of Service")}</ContentLink>
                         </li>
                     </ul>
                 </div>
@@ -37,42 +38,39 @@ function Footer({match, i18n}) {
                 <div className="col-4">
                     <ul>
                         <li>
-                            <ContentLink lang={lang} page="terms_of_service">Terms of Service</ContentLink>
+                            <ContentLink lang={lang} page="who_we_are">{T("Who We Are")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="who_we_are">Who We Are</ContentLink>
+                            <ContentLink lang={lang} page="what_we_do">{T("What We Do")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="what_we_do">What We Do</ContentLink>
+                            <ContentLink lang={lang} page="faq">{T("FAQ")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="faq">FAQ</ContentLink>
+                            <a href="https://www.gawati.org">{T("Blog")}</a>
                         </li>
                         <li>
-                            <a href="https://www.gawati.org">Blog</a>
-                        </li>
-                        <li>
-                            <a href="/">Contact Us</a>
+                            <a href="/">{T("Contact Us")}</a>
                         </li>
                     </ul>
                 </div>
 
                 <div className="col-4">
-                    <p>Join over 14,000 people who receive weekly information</p>
+                    <p>{T("Join over 14,000 people who receive weekly information")}</p>
                     <div className="w-form">
                         <form className="w-clearfix" data-name="Email Form 2" id="email-form-2"
                             name="email-form-2">
                             <input className="newsletter-form" data-name="Email" id="email" maxLength="256"
-                                name="email" placeholder="Enter your email address" required="required"
+                                name="email" placeholder={T("Enter your email address")} required="required"
                                 type="email"/>
                             <input className="submit-newsletter" data-wait="Please wait..." type="submit"
                                 value=">"/>
                         </form>
                         <div className="form-done">
-                            <div>Thank you! Your submission has been received!</div>
+                            <div>{T("Thank you! Your submission has been received!")}</div>
                         </div>
                         <div className="form-fail">
-                            <div>Oops! Something went wrong while submitting the form</div>
+                            <div>{T("Oops! Something went wrong while submitting the form")}</div>
                         </div>
                     </div>
                 </div>
@@ -93,7 +91,7 @@ function Footer({match, i18n}) {
                     <img alt="linkedin" src={imgLinkedin} width="25"/>
                 </a>
             </div>
-            <h5>THE AFRICAN LAW LIBRARY</h5>
+            <h5>{T("The African Law Library")}</h5>
         </div>
     </footer>
     );

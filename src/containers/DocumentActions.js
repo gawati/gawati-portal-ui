@@ -4,6 +4,7 @@ import { anBody, anBodyComponentRef, anExprFRBRthis } from '../utils/akomantoso'
 import { documentServer } from '../constants';
 import { substringBeforeLastMatch } from '../utils/stringhelper';
 import { apiUrl } from '../api';
+import {T} from '../utils/i18nhelper';
 
 const DocumentPdfLink = ({doc, type}) => {
     let body = anBody(doc, type);
@@ -28,15 +29,15 @@ const DocumentXmlLink = ({doc, type}) => {
 const DocumentActions = ({doc, type}) => 
         <div className="document-download">
             <div className={ `col-3 left`}>
-                <a href="/">Back to search</a>
+                <a href="/">{T("Back to search")}</a>
             </div>
             <div className={ `col-9 right`}>
                 <ul>
                     <li>
-                        <a href="/">Subscribe</a>
+                        <a href="/">{T("Subscribe")}</a>
                     </li>
                     <li>
-                        <a href="/">Copy Reference</a>
+                        <a href="/">{T("Copy Reference")}</a>
                     </li>
                     <li>
                         <DocumentXmlLink doc={doc} type={type} />
@@ -45,7 +46,7 @@ const DocumentActions = ({doc, type}) =>
                         <DocumentPdfLink doc={doc} type={type} />
                     </li>
                     <li>
-                        <a href="/">Share</a>
+                        <a href="/">{T("Share")}</a>
                     </li>
                 </ul>
             </div>

@@ -822,6 +822,7 @@ body{
     font-size: 12px;
     text-align: center;
     letter-spacing: 12px;
+    text-transform: uppercase;
   }
   .social-icon-link {
     display: inline-block;
