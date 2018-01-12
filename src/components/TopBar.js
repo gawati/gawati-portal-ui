@@ -4,6 +4,7 @@ import {versionInfo} from '../utils/versionhelper';
 import {T} from '../utils/i18nhelper';
 import SiteSearchAutoComplete from '../containers/SiteSearchAutoComplete';
 import LanguageSwitcher from '../containers/LanguageSwitcher';
+import NotifBar from './NotifBar';
 
 import mainLogo from '../images/logo.png';
 import mobileButton from '../images/th-menu.png';
@@ -29,7 +30,7 @@ const TopBarUpper = ({i18n, match}) => {
                      " version = " + versionInfo().version
                 }
                 </div>
-                <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"20px"} }>
+                <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px"} }>
                 <LanguageSwitcher i18n={i18n} match={match} />
                 </div>
             </div>
@@ -39,11 +40,16 @@ const TopBarUpper = ({i18n, match}) => {
 
 const SearchBox = () =>
     <div className={ `search-form-container col-6` }>
-        <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
+        <div className="row">
+        <form className="search-form col-11" data-name="Email Form" id="email-form" name="email-form">
             <div className="div-block w-clearfix">
                <SiteSearchAutoComplete  /> 
             </div>
         </form>
+        <div className="col-1">
+        <NotifBar/>
+        </div>
+        </div>
     </div>
     ;
 
@@ -53,14 +59,20 @@ class TopBar extends React.Component {
             <header className="navigation-bar">
                 <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
                 <div className="container">
-                    <Logo />
-                    <SiteHeading />
-                    <div className="mobile-button">
-                        <img alt="menu" src={mobileButton} />
+                    <div className="row">
+                        <div className="col-6">
+                            <Logo />
+                            <SiteHeading />
+                            <div className="mobile-button">
+                                <img alt="menu" src={mobileButton} />
+                            </div>
+                        </div>
+                        <SearchBox />
+                        
                     </div>
-                    <SearchBox />
                 </div>
                 <div className="w-nav-overlay" data-wf-ignore=""/>
+                
             </header>
         
         );

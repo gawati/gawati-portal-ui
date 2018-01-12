@@ -3,7 +3,7 @@
   }
   
   .react-autosuggest__input   {
-    width:87%;
+    width: calc(100% - 50px);
     height: 40px;
     float: left;
     font-family: Montserrat, sans-serif;
