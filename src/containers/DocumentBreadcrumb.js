@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {shortTitle, getDocType} from '../utils/generalhelper';
+import {T} from '../utils/i18nhelper';
 import {anPublication, anFRBRcountry} from '../utils/akomantoso';
 
 const CategoryLink = ({type}) => 
     <NavLink to="/">{ getDocType(type)['category']}</NavLink>;
 
 const HomeLink = () => 
-    <NavLink to="/">Home</NavLink>;
+    <NavLink to="/">{T("Home")}</NavLink>;
 
 
 function DocumentBreadcrumb({doc, type}) {

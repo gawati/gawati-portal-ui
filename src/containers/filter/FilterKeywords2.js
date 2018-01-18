@@ -8,6 +8,7 @@ import BaseFilter from './BaseFilter';
 import {apiGetCall} from '../../api.js';
 import {Aux} from '../../utils/generalhelper';
 import { convertEncodedStringToObject } from '../../utils/routeshelper';
+import {T} from '../../utils/i18nhelper';
 
 import 'react-select/dist/react-select.css';
 
@@ -101,7 +102,7 @@ class FilterKeywords extends BaseFilter {
         }
         return (
             <Aux>
-                <h2 className="small-heading">{filterType.label}</h2>
+                <h2 className="small-heading">{T(filterType.label)}</h2>
                 <AsyncComponent
                     backspaceRemoves={true}
                     loadOptions={this.getKeywords}

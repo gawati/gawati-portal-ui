@@ -5,6 +5,7 @@ import {apiGetCall} from '../api';
 import {isInt, coerceIntoArray} from '../utils/generalhelper';
 import {xQueryFilterBuilder} from '../utils/xqueryhelper';
 import {convertEncodedStringToObject} from '../utils/routeshelper';
+import {T} from '../utils/i18nhelper';
 
 import DivFeed from '../components/DivFeed';
 import DivListing from '../components/DivListing';
@@ -132,13 +133,13 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     renderDocumentLoading = () =>
         <ListingLoading>
-            <h1 className="listingHeading">Document Results</h1>
+            <h1 className="listingHeading">T("Document Results")</h1>
             <GwSpinner />
         </ListingLoading> ;
 
     renderNoDocumentsFound = () =>
         <DivListing>
-            <h1 className="listingHeading">Document Results</h1>
+            <h1 className="listingHeading">T("Document Results")</h1>
             <div>No Documents Found</div>
         </DivListing> ;
 
@@ -146,7 +147,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let pagination = this.generatePagination() ;
         let content = 
             <DivListing>
-                <h1 className="listingHeading">Document Results</h1>
+                <h1 className="listingHeading">{T("Document Results")}</h1>
                 <DivFeed>
                     <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
                 </DivFeed>
