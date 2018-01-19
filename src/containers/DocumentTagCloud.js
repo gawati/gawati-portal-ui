@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {anKeywords} from '../utils/akomantoso';
 import {randomInt} from '../utils/generalhelper';
 import {setInRoute} from '../utils/routeshelper';
+import {T} from '../utils/i18nhelper';
 
 const keywordLink = (pageLang, keyword) => 
     setInRoute(
@@ -21,7 +22,7 @@ const DocumentTagCloud = ({doc, type, lang}) => {
     if (Array.isArray(kws)) {
         return (
             <div className="tag-cloud">
-            <strong>TAGS:</strong>&#160;
+            <strong>{T("TAGS")}:</strong>&#160;
                 {
                 kws.map(
                     (item) => {

@@ -49,7 +49,7 @@ class FilterDate extends BaseFilter {
                     multi
                     onChange={this.handleSelectChange}
                     options={years}
-                    placeholder="Select Year"
+                    placeholder={T("Select year")}
                     removeSelected={true}
                     rtl={false}
                     value={value}

@@ -7,6 +7,7 @@ import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
 import { prefixIri, isEmpty, getDocumentType, insertIntoArray} from '../utils/generalhelper';
+import {T} from '../utils/i18nhelper';
 import {anPublication, anFRBRnumber, anTLCConcept, anExprFRBRdate} from '../utils/akomantoso';
 
 
@@ -17,6 +18,7 @@ import DocumentActions from './DocumentActions';
 import DocumentTagCloud from './DocumentTagCloud';
 import DocumentPDF from './DocumentPDF';
 
+import GwSpinner from '../components/GwSpinner'
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
 
@@ -66,9 +68,9 @@ const getThemes = (doc, type) => {
 const DocumentMetadata = ({doc, type}) => {
     return(
         <ul className="metadata">
-            <li><strong>Document Number:</strong> {anFRBRnumber(doc, type).showAs}</li>
-            <li><strong>Entry into Force date:</strong>  {  anExprFRBRdate(doc, type).date  /*displayDate(gawatiDateEntryInForce(doc, type).date)*/}</li>
-            <li><strong>Themes:</strong>  {getThemes(doc, type)}</li>
+            <li><strong>{T("Document Number")}:</strong> {anFRBRnumber(doc, type).showAs}</li>
+            <li><strong>{T("Entry into Force date")}:</strong>  {  anExprFRBRdate(doc, type).date  /*displayDate(gawatiDateEntryInForce(doc, type).date)*/}</li>
+            <li><strong>{T("Themes")}:</strong>  {getThemes(doc, type)}</li>
         </ul>
     );
 }; 

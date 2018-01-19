@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import {Aux} from '../utils/generalhelper';
-
+import {T} from '../utils/i18nhelper';
 import DivFeed from '../components/DivFeed';
 import ExprAbstract from './ExprAbstract';
 import GwSpinner from '../components/GwSpinner'
@@ -26,7 +26,7 @@ const getRecentDocs = (loading, recentDocs, tab) => {
             <Aux>
                 <RecentSummary recentDocs={recentDocs}  />
                 <div className="button-wrapper">
-                <NavLink className={ `button w-button` } to={ `/recent/_lang/eng/_count/10/_from/1/_to/10`}>More posts&#160;→</NavLink>
+                <NavLink className={ `button w-button` } to={ `/recent/_lang/eng/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
                 </div>
             </Aux>
         );    
@@ -34,9 +34,9 @@ const getRecentDocs = (loading, recentDocs, tab) => {
 
 const RecentIntro = ({loading}) => 
     <DivFeed customClass="white-feed">
-        <h2>Latest Documents</h2>
+        <h2>{T("Latest Documents")}</h2>
         <a>
-            <p>The most recently published documents</p>
+            <p>{T("The most recently published documents")}</p>
         </a>
         <div className="grey-rule"/>
         {loading === true ? <GwSpinner />: <noscript /> }

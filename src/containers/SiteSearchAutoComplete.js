@@ -185,7 +185,7 @@ class SiteSearchAutoComplete extends React.Component {
                 renderInputComponent={this.renderInputComponent}
                 inputProps={inputProps} />
                 <input className={ `submit-button w-button` } data-wait="Please wait..." type="submit"
-                    value="GO"/>
+                    value={T("GO")}/>
           </Aux>
           );
       }

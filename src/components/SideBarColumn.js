@@ -1,5 +1,6 @@
 import React from 'react';
 import Filter from '../containers/filter/Filter2';
+import {T} from '../utils/i18nhelper';
 
 class SideBarColumn extends React.Component{
 
@@ -10,7 +11,7 @@ class SideBarColumn extends React.Component{
             <div className={ `right col-3` }>
                 <div className={ `w-clearfix white-wrapper` }>
                     <Filter match={ match } i18n={ i18n } />
-                    <p className="cc-law-libray">The African Law Library</p>
+                    <p className="cc-law-libray">{T("The African Law Library")}</p>
                 </div>
             </div>
         );
