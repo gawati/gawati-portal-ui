@@ -18,17 +18,12 @@ import DocumentActions from './DocumentActions';
 import DocumentTagCloud from './DocumentTagCloud';
 import DocumentPDF from './DocumentPDF';
 
-import GwSpinner from '../components/GwSpinner'
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
 
 import 'react-tabs/style/react-tabs.css';
 import '../css/react-tabs.css';
 import '../css/DocumentTagCloud.css';
-// import '../css/DocumentPDF.css';
-//import PDF from 'react-pdf-js';
-
-
 
 const DocumentTitle = ({doc, type}) =>
     <h1>{anPublication(doc, type)['showAs']}</h1>;
@@ -74,33 +69,6 @@ const DocumentMetadata = ({doc, type}) => {
         </ul>
     );
 }; 
-
-/* const DocumentPDF = ({doc, type}) => {
-    let body = anBody(doc, type);
-    
-    let mainDocument ;
-    if (Array.isArray(body.book)) {
-        mainDocument = body.book.filter(book => book.refersTo === '#mainDocument');
-    } else {
-        mainDocument = body.book;
-    }
-    
-    let cRef = mainDocument.componentRef;
-    let pdfLink = documentServer() + substringBeforeLastMatch(cRef.src, "/") + "/" + cRef.alt ;
-    return (
-    <Aux>
-        <br />
-        <div className="pdfview">
-        <PDF file={`${pdfLink}#page=1`} fillWidth>
-            <iframe src={`${pdfLink}#page=1`} width="100%" height="100%" >
-            This browser does not support PDFs. Please download the PDF to view it:
-                <a href={`${pdfLink}`}>Download PDF</a>
-            </iframe>
-        </PDF>
-        </div>
-    </Aux>	
-    );
-}; */
 
 const DocumentContentInfo = ({doc, type}) => {
     return (
