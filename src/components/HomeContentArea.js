@@ -1,6 +1,5 @@
 import React from 'react';
 
-import NotifBar from './NotifBar';
 import HomeContentColumn from '../containers/HomeContentColumn';
 import SideBarColumn from './SideBarColumn';
 import Section from './Section';
@@ -14,7 +13,6 @@ class HomeContentArea extends React.Component {
             <Section>
                 <div className="container">
                     <DivRow altClasses="home-content-area">
-                        <NotifBar />
                         <HomeContentColumn />
                         <SideBarColumn match={match}/>
                     </DivRow>
