@@ -182,9 +182,6 @@
     .tab-pane .feed.clearfix {
       padding: 0;
     }
-    .bell {
-      margin-left: 14px;
-    }
     footer .col-4 {
       -webkit-box-flex: 0;
       -webkit-flex: 0 0 100%!important;
@@ -246,5 +243,10 @@
     }
   }
   
+  @media all and (max-width: 430px){
+    .search-form{
+      max-width: 75%;
+    } 
+  }
   
   
