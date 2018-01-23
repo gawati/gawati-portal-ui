@@ -104,13 +104,13 @@ body{
   }
 
   .logotype h1{
-    font-size:31px;
+    font-size:1.6rem;
   }
 
   .logotype h2{
     margin-top: -12px;
     margin-bottom: 0px;
-    font-size:22px;
+    font-size:1.4rem;
     letter-spacing: 1.7px;
   }
   .search-form-container {
