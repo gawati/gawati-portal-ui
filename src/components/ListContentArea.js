@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 
+import NotifBar from './NotifBar';
 import {getRoute} from '../utils/routeshelper';
 
 import ListContentColumn from '../containers/ListContentColumn';
@@ -26,6 +27,7 @@ class ListContentArea extends React.Component{
             <Section>
                 <div className="container">
                     <DivRow>
+                        <NotifBar />
                         <Switch>
                             <Route path={ getRoute('recent') } component={ListContentColumn} />
                             <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
