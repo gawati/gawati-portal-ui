@@ -1,9 +1,11 @@
 .react-autosuggest__container {
     position: relative;
+    width: 100%;
+
   }
   
-  .react-autosuggest__input   {
-    width:87%;
+.react-autosuggest__input   {
+    width: calc(100% - 50px);
     height: 40px;
     float: left;
     font-family: Montserrat, sans-serif;
@@ -29,6 +31,12 @@
     border-radius: 4px;
     */
 }
+
+ @media all and (max-width: 715px){
+   .react-autosuggest__input   {
+      width: 90%;
+   }
+ }
   
   .react-autosuggest__input--focused {
     outline: none;
