@@ -133,13 +133,13 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     renderDocumentLoading = () =>
         <ListingLoading>
-            <h1 className="listingHeading">T("Document Results")</h1>
+            <h1 className="listingHeading">{T("Document Results")}</h1>
             <GwSpinner />
         </ListingLoading> ;
 
     renderNoDocumentsFound = () =>
         <DivListing>
-            <h1 className="listingHeading">T("Document Results")</h1>
+            <h1 className="listingHeading">{T("Document Results")}</h1>
             <div>No Documents Found</div>
         </DivListing> ;
 
