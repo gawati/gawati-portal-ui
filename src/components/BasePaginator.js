@@ -58,7 +58,7 @@ class BasePaginator extends React.Component {
         let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
         // create an array of pages to ng-repeat in the pager control
-        let pages = startPage === endPage ? [1] : rangeMinMax(startPage, endPage + 1);
+        let pages = startPage === endPage ? [1] : rangeMinMax(startPage, endPage);
 
         // return object with all pager properties required by the view
         let pgn = {
