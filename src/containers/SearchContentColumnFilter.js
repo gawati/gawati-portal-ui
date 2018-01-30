@@ -13,7 +13,6 @@ import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 import BaseSearchContentColumn from './BaseSearchContentColumn';
 import ListingLoading from '../components/ListingLoading';
-import GwSpinner from '../components/GwSpinner'
 
 import '../css/ListingContentColumn.css';
 
