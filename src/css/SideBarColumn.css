@@ -1,0 +1,9 @@
+#filterContainer {
+  transition: all .75s ease;
+  right: 200px;
+}
+
+#filterContainer.show {
+    display: block;
+    right: 0px;
+  }
