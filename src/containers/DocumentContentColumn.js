@@ -124,6 +124,7 @@ class DocumentContentColumn extends React.Component {
                     doc: doc,
                     docType: getDocumentType(doc)
                 });
+                document.title = doc.akomaNtoso.act.meta.publication.showAs;
             })
             .catch(function(error) {
                 console.log("error in getDocument()", error);
