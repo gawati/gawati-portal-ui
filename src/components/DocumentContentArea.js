@@ -9,7 +9,7 @@ import DivRow from './DivRow';
 function DocumentContentArea({ match }) {
     return (
         <Section>
-            <div className="container">
+            <div className="container-fluid">
                 <DivRow>
                     <NotifBar />
                     <DocumentContentColumn match={match} />

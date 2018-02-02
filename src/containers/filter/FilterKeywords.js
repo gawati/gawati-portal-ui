@@ -9,7 +9,7 @@ class FilterKeywords extends BaseFilter {
     
         listItem = (keywordObj) =>
             <li key={ `kwf-${keywordObj.value}` }>
-                <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_bysubject/${keywordObj.value}/` }>{keywordObj['showAs']} {roundto100Filter(parseInt(keywordObj.count, 10))}</NavLink>
+                <NavLink to={ `/search/_lang/en/_count/10/_from/1/_to/10/_bysubject/${keywordObj.value}/` }>{keywordObj['showAs']} {roundto100Filter(parseInt(keywordObj.count, 10))}</NavLink>
             </li>
         ;
     
@@ -18,7 +18,7 @@ class FilterKeywords extends BaseFilter {
                 keywords.slice(5, keywords.length).map(
                     keywordObj =>
                     <li key={ `kwf-${keywordObj.value}` }>
-                        <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_bysubject/${keywordObj.value}/` }>{keywordObj['showAs']} {roundto100Filter(parseInt(keywordObj.count, 10))}</NavLink>
+                        <NavLink to={ `/search/_lang/en/_count/10/_from/1/_to/10/_bysubject/${keywordObj.value}/` }>{keywordObj['showAs']} {roundto100Filter(parseInt(keywordObj.count, 10))}</NavLink>
                     </li>
                 ) 
             } </Aux>
@@ -35,7 +35,7 @@ class FilterKeywords extends BaseFilter {
                         keywords.slice(0, 4).map(
                             keywordObj =>
                             <li key={ `kwf-${keywordObj.value}` }>
-                                <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_bysubject/${keywordObj.value}/` }>{keywordObj['showAs']} {roundto100Filter(parseInt(keywordObj.count, 10))}</NavLink>
+                                <NavLink to={ `/search/_lang/en/_count/10/_from/1/_to/10/_bysubject/${keywordObj.value}/` }>{keywordObj['showAs']} {roundto100Filter(parseInt(keywordObj.count, 10))}</NavLink>
                             </li>
                         )  
                     } {

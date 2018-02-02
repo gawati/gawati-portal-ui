@@ -12,7 +12,7 @@ class HomeContentArea extends React.Component {
         const {match} = this.props;
         return (
             <Section>
-                <div className="container">
+                <div className="container-fluid">
                     <DivRow altClasses="home-content-area">
                         <NotifBar />
                         <HomeContentColumn />

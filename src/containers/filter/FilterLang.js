@@ -12,7 +12,7 @@ class FilterLang extends BaseFilter {
                 langs.slice(5, langs.length).map(
                     langObj =>
                     <li key={ `lang-${langObj.code}` }>
-                        <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_bylang/${langObj.code}/` }>{langObj['#text']} {roundto100Filter(parseInt(langObj.count))}</NavLink>
+                        <NavLink to={ `/search/_lang/en/_count/10/_from/1/_to/10/_bylang/${langObj.code}/` }>{langObj['#text']} {roundto100Filter(parseInt(langObj.count))}</NavLink>
                     </li>
                 ) 
             } </Aux>
@@ -20,7 +20,7 @@ class FilterLang extends BaseFilter {
     
         listItem = (langObj) =>
             <li key={ `lang-${langObj.code}` }>
-                <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_bylang/${langObj.code}/` }>{langObj['#text']} {roundto100Filter(parseInt(langObj.count))}</NavLink>
+                <NavLink to={ `/search/_lang/en/_count/10/_from/1/_to/10/_bylang/${langObj.code}/` }>{langObj['#text']} {roundto100Filter(parseInt(langObj.count))}</NavLink>
             </li>
         ;
     
@@ -35,7 +35,7 @@ class FilterLang extends BaseFilter {
                         langs.slice(0, 4).map(
                             langObj =>
                             <li key={ `lang-${langObj.code}` }>
-                                <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_bylang/${langObj.code}/` }>{langObj['#text']} {roundto100Filter(parseInt(langObj.count))}</NavLink>
+                                <NavLink to={ `/search/_lang/en/_count/10/_from/1/_to/10/_bylang/${langObj.code}/` }>{langObj['#text']} {roundto100Filter(parseInt(langObj.count))}</NavLink>
                             </li>
                         )
                     } {
