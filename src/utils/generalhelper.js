@@ -51,11 +51,6 @@ export const shortTitle = (theTitle) => {
 export const prefixIri = (iri) => 
      iri.startsWith('/') ? iri : "/" + iri;
 
-/**
- * Gets the document type of an Akoma Ntoso JSON object
- * @param {object} doc 
- */
-export const getDocumentType = (doc) => Object.keys(doc.akomaNtoso)[0] ;
 
 /**
  * Checks if an object is empty

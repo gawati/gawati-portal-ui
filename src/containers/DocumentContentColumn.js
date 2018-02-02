@@ -6,7 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import DivFeed from '../components/DivFeed';
 
 import {apiGetCall} from '../api';
-import { prefixIri, isEmpty, getDocumentType, insertIntoArray} from '../utils/generalhelper';
+import { prefixIri, isEmpty, insertIntoArray} from '../utils/generalhelper';
 import {T} from '../utils/i18nhelper';
 import {anPublication, anFRBRnumber, anTLCConcept, anExprFRBRdate} from '../utils/akomantoso';
 
@@ -20,6 +20,7 @@ import DocumentPDF from './DocumentPDF';
 
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
+import {anDocType, anDocTitle} from '../utils/akomantoso';
 
 import 'react-tabs/style/react-tabs.css';
 import '../css/react-tabs.css';
@@ -122,9 +123,10 @@ class DocumentContentColumn extends React.Component {
                 this.setState({
                     loading: false,
                     doc: doc,
-                    docType: getDocumentType(doc)
+                    docType: anDocType(doc)
                 });
-                document.title = T("african law library") + doc.akomaNtoso.act.meta.publication.showAs;
+               
+                document.title =  `${T("african law library")}  ${anDocTitle(doc)}`;
             })
             .catch(function(error) {
                 console.log("error in getDocument()", error);
