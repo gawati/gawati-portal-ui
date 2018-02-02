@@ -38,7 +38,7 @@ const getThemeSummary = (loading, themes, tab) => {
             <Aux>
                 <ThemeSummary themes={themes} />
                 <div className="button-wrapper">
-                    <NavLink className={ `button w-button` } to={ `/themes/_lang/eng/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
+                    <NavLink className={ `button w-button` } to={ `/themes/_lang/en/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
                 </div>
             </Aux>
         );

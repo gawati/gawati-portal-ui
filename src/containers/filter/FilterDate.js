@@ -10,7 +10,7 @@ class FilterDate extends BaseFilter {
     
         listItem = (dateObj) =>
             <li key={ `year-${dateObj.year}` }>
-                <NavLink to={ `/search/_lang/eng/_count/10/_from/1/_to/10/_byyear/${dateObj.year}/` }>
+                <NavLink to={ `/search/_lang/en/_count/10/_from/1/_to/10/_byyear/${dateObj.year}/` }>
                     {dateObj.year} {roundto100Filter(parseInt(dateObj.count, 10))}
                 </NavLink>
             </li>
