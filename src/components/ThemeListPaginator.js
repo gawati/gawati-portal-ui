@@ -11,7 +11,7 @@ class ThemeListPaginator extends BasePaginator {
             "/_count/"+ count +
             "/_from/" + from  +
             "/_to/" + to  
-            } onClick={() => this.handleChangePage({lang: lang, themes: themes, count: count, from: from, to: to, text: text})}>
+            } onClick={() => this.handleChangePage({lang: lang, themes: themes.split('|'), count: count, from: from, to: to, text: text})}>
             { text }
         </Link>;
 
