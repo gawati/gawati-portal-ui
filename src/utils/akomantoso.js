@@ -1,3 +1,14 @@
+/**
+ * Gets the document type of an Akoma Ntoso JSON object
+ * @param {object} doc 
+ */
+export const anDocType = (doc) => {
+   return Object.keys(doc.akomaNtoso)[0] ;
+};
+
+export const anDocTitle = (doc) => {
+    return doc.akomaNtoso[anDocType(doc)].meta.publication.showAs;
+};
 
 export const anDocTypeRoot = (doc, type) => doc.akomaNtoso[type] ; 
 
