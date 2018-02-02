@@ -9,7 +9,6 @@ import DivListing from '../components/DivListing';
 
 import {apiGetCall} from '../api';
 import { isInt, coerceIntoArray} from '../utils/generalhelper';
-import {T} from '../utils/i18nhelper';
 
 import '../css/ListingContentColumn.css';
 
@@ -52,7 +51,6 @@ class ListThemeContentColumn extends React.Component {
                     currentPage: parseInt(items.currentpage, 10),
                     listing: coerceIntoArray(items.exprAbstract)
                 });
-                document.title = T("african law library");
             })
             .catch(function(error) {
                 console.log("error in getDocument()", error);

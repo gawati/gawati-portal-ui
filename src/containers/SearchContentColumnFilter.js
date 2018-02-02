@@ -69,7 +69,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                         listing: coerceIntoArray(items.exprAbstract)
                     });
                 }
-                document.title = T("african law library") + "-" + T("Search results");
 
             })
             .catch(function(error) {
