@@ -25,7 +25,7 @@ class ListContentArea extends React.Component{
         const { match, i18n } = this.props;
         return (
             <Section>
-                <div className="container">
+                <div className="container-fluid">
                     <DivRow>
                         <NotifBar />
                         <Switch>

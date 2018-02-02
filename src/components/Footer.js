@@ -16,7 +16,7 @@ function Footer({match, i18n}) {
     let lang = match.params.lang || defaultLang().langUI ;
     return (
     <footer>
-        <div className="container">
+        <div className="container-fluid">
             <div className="row">
                 <div className="col-4">
                     <ul>

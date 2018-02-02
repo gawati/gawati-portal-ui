@@ -52,7 +52,7 @@ class TopBar extends React.Component {
         return (
             <header className="navigation-bar">
                 <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
-                <div className="container">
+                <div className="container-fluid">
                     <Logo />
                     <SiteHeading />
                     <div className="mobile-button">
