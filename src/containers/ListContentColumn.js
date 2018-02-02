@@ -8,8 +8,9 @@ import ExprAbstract from './ExprAbstract';
 import RecentListPaginator from '../components/RecentListPaginator';
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
-
+import {T} from '../utils/i18nhelper';
 import '../css/ListingContentColumn.css';
+
 
 class ListContentColumn extends React.Component {
     
@@ -49,6 +50,7 @@ class ListContentColumn extends React.Component {
                     currentPage: parseInt(items.currentpage, 10),
                     listing: items.exprAbstract
                 });
+                document.title = T("african law library");
             })
             .catch(function(error) {
                 console.log("error in getDocument()", error);

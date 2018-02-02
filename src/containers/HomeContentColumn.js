@@ -45,6 +45,7 @@ class HomeContentColumn extends React.Component {
                         content : content
                     }
                 });
+                document.title = T("african law library");
             })
             .catch(function(error) {
                 console.log("error in getRecentSummary()", error);
