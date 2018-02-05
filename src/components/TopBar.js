@@ -55,7 +55,7 @@ class TopBar extends React.Component {
                 <div className="container-fluid">
                     <Logo />
                     <SiteHeading />
-                    <div className="mobile-button">
+                    <div className="mobile-button" onClick={this.props.slideToggle}>
                         <img alt="menu" src={mobileButton} />
                     </div>
                     <SearchBox />

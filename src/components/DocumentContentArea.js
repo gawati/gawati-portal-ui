@@ -13,7 +13,7 @@ function DocumentContentArea({ match }) {
                 <DivRow>
                     <NotifBar />
                     <DocumentContentColumn match={match} />
-                    <SideBarColumn match={match} />
+                    <SideBarColumn match={match} setCollapsible={this.props.setCollapsible}/>
                 </DivRow>
             </div>
         </Section>

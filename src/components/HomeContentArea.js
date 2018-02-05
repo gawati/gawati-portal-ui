@@ -16,7 +16,7 @@ class HomeContentArea extends React.Component {
                     <DivRow altClasses="home-content-area">
                         <NotifBar />
                         <HomeContentColumn />
-                        <SideBarColumn match={match}/>
+                        <SideBarColumn match={match} setCollapsible={this.props.setCollapsible}/>
                     </DivRow>
                 </div>
             </Section>

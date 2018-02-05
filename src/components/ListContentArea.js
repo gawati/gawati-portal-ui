@@ -37,7 +37,7 @@ class ListContentArea extends React.Component{
                             <Route path={ getRoute('search-doclang') } component={SearchContentColumnLanguage} />
                             <Route path={ getRoute('search-keyword') } component={SearchContentColumnSubject} />
                         </Switch>
-                        <SideBarColumn  match={match} i18n={ i18n } />
+                        <SideBarColumn  match={match} i18n={ i18n } setCollapsible={this.props.setCollapsible}/>
                     </DivRow>
                 </div>
             </Section>
