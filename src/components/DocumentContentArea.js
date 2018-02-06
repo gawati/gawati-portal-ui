@@ -6,14 +6,14 @@ import SideBarColumn from './SideBarColumn';
 import Section from './Section';
 import DivRow from './DivRow';
 
-function DocumentContentArea({ match }) {
+function DocumentContentArea({ match, setCollapsible }) {
     return (
         <Section>
             <div className="container-fluid">
                 <DivRow>
                     <NotifBar />
                     <DocumentContentColumn match={match} />
-                    <SideBarColumn match={match} setCollapsible={this.props.setCollapsible}/>
+                    <SideBarColumn match={match} setCollapsible={setCollapsible}/>
                 </DivRow>
             </div>
         </Section>

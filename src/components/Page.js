@@ -39,9 +39,11 @@ class Page extends React.Component {
     };
 
     setCollapsible = (el) => {
-        this.element = el;
-        if(!this.state.open) {
-            el.style.width = '0px';
+        if (el) {
+            this.element = el;
+            if(!this.state.open) {
+                el.style.width = '0px';
+            }
         }
     };
 

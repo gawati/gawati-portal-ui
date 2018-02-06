@@ -38,7 +38,7 @@ const TopBarUpper = ({i18n, match}) => {
     ;
 
 const SearchBox = () =>
-    <div className={ `search-form-container col-6` }>
+    <div className={ `search-form-container col-lg-6 col-md-12 col-sm-12 col-xs-12` }>
         <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
             <div className="div-block w-clearfix">
                <SiteSearchAutoComplete  /> 
