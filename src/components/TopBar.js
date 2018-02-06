@@ -7,6 +7,8 @@ import LanguageSwitcher from '../containers/LanguageSwitcher';
 
 import mainLogo from '../images/logo.png';
 import mobileButton from '../images/th-menu.png';
+import NotifBar from './NotifBar';
+import DivRow from './DivRow';
 
 
 const Logo = () =>
@@ -38,7 +40,7 @@ const TopBarUpper = ({i18n, match}) => {
     ;
 
 const SearchBox = () =>
-    <div className={ `search-form-container col-lg-6 col-md-12 col-sm-12 col-xs-12` }>
+    <div className={ `col ` }>
         <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
             <div className="div-block w-clearfix">
                <SiteSearchAutoComplete  /> 
@@ -58,7 +60,12 @@ class TopBar extends React.Component {
                     <div className="mobile-button" onClick={this.props.slideToggle}>
                         <img alt="menu" src={mobileButton} />
                     </div>
-                    <SearchBox />
+                    <div className="search-form-container col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <DivRow>
+                        <SearchBox />
+                        <NotifBar />
+                    </DivRow>
+                    </div>
                 </div>
                 <div className="w-nav-overlay" data-wf-ignore=""/>
             </header>

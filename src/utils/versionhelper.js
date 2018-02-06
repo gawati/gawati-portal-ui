@@ -16,7 +16,7 @@ export const versionInfo = () => version;
  */
 export const Version = () =>
 <Aux>
-    <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "color": "red"} }>{
+    <div style={ {"float":"left","textAlign": "left", "minWidth":"100px", "marginLeft":"40px", "color": "red"} }>{
         "current version = " + versionInfo().version
     }
     </div>

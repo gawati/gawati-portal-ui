@@ -229,15 +229,6 @@ body{
 /* Search input */
 
 /* Warning bell */
-    .bell{
-      position:absolute;
-      right:21px;
-      top:-103px;
-    }
-    .homepage .bell{
-      right: 0;
-      top: 85%;
-    }
     .document-warning{
       margin-bottom: 10px;
       font-size: 12px;

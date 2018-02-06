@@ -23,9 +23,6 @@
   }
   
   @media all and (max-width:994px){
-    .bell{
-      margin-left:2px;
-    }
     .left.col-3{
       display:block;
     }
@@ -46,7 +43,6 @@
       max-width: 100%;
     }
     .search-form .div-block.w-clearfix{
-      width:70%;
       margin: 1% auto 0
     }
   
@@ -217,9 +213,6 @@
     }
     .timeline ul li a{
       width:100%;
-    }
-    .bell{
-      top:-219px;
     }
     .document-download .col-9.right ul li a::before{
       display: block;
