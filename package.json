@@ -1,6 +1,7 @@
 {
   "name": "gawati-portal-ui",
   "version": "2.0.13",
+  "gawati-version": "1.0.7",
   "private": true,
   "proxy": "http://localhost",
   "xhomepage": "http://localhost:9000",
@@ -29,6 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "vars": "env | grep npm_package_ | grep -v npm_lifecycle_script"
   }
 }
