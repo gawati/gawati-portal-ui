@@ -1,9 +1,8 @@
-#filterContainer {
-  transition: all .75s ease;
-  right: 200px;
+#filter-container {
+  transition: width .1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#filterContainer.show {
+#filter-container.show {
     display: block;
     right: 0px;
   }

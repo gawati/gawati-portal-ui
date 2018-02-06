@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 
-import NotifBar from './NotifBar';
 import {getRoute} from '../utils/routeshelper';
 
 import ListContentColumn from '../containers/ListContentColumn';
@@ -27,7 +26,6 @@ class ListContentArea extends React.Component{
             <Section>
                 <div className="container-fluid">
                     <DivRow>
-                        <NotifBar />
                         <Switch>
                             <Route path={ getRoute('recent') } component={ListContentColumn} />
                             <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
@@ -37,7 +35,7 @@ class ListContentArea extends React.Component{
                             <Route path={ getRoute('search-doclang') } component={SearchContentColumnLanguage} />
                             <Route path={ getRoute('search-keyword') } component={SearchContentColumnSubject} />
                         </Switch>
-                        <SideBarColumn  match={match} i18n={ i18n } />
+                        <SideBarColumn  match={match} i18n={ i18n } setCollapsible={this.props.setCollapsible}/>
                     </DivRow>
                 </div>
             </Section>

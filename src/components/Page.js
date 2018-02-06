@@ -17,23 +17,53 @@ import {PropsRoute} from '../utils/routeshelper';
 
 class Page extends React.Component {
 
-   render() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false
+        };
+         this.slideToggle = this.slideToggle.bind(this);
+         this.setCollapsible = this.setCollapsible.bind(this);
+    }
+
+
+    slideToggle() {
+        if(this.state.open) {
+            this.setState({open: false});
+            this.element.style.width = '0px';
+        }
+        else {
+            this.setState({open: true});
+            this.element.style.width = '100%';
+        }
+    };
+
+    setCollapsible = (el) => {
+        if (el) {
+            this.element = el;
+            if(!this.state.open) {
+                el.style.width = '0px';
+            }
+        }
+    };
+
+    render() {
         return (
             <Aux>
                 <Switch>
-                    <PropsRoute exact path="/:routeName/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} />
-                    <Redirect exact from="/" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} />
-                    <Redirect exact from="/index.html" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} />
-                    <PropsRoute path="/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} />
-                    <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} />
+                    <PropsRoute exact path="/:routeName/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
+                    <Redirect exact from="/" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
+                    <Redirect exact from="/index.html" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
+                    <PropsRoute path="/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
+                    <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                 </Switch>
                 <Switch>
-                    <PropsRoute path="/_lang/:lang" component={HomeContentArea}  i18n={this.props.i18n} />
-                    <PropsRoute path={ getRoute('content') } component={PageContentArea} i18n={this.props.i18n} />
-                    <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} />
-                    <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} />
-                    <PropsRoute path={ getRoute('themes') } component={ListContentArea} i18n={this.props.i18n} />
-                    <PropsRoute path={ getRoute('filter') } component={ListContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path="/_lang/:lang" component={HomeContentArea}  i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
+                    <PropsRoute path={ getRoute('content') } component={PageContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
+                    <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
+                    <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
+                    <PropsRoute path={ getRoute('themes') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
+                    <PropsRoute path={ getRoute('filter') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
                 {/* <PropsRoute path={ getRoute('search-country') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-year') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-doclang') } component={ListContentArea} i18n={this.props.i18n} />

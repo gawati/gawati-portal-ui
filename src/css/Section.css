@@ -5,5 +5,7 @@
     background-color: #e0ddd7;
     color: #1abc9c;
     width:100%;
+    min-width: 400px;
     float: left;
+    overflow-x: auto;
 }

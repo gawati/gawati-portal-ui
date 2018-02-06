@@ -2,7 +2,7 @@ import React from 'react';
 
 function ContentColumn() {
     return (
-        <div className={ `left col-9` }>
+        <div className={ `left col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
             <div className="search-result">
                 <div className={ `feed w-clearfix` }>
                     <h1>Search results: <span>mixed market</span></h1>

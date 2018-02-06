@@ -115,7 +115,7 @@ class HomeContentColumn extends React.Component {
          * PURE REACT TABS
          */    
         content = 
-        <div className={ `left col-9` }>
+        <div className={ `left col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
             <Tabs>
                 <TabList>
                     <Tab>{ T("latest") }</Tab>
