@@ -245,10 +245,4 @@
     }
   }
   
-  @media all and (max-width: 430px){
-    .search-form{
-      max-width: 75%;
-    } 
-  }
-  
   
