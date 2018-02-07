@@ -5,6 +5,7 @@ import {anBody} from '../utils/akomantoso';
 //import PDF from 'react-pdf-js';
 import { Document } from 'react-pdf/build/entry.webpack';
 import { Page } from 'react-pdf';
+import {rangeMinMax} from '../utils/generalhelper';
 
 /*
 class DocumentPDF extends React.Component { 
@@ -140,26 +141,39 @@ class DocumentPDF extends React.Component {
     }
 
     handlePrevious = () => {
-    this.setState({ pageNumber: this.state.pageNumber - 1 });
+      this.setState({ pageNumber: this.state.pageNumber - 1 });
     }
     
     handleNext = () => {
-    this.setState({ pageNumber: this.state.pageNumber + 1 });
+      this.setState({ pageNumber: this.state.pageNumber + 1 });
     }
 
+    handlePageClick = (p) => {
+      this.setState({ pageNumber: p });
+    }
+    
     renderPagination = (page, pages) => {
-        let previousButton = <li className="previous active" onClick={this.handlePrevious}><a><i className="fa fa-arrow-left"></i> Previous</a></li>;
+        let previousButton = <li className="previous active" onClick={this.handlePrevious}><a><i className="fa fa-arrow-left"></i></a></li>;
         if (page === 1) {
-          previousButton = <li className="previous disabled"><a><i className="fa fa-arrow-left"></i> Previous</a></li>;
+          previousButton = <li className="previous disabled"><a><i className="fa fa-arrow-left"></i></a></li>;
         }
-        let nextButton = <li className="next active" onClick={this.handleNext}><a>Next <i className="fa fa-arrow-right"></i></a></li>;
+        let nextButton = <li className="next active" onClick={this.handleNext}><a><i className="fa fa-arrow-right"></i></a></li>;
         if (page === pages) {
-          nextButton = <li className="next disabled"><a >Next <i className="fa fa-arrow-right"></i></a></li>;
+          nextButton = <li className="next disabled"><a ><i className="fa fa-arrow-right"></i></a></li>;
         }
+        let pagesArr = rangeMinMax(1, pages);
+        let pageLinks = pagesArr.map(
+              (p, index) =>
+                  <li key={index} className={p === page ? 'active' : ''} onClick={() => this.handlePageClick(p)}>
+                      <a>{p}</a>
+                  </li>
+          )
+
         return (
           <nav>
             <ul className="gw-pager">
               {previousButton}
+              {pageLinks}
               {nextButton}
             </ul>
           </nav>
