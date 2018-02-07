@@ -151,7 +151,7 @@ class DocumentPDF extends React.Component {
     handlePageClick = (p) => {
       this.setState({ pageNumber: p });
     }
-    
+
     renderPagination = (page, pages) => {
         let previousButton = <li className="previous active" onClick={this.handlePrevious}><a><i className="fa fa-arrow-left"></i></a></li>;
         if (page === 1) {
@@ -205,6 +205,7 @@ class DocumentPDF extends React.Component {
               <Page
                 key={`page_${this.state.pageNumber}`}
                 pageNumber={this.state.pageNumber}
+                width={document.getElementsByClassName("search-result")[0].offsetWidth * 0.92}
               />
               }
           </Document>
