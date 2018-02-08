@@ -26,3 +26,9 @@ ul.gw-pager {margin: auto; width: 60%; padding-bottom:40px;}
     /* background-color: #fff; */
     border-color: #ddd;
 }
+
+.gw-pager>li {
+    display: inline;
+    float: left;
+    cursor: pointer;
+}
