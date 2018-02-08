@@ -11,7 +11,8 @@ import DocumentLink from '../containers/DocumentLink';
 
 import '../css/Autosuggest.css';
 import '../css/SiteSearchAutoComplete.css';
-
+import FontAwesome from 'react-fontawesome';
+import 'font-awesome/css/font-awesome.css';
 
 /**
  * Implementation that wraps React Auto-Suggest for use in the main search box
@@ -184,8 +185,9 @@ class SiteSearchAutoComplete extends React.Component {
                 getSectionSuggestions={this.getSectionSuggestions}
                 renderInputComponent={this.renderInputComponent}
                 inputProps={inputProps} />
-                <input className={ `submit-button w-button` } data-wait="Please wait..." type="submit"
-                    value={T("GO")}/>
+                <button className={ `submit-button w-button` } data-wait="Please wait..." type="submit">
+                    <FontAwesome name='search' />
+                </button>
           </Aux>
           );
       }
