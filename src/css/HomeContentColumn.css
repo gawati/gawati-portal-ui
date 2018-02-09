@@ -2,15 +2,15 @@
 .more-button {
     display: inline-block;
     padding: 9px 15px;
-    background-color: #483332;
-    color: #fff;
+    background-color: var(--home-wbutton-bg-color);
+    color: var(--home-more-color);
     border: 0;
     line-height: inherit;
     text-decoration: none;
     cursor: pointer;
 }
 .more-button {
-    background-color:#fff;
+    background-color:var(--home-more-bg-color);
     float: right;
 }
 .more-button img{
@@ -35,7 +35,7 @@
       text-align: center;
     }
     .current-tab {
-        background-color: #24a7ff
+        background-color: var(--home-current-tab-bg-color);
     }
     .d-tabs{
       margin-top: 8px;
@@ -43,7 +43,7 @@
     .tab{
       font-family: Montserrat, sans-serif;
       -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+      -moz-osx-font-smoothing: grayscale;
       font-size: 13px;
       position: relative;
       vertical-align: top;
@@ -51,21 +51,21 @@
       padding: 9px 30px;
       text-align: left;
       cursor: pointer;
-      color: #222222;
-      border-right: 1px solid #2abeb8;
-      background-color:#cabcbb;
+      color: var(--home-tab-color);
+      border-right: 1px solid var(--home-tab-border-color);
+      background-color: var(--home-tab-bg-color);
       width:100%;
       display:block;
       text-align:center;
     }
     .tab:hover,
     .tab.active {
-        background-color:#A9A9A9;
-        color:#fff!important;
+        background-color: var(--home-active-tab-bg-color);
+        color:var(--home-active-tab-color);
         text-decoration:none!important;
     }
     .search-result .tab-menu{
-      border-bottom: 1px solid #24a7ff;
+      border-bottom: 1px solid var(--home-tab-menu-border-color);
       margin-top: 21px;
     }
   /* tabs */

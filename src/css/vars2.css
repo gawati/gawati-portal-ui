@@ -1,18 +1,18 @@
 :root {
-  
+    
   /* Overrides */
   --overrides-breadcrumb-color: rgba(51, 51, 51, .67);
   --overrides-p-color: #74737a;
   --overrides-a-color: #a9a9a9;
   --overrides-a-focus-color: #fff;
-  --overrides-h-color: #74737a; /* SIG */
+  --overrides-h-color: white; /* SIG */
 
   /* app-custom */
     /* content column - left column */
       --content-grey-rule-bg-color: #c7c7c7;
       --content-a-color: #3898EC;
       --content-text-block-color: #74737a;
-      --content-button-bg-color: #483332;
+      --content-button-bg-color: #1ed2b9;
       --content-button-color: #fff;
       --content-tab-pane-bg-color: #fff;
       --content-search-result-bg-color: #fff;
@@ -33,21 +33,10 @@
   /* Autosuggest */
   --autosuggest-color: #333333;
 
-  /* Footer */
-  --footer-bg-color: #3f474d;
-  --footer-color: #dddada;
-  --footer-bg-color2: #171b1d;
-  --footer-a-color: #dddada;
-  --footer-submit-bg: #3898ec;
-  --footer-submit-color: #fff;
-  --footer-social-bg-color: #171b1d;
-  --footer-social-color: #7e7979;
-  --footer-p-color: #dddada;
-
   /* HomeContentColumn */
-  --home-wbutton-bg-color: #483332;
+  --home-wbutton-bg-color: #1ed2b9;
   --home-more-color: #fff;
-  --home-more-bg-color: #fff;
+  --home-more-bg-color: #1ed2b9;
   --home-current-tab-bg-color: #24a7ff;
   --home-tab-color: #222222;
   --home-tab-border-color: #2abeb8;
@@ -55,6 +44,17 @@
   --home-active-tab-bg-color: #A9A9A9;
   --home-active-tab-color: #fff!important;
   --home-tab-menu-border-color: #24a7ff;
+
+  /* Footer */
+  --footer-bg-color: #888d90;
+  --footer-color: #dddada;
+  --footer-bg-color2: #171b1d;
+  --footer-a-color: #dddada;
+  --footer-submit-bg: #1ed2b9;
+  --footer-submit-color: #fff;
+  --footer-social-bg-color: #04063f;
+  --footer-social-color: #7e7979;
+  --footer-p-color: #dddada;
 
   /* PageContentColumn */
   --pagecontentcolumn-bg-color: #fff;
@@ -71,9 +71,9 @@
   --div-block-10-bg-color: #1abc9c;
 
   /* Paginator */
-  --paginator-li-bg-color: #337ab7;
-  --paginator-li-border-color: #337ab7;
-  --paginator-li-color: #337ab7;
+  --paginator-li-bg-color: #1ed2b9;
+  --paginator-li-border-color: #1ed2b9;
+  --paginator-li-color: #20577d;
   --paginator-li-disabled-color: #777;
   --paginator-li-disabled-border-color: #ddd;
 
@@ -85,7 +85,7 @@
   --recentdocs-bg-color: white;
 
   /* Section */
-  --section-bg-color: #e0ddd7; /* SIG */
+  --section-bg-color: #20577d; /* SIG */
   --section-color: #1abc9c;
 
   /* Sidebar */
@@ -103,12 +103,12 @@
   --sitesearch-loading-bg-color: #ffffff;
 
   /* TopBar */
-  --topbar-bg: #fff; /* SIG */ 
+  --topbar-bg: #20577d; /* SIG */ 
   --topbar-submit-button-bg-color: #1abc9c;
   --topbar-box-shadow:  0 1px 0 0 rgba(0, 0, 0, .06);
 
-  --languageswitcher-highlight-bg-color: #e0ddd7;
-  --languageswitcher-bg-color: #e0ddd7;
+  --languageswitcher-highlight-bg-color: #04063f;
+  --languageswitcher-bg-color: #04063f;
   --languageswitcher-color: #a9a9a9;
  
 }
