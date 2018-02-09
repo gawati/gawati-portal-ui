@@ -9,6 +9,7 @@ import mainLogo from '../images/logo.png';
 import mobileButton from '../images/th-menu.png';
 import NotifBar from './NotifBar';
 import DivRow from './DivRow';
+import '../css/TopBar.css';
 
 
 const Logo = () =>
