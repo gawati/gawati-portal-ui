@@ -1,6 +1,6 @@
 .home-active-tab > a {
-    background-color: #A9A9A9;
-    color: #fff!important;
+    background-color: var(--reacttabs-bg-color);
+    color: var(--reacttabs-color);
     text-decoration: none!important;
 }
 

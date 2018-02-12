@@ -11,6 +11,7 @@ import ThemeOfTheMonth from '../containers/ThemeOfTheMonth';
 import RecentDocs from '../containers/RecentDocs';
 
 import '../css/react-tabs.css';
+import '../css/HomeContentColumn.css';
 
 class HomeContentColumn extends React.Component {
     
