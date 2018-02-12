@@ -7,7 +7,7 @@ import 'core-js/fn/array/includes';
 import 'core-js/fn/number/is-nan';
 import 'core-js/fn/string/starts-with';
 
-/ * IE support for CSS var() */
+// eslint-disable-next-line
     let cssVarPoly = {
         init: function() {
             // first lets see if the browser supports CSS variables
@@ -112,7 +112,8 @@ import 'core-js/fn/string/starts-with';
                 let matches = curCSS.match(getterRegex2);
                 if (matches) {
                     // console.log("matches",matches);
-                    matches.forEach(function (match) {
+                    // eslint-disable-next-line
+                    matches.forEach( (match) => {
                         // console.log(match.match(/var\(.+,\s*(.+)\)/))
                         // find the fallback within the getter
                         curCSS = curCSS.replace(match, match.match(/var\(.+,\s*(.+)\)/)[1]);
@@ -125,6 +126,7 @@ import 'core-js/fn/string/starts-with';
             // console.log(curCSS);
             return curCSS;
         },
+
 
         // determine the css variable name value pair and track the latest
         ratifySetters: function(varList) {
