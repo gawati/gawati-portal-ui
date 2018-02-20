@@ -565,6 +565,10 @@ body{
     vertical-align: top;
   }
 
+  .document-download li a {
+    cursor: pointer;
+  }
+
   /* clud tabs */
     .text-span-14 {
       font-size: 12px;
@@ -712,10 +716,10 @@ body{
     background: url(../images/download.png) no-repeat;
     background-size: 100%;
   }
-  .document-download .col-9.right ul li:nth-child(5) a::before{
+  /*.document-download .col-9.right ul li:nth-child(5) a::before{
     background: url(../images/flow-merge.png) no-repeat;
     background-size: 100%;
-  }
+  }*/
   .part-of::before{
     background: url(../images/chevron-right.png) no-repeat;
     background-size: 100%;

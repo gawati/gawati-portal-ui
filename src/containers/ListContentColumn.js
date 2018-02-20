@@ -102,7 +102,7 @@ class ListContentColumn extends React.Component {
         } else {        
             let pagination = this.generatePagination() ;
             let content = 
-                <DivListing>
+                <DivListing lang={this.props.match.params.lang}>
                         <h1 className="listingHeading">Recent Documents</h1>
                         <DivFeed>
                             <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage} />

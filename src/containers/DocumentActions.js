@@ -5,6 +5,9 @@ import { documentServer } from '../constants';
 import { substringBeforeLastMatch } from '../utils/stringhelper';
 import { apiUrl } from '../api';
 import {T} from '../utils/i18nhelper';
+import FacebookProvider, { Share } from 'react-facebook';
+import FontAwesome from 'react-fontawesome';
+import 'font-awesome/css/font-awesome.css';
 
 const DocumentPdfLink = ({doc, type}) => {
     let body = anBody(doc, type);
@@ -24,7 +27,6 @@ const DocumentXmlLink = ({doc, type}) => {
         <a href={ url } title="XML download" download="document.xml" >XML</a>
     );
 }
-
 
 const DocumentActions = ({doc, type}) => 
         <div className="document-download">
@@ -46,7 +48,15 @@ const DocumentActions = ({doc, type}) =>
                         <DocumentPdfLink doc={doc} type={type} />
                     </li>
                     <li>
-                        <a href="/">{T("Share")}</a>
+                        <FacebookProvider appId="388190241626822">
+                            <Share
+                                href="http://www.facebook.com/"
+                                layout="button_count"
+                                size="small"
+                                >
+                                <a><FontAwesome name='fab fa-facebook-f' /><span class="fb-share-text">&nbsp;Share</span></a>
+                            </Share>
+                        </FacebookProvider>
                     </li>
                 </ul>
             </div>
