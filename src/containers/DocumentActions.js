@@ -5,7 +5,7 @@ import { documentServer } from '../constants';
 import { substringBeforeLastMatch } from '../utils/stringhelper';
 import { apiUrl } from '../api';
 import {T} from '../utils/i18nhelper';
-import FacebookProvider, { Share } from 'react-facebook';
+import FacebookProvider, { Like } from 'react-facebook';
 import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';
 
@@ -49,13 +49,7 @@ const DocumentActions = ({doc, type}) =>
                     </li>
                     <li>
                         <FacebookProvider appId="388190241626822">
-                            <Share
-                                href="http://www.facebook.com/"
-                                layout="button_count"
-                                size="small"
-                                >
-                                <a><FontAwesome name='fab fa-facebook-f' /><span class="fb-share-text">&nbsp;Share</span></a>
-                            </Share>
+                            <Like href={window.location.href.replace('@', '&#064;')} colorScheme="dark" showFaces share layout="button_count"/>
                         </FacebookProvider>
                     </li>
                 </ul>
