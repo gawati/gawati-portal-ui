@@ -6,8 +6,7 @@ import { substringBeforeLastMatch } from '../utils/stringhelper';
 import { apiUrl } from '../api';
 import {T} from '../utils/i18nhelper';
 import FacebookProvider, { Like } from 'react-facebook';
-import FontAwesome from 'react-fontawesome';
-import 'font-awesome/css/font-awesome.css';
+import socialApps from '../configs/social.json';
 
 const DocumentPdfLink = ({doc, type}) => {
     let body = anBody(doc, type);
@@ -48,7 +47,7 @@ const DocumentActions = ({doc, type}) =>
                         <DocumentPdfLink doc={doc} type={type} />
                     </li>
                     <li>
-                        <FacebookProvider appId="388190241626822">
+                        <FacebookProvider appId={socialApps.fb.appId}>
                             <Like href={window.location.href.replace('@', '&#064;')} colorScheme="dark" showFaces share layout="button_count"/>
                         </FacebookProvider>
                     </li>

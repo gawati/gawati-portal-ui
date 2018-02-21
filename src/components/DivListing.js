@@ -1,5 +1,6 @@
 import React from 'react';
 import FacebookProvider, { Comments } from 'react-facebook';
+import socialApps from '../configs/social.json';
 
 const langMap = {
     en: "en_US",
@@ -34,7 +35,7 @@ class DivListing extends React.Component {
                 {this.props.children}
                 {
                     lang? (
-                    <FacebookProvider appId="388190241626822" language={lang} >
+                    <FacebookProvider appId={socialApps.fb.appId} language={lang} >
                         <Comments href={window.location.href.replace('@', '&#064;')} width="100%" />
                     </FacebookProvider>
                     ) : (<span></span>

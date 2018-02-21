@@ -5,7 +5,7 @@ import { defaultLang } from '../utils/generalhelper';
 import {T} from '../utils/i18nhelper';
 
 import imgFace from '../images/face.svg';
-import imgLinkedin from '../images/linkedin.svg';
+// import imgLinkedin from '../images/linkedin.svg';
 import imgTwitter from '../images/twitter.svg';
 import imgInstagram from '../images/instagram.svg';
 import '../css/Footer.css';
@@ -79,13 +79,28 @@ function Footer({match, i18n}) {
         </div>
         <div className="social-icons">
             <div className="social-link-group">
-                <a className="social-icon-link" href="https://www.facebook.com/AfricanInnovationFoundation/" target="_blank">
+                <a
+                    className="social-icon-link"
+                    href="https://www.facebook.com/AfricanInnovationFoundation/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    >
                     <img alt="facebook" src={imgFace} width="25"/>
                 </a>
-                <a className="social-icon-link" href="https://www.instagram.com/africaninnovation/" target="_blank">
+                <a
+                    className="social-icon-link"
+                    href="https://www.instagram.com/africaninnovation/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >
                     <img alt="instagram" src={imgInstagram} width="25"/>
                 </a>
-                <a className="social-icon-link" href="https://twitter.com/afrinnovfdn?lang=en" target="_blank">
+                <a
+                    className="social-icon-link"
+                    href="https://twitter.com/afrinnovfdn?lang=en"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    >
                     <img alt="twitter" src={imgTwitter} width="25"/>
                 </a>
                 {/*<a className="social-icon-link" href="/">
