@@ -79,18 +79,18 @@ function Footer({match, i18n}) {
         </div>
         <div className="social-icons">
             <div className="social-link-group">
-                <a className="social-icon-link" href="https://www.facebook.com/africanlawlibrary.net">
+                <a className="social-icon-link" href="https://www.facebook.com/AfricanInnovationFoundation/" target="_blank">
                     <img alt="facebook" src={imgFace} width="25"/>
                 </a>
-                <a className="social-icon-link" href="/">
+                <a className="social-icon-link" href="https://www.instagram.com/africaninnovation/" target="_blank">
                     <img alt="instagram" src={imgInstagram} width="25"/>
                 </a>
-                <a className="social-icon-link" href="https://twitter.com/AfricanLawLib">
+                <a className="social-icon-link" href="https://twitter.com/afrinnovfdn?lang=en" target="_blank">
                     <img alt="twitter" src={imgTwitter} width="25"/>
                 </a>
-                <a className="social-icon-link" href="/">
+                {/*<a className="social-icon-link" href="/">
                     <img alt="linkedin" src={imgLinkedin} width="25"/>
-                </a>
+                </a>*/}
             </div>
             <h5>{T("The African Law Library")}</h5>
         </div>
