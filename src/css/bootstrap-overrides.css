@@ -5,7 +5,7 @@ body {
   }
 
 p {
-    color:#74737a;
+    color: var(--overrides-p-color);
     font-family: Montserrat, sans-serif;
     font-size: 13px;
   }
@@ -18,17 +18,17 @@ dl {
 }
 
 a {
-    color:#a9a9a9;
+    color: var(--overrides-a-color);
 }
   
 a:focus, a:hover {
-    color: #fff;
+    color: var(--overrides-a-focus-color);
 }
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: Georgia, Times, 'Times New Roman', serif;
-  color: #74737a;
+  color: var(--overrides-h-color);
 }
 
 h1, .h1 {
@@ -84,7 +84,7 @@ h1, .h1 {
 .breadcrumb {
     font-family: Montserrat, sans-serif;
     font-size:12px;
-    color:rgba(51, 51, 51, .67);
+    color:var(--overrides-breadcrumb-color);
     padding: 0.75rem 1rem 0;
   }
   

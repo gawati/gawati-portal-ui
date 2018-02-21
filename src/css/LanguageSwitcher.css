@@ -8,12 +8,16 @@
     /*optional*/
     font-family:arial,sans-serif;  /*input has OS specific font-family*/
     /* color:#069; */
-    color: #a9a9a9;
+    color: var(--languageswitcher-color);
     /*text-decoration:underline;*/
     cursor:pointer;
     text-transform: uppercase; 
 }
 
 .ui-lang-highlight {
-    background-color: #e0ddd7;
+    background-color: var(--languageswitcher-highlight-bg-color);
+}
+
+.ui-lang-item:hover {
+    background-color: var(--languageswitcher-bg-color)
 }

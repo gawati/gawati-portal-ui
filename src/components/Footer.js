@@ -8,6 +8,7 @@ import imgFace from '../images/face.svg';
 import imgLinkedin from '../images/linkedin.svg';
 import imgTwitter from '../images/twitter.svg';
 import imgInstagram from '../images/instagram.svg';
+import '../css/Footer.css';
 
 const ContentLink = ({lang, page, children}) =>
     <NavLink to={ `/content/_lang/${lang}/_page/${page}` }>{children}</NavLink>;
