@@ -12,7 +12,7 @@
       --content-grey-rule-bg-color: #c7c7c7;
       --content-a-color: #3898EC;
       --content-text-block-color: #74737a;
-      --content-button-bg-color: #1ed2b9;
+      --content-button-bg-color: rgb(250, 162, 28);
       --content-button-color: #fff;
       --content-tab-pane-bg-color: #fff;
       --content-search-result-bg-color: #fff;
@@ -34,9 +34,9 @@
   --autosuggest-color: #333333;
 
   /* HomeContentColumn */
-  --home-wbutton-bg-color: #1ed2b9;
+  --home-wbutton-bg-color: rgb(250, 162, 28);
   --home-more-color: #fff;
-  --home-more-bg-color: #1ed2b9;
+  --home-more-bg-color: rgb(250, 162, 28);
   --home-current-tab-bg-color: #24a7ff;
   --home-tab-color: #222222;
   --home-tab-border-color: #2abeb8;
@@ -46,14 +46,15 @@
   --home-tab-menu-border-color: #24a7ff;
 
   /* Footer */
-  --footer-bg-color: #888d90;
+  --footer-bg-color: rgb(35, 35, 35);
   --footer-color: #dddada;
   --footer-bg-color2: #171b1d;
   --footer-a-color: #dddada;
-  --footer-submit-bg: #1ed2b9;
+  --footer-submit-bg: rgb(250, 162, 28);
   --footer-submit-color: #fff;
-  --footer-social-bg-color: #04063f;
-  --footer-social-color: #7e7979;
+  --footer-social-bg-color: white;
+  --footer-social-color: #010101;
+  --social-img-bg: #010101;
   --footer-p-color: #dddada;
 
   /* PageContentColumn */
@@ -71,8 +72,8 @@
   --div-block-10-bg-color: #1abc9c;
 
   /* Paginator */
-  --paginator-li-bg-color: #1ed2b9;
-  --paginator-li-border-color: #1ed2b9;
+  --paginator-li-bg-color: rgb(250, 162, 28);
+  --paginator-li-border-color: rgb(250, 162, 28);
   --paginator-li-color: #20577d;
   --paginator-li-disabled-color: #777;
   --paginator-li-disabled-border-color: #ddd;
@@ -85,8 +86,8 @@
   --recentdocs-bg-color: white;
 
   /* Section */
-  --section-bg-color: #20577d; /* SIG */
-  --section-color: #1abc9c;
+  --section-bg-color: #86201e; /* SIG */
+  --section-color: rgb(250, 162, 28);
 
   /* Sidebar */
   --sidebar-footer-color: #aaa;
@@ -103,12 +104,14 @@
   --sitesearch-loading-bg-color: #ffffff;
 
   /* TopBar */
-  --topbar-bg: #20577d; /* SIG */ 
-  --topbar-submit-button-bg-color: #1abc9c;
+  --topbar-bg: white;/* linear-gradient(rgb(45, 45, 45) 0%, rgb(43, 43, 43) 30%, rgb(41, 41, 41) 51%, rgb(39, 39, 39) 75%, rgb(37, 37, 37) 100%); */ /* SIG */ 
+  --topbar-submit-button-bg-color: rgb(250, 162, 28);
   --topbar-box-shadow:  0 1px 0 0 rgba(0, 0, 0, .06);
-
-  --languageswitcher-highlight-bg-color: #04063f;
-  --languageswitcher-bg-color: #04063f;
+  --logo-img: url("../images/logo-ke.png");
+  --logo-color: #231f20;
+  --logo-color2: #90292a;
+  --languageswitcher-highlight-bg-color: rgb(51, 51, 51);
+  --languageswitcher-bg-color: rgb(51, 51, 51);
   --languageswitcher-color: #a9a9a9;
  
 }
