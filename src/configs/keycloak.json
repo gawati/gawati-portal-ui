@@ -1,0 +1,9 @@
+{
+  "realm": "master",
+  "url": "http://13.127.17.37:8080/auth",
+  "ssl-required": "none",
+  "clientId": "auth",
+  "public-client": true,
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}
