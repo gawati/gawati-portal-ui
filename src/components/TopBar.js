@@ -5,7 +5,6 @@ import {T} from '../utils/i18nhelper';
 import SiteSearchAutoComplete from '../containers/SiteSearchAutoComplete';
 import LanguageSwitcher from '../containers/LanguageSwitcher';
 
-import mainLogo from '../images/logo.png';
 import mobileButton from '../images/th-menu.png';
 import NotifBar from './NotifBar';
 import DivRow from './DivRow';
@@ -14,7 +13,7 @@ import '../css/TopBar.css';
 
 const Logo = () =>
     <NavLink className="nav-brand" to="/">
-        <img alt="AIF" src={mainLogo} width="75"/>
+        <div className="logo-img"/>
     </NavLink>
     ;
 
@@ -28,11 +27,11 @@ const SiteHeading = () =>
 const TopBarUpper = ({i18n, match}) => {
         return (
             <div className="col-12">
-                <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "paddingBottom":"20px", "color": "red"} }>{
+                <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "color": "red"} }>{
                     T("version") + " = " + versionInfo().version
                 }
                 </div>
-                <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"20px"} }>
+                <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"10px"} }>
                 <LanguageSwitcher i18n={i18n} match={match} />
                 </div>
             </div>
