@@ -259,6 +259,10 @@ body{
   }
 /* left column - main content column */
 
+  .document-download li a {
+    cursor: pointer;
+  }
+
   /* clud tabs */
     .text-span-14 {
       font-size: 12px;
@@ -387,7 +391,6 @@ body{
       vertical-align: top;
       margin-right:5px;
     }
-
     .document-download .col-9.right ul li:first-child a::before{
       background: url(../images/user-add-outline.png) no-repeat;
       background-size: 100%;
@@ -447,4 +450,7 @@ body{
     }
   /* icons */
 
-
+/* Social */
+  .fb-comments iframe {
+    padding: 20px;
+  }
