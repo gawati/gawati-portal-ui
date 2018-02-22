@@ -90,15 +90,15 @@ class TopBar extends React.Component {
     render() {
         return (
             <header className="navigation-bar">
-                <div class="row col-12">
+                <div className="row col-12">
                 <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
-                <div class="login col-2">{localStorage.getItem('authenticated')==='true' ? <div onClick={ this.logout}>Logout</div> : <div onClick={ this.login}>Login</div> }</div>
+                <div className="login col-2">{localStorage.getItem('authenticated')==='true' ? <div onClick={ this.logout}>Logout</div> : <div onClick={ this.login}>Login</div> }</div>
                 </div>
                 <div className="container-fluid">
                     <Logo />
                     <SiteHeading />
                     <div className="mobile-button" onClick={this.props.slideToggle}>
-                        <img alt="menu" src={mobileButton} />
+                        <img alt="menu" src={mobileButton}  />
                     </div>
                     <div className="search-form-container col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <DivRow>
