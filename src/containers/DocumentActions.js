@@ -5,6 +5,8 @@ import { documentServer } from '../constants';
 import { substringBeforeLastMatch } from '../utils/stringhelper';
 import { apiUrl } from '../api';
 import {T} from '../utils/i18nhelper';
+import FacebookProvider, { Like } from 'react-facebook';
+import socialApps from '../configs/social.json';
 
 const DocumentPdfLink = ({doc, type}) => {
     let body = anBody(doc, type);
@@ -24,7 +26,6 @@ const DocumentXmlLink = ({doc, type}) => {
         <a href={ url } title="XML download" download="document.xml" >XML</a>
     );
 }
-
 
 const DocumentActions = ({doc, type}) => 
         <div className="document-download">
@@ -46,7 +47,9 @@ const DocumentActions = ({doc, type}) =>
                         <DocumentPdfLink doc={doc} type={type} />
                     </li>
                     <li>
-                        <a href="/">{T("Share")}</a>
+                        <FacebookProvider appId={socialApps.fb.appId}>
+                            <Like href={window.location.href.replace('@', '&#064;')} colorScheme="dark" showFaces share layout="button_count"/>
+                        </FacebookProvider>
                     </li>
                 </ul>
             </div>

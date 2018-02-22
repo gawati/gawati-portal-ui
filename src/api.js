@@ -2,29 +2,28 @@ import querystring from 'querystring';
 import {dataProxyServer} from './constants';
 
 const GAWATI_APIS = {
-    base_iri : '/gw/service',
     apis : {
-        'content': '/content/',
-        'doc': '/doc/',
-        'doc-xml': '/doc/xml/',
-        'filter': '/search/filter/',
-        'keyword': '/keyword/',
-        'keyword-value': '/keywordValue/',
-        'recent-summary' : '/recent/expressions/summary/',
-        'search-by-country' : '/search/country/',
-        'search-by-language' : '/search/language/',
-        'search-by-subject' : '/search/keyword/',
-        'search-by-year': '/search/year/',
-        'search-grouped': '/searchac/' ,
-        'short-filter-cache': '/short-filter-cache/',
-        'smart-filter-cache': '/smart-filter-cache/',
-        'themes-summary' : '/themes/expressions/summary/'
+        'content': '/gwp/content',
+        'doc': '/gwd/doc/json',
+        'doc-xml': '/gwd/doc',
+        'filter': '/gwd/search/filter/json',
+        'keyword': '/gwp/keyword',
+        'keyword-value': '/gwp/keywordValue',
+        'recent-summary' : '/gwd/recent/expressions/summary/json',
+        'search-by-country' : '/gwd/search/countries/summary/json',
+        'search-by-language' : '/gwd/search/languages/summary/json',
+        'search-by-subject' : '/gwd/search/keywords/summary/json',
+        'search-by-year': '/gwd/search/years/summary/json',
+        'search-grouped': '/gwd/searchAC/json' ,
+        'short-filter-cache': '/gwp/short-filter-cache',
+        'smart-filter-cache': '/gwp/smart-filter-cache',
+        'themes-summary' : '/gwd/themes/expressions/summary/json'
     }
 };
 
 export function apiUrl(apiName) {
     if (GAWATI_APIS.apis.hasOwnProperty(apiName)) {
-        return dataProxyServer() + GAWATI_APIS.base_iri + GAWATI_APIS.apis[apiName] ;
+        return dataProxyServer() +  GAWATI_APIS.apis[apiName] ;
     } else {
         console.log(" Unknown API call ", apiName);
         return false;

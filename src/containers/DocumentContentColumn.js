@@ -158,7 +158,7 @@ class DocumentContentColumn extends React.Component {
         } else {        
             console.log("DOC TYPES ", this.props.match);
             let content = 
-            <DivListing>
+            <DivListing lang={this.props.match.params.lang}>
                 <DocumentBreadcrumb doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
                 <div className={ `feed w-clearfix`}>
                     <DocumentTitle doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />

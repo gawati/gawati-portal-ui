@@ -145,7 +145,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     renderListing = () => {
         let pagination = this.generatePagination() ;
         let content = 
-            <DivListing>
+            <DivListing lang={this.props.match.params.lang}>
                 <h1 className="listingHeading">{T("Document Results")}</h1>
                 <DivFeed>
                     <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />

@@ -1,7 +1,7 @@
 {
   "name": "gawati-portal-ui",
-  "version": "2.0.15",
-  "gawati-version": "1.0.8",
+  "version": "2.0.16",
+  "gawati-version": "1.0.9",
   "private": true,
   "proxy": "http://localhost",
   "xhomepage": "http://localhost:9000",
@@ -19,6 +19,7 @@
     "react": "16.2.0",
     "react-autosuggest": "9.3.2",
     "react-dom": "16.2.0",
+    "react-facebook": "^4.2.1",
     "react-fontawesome": "^1.6.1",
     "react-i18next": "^7.3.0",
     "react-pdf": "^2.4.2",
