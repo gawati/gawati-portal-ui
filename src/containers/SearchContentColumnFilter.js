@@ -46,10 +46,19 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             'filter', 
             paramsObj
         );
+        // cancel the previous request
+        if (typeof this.source != typeof undefined) {
+            this.source.cancel('Operation canceled due to new request.')
+        }
+
+        // save the new request for cancellation
+        this.source = axios.CancelToken.source();
+
         axios.request({
             method: "GET",
             url: apiRecent,
-            debounce: 600
+            debounce: 600,
+            cancelToken:this.source.token
         })
             .then(response => {
                 const items = response.data.exprAbstracts;
