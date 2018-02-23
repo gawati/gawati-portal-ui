@@ -7,6 +7,12 @@ import Page from './components/Page';
 
 class App extends Component {
 
+  componentDidMount() {
+    const path = './css/themes/' + process.env.REACT_APP_THEME + '/vars.css';
+    require(`${path}`);
+    console.log(process.env);
+  }
+
   render() {
     //console.log("process.env", process.env);
     return (

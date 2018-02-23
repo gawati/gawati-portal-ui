@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import {NavLink} from 'react-router-dom';
 
 // !+ERROR_DEPRECATED_USE(AH, 2017-12-15) This createClass should not be used,
 // it is from React 15, and is incompatible with React 16 since using it requires 
