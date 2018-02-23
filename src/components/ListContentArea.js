@@ -6,10 +6,6 @@ import {getRoute} from '../utils/routeshelper';
 
 import ListContentColumn from '../containers/ListContentColumn';
 import ListThemeContentColumn from '../containers/ListThemeContentColumn';
-import SearchContentColumnYear from '../containers/SearchContentColumnYear';
-import SearchContentColumnCountry from '../containers/SearchContentColumnCountry';
-import SearchContentColumnLanguage from '../containers/SearchContentColumnLanguage';
-import SearchContentColumnSubject from '../containers/SearchContentColumnSubject';
 import SearchContentColumnFilter from '../containers/SearchContentColumnFilter';
 
 
@@ -30,10 +26,6 @@ class ListContentArea extends React.Component{
                             <Route path={ getRoute('recent') } component={ListContentColumn} />
                             <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
                             <Route path={ getRoute('filter') } component={SearchContentColumnFilter} />
-                            <Route path={ getRoute('search-country') } component={SearchContentColumnCountry} />
-                            <Route path={ getRoute('search-year') } component={SearchContentColumnYear} />
-                            <Route path={ getRoute('search-doclang') } component={SearchContentColumnLanguage} />
-                            <Route path={ getRoute('search-keyword') } component={SearchContentColumnSubject} />
                         </Switch>
                         <SideBarColumn  match={match} i18n={ i18n } setCollapsible={this.props.setCollapsible}/>
                     </DivRow>
