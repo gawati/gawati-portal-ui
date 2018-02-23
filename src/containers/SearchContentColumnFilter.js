@@ -36,38 +36,48 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     convertRoutePropToXQuery = (paramQ) => 
         xQueryFilterBuilder(convertEncodedStringToObject(paramQ)).join(''); 
 
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
     getSearch(paramsObj) {
         console.log( " GET SEARCH ", paramsObj);
         let apiRecent = apiGetCall(
             'filter', 
             paramsObj
         );
-        axios.get(apiRecent)
+        axios.request({
+            method: "GET",
+            url: apiRecent,
+            debounce: 600
+        })
             .then(response => {
                 const items = response.data.exprAbstracts;
-                if (parseInt(items.records, 10) === 0) {
-                    this.setState({
-                        loading: false,
-                        from:0,
-                        count:0,
-                        to:0,
-                        records: parseInt(items.records, 10),
-                        q: paramsObj.q
-                    })
-                } else {
-                    console.log(" ITEMS ", items);
-                    this.setState({
-                        loading: false,
-                        from: parseInt(items.itemsfrom, 10),
-                        count: parseInt(items.pagesize, 10),
-                        to: parseInt(items.itemsfrom, 10) + parseInt(items.pagesize, 10) - 1,
-                        records: parseInt(items.records, 10),
-                        q: JSON.stringify(paramsObj.q),
-                        totalPages: parseInt(items.totalpages, 10),
-                        orderedBy: items.orderedby,
-                        currentPage: parseInt(items.currentpage, 10),
-                        listing: coerceIntoArray(items.exprAbstract)
-                    });
+                if (this._mounted) {
+                    if (parseInt(items.records, 10) === 0) {
+                        this.setState({
+                            loading: false,
+                            from:0,
+                            count:0,
+                            to:0,
+                            records: parseInt(items.records, 10),
+                            q: paramsObj.q
+                        })
+                    } else {
+                        console.log(" ITEMS ", items);
+                        this.setState({
+                            loading: false,
+                            from: parseInt(items.itemsfrom, 10),
+                            count: parseInt(items.pagesize, 10),
+                            to: parseInt(items.itemsfrom, 10) + parseInt(items.pagesize, 10) - 1,
+                            records: parseInt(items.records, 10),
+                            q: JSON.stringify(paramsObj.q),
+                            totalPages: parseInt(items.totalpages, 10),
+                            orderedBy: items.orderedby,
+                            currentPage: parseInt(items.currentpage, 10),
+                            listing: coerceIntoArray(items.exprAbstract)
+                        });
+                    }
                 }
 
             })
@@ -111,6 +121,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     }
 
     componentDidMount() {
+        this._mounted = true;
         this.getSearch({
             q: this.state.q,
             count: this.state.count,
