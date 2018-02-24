@@ -97,11 +97,13 @@ class TopBar extends React.Component {
         kc.init().success(function(authenticated) {
             if(authenticated){
                 localStorage.setItem('authenticated', 'true');
-                kc.loadUserProfile().success(function(profile) {
-			        localStorage.setItem('username', profile.username);
-			    }).error(function() {
-			        localStorage.setItem('username', "guest");
-			    });
+                if(localStorage.getItem('username')=="guest"){
+                	kc.loadUserProfile().success(function(profile) {
+				        localStorage.setItem('username', profile.username);
+				    }).error(function() {
+				        localStorage.setItem('username', "guest");
+				    });
+                }
                 window.location.reload();
             }else{
                 localStorage.setItem('authenticated', 'false');
