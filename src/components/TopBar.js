@@ -31,7 +31,7 @@ const SiteHeading = () =>
 const TopBarUpper = ({i18n, match}) => {
         return (
             <div className="col-12">
-                <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "color": "red"} }>{
+                <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "paddingBottom":"20px", "color": "red"} }>{
                     T("version") + " = " + versionInfo().version
                 }
                 </div>
@@ -58,8 +58,29 @@ class TopBar extends React.Component {
         kc.login();
     }
 
+    myFunction = ()=>{
+	    document.getElementById("myDropdown").classList.toggle("show");
+	}
+
+	// window.onclick = (event) => {
+	//   if (!event.target.matches('.dropbtn')) {
+
+	//     var dropdowns = document.getElementsByClassName("dropdown-content");
+	//     var i;
+	//     for (i = 0; i < dropdowns.length; i++) {
+	//       var openDropdown = dropdowns[i];
+	//       if (openDropdown.classList.contains('show')) {
+	//         openDropdown.classList.remove('show');
+	//       }
+	//     }
+	//   }
+	// }
     logout = () => {
         kc.logout();
+    }
+
+    register = () => {
+        kc.register();
     }
 
     getParameterByName = (variable, url)=>{
@@ -76,6 +97,11 @@ class TopBar extends React.Component {
         kc.init().success(function(authenticated) {
             if(authenticated){
                 localStorage.setItem('authenticated', 'true');
+                kc.loadUserProfile().success(function(profile) {
+			        localStorage.setItem('username', profile.username);
+			    }).error(function() {
+			        localStorage.setItem('username', "guest");
+			    });
                 window.location.reload();
             }else{
                 localStorage.setItem('authenticated', 'false');
@@ -92,7 +118,6 @@ class TopBar extends React.Component {
             <header className="navigation-bar">
                 <div className="row col-12">
                 <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
-                <div className="login col-2">{localStorage.getItem('authenticated')==='true' ? <div onClick={ this.logout}>Logout</div> : <div onClick={ this.login}>Login</div> }</div>
                 </div>
                 <div className="container-fluid">
                     <Logo />
@@ -104,6 +129,7 @@ class TopBar extends React.Component {
                     <DivRow>
                         <SearchBox />
                         <NotifBar />
+                        <div class="login col-3">{localStorage.getItem('authenticated')==='true' ? <div class="dropdown"><div onClick={this.myFunction} class="dropbtn"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></div><div id="myDropdown" class="dropdown-content"><a href="javascript:void()" className="loggedIn">Logged in as <b>{localStorage.getItem('username')}</b></a><a href="javascript:void()" onClick={this.logout}>Sign out</a></div></div> : <div className="inline-elements"><div className="click" onClick={ this.login}>Sign in </div><span className="or">&nbsp;&nbsp;or&nbsp;&nbsp;</span><div className="click" onClick={ this.register}> Sign up</div></div> }</div>
                     </DivRow>
                     </div>
                 </div>
