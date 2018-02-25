@@ -13,7 +13,7 @@ margin-left:14px;
 margin-left:0;
 }
 
-.nav-brand img{
+.nav-brand .logo-img{
 width:90px;
 }
 
@@ -30,6 +30,7 @@ vertical-align:top;
 
 .logotype h1{
 font-size:1.6rem;
+color: var(--logo-color);
 }
 
 .logotype h2{
@@ -37,11 +38,22 @@ margin-top: -12px;
 margin-bottom: 0px;
 font-size:1.4rem;
 letter-spacing: 0.07rem;
+color: var(--logo-color2);
+}
+.logo-img {
+    background-image: var(--logo-img);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 50px; /*or your image's height*/
+    margin: 0;
+    padding: 0;
+    width: 90px; /*or your image's width*/
 }
 .search-form-container {
 float:right;
 display: inline-block;
-margin: 14px auto 30px;
+margin: 14px auto 20px;
 vertical-align: top;
 margin-right:25px;
 
