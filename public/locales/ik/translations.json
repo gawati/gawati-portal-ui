@@ -59,5 +59,9 @@
     "Select year": "{T}Select year",
     "Select countries": "{T}Select countries",
     "Select language": "{T}Select language",
-    "Select": "{T}Select"
+    "Select": "{T}Select",
+    "Previous": "{T}Previous",
+    "Next": "{T}Next",
+    "First": "{T}First",
+    "Last": "{T}Last"
 }
