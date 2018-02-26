@@ -47,7 +47,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             paramsObj
         );
         // cancel the previous request
-        if (typeof this.source != typeof undefined) {
+        if (typeof this.source !== typeof undefined) {
             this.source.cancel('Operation canceled due to new request.')
         }
 
