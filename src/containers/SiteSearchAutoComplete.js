@@ -27,7 +27,8 @@ class SiteSearchAutoComplete extends React.Component {
         this.state = {
             loading: false,
             value: '',
-            suggestions: []
+            suggestions: [],
+            lang: this.props.lang
         };
         this.lastRequestId = null;
     }
@@ -129,9 +130,10 @@ class SiteSearchAutoComplete extends React.Component {
     
     renderSuggestion = (suggestion) => {
         let itemDate = displayDate(suggestion.exprAbstract.date[1].value) || suggestion.exprAbstract.date[1].value ;
+        let _lang = this.state.lang;
         return (
         <div className="ui-ac-item-render">
-            <DocumentLink abstract={suggestion.exprAbstract}>
+            <DocumentLink abstract={suggestion.exprAbstract} lang={ _lang }>
                 <div className="ui-ac-item-render-content">
                     <h3>{   stringCut(199, suggestion.exprAbstract.publishedAs || "unknown")  }</h3>
                     <nav className="ui-act-item-meta">

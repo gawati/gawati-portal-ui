@@ -9,14 +9,14 @@ import GwSpinner from '../components/GwSpinner'
 
 import '../css/RecentDocs.css';
 
-const RecentDocs = ({loading, recentDocs, tab}) => 
+const RecentDocs = ({loading, recentDocs, tab, lang}) => 
     <div className={ `tab-pane tab-active` } data-tab={`t${tab}`}>
         <RecentIntro loading={loading} />
-        {getRecentDocs(loading, recentDocs, tab)}
+        {getRecentDocs(loading, recentDocs, tab, lang)}
     </div>
     ;
 
-const getRecentDocs = (loading, recentDocs, tab) => {
+const getRecentDocs = (loading, recentDocs, tab, lang) => {
         if (loading === true) {
             return (
                 <noscript />
@@ -26,7 +26,7 @@ const getRecentDocs = (loading, recentDocs, tab) => {
             <Aux>
                 <RecentSummary recentDocs={recentDocs}  />
                 <div className="button-wrapper">
-                <NavLink className={ `button w-button` } to={ `/recent/_lang/en/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
+                <NavLink className={ `button w-button` } to={ `/recent/_lang/` + lang + `/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
                 </div>
             </Aux>
         );    
