@@ -1,5 +1,5 @@
 import React from 'react';
-import {rangeMinMax, isEmpty} from '../utils/generalhelper';
+import {rangeMinMax} from '../utils/generalhelper';
 import {Link} from 'react-router-dom';
 import '../css/Paginator.css';
 

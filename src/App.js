@@ -7,6 +7,18 @@ import Page from './components/Page';
 
 class App extends Component {
 
+  /**
+   * See https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-development-environment-variables-in-env
+   * for how to use .env files
+   * 
+   * @memberof App
+   */
+  componentDidMount() {
+    const path = './css/themes/' + process.env.REACT_APP_THEME + '/vars.css';
+    require(`${path}`);
+    console.log(process.env);
+  }
+
   render() {
     //console.log("process.env", process.env);
     return (
