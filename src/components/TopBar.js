@@ -59,7 +59,7 @@ class TopBar extends React.Component {
         kc.login();
     }
 
-    myFunction = ()=>{
+    toggleDropDown = ()=>{
 	    document.getElementById("myDropdown").classList.toggle("show");
 	}
 
@@ -98,11 +98,11 @@ class TopBar extends React.Component {
         kc.init().success(function(authenticated) {
             if(authenticated){
                 localStorage.setItem('authenticated', 'true');
-                if(localStorage.getItem('username')=="guest"){
+                if(localStorage.getItem('username') === "guest" ){
                 	kc.loadUserProfile().success(function(profile) {
 				        localStorage.setItem('username', profile.username);
 				    }).error(function() {
-				        localStorage.setItem('username', "guest");
+                        localStorage.setItem('username', "guest");
 				    });
                 }
                 window.location.reload();
@@ -132,7 +132,34 @@ class TopBar extends React.Component {
                     <DivRow>
                         <SearchBox />
                         <NotifBar />
-                        <div class="login col-3">{localStorage.getItem('authenticated')==='true' ? <div class="dropdown"><div onClick={this.myFunction} class="dropbtn"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></div><div id="myDropdown" class="dropdown-content"><a href="javascript:void()" className="loggedIn">Logged in as <b>{localStorage.getItem('username')}</b></a><a href="javascript:void()" onClick={this.logout}>Sign out</a></div></div> : <div className="inline-elements"><div className="click" onClick={ this.login}>Sign in </div><span className="or">&nbsp;&nbsp;or&nbsp;&nbsp;</span><div className="click" onClick={ this.register}> Sign up</div></div> }</div>
+                        <div className="login col-3">
+                            {
+                            localStorage.getItem('authenticated')==='true' ? 
+                            <div className="dropdown">
+                                <div onClick={this.toggleDropDown} className="dropbtn">
+                                    <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                                </div>
+                                <div id="myDropdown" className="dropdown-content">
+                                    <a href="javascript:;" className="loggedIn">
+                                        {console.log(" LOGGED IN ", localStorage.getItem('username'))}
+                                        Logged in as <b>{localStorage.getItem('username')}</b>
+                                    </a>
+                                    <a href="javascript:;" onClick={this.logout}>
+                                        Sign out
+                                    </a>
+                                </div>
+                            </div> : 
+                            <div className="inline-elements">
+                                <div className="click" onClick={ this.login }>
+                                    Sign in 
+                                </div>
+                                <span className="or">&nbsp;&nbsp;or&nbsp;&nbsp;</span>
+                                <div className="click" onClick={ this.register}> 
+                                    Sign up
+                                </div>
+                            </div> 
+                            }
+                        </div>
                     </DivRow>
                     </div>
                 </div>
