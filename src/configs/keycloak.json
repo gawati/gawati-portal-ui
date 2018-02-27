@@ -1,0 +1,9 @@
+{
+  "realm": "gawati",
+  "url": "http://localhost:10080/auth",
+  "ssl-required": "none",
+  "clientId": "auth",
+  "public-client": true,
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}

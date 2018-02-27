@@ -9,6 +9,10 @@ import mobileButton from '../images/th-menu.png';
 import NotifBar from './NotifBar';
 import DivRow from './DivRow';
 import '../css/TopBar.css';
+import Keycloak from 'keycloak-js';
+import keycloakJson from '../configs/keycloak.json';
+
+const kc = Keycloak(keycloakJson);
 
 
 const Logo = () =>
@@ -50,10 +54,46 @@ const SearchBox = () =>
     ;
 
 class TopBar extends React.Component {
+    login = () => {
+        kc.login();
+    }
+
+    logout = () => {
+        kc.logout();
+    }
+
+    getParameterByName = (variable, url)=>{
+       var query = window.location.href;
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] === variable){return pair[1];}
+       }
+       return(false);
+    }
+
+    checkLogin = () =>{
+        kc.init().success(function(authenticated) {
+            if(authenticated){
+                localStorage.setItem('authenticated', 'true');
+                window.location.reload();
+            }else{
+                localStorage.setItem('authenticated', 'false');
+            }
+        }).error(function(error) {
+            alert('failed to initialize'+error);
+        });
+    }
+    componentDidMount() {
+        this.checkLogin();
+    }
     render() {
         return (
             <header className="navigation-bar">
+                <div class="row col-12">
                 <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
+                <div class="login col-2">{localStorage.getItem('authenticated')==='true' ? <div onClick={ this.logout}>Logout</div> : <div onClick={ this.login}>Login</div> }</div>
+                </div>
                 <div className="container-fluid">
                     <Logo />
                     <SiteHeading />
