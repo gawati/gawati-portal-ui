@@ -55,6 +55,8 @@ const SearchBox = () =>
     ;
 
 class TopBar extends React.Component {
+    state = { username: 'guest', authenticated: 'false'}
+    handleChange = (e, { name, value }) => { this.setState({ [name]: value }); }
     login = () => {
         kc.login();
     }
@@ -63,20 +65,10 @@ class TopBar extends React.Component {
 	    document.getElementById("myDropdown").classList.toggle("show");
 	}
 
-	// window.onclick = (event) => {
-	//   if (!event.target.matches('.dropbtn')) {
-
-	//     var dropdowns = document.getElementsByClassName("dropdown-content");
-	//     var i;
-	//     for (i = 0; i < dropdowns.length; i++) {
-	//       var openDropdown = dropdowns[i];
-	//       if (openDropdown.classList.contains('show')) {
-	//         openDropdown.classList.remove('show');
-	//       }
-	//     }
-	//   }
-	// }
     logout = () => {
+        kc.init();
+        localStorage.setItem('authenticated', 'false');
+        localStorage.setItem('username', 'guest');
         kc.logout();
     }
 
@@ -94,24 +86,31 @@ class TopBar extends React.Component {
        return(false);
     }
 
+    updateState = (authenticated, username) =>{
+        this.setState({ authenticated: authenticated});
+        this.setState({ username: username});
+    }
+
     checkLogin = () =>{
-        kc.init().success(function(authenticated) {
-            if(authenticated){
-                localStorage.setItem('authenticated', 'true');
-                if(localStorage.getItem('username') === "guest" ){
-                	kc.loadUserProfile().success(function(profile) {
-				        localStorage.setItem('username', profile.username);
-				    }).error(function() {
-                        localStorage.setItem('username', "guest");
-				    });
+        if(localStorage.getItem('authenticated')==='false'){
+            kc.init().success(function(authenticated) {
+                if(authenticated){
+                    localStorage.setItem('authenticated', 'true');
+                    kc.loadUserProfile().success(function(profile) {
+                        localStorage.setItem('username', profile.username);
+                        window.location.reload();
+                    }).error(function() {
+                        localStorage.setItem('username', 'guest');
+                    });
+                }else{
+                    localStorage.setItem('authenticated', 'false');
+                    localStorage.setItem('username', 'guest');
                 }
-                window.location.reload();
-            }else{
-                localStorage.setItem('authenticated', 'false');
-            }
-        }).error(function(error) {
-            alert('failed to initialize'+error);
-        });
+            }).error(function(error) {
+                alert('failed to initialize'+error);
+            })
+        }
+        //this.updateState(localStorage.getItem('authenticated'), localStorage.getItem('username'));
     }
     componentDidMount() {
         this.checkLogin();
