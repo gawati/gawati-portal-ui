@@ -123,21 +123,22 @@ padding-bottom:25px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     right: 0;
     z-index: 1;
-    color:white;
-    background: black;
+    color:lightgray;
+    background: white; 
 }
 
-.dropdown-content a {
-    color: white;
+.dropdown-content button {
+    width: 100%;
+    color: black;
     padding: 12px 14px;
     text-decoration: none;
     display: block;
 }
 
-.dropdown a:hover {
+.dropdown-content button:hover {
 	text-decoration: none;
-	background: white;
-	color: black;
+	background: gray;
+	color: white; 
 }
 
 .loggedIn{
