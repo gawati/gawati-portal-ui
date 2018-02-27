@@ -16,7 +16,7 @@ import './css/app-media.css';
 ReactDOM.render(
     <BrowserRouter>
         <App />
-    </BrowserRouter>, 
+    </BrowserRouter>,
     document.getElementById('root')
 );
 registerServiceWorker();
