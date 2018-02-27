@@ -139,13 +139,12 @@ class TopBar extends React.Component {
                                     <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
                                 </div>
                                 <div id="myDropdown" className="dropdown-content">
-                                    <a href="javascript:;" className="loggedIn">
-                                        {console.log(" LOGGED IN ", localStorage.getItem('username'))}
+                                    <button className={ `btn btn-link loggedIn` }>
                                         Logged in as <b>{localStorage.getItem('username')}</b>
-                                    </a>
-                                    <a href="javascript:;" onClick={this.logout}>
+                                    </button>
+                                    <button className={ `btn btn-link` }  onClick={this.logout}>
                                         Sign out
-                                    </a>
+                                    </button>
                                 </div>
                             </div> : 
                             <div className="inline-elements">
