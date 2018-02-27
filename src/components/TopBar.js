@@ -115,7 +115,7 @@ class TopBar extends React.Component {
         this.checkLogin();
     }
     render() {
-        return (
+    	return (
             <header className="navigation-bar">
                 <div className="row col-12">
                 <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
