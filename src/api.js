@@ -17,7 +17,8 @@ const GAWATI_APIS = {
         'search-grouped': '/gwd/searchAC/json' ,
         'short-filter-cache': '/gwp/short-filter-cache',
         'smart-filter-cache': '/gwp/smart-filter-cache',
-        'themes-summary' : '/gwd/themes/expressions/summary/json'
+        'themes-summary' : '/gwd/themes/expressions/summary/json',
+        'search-fulltext' : '/gwd/doc/search/json',
     }
 };
 
