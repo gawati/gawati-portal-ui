@@ -14,6 +14,7 @@ import PageContentArea from './PageContentArea';
 import Footer from './Footer';
 import { Redirect } from 'react-router'
 import {PropsRoute} from '../utils/routeshelper';
+import {Helmet} from "react-helmet";
 
 class Page extends React.Component {
 
@@ -48,8 +49,16 @@ class Page extends React.Component {
     };
 
     render() {
+        const prod = process.env.NODE_ENV === 'production';
+        var css;
+        if (prod) {
+            css = <Helmet>
+                    <link rel="stylesheet" type="text/css" href={`${process.env.PUBLIC_URL}/static/css/themes/${process.env.REACT_APP_THEME}/vars.css`} />
+                </Helmet>
+        }
         return (
             <Aux>
+                {css}
                 <Switch>
                     <PropsRoute exact path="/:routeName/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                     <Redirect exact from="/" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
