@@ -14,7 +14,7 @@ import './css/app-custom.css';
 import './css/app-media.css';
 
 ReactDOM.render(
-    <BrowserRouter basename="/portal">
+    <BrowserRouter>
         <App />
     </BrowserRouter>,
     document.getElementById('root')
