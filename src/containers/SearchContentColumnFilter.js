@@ -13,7 +13,6 @@ import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 import BaseSearchContentColumn from './BaseSearchContentColumn';
 import ListingLoading from '../components/ListingLoading';
-import GwSpinner from '../components/GwSpinner';
 import '../css/ListingContentColumn.css';
 
 class SearchContentColumnFilter extends BaseSearchContentColumn {
@@ -153,7 +152,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     renderDocumentLoading = () =>
         <ListingLoading>
             <h1 className="listingHeading">{T("Document Results")}</h1>
-            <GwSpinner />
         </ListingLoading> ;
 
     renderNoDocumentsFound = () =>
