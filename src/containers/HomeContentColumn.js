@@ -25,7 +25,8 @@ class HomeContentColumn extends React.Component {
             latest:  {
                 content:  [],
                 loading: true
-            }
+            },
+            lang: props.match.params.lang
         };
     }
    
@@ -83,6 +84,10 @@ class HomeContentColumn extends React.Component {
         this.getThemesSummary();
     }
 
+    componentWillReceiveProps (nextProps) {
+        this.setState({lang: nextProps.match.params.lang})
+    }
+
     render() {
         const { latest, themes } = this.state;
         let content;
@@ -123,7 +128,7 @@ class HomeContentColumn extends React.Component {
                     <Tab>{ T("in focus") }</Tab>
                 </TabList>
                 <TabPanel>
-                    <RecentDocs loading={latest.loading} recentDocs={latest.content} tab={1} /> 
+                    <RecentDocs loading={latest.loading} recentDocs={latest.content} tab={1} lang={this.state.lang}/> 
                 </TabPanel>
                 <TabPanel>
                     <ThemeOfTheMonth loading={themes.loading} themes={themes.content} tab={2} />

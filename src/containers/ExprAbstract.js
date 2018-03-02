@@ -5,6 +5,7 @@ import moment from 'moment';
 import {shortTitle, displayDate, defaultLang} from '../utils/generalhelper';
 import {convertObjectToEncodedString, setInRoute} from '../utils/routeshelper';
 import {documentServer} from '../constants.js';
+import {T} from '../utils/i18nhelper';
 
 import DocumentLink from './DocumentLink';
 import DivFeed from '../components/DivFeed';
@@ -82,7 +83,7 @@ class ExprAbstract extends React.Component {
 
     render() {
         let abstract = this.props.abstract ;
-        let pageLang = this.props.match ? this.props.match.params['lang'] : defaultLang().lang ; 
+        let pageLang = this.props.lang; 
         let yearLink = this.yearLink(pageLang, abstract);
         let langLink = this.langLink(pageLang, abstract);
         let countryLink = this.countryLink(pageLang, abstract);
@@ -90,14 +91,14 @@ class ExprAbstract extends React.Component {
             <DivFeed key={abstract['expr-iri']}>
                 <h2>{shortTitle(abstract.publishedAs)}</h2>
                 <div className="text-block">
-                    <NavLink to={ countryLink }> {abstract.country.showAs} </NavLink> &#160;| &#160; 
-                    <NavLink to={ langLink }>{abstract.language.showAs}</NavLink> &#160;| &#160;
-                    <NavLink to={ yearLink }>{displayDate(abstract.date[1].value)} </NavLink>
+                    <NavLink to={ countryLink }> {T(abstract.country.showAs)} </NavLink> &#160;| &#160; 
+                    <NavLink to={ langLink }>{T(abstract.language.showAs)}</NavLink> &#160;| &#160;
+                    <NavLink to={ yearLink }  key={this.props.lang}>{displayDate(abstract.date[1].value, this.props.lang)}</NavLink>
                 </div>  
                 <ThumbnailAbstract abstract={abstract} />
                 <p>{abstract.publishedAs}</p>
                 <div className="div-block-18 w-clearfix">
-                    <DocumentLink abstract={abstract}>more...</DocumentLink>
+                    <DocumentLink abstract={abstract}>{T("more")}...</DocumentLink>
                 </div>
                 <div className="grey-rule"></div>                      
             </DivFeed>
