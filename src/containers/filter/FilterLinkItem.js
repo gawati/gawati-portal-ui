@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import { setInRoute, convertObjectToEncodedString } from '../../utils/routeshelper';
+import {T} from '../../utils/i18nhelper';
 /**
  * Called by FilterLinkItems to render an individual link
  * @param {object} item to render
@@ -24,8 +25,14 @@ const FilterLinkItem = ({ item, type }) => {
             )
         } 
     );
+    var label = item.label;
+    if (type === 'countries') {
+        const count = item.label.substring(item.label.indexOf('(') - 1, item.label.length);
+        const country = item.label.substring(0, item.label.indexOf(count));
+        label = T(country) + count;
+    }
     return (
-        <NavLink to={ url }>{item.label}</NavLink>
+        <NavLink to={ url }>{label}</NavLink>
     );
 };
 

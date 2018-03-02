@@ -112,6 +112,7 @@ class FilterKeywords extends BaseFilter {
                     labelKey='showAs'
                     valueKey='value'
                     matchProp='label'
+                    placeholder={T("Select keyword")}
                     />
                 <div className="grey-rule"/>
             </Aux>
