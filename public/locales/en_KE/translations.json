@@ -59,5 +59,13 @@
     "Select year": "Select year",
     "Select countries": "Select countries",
     "Select language": "Select language",
-    "Select": "Select"
+    "Select": "Select", 
+
+    "Select keyword": "Select keyword",
+    "Sign in": "Sign in",
+    "or": "or",
+    "Sign up": "Sign up",
+    "Mauritius": "Mauritius",
+    "Burkina Faso": "Burkina Faso",
+    "Mauritania": "Mauritania"
 }
