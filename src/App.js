@@ -12,11 +12,12 @@ class App extends Component {
    * for how to use .env files
    * 
    * @memberof App
-   */
+   */ 
   componentDidMount() {
-    const path = './css/themes/' + process.env.REACT_APP_THEME + '/vars.css';
-    require(`${path}`);
-    console.log(process.env);
+    if (process.env.NODE_ENV === 'development') {
+      const path =  './css/themes/' + process.env.REACT_APP_THEME + '/vars.css';
+      import(`${path}`);
+    }
   }
 
   render() {
