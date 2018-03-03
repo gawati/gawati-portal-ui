@@ -13,7 +13,7 @@ class HomeContentArea extends React.Component {
             <Section>
                 <div className="container-fluid">
                     <DivRow altClasses="home-content-area">
-                        <HomeContentColumn />
+                        <HomeContentColumn lang={match.params.lang}/>
                         <SideBarColumn match={match} setCollapsible={this.props.setCollapsible}/>
                     </DivRow>
                 </div>

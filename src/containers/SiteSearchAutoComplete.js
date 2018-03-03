@@ -23,11 +23,11 @@ import 'font-awesome/css/font-awesome.css';
 class SiteSearchAutoComplete extends React.Component {
     constructor(props) {
         super(props);
-        console.log(" HISTORY ", this.props.history);
         this.state = {
             loading: false,
             value: '',
-            suggestions: []
+            suggestions: [],
+            lang: this.props.lang
         };
         this.lastRequestId = null;
     }
@@ -131,7 +131,7 @@ class SiteSearchAutoComplete extends React.Component {
         let itemDate = displayDate(suggestion.exprAbstract.date[1].value) || suggestion.exprAbstract.date[1].value ;
         return (
         <div className="ui-ac-item-render">
-            <DocumentLink abstract={suggestion.exprAbstract}>
+            <DocumentLink abstract={suggestion.exprAbstract} { ...this.props.lang } >
                 <div className="ui-ac-item-render-content">
                     <h3>{   stringCut(199, suggestion.exprAbstract.publishedAs || "unknown")  }</h3>
                     <nav className="ui-act-item-meta">

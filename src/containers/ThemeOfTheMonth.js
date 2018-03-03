@@ -9,10 +9,10 @@ import DivFeed from '../components/DivFeed';
 import GwSpinner from '../components/GwSpinner'
 import ExprAbstract from './ExprAbstract';
 
-const ThemeOfTheMonth = ({loading, themes, tab}) =>
+const ThemeOfTheMonth = ({loading, themes, tab, lang}) =>
     <div className={ `tab-pane tab-active` } data-tab={ `t${tab}` }>
         <ThemeIntro loading={loading} />
-        {getThemeSummary(loading, themes, tab)}
+        {getThemeSummary(loading, themes, tab, lang)}
     </div>
     ;
 
@@ -30,7 +30,7 @@ const ThemeIntro = ({loading}) => {
         );
 }
 
-const getThemeSummary = (loading, themes, tab) => {
+const getThemeSummary = (loading, themes, tab, lang) => {
     if (loading === true) {
         return (<noscript />);
     } else {
@@ -38,7 +38,7 @@ const getThemeSummary = (loading, themes, tab) => {
             <Aux>
                 <ThemeSummary themes={themes} />
                 <div className="button-wrapper">
-                    <NavLink className={ `button w-button` } to={ `/themes/_lang/en/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
+                    <NavLink className={ `button w-button` } to={ `/themes/_lang/` + lang + `/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
                 </div>
             </Aux>
         );

@@ -43,11 +43,11 @@ const TopBarUpper = ({i18n, match}) => {
 };
     ;
 
-const SearchBox = () =>
+const SearchBox = (lang) =>
     <div className={ `col ` }>
         <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
             <div className="div-block w-clearfix">
-               <SiteSearchAutoComplete  /> 
+               <SiteSearchAutoComplete  lang={lang}/> 
             </div>
         </form>
     </div>
@@ -128,7 +128,7 @@ class TopBar extends React.Component {
                     </div>
                     <div className="search-form-container col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <DivRow>
-                        <SearchBox />
+                        <SearchBox lang={ this.props.match.params.lang }></SearchBox>
                         <NotifBar />
                         <div className="login col-3">
                             {

@@ -48,6 +48,10 @@
     "Select year": "Select year",
     "Select countries": "Select countries",
     "Select language": "Select language",
-    "Select": "Select"
+    "Select": "Select",
+    "Previous": "Previous",
+    "Next": "Next",
+    "First": "First",
+    "Last": "Last"
 
 }
