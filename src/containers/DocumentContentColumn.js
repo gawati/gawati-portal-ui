@@ -17,6 +17,7 @@ import DocumentSignature from './DocumentSignature';
 import DocumentActions from './DocumentActions';
 import DocumentTagCloud from './DocumentTagCloud';
 import DocumentPDF from './DocumentPDF';
+import SearchFullText from './SearchFullText';
 
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
@@ -71,16 +72,22 @@ const DocumentMetadata = ({doc, type}) => {
     );
 }; 
 
-const DocumentContentInfo = ({doc, type}) => {
+const DocumentContentInfo = ({doc, type, iri}) => {
     return (
         <Tabs>
         <TabList>
           <Tab>Metadata</Tab>
+          <Tab>Search</Tab>
           <Tab>PDF</Tab>
         </TabList>
         <TabPanel>
           <DivFeed>
             <DocumentMetadata doc={doc} type={type} />
+           </DivFeed>
+        </TabPanel>
+        <TabPanel>
+          <DivFeed>
+            <SearchFullText doc={doc} type={type} iri={iri} />
            </DivFeed>
         </TabPanel>
         <TabPanel>
@@ -92,7 +99,13 @@ const DocumentContentInfo = ({doc, type}) => {
     );
 }
  
-DocumentContentInfo.propTypes = DocumentMetadata.propTypes = {
+DocumentContentInfo.propTypes = SearchFullText.propTypes = {
+    doc: PropTypes.object.isRequired,
+    type: PropTypes.string.isRequired,
+    iri: PropTypes.string.isRequired
+}
+
+DocumentMetadata.propTypes = DocumentPDF.propTypes = {
     doc: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired
 }
@@ -166,7 +179,7 @@ class DocumentContentColumn extends React.Component {
                     <DocumentSignature doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
                     <DocumentActions doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
                     <DocumentTagCloud doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentContentInfo doc={this.state.doc} type={this.state.docType}  lang={this.props.match.params.lang} />
+                    <DocumentContentInfo doc={this.state.doc} type={this.state.docType} iri={this.state.iri}  lang={this.props.match.params.lang} />
                 </div>
             </DivListing>
             ;
