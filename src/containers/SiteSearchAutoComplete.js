@@ -23,7 +23,6 @@ import 'font-awesome/css/font-awesome.css';
 class SiteSearchAutoComplete extends React.Component {
     constructor(props) {
         super(props);
-        console.log(" HISTORY ", this.props.history);
         this.state = {
             loading: false,
             value: '',
@@ -130,22 +129,21 @@ class SiteSearchAutoComplete extends React.Component {
     
     renderSuggestion = (suggestion) => {
         let itemDate = displayDate(suggestion.exprAbstract.date[1].value) || suggestion.exprAbstract.date[1].value ;
-        let _lang = this.state.lang;
         return (
-        <div className="ui-ac-item-render">
-            <DocumentLink abstract={suggestion.exprAbstract} lang={ _lang }>
-                <div className="ui-ac-item-render-content">
-                    <h3>{   stringCut(199, suggestion.exprAbstract.publishedAs || "unknown")  }</h3>
-                    <nav className="ui-act-item-meta">
-                    <ol>
-                        <li><span className="ui-ac-item-type">{suggestion.exprAbstract.type.name}</span></li>
-                        <li><span className="ui-ac-item-country">{suggestion.exprAbstract.country.showAs}</span></li>
-                        <li><span className="ui-ac-item-date">{itemDate}</span></li>
-                    </ol>
-                    </nav>
-                </div>
-            </DocumentLink>
-        </div>
+            <div className="ui-ac-item-render">
+                <DocumentLink abstract={suggestion.exprAbstract} { ...this.props.lang }>
+                    <div className="ui-ac-item-render-content">
+                        <h3>{   stringCut(199, suggestion.exprAbstract.publishedAs || "unknown")  }</h3>
+                        <nav className="ui-act-item-meta">
+                        <ol>
+                            <li><span className="ui-ac-item-type">{suggestion.exprAbstract.type.name}</span></li>
+                            <li><span className="ui-ac-item-country">{suggestion.exprAbstract.country.showAs}</span></li>
+                            <li><span className="ui-ac-item-date">{itemDate}</span></li>
+                        </ol>
+                        </nav>
+                    </div>
+                </DocumentLink>
+            </div>
         );
     };
       
