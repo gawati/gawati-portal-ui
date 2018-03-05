@@ -3,17 +3,19 @@ import {Link} from 'react-router-dom';
 
 import {anKeywords} from '../utils/akomantoso';
 import {randomInt} from '../utils/generalhelper';
-import {setInRoute} from '../utils/routeshelper';
+import {convertObjectToEncodedString, setInRoute} from '../utils/routeshelper';
 import {T} from '../utils/i18nhelper';
 
 const keywordLink = (pageLang, keyword) => 
     setInRoute(
-        "search-keyword", {
+        "filter", {
             from: 1,
             to: 10,
             count: 10,
             lang: pageLang,
-            kw: keyword          
+            q: convertObjectToEncodedString(
+                {keywords: [keyword]}
+            )     
         }
     );
 
