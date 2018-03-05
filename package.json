@@ -32,7 +32,7 @@
     "react-tabs": "2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "shx cp -R node_modules/gawati-lang-packs/locales public && react-scripts start",
     "build": "react-scripts build && shx cp -R src/css/themes build/static/css && shx cp -R src/css/themes build && shx cp -R node_modules/gawati-lang-packs/locales build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
