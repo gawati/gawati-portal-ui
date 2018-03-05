@@ -48,13 +48,13 @@
   --home-wbutton-bg-color: #483332;
   --home-more-color: #fff;
   --home-more-bg-color: #fff;
-  --home-current-tab-bg-color: #24a7ff;
+  /*--home-current-tab-bg-color: #24a7ff;
   --home-tab-color: #222222;
   --home-tab-border-color: #2abeb8;
   --home-tab-bg-color: #cabcbb;
   --home-active-tab-bg-color: #A9A9A9;
   --home-active-tab-color: #fff!important;
-  --home-tab-menu-border-color: #24a7ff;
+  --home-tab-menu-border-color: #24a7ff;*/
 
   /* PageContentColumn */
   --pagecontentcolumn-bg-color: #fff;
@@ -78,8 +78,16 @@
   --paginator-li-disabled-border-color: #ddd;
 
   /* React tabs */
-  --reacttabs-bg-color: #A9A9A9;
-  --reacttabs-color: #fff!important;
+  --reacttabs-bg-color: #fff;
+  --reacttabs-color: initial;
+  --reacttabs-selected-bg-color: #fff;
+  --reacttabs-selected-color: black;
+  --reacttabs-border: 1px solid transparent;
+  --reacttabs-border-radius: 5px 5px 0 0;;
+  --reacttabs-bg-image: initial;
+  --reacttabs-hover-bg-color: initial;
+  --reacttabs-hover-color: initial;
+  --reacttabs-selected-border: 1px solid rgb(170, 170, 170);
 
   /* RecentDocs */
   --recentdocs-bg-color: white;
