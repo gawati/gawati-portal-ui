@@ -150,7 +150,7 @@ class TopBar extends React.Component {
                                 <div className="click" onClick={ this.login }>
                                     Sign in 
                                 </div>
-                                <span className="or">&nbsp;&nbsp;or&nbsp;&nbsp;</span>
+                                <span className="or">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                                 <div className="click" onClick={ this.register}> 
                                     Sign up
                                 </div>

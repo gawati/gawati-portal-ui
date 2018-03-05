@@ -1,11 +1,18 @@
 :root {
     
   /* Overrides */
-  --overrides-breadcrumb-color: rgba(51, 51, 51, .67);
-  --overrides-p-color: #74737a;
-  --overrides-a-color: #a9a9a9;
-  --overrides-a-focus-color: #a9a9a9;
-  --overrides-h-color: #74737a; /* SIG */
+    --overrides-breadcrumb-color: rgba(51, 51, 51, .67);
+    --overrides-p-color: #74737a;
+    --overrides-a-color: #a9a9a9;
+    --overrides-a-focus-color: #a9a9a9;
+    --overrides-h-color: #86201e; /* SIG */
+  /* Overrides */
+
+  /* Fonts */
+    --font-1: "Roboto Condensed", sans-serif;
+    --font-2: "Roboto Condensed", sans-serif;
+    --font-3: "Roboto Condensed", sans-serif;
+  /* Fonts */
 
   /* app-custom */
     /* content column - left column */
@@ -101,6 +108,7 @@
   --sidebar-a-color: #a9a9a9;
   --sidebar-bg-color: #fff;
   --sidebar-box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
+  --sidebar-border-radius: 0px;
 
   /* SiteSearchAutoComplete */
   --sitesearch-color: #74737a;

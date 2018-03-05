@@ -19,7 +19,7 @@
 }
 
 .left.col-3{
-  font-family: Montserrat, sans-serif;
+  font-family: var(--font-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #869aa7;
@@ -45,7 +45,7 @@
 .small-heading {
   margin-top: 0px;
   margin-bottom: 2px;
-  font-family: Montserrat, sans-serif;
+  font-family: var(--font-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
