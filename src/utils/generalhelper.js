@@ -2,7 +2,8 @@
 import docTypes from '../configs/docTypes.json';
 import languageCodes from '../configs/shortLanguageCodes.json';
 
-import moment from 'moment-with-locales-es6';
+import moment from 'moment';
+import "moment/min/locales.min";
 
 
 /**
