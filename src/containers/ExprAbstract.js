@@ -16,14 +16,14 @@ import '../css/ExprAbstract.css';
  * Renders a link to the thumbnail of the document represented by componentLink
  * @param {object} componentLink 
  */
-const ThumbnailAbstract = ({abstract}) => {
+const ThumbnailAbstract = ({abstract, lang}) => {
     let componentLink = abstract.componentLink;
     let componentSrc = componentLink.src;
     let componentValue = componentLink.value;
     let thumbnailFolder = componentSrc.substring(0, componentSrc.lastIndexOf("/"));
     let thumbnailUrl = documentServer() + thumbnailFolder +   "/th_" + componentValue.replace(".pdf", ".png");
     return (
-      <DocumentLink abstract={abstract} >
+      <DocumentLink abstract={abstract} lang={lang}>
         <img src={ thumbnailUrl } alt={componentLink.value} className="docThumb" />
       </DocumentLink>
     );
@@ -95,10 +95,10 @@ class ExprAbstract extends React.Component {
                     <NavLink to={ langLink }>{T(abstract.language.showAs)}</NavLink> &#160;| &#160;
                     <NavLink to={ yearLink }  key={this.props.lang}>{displayDate(abstract.date[1].value, this.props.lang)}</NavLink>
                 </div>  
-                <ThumbnailAbstract abstract={abstract} />
+                <ThumbnailAbstract abstract={abstract} lang={pageLang}/>
                 <p>{abstract.publishedAs}</p>
                 <div className="div-block-18 w-clearfix">
-                    <DocumentLink abstract={abstract}>{T("more")}...</DocumentLink>
+                    <DocumentLink abstract={abstract} lang={pageLang}>more...</DocumentLink>
                 </div>
                 <div className="grey-rule"></div>                      
             </DivFeed>

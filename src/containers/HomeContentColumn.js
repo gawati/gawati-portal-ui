@@ -26,7 +26,7 @@ class HomeContentColumn extends React.Component {
                 content:  [],
                 loading: true
             },
-            lang: props.match.params.lang
+            lang: this.props.lang
         };
     }
    
@@ -91,6 +91,7 @@ class HomeContentColumn extends React.Component {
     render() {
         const { latest, themes } = this.state;
         let content;
+        let _lang = this.state.lang;
         /*
         * BOOTSTRAP + REACT TABS
         *
@@ -128,10 +129,10 @@ class HomeContentColumn extends React.Component {
                     <Tab>{ T("in focus") }</Tab>
                 </TabList>
                 <TabPanel>
-                    <RecentDocs loading={latest.loading} recentDocs={latest.content} tab={1} lang={this.state.lang}/> 
+                    <RecentDocs loading={latest.loading} recentDocs={latest.content} tab={1} lang={_lang}/> 
                 </TabPanel>
                 <TabPanel>
-                    <ThemeOfTheMonth loading={themes.loading} themes={themes.content} tab={2} />
+                    <ThemeOfTheMonth loading={themes.loading} themes={themes.content} tab={2} lang={_lang}/>
                 </TabPanel>
             </Tabs>
         </div>

@@ -26,7 +26,7 @@ const getRecentDocs = (loading, recentDocs, tab, lang) => {
             <Aux>
                 <RecentSummary recentDocs={recentDocs} lang={lang} />
                 <div className="button-wrapper">
-                <NavLink className={ `button w-button` } to={ `/recent/_lang/en/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
+                <NavLink className={ `button w-button` } to={ `/recent/_lang/` + lang + `/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
                 </div>
             </Aux>
         );    
