@@ -15,7 +15,8 @@
   /* Fonts */
 
   /* app-custom */
-    /* content column - left column */
+    /* content column - main column */
+      --main-col-position: left;
       --content-grey-rule-bg-color: #c7c7c7;
       --content-a-color: #3898EC;
       --content-text-block-color: #74737a;
@@ -33,7 +34,7 @@
       --content-doc-download-border-color: #000;
       --content-breadcrumb-color: rgba(51, 51, 51, .67);
 
-    /* left column */
+    /* main column */
   /* app-custom */
 
 
@@ -104,6 +105,7 @@
   --section-color: #1abc9c;
 
   /* Sidebar */
+  --sidebar-col-position: left;
   --sidebar-footer-color: #aaa;
   --sidebar-a-color: #a9a9a9;
   --sidebar-bg-color: #fff;

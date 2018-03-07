@@ -53,14 +53,6 @@ body{
       color: #b3b0b0;
     }
   /* Search input */
-  .homepage .feed{
-    width: 50%;
-    display: inline-block;
-    vertical-align: top;
-  }
-  .homepage .feed:first-child{
-    width:100%;
-  }
   .button-2 {
       margin-top: -14px;
       float: right;
@@ -120,7 +112,10 @@ body{
 /* UNUSED TILL HERE */
 
 
-/* left column - main*/
+/* column - main*/
+  .main-col {
+    float: var(--main-col-position);
+  }
   .feed {
     float: left;
     margin-bottom: 0px;
@@ -257,7 +252,7 @@ body{
     color: var(--content-breadcrumb-color);
     padding: 0.75rem 1rem 0;
   }
-/* left column - main content column */
+/* column - main content column */
 
   .document-download li a {
     cursor: pointer;
