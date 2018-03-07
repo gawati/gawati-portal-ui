@@ -9,7 +9,7 @@ class SideBarColumn extends React.Component{
         const {match, i18n} = this.props;
         console.log( " SIDEBAR i18n", i18n);
         return (
-            <div className={ `right col-3` }  ref={this.props.setCollapsible} id="filter-container">
+            <div className={ `sidebar-col col-3` }  ref={this.props.setCollapsible} id="filter-container">
                 <div className={ `w-clearfix white-wrapper` }>
                     <Filter match={ match } i18n={ i18n }/>
                     <p className="cc-law-libray">{T("The African Law Library")}</p>

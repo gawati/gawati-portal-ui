@@ -18,7 +18,7 @@
     float:right;
 }
 
-.left.col-3{
+.sidebar-col.col-3{
   font-family: var(--font-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,18 +27,7 @@
   padding-left:0;
 }
 
-.homepage .left.col-9{
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 100%;
-  -ms-flex: 0 0 100%;
-  flex: 0 0 100%;
-  max-width: 100%;
-  padding:0;
-}
-.homepage .right.col-3{
-  display: none;
-}
-.right.col-3{
+.sidebar-col.col-3{
   display: block;
 }
 
@@ -49,6 +38,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
-  line-height: 135%;
+  /*line-height: 135%;*/
   text-align: left;
 }

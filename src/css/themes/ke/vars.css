@@ -16,6 +16,7 @@
 
   /* app-custom */
     /* content column - left column */
+      --main-col-position: right;
       --content-grey-rule-bg-color: #c7c7c7;
       --content-a-color: #3898EC;
       --content-text-block-color: #74737a;
@@ -104,6 +105,7 @@
   --section-color: rgb(250, 162, 28);
 
   /* Sidebar */
+  --sidebar-col-position: left;
   --sidebar-footer-color: #aaa;
   --sidebar-a-color: #a9a9a9;
   --sidebar-bg-color: #fff;

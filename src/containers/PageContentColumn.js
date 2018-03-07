@@ -8,7 +8,7 @@ import GwSpinner from '../components/GwSpinner';
 
 
 const PageFullWidth = ({children}) =>
-    <div className={ `left col-12` }>
+    <div className={ `main-col col-12` }>
         {children}
     </div>
     ;
