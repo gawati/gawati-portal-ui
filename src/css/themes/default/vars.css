@@ -1,11 +1,18 @@
 :root {
   
   /* Overrides */
-  --overrides-breadcrumb-color: rgba(51, 51, 51, .67);
-  --overrides-p-color: #74737a;
-  --overrides-a-color: #a9a9a9;
-  --overrides-a-focus-color: #a9a9a9;
-  --overrides-h-color: #74737a; /* SIG */
+    --overrides-breadcrumb-color: rgba(51, 51, 51, .67);
+    --overrides-p-color: #74737a;
+    --overrides-a-color: #a9a9a9;
+    --overrides-a-focus-color: #a9a9a9;
+    --overrides-h-color: #74737a; /* SIG */
+  /* Overrides */
+
+  /* Fonts */
+    --font-1: Montserrat, sans-serif;
+    --font-2: Georgia, Times, 'Times New Roman', serif;
+    --font-3: Helvetica, sans-serif;
+  /* Fonts */
 
   /* app-custom */
     /* content column - left column */
@@ -48,13 +55,13 @@
   --home-wbutton-bg-color: #483332;
   --home-more-color: #fff;
   --home-more-bg-color: #fff;
-  --home-current-tab-bg-color: #24a7ff;
+  /*--home-current-tab-bg-color: #24a7ff;
   --home-tab-color: #222222;
   --home-tab-border-color: #2abeb8;
   --home-tab-bg-color: #cabcbb;
   --home-active-tab-bg-color: #A9A9A9;
   --home-active-tab-color: #fff!important;
-  --home-tab-menu-border-color: #24a7ff;
+  --home-tab-menu-border-color: #24a7ff;*/
 
   /* PageContentColumn */
   --pagecontentcolumn-bg-color: #fff;
@@ -78,8 +85,16 @@
   --paginator-li-disabled-border-color: #ddd;
 
   /* React tabs */
-  --reacttabs-bg-color: #A9A9A9;
-  --reacttabs-color: #fff!important;
+  --reacttabs-bg-color: #fff;
+  --reacttabs-color: initial;
+  --reacttabs-selected-bg-color: #fff;
+  --reacttabs-selected-color: black;
+  --reacttabs-border: 1px solid transparent;
+  --reacttabs-border-radius: 5px 5px 0 0;;
+  --reacttabs-bg-image: initial;
+  --reacttabs-hover-bg-color: initial;
+  --reacttabs-hover-color: initial;
+  --reacttabs-selected-border: 1px solid rgb(170, 170, 170);
 
   /* RecentDocs */
   --recentdocs-bg-color: white;
@@ -93,6 +108,7 @@
   --sidebar-a-color: #a9a9a9;
   --sidebar-bg-color: #fff;
   --sidebar-box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
+  --sidebar-border-radius: 5px;
 
   /* SiteSearchAutoComplete */
   --sitesearch-color: #74737a;

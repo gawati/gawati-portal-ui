@@ -12,7 +12,7 @@ body{
 
   /* Search input */
     .calendar{
-      font-family: Montserrat, sans-serif;
+      font-family: var(--font-1);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       font-size: 13px;
@@ -27,7 +27,7 @@ body{
       vertical-align: middle;
       background-color: #ffffff;
       border: 1px solid #cccccc;
-      font-family: Montserrat, sans-serif;
+      font-family: var(--font-1);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -36,7 +36,7 @@ body{
         width:87%;
         height: 40px;
         float: left;
-        font-family: Montserrat, sans-serif;
+        font-family: var(--font-1);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -73,7 +73,7 @@ body{
     margin-top: 7px;
     padding-right: 0px;
     padding-left: 0px;
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #74737a;
@@ -82,7 +82,7 @@ body{
   .heading-2 {
       margin-top: 0px;
       margin-bottom: 3px;
-      font-family: Georgia, Times, 'Times New Roman', serif;
+      font-family: var(--font-2);
       color: #74737a;
   }
   .the-result{
@@ -134,7 +134,7 @@ body{
     text-decoration: underline;
   }
   .text-block {
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--content-text-block-color);
@@ -169,7 +169,7 @@ body{
     border-radius: 5px;
     background-color: var(--content-search-result-bg-color);
     box-shadow: var(--content-search-result-box-shadow);
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--content-search-result-color);
@@ -177,7 +177,7 @@ body{
   }
   .search-result h1{
     margin-bottom: 7px;
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-family: var(--font-2);
     color: var(--content-search-result-h1-color);
     font-size: 35px;
   }
@@ -252,7 +252,7 @@ body{
     cursor: pointer;
   }
   .breadcrumb-gw {
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     font-size:12px;
     color: var(--content-breadcrumb-color);
     padding: 0.75rem 1rem 0;

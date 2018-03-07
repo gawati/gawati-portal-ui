@@ -31,10 +31,6 @@ const SiteHeading = () =>
 const TopBarUpper = ({i18n, match}) => {
         return (
             <div className="col-12">
-                <div style={ {"float":"left","textAlign": "left", "width":"50%", "marginLeft":"40px", "paddingBottom":"20px", "color": "red"} }>{
-                    T("version") + " = " + versionInfo().version
-                }
-                </div>
                 <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"10px"} }>
                 <LanguageSwitcher i18n={i18n} match={match} />
                 </div>
@@ -117,6 +113,10 @@ class TopBar extends React.Component {
     render() {
     	return (
             <header className="navigation-bar">
+                <div className="version-info">{
+                    T("version") + " = " + versionInfo().version
+                }
+                </div>
                 <div className="row col-12">
                 <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
                 </div>
@@ -150,7 +150,7 @@ class TopBar extends React.Component {
                                 <div className="click" onClick={ this.login }>
                                     Sign in 
                                 </div>
-                                <span className="or">&nbsp;&nbsp;or&nbsp;&nbsp;</span>
+                                <span className="or">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                                 <div className="click" onClick={ this.register}> 
                                     Sign up
                                 </div>

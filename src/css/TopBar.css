@@ -67,13 +67,18 @@ margin: 14px auto 30px;
 width:100%;
 min-width: 400px;
 float: left;
-padding-top: 25px;
 padding-bottom: 0;
 background: var(--topbar-bg);
 box-shadow: var(--topbar-box-shadow);
 }
 .homepage .navigation-bar{
 padding-bottom:25px;
+}
+.navigation-bar .version-info {
+    padding: 5px;
+    float: left;
+    background-color: var(--section-bg-color);
+    color: var(--topbar-bg);
 }
 .submit-button {
     width: 50px;
