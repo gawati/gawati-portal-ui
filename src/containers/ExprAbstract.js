@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import moment from 'moment';
 
-import {shortTitle, displayDate, defaultLang} from '../utils/generalhelper';
+import {shortTitle, displayDate} from '../utils/generalhelper';
 import {convertObjectToEncodedString, setInRoute} from '../utils/routeshelper';
 import {documentServer} from '../constants.js';
 import {T} from '../utils/i18nhelper';

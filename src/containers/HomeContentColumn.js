@@ -85,7 +85,7 @@ class HomeContentColumn extends React.Component {
     }
 
     componentWillReceiveProps (nextProps) {
-        this.setState({lang: nextProps.match.params.lang})
+        this.setState({lang: nextProps.lang})
     }
 
     render() {
