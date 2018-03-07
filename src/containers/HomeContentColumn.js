@@ -84,6 +84,10 @@ class HomeContentColumn extends React.Component {
         this.getThemesSummary();
     }
 
+    componentWillReceiveProps (nextProps) {
+        this.setState({lang: nextProps.lang})
+    }
+
     render() {
         const { latest, themes } = this.state;
         let content;

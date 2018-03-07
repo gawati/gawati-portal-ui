@@ -3,6 +3,8 @@ import docTypes from '../configs/docTypes.json';
 import languageCodes from '../configs/shortLanguageCodes.json';
 
 import moment from 'moment';
+import "moment/min/locales.min";
+
 
 /**
  * Use this to wrap multiple elements when returning a component from render()
@@ -73,6 +75,8 @@ export const getDocType = (findType) => getDocTypes().find(dType => dType['akn-t
 
 export const getLangCodeAlpha3b = (alpha3b) => languageCodes.langs.lang.find(lingo => lingo['alpha3b'] === alpha3b ) ;
 
+export const getLangCodeAlpha2 = (alpha2) => languageCodes.langs.lang.find(lingo => lingo['alpha2'] === alpha2 ) ;
+
 export const getLangDesc = (alpha3b) => {
     let langAlpha = getLangCodeAlpha3b(alpha3b);
     if (langAlpha !== undefined) {
@@ -83,7 +87,18 @@ export const getLangDesc = (alpha3b) => {
     return defaultLang();
 };
 
-export const displayDate = (date) => moment(date).format('MMMM D YYYY') ;
+export const displayDate = (date, locale = 'en') => {
+    if (locale.indexOf('_') > -1) {
+        locale = locale.substring(0,2);
+    } else if (locale === 'ik') {
+        locale = 'en'
+    }
+    const lingo = getLangCodeAlpha2(locale);
+    if (moment.locale() !== lingo.alpha2) {
+        moment.locale(lingo.alpha2)
+    }
+    return moment(date).format('MMMM D YYYY') ;
+}
 
 export const range = ((n) => [...Array(n).keys()] ) ;
 

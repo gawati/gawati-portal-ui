@@ -70,7 +70,7 @@ const DocumentDate = ({doc, type, lang}) => {
     let date = anExprFRBRdate(doc, type).date;
     let year = moment(date, "YYYY-MM-DD").year() ;
     return (
-        <NavLink to={ yearLink(lang, year) }>{displayDate(date)}</NavLink> 
+        <NavLink to={ yearLink(lang, year) }>{displayDate(date, lang)}</NavLink> 
     );
 }
 

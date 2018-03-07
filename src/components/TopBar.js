@@ -148,11 +148,11 @@ class TopBar extends React.Component {
                             </div> : 
                             <div className="inline-elements">
                                 <div className="click" onClick={ this.login }>
-                                    Sign in 
+                                    {T("Sign in")} 
                                 </div>
-                                <span className="or">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                                <span className="or">&nbsp;&nbsp;{T("or")}&nbsp;&nbsp;</span>
                                 <div className="click" onClick={ this.register}> 
-                                    Sign up
+                                    {T("Sign up")}
                                 </div>
                             </div> 
                             }

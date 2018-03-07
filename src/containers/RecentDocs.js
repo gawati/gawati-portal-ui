@@ -24,7 +24,7 @@ const getRecentDocs = (loading, recentDocs, tab, lang) => {
         }
         return (
             <Aux>
-                <RecentSummary recentDocs={recentDocs}  />
+                <RecentSummary recentDocs={recentDocs} lang={lang} />
                 <div className="button-wrapper">
                 <NavLink className={ `button w-button` } to={ `/recent/_lang/` + lang + `/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
                 </div>
@@ -43,12 +43,12 @@ const RecentIntro = ({loading}) =>
     </DivFeed>
     ;      
 
-const RecentSummary = ({recentDocs}) => 
+const RecentSummary = ({recentDocs, lang}) => 
         <Aux>
         {
             recentDocs.map(abstract => {
                 return (
-                <ExprAbstract key={abstract['expr-iri']} abstract={abstract} />   
+                <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={lang}/>   
                 )
             })
         }
