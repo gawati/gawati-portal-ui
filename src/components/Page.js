@@ -61,7 +61,7 @@ class Page extends React.Component {
                 {css}
                 <Switch>
                     <PropsRoute exact path="/:routeName/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
-                    <Redirect exact from="/" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
+                    <Redirect exact from="/" to={`/_lang/${this.props.i18n.language}/`} component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                     <Redirect exact from="/index.html" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                     <PropsRoute path="/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                     <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
