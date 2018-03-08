@@ -25,7 +25,7 @@
   @media all and (max-width:994px){
     .sidebar-col.col-3{
       display:block;
-      width: 100% !important;
+      width: 100%;
     }
     .nav-brand{
       margin:0 auto;
