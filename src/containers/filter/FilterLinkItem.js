@@ -9,14 +9,14 @@ import {T} from '../../utils/i18nhelper';
  * @param {object} item to render
  * @param {type} type of filter item to render 
  */
-const FilterLinkItem = ({ item, type }) => {
+const FilterLinkItem = ({ item, type, lang }) => {
     let obj = {} ;
     obj[type] = [item.value];
     console.log( " LINKITEM OBJ ", obj);
     const url = setInRoute(
         'filter', 
         {
-            lang: 'en', 
+            lang: lang, 
             from: 1, 
             count: 10, 
             to: 10, 
