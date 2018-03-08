@@ -2,6 +2,8 @@ import React from 'react';
 import {rangeMinMax} from '../utils/generalhelper';
 import {Link} from 'react-router-dom';
 import '../css/Paginator.css';
+import FontAwesome from 'react-fontawesome';
+import 'font-awesome/css/font-awesome.css';
 
 class Paginator extends React.Component {
     constructor(props) {
@@ -108,7 +110,7 @@ class Paginator extends React.Component {
                         pgn.count, 
                         1, 
                         pgn.count, 
-                        'First'
+                        <FontAwesome name="angle-double-left" />
                     )
                 }
                 {
@@ -122,7 +124,7 @@ class Paginator extends React.Component {
                         pgn.count,  
                         pgn.from - pgn.count , 
                         pgn.from - 1 , 
-                        'Previous'
+                        <FontAwesome name="angle-left" />
                     )
                 }
                 {
@@ -156,7 +158,7 @@ class Paginator extends React.Component {
                         pgn.count, 
                         pgn.to + 1, 
                         pgn.to + pgn.count, 
-                        'Next' 
+                        <FontAwesome name="angle-right" />
                     )
                 }
                 {
@@ -170,7 +172,7 @@ class Paginator extends React.Component {
                         pgn.count, 
                         ((pagerObject.totalPages - 1) * pgn.count) + 1,  
                         pgn.records === (pagerObject.totalPages * pgn.count) ? pagerObject.totalPages * pgn.count : (pagerObject.totalPages * pgn.count) - pgn.records, 
-                        'Last'
+                        <FontAwesome name="angle-double-right" />
                     )
                 }
             </ul>
