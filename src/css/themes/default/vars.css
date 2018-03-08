@@ -111,6 +111,9 @@
   --sidebar-bg-color: #fff;
   --sidebar-box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
   --sidebar-border-radius: 5px;
+  --sidebar-small-heading-color: rgb(116, 115, 122);
+  --sidebar-small-heading-padding: auto;
+  --sidebar-small-heading-bg: transparent;
 
   /* SiteSearchAutoComplete */
   --sitesearch-color: #74737a;

@@ -17,7 +17,7 @@
   /* app-custom */
     /* content column - left column */
       --main-col-position: right;
-      --content-grey-rule-bg-color: #c7c7c7;
+      --content-grey-rule-bg-color: transparent;
       --content-a-color: #3898EC;
       --content-text-block-color: #74737a;
       --content-button-bg-color: rgb(250, 162, 28);
@@ -111,6 +111,9 @@
   --sidebar-bg-color: #fff;
   --sidebar-box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
   --sidebar-border-radius: 0px;
+  --sidebar-small-heading-color: #000;
+  --sidebar-small-heading-padding: 7px 0px 7px 10px;
+  --sidebar-small-heading-bg: rgb(250, 162, 28);
 
   /* SiteSearchAutoComplete */
   --sitesearch-color: #74737a;
