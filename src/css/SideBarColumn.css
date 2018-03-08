@@ -29,3 +29,14 @@
   background-color: var(--sidebar-bg-color);
   box-shadow: var(--sidebar-box-shadow);
 }
+h2.small-heading {
+    background: var(--sidebar-small-heading-bg);
+    clear: both;
+    color: var(--sidebar-small-heading-color);
+    line-height: 20px;
+    padding: var(--sidebar-small-heading-padding);
+}
+
+.Select-control {
+  border-radius: var(--sidebar-border-radius);
+}
