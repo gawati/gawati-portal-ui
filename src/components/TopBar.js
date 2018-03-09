@@ -117,7 +117,7 @@ class TopBar extends React.Component {
                     T("version") + " = " + versionInfo().version
                 }
                 </div>
-                <div className="row col-12">
+                <div>
                 <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
                 </div>
                 <div className="container-fluid">

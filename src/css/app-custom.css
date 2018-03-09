@@ -231,6 +231,12 @@ body{
     display:inline-block;
     width:19%;
     vertical-align: top;
+    background: var(--section-bg-color);
+    
+    text-align: center;
+    line-height: 20px;
+    margin-left: .25%;
+    margin-right: .25%;
   }
   .metadata li{
     margin: 7px 0;
@@ -256,6 +262,7 @@ body{
 
   .document-download li a {
     cursor: pointer;
+    color: var(--section-color);
   }
 
   /* clud tabs */
