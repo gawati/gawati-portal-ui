@@ -102,8 +102,9 @@ class ListThemeContentColumn extends React.Component {
             );
         } else {        
             let pagination = this.generatePagination() ;
+            let _lang = this.props.match.params.lang;
             let content = 
-            <DivListing lang={this.props.match.params.lang}>
+            <DivListing lang={_lang}>
                 <h1 className="listingHeading">Theme</h1>
                 <DivFeed>
                     <ThemeListPaginator pagination={pagination} onChangePage={this.onChangePage} />
@@ -113,10 +114,10 @@ class ListThemeContentColumn extends React.Component {
                     }
                     {
                     !Array.isArray(this.state.listing) ?
-                    <ExprAbstract key={this.state.listing['expr-iri']} abstract={this.state.listing} /> :    
+                    <ExprAbstract key={this.state.listing['expr-iri']} abstract={this.state.listing} lang={_lang} /> :    
                     this.state.listing.map(abstract => {
                         return (
-                        <ExprAbstract key={abstract['expr-iri']} abstract={abstract} />   
+                        <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={_lang}/>   
                         )
                     })
                     }

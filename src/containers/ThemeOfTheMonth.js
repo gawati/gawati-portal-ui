@@ -36,7 +36,7 @@ const getThemeSummary = (loading, themes, tab, lang) => {
     } else {
         return (
             <Aux>
-                <ThemeSummary themes={themes} />
+                <ThemeSummary themes={themes} lang={lang} />
                 <div className="button-wrapper">
                     <NavLink className={ `button w-button` } to={ `/themes/_lang/` + lang + `/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
                 </div>
@@ -45,12 +45,12 @@ const getThemeSummary = (loading, themes, tab, lang) => {
     }
 }
 
-const ThemeSummary = ({themes}) => 
+const ThemeSummary = ({themes, lang}) => 
         <Aux>
         {
             themes.map(abstract => {
                 return (
-                <ExprAbstract key={abstract['expr-iri']} abstract={abstract} />   
+                <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={lang}/>   
                 )
             })
         }

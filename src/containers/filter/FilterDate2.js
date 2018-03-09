@@ -55,7 +55,7 @@ class FilterDate extends BaseFilter {
                     value={value}
                 />
                 <small>
-                    <FilterLinkItems items={ years } type="years" />...
+                    <FilterLinkItems items={ years } type="years" lang={ this.props.match.params.lang }/>...
                 </small>                
                 <div className="grey-rule"/>
             </Aux>

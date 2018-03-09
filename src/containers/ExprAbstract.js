@@ -83,7 +83,7 @@ class ExprAbstract extends React.Component {
 
     render() {
         let abstract = this.props.abstract ;
-        let pageLang = this.props.lang; 
+        let pageLang = this.props.lang || this.props.match.params.lang; 
         let yearLink = this.yearLink(pageLang, abstract);
         let langLink = this.langLink(pageLang, abstract);
         let countryLink = this.countryLink(pageLang, abstract);
@@ -93,7 +93,7 @@ class ExprAbstract extends React.Component {
                 <div className="text-block">
                     <NavLink to={ countryLink }> {T(abstract.country.showAs)} </NavLink> &#160;| &#160; 
                     <NavLink to={ langLink }>{T(abstract.language.showAs)}</NavLink> &#160;| &#160;
-                    <NavLink to={ yearLink }  key={this.props.lang}>{displayDate(abstract.date[1].value, this.props.lang)}</NavLink>
+                    <NavLink to={ yearLink }  key={this.props.lang}>{displayDate(abstract.date[1].value, pageLang)}</NavLink>
                 </div>  
                 <ThumbnailAbstract abstract={abstract} lang={pageLang}/>
                 <p>{abstract.publishedAs}</p>

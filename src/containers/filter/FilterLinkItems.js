@@ -10,11 +10,11 @@ import { Aux } from '../../utils/generalhelper';
  * @param {string} type The Type of the filter (countries, langs, etc as defined in xqueryhelper.filterConfig)
  * @param {noOfLinks} integer the number of links to show, defaults to 3 if not specified
  */
-const FilterLinkItems = ({ items, type, noOfLinks }) => 
+const FilterLinkItems = ({ items, type, noOfLinks, lang }) => 
     <Aux>
     {
         items.slice(0, noOfLinks).map( 
-            item => <FilterLinkItem key={ `url-${type}-${item.value}` } item={ item } type={ type } />
+            item => <FilterLinkItem key={ `url-${type}-${item.value}` } item={ item } type={ type } lang={ lang }/>
         ).reduce(
             (prev, curr) => [prev, ', ', curr]
         )                    

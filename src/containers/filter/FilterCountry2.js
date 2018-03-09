@@ -65,7 +65,7 @@ class FilterCountry extends BaseFilter {
                     value={value}
                 />
                 <small>
-                    <FilterLinkItems items={ countries } type="countries" />...
+                    <FilterLinkItems items={ countries } type="countries" lang={ this.props.match.params.lang }/>...
                 </small>
                 <div className="grey-rule"/>
             </Aux>
