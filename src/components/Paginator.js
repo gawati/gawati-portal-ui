@@ -77,7 +77,8 @@ class Paginator extends React.Component {
 
     pageLink = (pager, lang, count, from, to, text) => 
         <Link to={ 
-            "/recent/_lang/"+ lang + 
+            "/_lang/"+ lang + 
+            "/recent" +
             "/_count/"+ count +
             "/_from/" + from  +
             "/_to/" + to  
