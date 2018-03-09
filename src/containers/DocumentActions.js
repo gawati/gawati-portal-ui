@@ -28,11 +28,11 @@ const DocumentXmlLink = ({doc, type}) => {
 }
 
 const DocumentActions = ({doc, type}) => 
-        <div className="document-download">
-            <div className={ `col-3 left`}>
+        <div className="document-download row">
+            <div className={ `col`}>
                 <a href="/">{T("Back to search")}</a>
             </div>
-            <div className={ `col-9 right`}>
+            <div className={ `col-10`}>
                 <ul>
                     <li>
                         <a href="/">{T("Subscribe")}</a>
