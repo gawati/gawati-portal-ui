@@ -25,7 +25,6 @@
   @media all and (max-width:994px){
     .sidebar-col.col-3{
       display:block;
-      width: 100%;
     }
     .nav-brand{
       margin:0 auto;
@@ -61,7 +60,7 @@
     }
   }*/
   
-  @media all and (max-width: 768px){
+  @media all and (max-width: 767px){
   
     .section .container{
       padding: 0
@@ -109,7 +108,6 @@
 
     .sidebar-col.col-3{
       float:none;
-      /*width: 100%!important;*/
       max-width: 100%!important;
       -webkit-box-flex: 0;
       -webkit-flex: 0 0 100%!important;
@@ -232,5 +230,10 @@
       width:32%;
     }
   }
-  
+
+@media all and (min-width: 768px){
+  .sidebar-col {
+    width: 100%!important;
+  }
+}
   
