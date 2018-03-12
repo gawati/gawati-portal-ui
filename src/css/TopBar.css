@@ -34,6 +34,7 @@ color: var(--logo-color2);
     margin: 0;
     padding: 0;
     width: 90px; /*or your image's width*/
+    display: inline-block;
 }
 .search-form-container {
 float:right;
