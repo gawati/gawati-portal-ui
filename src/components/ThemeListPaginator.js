@@ -8,8 +8,8 @@ class ThemeListPaginator extends BasePaginator {
 
     pageLink = (pager, lang, themes, count, from, to, text) => 
         <Link to={ 
-            "/themes/_lang/"+ lang + 
-            "/_themes/" + themes +
+            "/_lang/"+ lang + 
+            "/themes/" + themes +
             "/_count/"+ count +
             "/_from/" + from  +
             "/_to/" + to  

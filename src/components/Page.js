@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 
-import {Aux} from '../utils/generalhelper';
+import {Aux, defaultLang} from '../utils/generalhelper';
 import {getRoute} from '../utils/routeshelper';
 
 //import PageUpperBorder from './PageUpperBorder';
@@ -60,14 +60,14 @@ class Page extends React.Component {
             <Aux>
                 {css}
                 <Switch>
-                    <PropsRoute exact path="/:routeName/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
-                    <Redirect exact from="/" to={`/_lang/${this.props.i18n.language}/`} component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
+                    <PropsRoute exact path="/_lang/:lang/:routeName/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
+                    <Redirect exact from="/" to={`/_lang/${this.props.i18n.language || defaultLang().langUI }/`} component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                     <Redirect exact from="/index.html" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                     <PropsRoute path="/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                     <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                 </Switch>
                 <Switch>
-                    <PropsRoute path="/_lang/:lang" component={HomeContentArea}  i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
+                    <PropsRoute exact path="/_lang/:lang" component={HomeContentArea}  i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
                     <PropsRoute path={ getRoute('content') } component={PageContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
                     <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
                     <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>

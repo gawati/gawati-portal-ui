@@ -11,7 +11,7 @@ import imgInstagram from '../images/instagram.svg';
 import '../css/Footer.css';
 
 const ContentLink = ({lang, page, children}) =>
-    <NavLink to={ `/content/_lang/${lang}/_page/${page}` }>{children}</NavLink>;
+    <NavLink to={ `/_lang/${lang}/content/_page/${page}` }>{children}</NavLink>;
 
 function Footer({match, i18n}) {
     let lang = match.params.lang || defaultLang().langUI ;
