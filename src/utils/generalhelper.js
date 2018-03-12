@@ -93,9 +93,8 @@ export const displayDate = (date, locale = 'en') => {
     } else if (locale === 'ik') {
         locale = 'en'
     }
-    const lingo = getLangCodeAlpha2(locale);
-    if (moment.locale() !== lingo.alpha2) {
-        moment.locale(lingo.alpha2)
+    if (moment.locale() !== locale) {
+        moment.locale(locale)
     }
     return moment(date).format('MMMM D YYYY') ;
 }
