@@ -127,6 +127,7 @@
       flex: 0 0 100%!important;
       padding: 0;
       bottom:0px;
+      max-height: 80%;
     }
 
     .right.col-3 .white-wrapper {
