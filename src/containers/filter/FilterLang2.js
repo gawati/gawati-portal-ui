@@ -59,7 +59,7 @@ class FilterLang extends BaseFilter {
                     value={value}
                 />
                 <small>
-                    <FilterLinkItems items={ langs } type="langs" />...
+                    <FilterLinkItems items={ langs } type="langs" lang={ this.props.match.params.lang }/>...
                 </small>
                 <div className="grey-rule"/>
             </Aux>

@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import BasePaginator from './BasePaginator';
+import FontAwesome from 'react-fontawesome';
+import 'font-awesome/css/font-awesome.css';
 
 class RecentListPaginator extends BasePaginator {
 
@@ -41,7 +43,7 @@ class RecentListPaginator extends BasePaginator {
                         pgn.count, 
                         1, 
                         pgn.count, 
-                        'First'
+                        <FontAwesome name="angle-double-left" />
                     )
                 }
                 {
@@ -55,7 +57,7 @@ class RecentListPaginator extends BasePaginator {
                         pgn.count,  
                         pgn.from - pgn.count , 
                         pgn.from - 1 , 
-                        'Previous'
+                        <FontAwesome name="angle-left" />
                     )
                 }
                 {
@@ -89,7 +91,7 @@ class RecentListPaginator extends BasePaginator {
                         pgn.count, 
                         pgn.to + 1, 
                         pgn.to + pgn.count, 
-                        'Next' 
+                        <FontAwesome name="angle-right" /> 
                     )
                 }
                 {
@@ -103,7 +105,7 @@ class RecentListPaginator extends BasePaginator {
                         pgn.count, 
                         ((pager.totalPages - 1) * pgn.count) + 1,  
                         pgn.records === (pager.totalPages * pgn.count) ? pager.totalPages * pgn.count : (pager.totalPages * pgn.count) - pgn.records, 
-                        'Last'
+                        <FontAwesome name="angle-double-right" />
                     )
                 }
             </ul>
