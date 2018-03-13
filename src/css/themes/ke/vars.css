@@ -103,6 +103,8 @@
   /* Section */
   --section-bg-color: #86201e; /* SIG */
   --section-color: rgb(250, 162, 28);
+  --section-flex-dir: row-reverse;
+  --section-ie-flex-alt: table-row;
 
   /* Sidebar */
   --sidebar-col-position: left;

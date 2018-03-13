@@ -103,6 +103,8 @@
   /* Section */
   --section-bg-color: #e0ddd7; /* SIG */
   --section-color: #1abc9c;
+  --section-flex-dir: initial;
+  --section-ie-flex-alt: initial;
 
   /* Sidebar */
   --sidebar-col-position: left;
