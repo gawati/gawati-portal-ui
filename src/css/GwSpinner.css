@@ -1,5 +1,7 @@
-.centered-spinner { 
-    text-align:center; padding: 14px 21px 0px; 
+.centered-spinner {
+    clear: both; 
+    padding: 14px 21px 0px; 
+    text-align:center;
 }
 
 .sk-spinner {
