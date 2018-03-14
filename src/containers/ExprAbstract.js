@@ -89,7 +89,9 @@ class ExprAbstract extends React.Component {
         let countryLink = this.countryLink(pageLang, abstract);
         return (
             <DivFeed key={abstract['expr-iri']}>
-                <h2>{shortTitle(abstract.publishedAs)}</h2>
+                <h2>
+                    <DocumentLink abstract={abstract} lang={pageLang}>{shortTitle(abstract.publishedAs)}</DocumentLink>
+                </h2>
                 <div className="text-block">
                     <NavLink to={ countryLink }> {T(abstract.country.showAs)} </NavLink> &#160;| &#160; 
                     <NavLink to={ langLink }>{T(abstract.language.showAs)}</NavLink> &#160;| &#160;
