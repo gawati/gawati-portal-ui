@@ -197,6 +197,7 @@ class DocumentPDF extends React.Component {
       let pagination = this.renderPagination(this.state.pageNumber, this.state.numPages);
       return (
         <div>
+          { pagination }
           <Document
             file={ pdfLink }
             onLoadSuccess={this.onDocumentLoad}
