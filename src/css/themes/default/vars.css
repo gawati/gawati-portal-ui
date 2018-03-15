@@ -15,7 +15,8 @@
   /* Fonts */
 
   /* app-custom */
-    /* content column - left column */
+    /* content column - main column */
+      --main-col-position: left;
       --content-grey-rule-bg-color: #c7c7c7;
       --content-a-color: #3898EC;
       --content-text-block-color: #74737a;
@@ -33,7 +34,7 @@
       --content-doc-download-border-color: #000;
       --content-breadcrumb-color: rgba(51, 51, 51, .67);
 
-    /* left column */
+    /* main column */
   /* app-custom */
 
 
@@ -102,13 +103,19 @@
   /* Section */
   --section-bg-color: #e0ddd7; /* SIG */
   --section-color: #1abc9c;
+  --section-flex-dir: initial;
+  --section-ie-flex-alt: initial;
 
   /* Sidebar */
+  --sidebar-col-position: left;
   --sidebar-footer-color: #aaa;
   --sidebar-a-color: #a9a9a9;
   --sidebar-bg-color: #fff;
   --sidebar-box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
   --sidebar-border-radius: 5px;
+  --sidebar-small-heading-color: rgb(116, 115, 122);
+  --sidebar-small-heading-padding: auto;
+  --sidebar-small-heading-bg: transparent;
 
   /* SiteSearchAutoComplete */
   --sitesearch-color: #74737a;

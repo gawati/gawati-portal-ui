@@ -18,7 +18,7 @@
     float:right;
 }
 
-.left.col-3{
+.sidebar-col.col-3{
   font-family: var(--font-1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,18 +27,7 @@
   padding-left:0;
 }
 
-.homepage .left.col-9{
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 100%;
-  -ms-flex: 0 0 100%;
-  flex: 0 0 100%;
-  max-width: 100%;
-  padding:0;
-}
-.homepage .right.col-3{
-  display: none;
-}
-.right.col-3{
+.sidebar-col.col-3{
   display: block;
 }
 
@@ -49,6 +38,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
-  line-height: 135%;
+  /*line-height: 135%;*/
   text-align: left;
+}
+#root > section > .container-fluid > .row {
+  flex-direction: var(--section-flex-dir);
+}
+
+/* The following rule is required only for IE as the flex layout is still buggy there.
+   It will be parsed only on IE.
+   The ke theme requires swapping of the main and sidebars.  Changing 'float' alone will
+   not work within a flex container (search pages) on any browser.
+   For Chrome, we can simply change flex-direction. Since this doesn't
+   work on IE, we will have to change the layout itself from flex to table (for ke layout).
+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  #root > section > .container-fluid > .row {
+    display: var(--section-ie-flex-alt);
+  }
 }

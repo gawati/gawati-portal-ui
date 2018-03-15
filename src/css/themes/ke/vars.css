@@ -16,7 +16,8 @@
 
   /* app-custom */
     /* content column - left column */
-      --content-grey-rule-bg-color: #c7c7c7;
+      --main-col-position: right;
+      --content-grey-rule-bg-color: transparent;
       --content-a-color: #3898EC;
       --content-text-block-color: #74737a;
       --content-button-bg-color: rgb(250, 162, 28);
@@ -92,7 +93,7 @@
   --reacttabs-selected-color: rgb(250, 162, 28);
   --reacttabs-border: 0px !important;
   --reacttabs-border-radius: 0px !important;
-  --reacttabs-bg-image: #2d2d2d url(./assets/main-divider.jpg) no-repeat center right;
+  --reacttabs-bg-image: #2d2d2d url(../../themes/ke/assets/main-divider.jpg) no-repeat center right;
   --reacttabs-hover-bg-color: black;
   --reacttabs-hover-color: #f9a11b;
 
@@ -102,13 +103,19 @@
   /* Section */
   --section-bg-color: #86201e; /* SIG */
   --section-color: rgb(250, 162, 28);
+  --section-flex-dir: row-reverse;
+  --section-ie-flex-alt: table-row;
 
   /* Sidebar */
+  --sidebar-col-position: left;
   --sidebar-footer-color: #aaa;
   --sidebar-a-color: #a9a9a9;
   --sidebar-bg-color: #fff;
   --sidebar-box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
   --sidebar-border-radius: 0px;
+  --sidebar-small-heading-color: #000;
+  --sidebar-small-heading-padding: 7px 0px 7px 10px;
+  --sidebar-small-heading-bg: rgb(250, 162, 28);
 
   /* SiteSearchAutoComplete */
   --sitesearch-color: #74737a;
@@ -122,7 +129,7 @@
   --topbar-bg: white;/* linear-gradient(rgb(45, 45, 45) 0%, rgb(43, 43, 43) 30%, rgb(41, 41, 41) 51%, rgb(39, 39, 39) 75%, rgb(37, 37, 37) 100%); */ /* SIG */ 
   --topbar-submit-button-bg-color: rgb(250, 162, 28);
   --topbar-box-shadow:  0 1px 0 0 rgba(0, 0, 0, .06);
-  --logo-img: url("./assets/logo.png");
+  --logo-img: url("../../themes/ke/assets/logo.png");
   --logo-color: #231f20;
   --logo-color2: #90292a;
   --languageswitcher-highlight-bg-color: rgb(51, 51, 51);
