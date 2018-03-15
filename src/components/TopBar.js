@@ -9,10 +9,8 @@ import mobileButton from '../images/th-menu.png';
 import NotifBar from './NotifBar';
 import DivRow from './DivRow';
 import '../css/TopBar.css';
-import Keycloak from 'keycloak-js';
-import keycloakJson from '../configs/keycloak.json';
 
-const kc = Keycloak(keycloakJson);
+import GawatiAuthHelper from '../utils/GawatiAuthHelper';
 
 
 const Logo = () =>
@@ -53,7 +51,7 @@ class TopBar extends React.Component {
     state = { username: 'guest', authenticated: 'false'}
     handleChange = (e, { name, value }) => { this.setState({ [name]: value }); }
     login = () => {
-        kc.login();
+        GawatiAuthHelper.login();
     }
 
     toggleDropDown = ()=>{
@@ -61,14 +59,11 @@ class TopBar extends React.Component {
 	}
 
     logout = () => {
-        kc.init();
-        localStorage.setItem('authenticated', 'false');
-        localStorage.setItem('username', 'guest');
-        kc.logout();
+        GawatiAuthHelper.logout();
     }
 
     register = () => {
-        kc.register();
+        GawatiAuthHelper.register();
     }
 
     getParameterByName = (variable, url)=>{
@@ -87,29 +82,20 @@ class TopBar extends React.Component {
     }
 
     checkLogin = () =>{
-        if(localStorage.getItem('authenticated')==='false'){
-            kc.init().success(function(authenticated) {
-                if(authenticated){
-                    localStorage.setItem('authenticated', 'true');
-                    kc.loadUserProfile().success(function(profile) {
-                        localStorage.setItem('username', profile.username);
-                        window.location.reload();
-                    }).error(function() {
-                        localStorage.setItem('username', 'guest');
-                    });
-                }else{
-                    localStorage.setItem('authenticated', 'false');
-                    localStorage.setItem('username', 'guest');
-                }
-            }).error(function(error) {
-                alert('failed to initialize'+error);
-            })
+        if(GawatiAuthHelper.isUserLoggedIn()){
+            this.updateState('true', GawatiAuthHelper.getUserName());
+        }else{
+            const me = this;
+            GawatiAuthHelper.save(function(response){
+                var auth = GawatiAuthHelper.isUserLoggedIn() ? 'true' : 'false';
+                me.updateState(auth, GawatiAuthHelper.getUserName());
+            });
         }
-        //this.updateState(localStorage.getItem('authenticated'), localStorage.getItem('username'));
     }
     componentDidMount() {
         this.checkLogin();
     }
+
     render() {
     	return (
             <header className="navigation-bar">
@@ -132,14 +118,14 @@ class TopBar extends React.Component {
                         <NotifBar />
                         <div className="login col-3">
                             {
-                            localStorage.getItem('authenticated')==='true' ? 
+                            this.state.authenticated==='true' ? 
                             <div className="dropdown">
                                 <div onClick={this.toggleDropDown} className="dropbtn">
                                     <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
                                 </div>
                                 <div id="myDropdown" className="dropdown-content">
                                     <button className={ `btn btn-link loggedIn` }>
-                                        Logged in as <b>{localStorage.getItem('username')}</b>
+                                        Logged in as <b>{this.state.username}</b>
                                     </button>
                                     <button className={ `btn btn-link` }  onClick={this.logout}>
                                         Sign out
