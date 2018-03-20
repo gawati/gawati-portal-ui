@@ -82,7 +82,7 @@ class SearchFullText extends React.Component {
     }
 
     renderPageLinks() {
-        let pageLinks = this.state.results.map(p => {
+        let pageLinks = this.state.results.sort().map(p => {
             let link = this.state.pdfLink + "#page=" + p;
             return <li key={p}><a href={link} target="_blank">{p}</a></li>;            
         });
