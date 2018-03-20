@@ -74,6 +74,6 @@ export default class GawatiAuthHelper{
 
 	static hasResourceRole = function(role, resource){
 		this.init();
-		return window.KC.hasRealmRole(role, resource);
+		return window.KC.hasResourceRole(role, resource);
 	}
 }
