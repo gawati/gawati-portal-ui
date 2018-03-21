@@ -3,6 +3,12 @@ import keycloakJson from '../configs/keycloak.json';
 
 export default class GawatiAuthHelper{
 
+    static init = function(){
+ 		if(window.KC === undefined){
+ 			window.KC = Keycloak(keycloakJson);
+ 		}
+ 	}
+
     static isUserLoggedIn = function(){
 	    return localStorage.getItem('KC_authenticated')==='true';
 	}
@@ -12,31 +18,29 @@ export default class GawatiAuthHelper{
 	}
 
 	static login = function(){
-		const KC = Keycloak(keycloakJson);
-	    KC.init();
-		KC.login();
+		this.init();
+	    window.KC.login();
 	}
 
 	static register = function(){
-		const KC = Keycloak(keycloakJson);
-	    KC.init();
-		KC.register();
+		this.init();
+	    window.KC.register();
 	}
 
 	static logout = function(){
-		const KC = Keycloak(keycloakJson);
-	    KC.init();
+		this.init();
+		window.KC.init();
 	    localStorage.setItem('KC_authenticated', 'false');
 	    localStorage.setItem('KC_username', 'guest');
-	    KC.logout();
+	    window.KC.logout();
 	}
 
 	static save = function(callback){
-		const KC = Keycloak(keycloakJson);
-	    KC.init().success(function(authenticated) {
+		this.init();
+	    window.KC.init().success(function(authenticated) {
             if(authenticated){
             	localStorage.setItem('KC_authenticated', 'true');
-                KC.loadUserProfile().success(function(profile) {
+                window.KC.loadUserProfile().success(function(profile) {
                 	localStorage.setItem('KC_username', profile.username);
                     callback(true);
                 }).error(function() {
@@ -55,21 +59,21 @@ export default class GawatiAuthHelper{
 	}
 
 	static getToken = function(callback){
-		const KC = Keycloak(keycloakJson);
-		KC.updateToken(5).success(function(refreshed) {
-	        callback(KC.token);
+		this.init();
+		window.KC.updateToken(5).success(function(refreshed) {
+	        callback(window.KC.token);
 	    }).error(function() {
 	        callback(false);
 	    });
 	}
 
 	static hasRealmRole = function(role){
-		const KC = Keycloak(keycloakJson);
-		return KC.hasRealmRole(role);
+		this.init();
+		return window.KC.hasRealmRole(role);
 	}
 
 	static hasResourceRole = function(role, resource){
-		const KC = Keycloak(keycloakJson);
-		return KC.hasResourceRole(role, resource);
+		this.init();
+		return window.KC.hasResourceRole(role, resource);
 	}
 }
