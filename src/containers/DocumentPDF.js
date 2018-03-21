@@ -7,6 +7,7 @@ import { Document } from 'react-pdf/dist/entry.webpack';
 import { Page } from 'react-pdf';
 import {rangeMinMax} from '../utils/generalhelper';
 import {capitalizeFirst} from '../utils/stringhelper';
+import "../css/DocumentPDF.css";
 /*
 class DocumentPDF extends React.Component { 
 
@@ -183,7 +184,6 @@ class DocumentPDF extends React.Component {
 
     getPageProps = () => {
       let pageProps = {
-        // key={`page_${this.state.pageNumber}`},
         key: `page_${this.state.pageNumber}`,
         pageNumber: this.state.pageNumber,
         width: document.getElementsByClassName("search-result")[0].offsetWidth * 0.92
@@ -194,14 +194,16 @@ class DocumentPDF extends React.Component {
           var lower = new RegExp(this.props.searchTerm);
           var upper = new RegExp(capitalizeFirst(this.props.searchTerm));
           var pattern = new RegExp( lower.source + "|" + upper.source );
+          var spaces = '\u00A0'.repeat(this.props.searchTerm.length);
           return (
             textItem.str
-              // .split(this.props.searchTerm)
               .split(pattern)
               .reduce((strArray, currentValue, currentIndex) => (
                 currentIndex === 0 ?
                   ([...strArray, currentValue]) :
-                  ([...strArray, <mark>{this.props.searchTerm || capitalizeFirst(this.props.searchTerm)} </mark>, currentValue])
+                  ([...strArray,
+                  <mark className="highlight">{spaces}</mark>,
+                  currentValue])
               ), [])
           )
         }
