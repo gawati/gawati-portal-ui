@@ -6,7 +6,7 @@ import {anBody} from '../utils/akomantoso';
 import { Document } from 'react-pdf/dist/entry.webpack';
 import { Page } from 'react-pdf';
 import {rangeMinMax} from '../utils/generalhelper';
-
+import {capitalizeFirst} from '../utils/stringhelper';
 /*
 class DocumentPDF extends React.Component { 
 
@@ -190,15 +190,21 @@ class DocumentPDF extends React.Component {
       };
 
       if (this.props.searchTerm) {
-        let customTextRenderer = textItem => (
-          textItem.str
-            .split(this.props.searchTerm)
-            .reduce((strArray, currentValue, currentIndex) => (
-              currentIndex === 0 ?
-                ([...strArray, currentValue]) :
-                ([...strArray, <mark>{this.props.searchTerm}</mark>, currentValue])
-            ), [])
-        )
+        let customTextRenderer = textItem => {
+          var lower = new RegExp(this.props.searchTerm);
+          var upper = new RegExp(capitalizeFirst(this.props.searchTerm));
+          var pattern = new RegExp( lower.source + "|" + upper.source );
+          return (
+            textItem.str
+              // .split(this.props.searchTerm)
+              .split(pattern)
+              .reduce((strArray, currentValue, currentIndex) => (
+                currentIndex === 0 ?
+                  ([...strArray, currentValue]) :
+                  ([...strArray, <mark>{this.props.searchTerm || capitalizeFirst(this.props.searchTerm)} </mark>, currentValue])
+              ), [])
+          )
+        }
         pageProps = Object.assign({}, pageProps, {customTextRenderer});
       }
       return pageProps;
