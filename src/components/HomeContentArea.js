@@ -14,7 +14,7 @@ class HomeContentArea extends React.Component {
                 <div className="container-fluid">
                     <DivRow altClasses="home-content-area">
                         <HomeContentColumn lang={match.params.lang}/>
-                        <SideBarColumn match={match} setCollapsible={this.props.setCollapsible}/>
+                        <SideBarColumn match={match} setCollapsible={this.props.setCollapsible} slideToggle={this.props.slideToggle}/>
                     </DivRow>
                 </div>
             </Section>

@@ -27,7 +27,7 @@ class ListContentArea extends React.Component{
                             <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
                             <Route path={ getRoute('filter') } component={SearchContentColumnFilter} />
                         </Switch>
-                        <SideBarColumn  match={match} i18n={ i18n } setCollapsible={this.props.setCollapsible}/>
+                        <SideBarColumn  match={match} i18n={ i18n } setCollapsible={this.props.setCollapsible}  slideToggle={this.props.slideToggle}/>
                     </DivRow>
                 </div>
             </Section>

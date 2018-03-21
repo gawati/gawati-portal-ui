@@ -208,6 +208,9 @@
       font-size: 12px;
       text-align: center;
     }
+    #filter-container {
+      transition: width .3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
   }
   
   @media all and (max-width:430px){
