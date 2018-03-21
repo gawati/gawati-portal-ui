@@ -7,6 +7,7 @@ import {substringBeforeLastMatch } from '../utils/stringhelper';
 import {documentServer} from '../constants';
 import {anBody} from '../utils/akomantoso';
 import GwSpinner from '../components/GwSpinner'
+import DocumentPDF from './DocumentPDF';
 
 import '../css/SearchFullText.css';
 import FontAwesome from 'react-fontawesome';
@@ -90,6 +91,8 @@ class SearchFullText extends React.Component {
             <div>
                 The search term <b>{this.state.term}</b> was found in the following pages:
                 <ul className="inline-list">{pageLinks}</ul>
+                <hr />
+                <DocumentPDF doc={this.props.doc} type={this.props.type} searchTerm={this.state.term} />
             </div>
         );
     }

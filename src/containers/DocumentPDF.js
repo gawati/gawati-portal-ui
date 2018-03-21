@@ -3,7 +3,7 @@ import {substringBeforeLastMatch } from '../utils/stringhelper';
 import {documentServer} from '../constants';
 import {anBody} from '../utils/akomantoso';
 //import PDF from 'react-pdf-js';
-import { Document } from 'react-pdf/build/entry.webpack';
+import { Document } from 'react-pdf/dist/entry.webpack';
 import { Page } from 'react-pdf';
 import {rangeMinMax} from '../utils/generalhelper';
 
@@ -130,6 +130,7 @@ class DocumentPDF extends React.Component {
 };
 
 */
+
 class DocumentPDF extends React.Component {
     state = {
       numPages: 1,
@@ -179,6 +180,29 @@ class DocumentPDF extends React.Component {
           </nav>
           );
     }
+
+    getPageProps = () => {
+      let pageProps = {
+        // key={`page_${this.state.pageNumber}`},
+        key: `page_${this.state.pageNumber}`,
+        pageNumber: this.state.pageNumber,
+        width: document.getElementsByClassName("search-result")[0].offsetWidth * 0.92
+      };
+
+      if (this.props.searchTerm) {
+        let customTextRenderer = textItem => (
+          textItem.str
+            .split(this.props.searchTerm)
+            .reduce((strArray, currentValue, currentIndex) => (
+              currentIndex === 0 ?
+                ([...strArray, currentValue]) :
+                ([...strArray, <mark>{this.props.searchTerm}</mark>, currentValue])
+            ), [])
+        )
+        pageProps = Object.assign({}, pageProps, {customTextRenderer});
+      }
+      return pageProps;
+    }
   
     render() {
       const { pageNumber, numPages } = this.state;
@@ -195,6 +219,8 @@ class DocumentPDF extends React.Component {
       let cRef = mainDocument.componentRef;
       let pdfLink = documentServer() + substringBeforeLastMatch(cRef.src, "/") + "/" + cRef.alt ;
       let pagination = this.renderPagination(this.state.pageNumber, this.state.numPages);
+      let pageProps = this.getPageProps();
+
       return (
         <div>
           { pagination }
@@ -203,11 +229,7 @@ class DocumentPDF extends React.Component {
             onLoadSuccess={this.onDocumentLoad}
           >
             {
-              <Page
-                key={`page_${this.state.pageNumber}`}
-                pageNumber={this.state.pageNumber}
-                width={document.getElementsByClassName("search-result")[0].offsetWidth * 0.92}
-              />
+              <Page {...this.getPageProps()} />
               }
           </Document>
           { pagination }
