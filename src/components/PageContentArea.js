@@ -6,14 +6,12 @@ import DivRow from './DivRow';
 
 class PageContentArea extends React.Component {
 
+    
+
     render() {
         return (
             <Section>
-                <div className="container-fluid">
-                    <DivRow>
-                        <PageContentColumn {...this.props} />
-                    </DivRow>
-                </div>
+                <PageContentColumn {...this.props} />
             </Section>
         );
     

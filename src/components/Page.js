@@ -21,7 +21,7 @@ class Page extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: true
+            open: false
         };
          this.slideToggle = this.slideToggle.bind(this);
          this.setCollapsible = this.setCollapsible.bind(this);

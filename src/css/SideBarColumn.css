@@ -1,14 +1,8 @@
 .sidebar-col {
   float: var(--sidebar-col-position);
-}
-#filter-container {
   transition: width .1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#filter-container.show {
-  display: block;
-  right: 0px;
-}
 .cc-law-libray{
   margin-bottom: 0px;
   font-family: var(--font-2);
