@@ -3,7 +3,6 @@ import React from 'react';
 import DocumentContentColumn from '../containers/DocumentContentColumn';
 import SideBarColumn from './SideBarColumn';
 import Section from './Section';
-import DivRow from './DivRow';
 
 class DocumentContentArea  extends React.Component { //({ match, setCollapsible, slideToggle, setFlexDirection }) {
 

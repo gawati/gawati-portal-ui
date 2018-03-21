@@ -3,7 +3,6 @@ import React from 'react';
 import HomeContentColumn from '../containers/HomeContentColumn';
 import SideBarColumn from './SideBarColumn';
 import Section from './Section';
-import DivRow from './DivRow';
 
 class HomeContentArea extends React.Component {
 

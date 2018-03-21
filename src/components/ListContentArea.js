@@ -12,7 +12,6 @@ import SearchContentColumnFilter from '../containers/SearchContentColumnFilter';
 
 import SideBarColumn from './SideBarColumn';
 import Section from './Section';
-import DivRow from './DivRow';
 
 class ListContentArea extends React.Component{
 
