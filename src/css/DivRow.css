@@ -1,5 +1,6 @@
-.home-content-area {
+#root > section > .container-fluid > .row  {
   display: table !important;
+  width: 100%;
 }
 .home-content-area .feed {width: 50%;}
 .home-content-area .feed:first-child {width:100%;}
