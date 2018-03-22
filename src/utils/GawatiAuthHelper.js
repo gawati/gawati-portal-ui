@@ -4,8 +4,8 @@ import keycloakJson from '../configs/keycloak.json';
 export default class GawatiAuthHelper{
 
     static init = function(){
- 		if(window.GawatiAuthHelperKeycloak === undefined){
- 			window.GawatiAuthHelperKeycloak = Keycloak(keycloakJson);
+ 		if(window.gawati.KC === undefined){
+ 			window.gawati.KC = Keycloak(keycloakJson);
  		}
  	}
 
@@ -21,30 +21,30 @@ export default class GawatiAuthHelper{
 
 	static login = function(){
 		this.init();
-		window.GawatiAuthHelperKeycloak.init();
-	    window.GawatiAuthHelperKeycloak.login();
+		window.gawati.KC.init();
+	    window.gawati.KC.login();
 	}
 
 	static register = function(){
 		this.init();
-		window.GawatiAuthHelperKeycloak.init();
-	    window.GawatiAuthHelperKeycloak.register();
+		window.gawati.KC.init();
+	    window.gawati.KC.register();
 	}
 
 	static logout = function(){
 		this.init();
-		window.GawatiAuthHelperKeycloak.init();
+		window.gawati.KC.init();
 	    localStorage.setItem('KC_authenticated', 'false');
 	    localStorage.setItem('KC_username', 'guest');
-	    window.GawatiAuthHelperKeycloak.logout();
+	    window.gawati.KC.logout();
 	}
 
 	static save = function(callback){
 		this.init();
-	    window.GawatiAuthHelperKeycloak.init().success(function(authenticated) {
+	    window.gawati.KC.init().success(function(authenticated) {
             if(authenticated){
             	localStorage.setItem('KC_authenticated', 'true');
-                window.GawatiAuthHelperKeycloak.loadUserProfile().success(function(profile) {
+                window.gawati.KC.loadUserProfile().success(function(profile) {
                 	localStorage.setItem('KC_username', profile.username);
                     callback(true);
                 }).error(function() {
@@ -64,8 +64,8 @@ export default class GawatiAuthHelper{
 
 	static getToken = function(callback){
 		this.init();
-		window.GawatiAuthHelperKeycloak.updateToken(5).success(function(refreshed) {
-	        callback(window.GawatiAuthHelperKeycloak.token);
+		window.gawati.KC.updateToken(5).success(function(refreshed) {
+	        callback(window.gawati.KC.token);
 	    }).error(function() {
 	        callback(false);
 	    });
@@ -73,11 +73,11 @@ export default class GawatiAuthHelper{
 
 	static hasRealmRole = function(role){
 		this.init();
-		return window.GawatiAuthHelperKeycloak.hasRealmRole(role);
+		return window.gawati.KC.hasRealmRole(role);
 	}
 
 	static hasResourceRole = function(role, resource){
 		this.init();
-		return window.GawatiAuthHelperKeycloak.hasResourceRole(role, resource);
+		return window.gawati.KC.hasResourceRole(role, resource);
 	}
 }
