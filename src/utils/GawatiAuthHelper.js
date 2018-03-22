@@ -14,16 +14,20 @@ export default class GawatiAuthHelper{
 	}
 
 	static getUserName = function(){
-		return localStorage.getItem('KC_username');
+		var username = localStorage.getItem('KC_username');
+		username = username===undefined ? 'guest' : username;
+		return username;
 	}
 
 	static login = function(){
 		this.init();
+		window.GawatiAuthHelperKeycloak.init();
 	    window.GawatiAuthHelperKeycloak.login();
 	}
 
 	static register = function(){
 		this.init();
+		window.GawatiAuthHelperKeycloak.init();
 	    window.GawatiAuthHelperKeycloak.register();
 	}
 
