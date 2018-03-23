@@ -140,15 +140,16 @@
       width:90%;
     }
     .sidebar-col.col-3{
-      width: 80%;
       max-width: 100%;
       flex: 0 0 100%;
       padding: 0;
       position: fixed;
       bottom: 0px;
       z-index: 7;
-      left: 0px;
+      left: var(--sidebar-left-margin);
+      right: var(--sidebar-right-margin);
       overflow-y: auto;
+      width: auto;
     }
     .d-tabs{
       margin:0;
@@ -208,9 +209,17 @@
       font-size: 12px;
       text-align: center;
     }
+    .sidebar-col.col-3 {
+      transition: width .3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
   }
   
   @media all and (max-width:430px){
+
+    .sidebar-col.col-3 {
+      transition: width .5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     .document-download  .left.col-3{
       -webkit-box-flex: 0;
       -webkit-flex: 0 0 60%;
@@ -232,8 +241,9 @@
   }
 
 @media all and (min-width: 768px){
-  .sidebar-col {
+  .sidebar-col.col-3 {
     width: 100%!important;
+
   }
 }
   

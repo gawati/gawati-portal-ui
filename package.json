@@ -28,6 +28,7 @@
     "react-scripts": "1.1.1",
     "react-select": "^1.2.1",
     "react-spinkit": "^3.0.0",
+    "react-swipeable": "^4.2.0",
     "react-tabs": "2.2.1"
   },
   "scripts": {
@@ -43,7 +44,7 @@
   "overrides": {
     "moment": {
       "main": [
-          "min/moment-with-locales.min.js"
+        "min/moment-with-locales.min.js"
       ]
     }
   }

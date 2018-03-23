@@ -21,7 +21,7 @@ class Page extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: true
+            open: false
         };
          this.slideToggle = this.slideToggle.bind(this);
          this.setCollapsible = this.setCollapsible.bind(this);
@@ -67,12 +67,12 @@ class Page extends React.Component {
                     <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                 </Switch>
                 <Switch>
-                    <PropsRoute exact path="/_lang/:lang" component={HomeContentArea}  i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
-                    <PropsRoute path={ getRoute('content') } component={PageContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
-                    <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
-                    <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
-                    <PropsRoute path={ getRoute('themes') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
-                    <PropsRoute path={ getRoute('filter') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
+                    <PropsRoute exact path="/_lang/:lang" component={HomeContentArea}  i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('content') } component={PageContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('themes') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('filter') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
                 {/* <PropsRoute path={ getRoute('search-country') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-year') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-doclang') } component={ListContentArea} i18n={this.props.i18n} />
