@@ -25,7 +25,6 @@ class HomeContentArea extends React.Component {
     componentDidMount = () => {
         if (this.el) {
             this.setState({'flexDirection': window.getComputedStyle(this.el,null).flexDirection});
-        debugger;
         }
     }
 

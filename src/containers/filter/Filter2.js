@@ -59,7 +59,6 @@ class Filter extends React.Component {
         if (!newParams.hasOwnProperty('lang')) {
             newParams.lang = defaultLang().lang;
         }
-        debugger;
         newParams.count = defaultListCount();
         newParams.from = 1;
         newParams.to = defaultListCount();
