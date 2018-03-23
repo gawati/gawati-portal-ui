@@ -237,7 +237,7 @@ class DocumentPDF extends React.Component {
             onLoadSuccess={this.onDocumentLoad}
           >
             {
-              <Page {...this.getPageProps()} />
+              <Page {...pageProps} />
               }
           </Document>
           { pagination }
