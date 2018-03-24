@@ -42,7 +42,7 @@ class ExprAbstract extends React.Component {
         super(props);
     } */
 
-    countryLink = (pageLang, abstract) =>
+    countryLink = (pageLang, abstract, query) =>
         setInRoute(
             "filter", {
                 from: 1,
@@ -50,12 +50,12 @@ class ExprAbstract extends React.Component {
                 count: 10,
                 lang: pageLang,
                 q: convertObjectToEncodedString(
-                    {countries: [abstract.country.value]}
+                    query
                 )
             }
         );
     
-    langLink = (pageLang, abstract) =>
+    langLink = (pageLang, abstract, query) =>
         setInRoute(
             "filter", {
                 from: 1,
@@ -63,12 +63,12 @@ class ExprAbstract extends React.Component {
                 count: 10,
                 lang: pageLang,
                 q: convertObjectToEncodedString(
-                    {langs: [abstract.language.value]}
+                    query
                 )
             }
         );
 
-    yearLink = (pageLang, abstract) =>
+    yearLink = (pageLang, abstract, query) =>
         setInRoute(
             "filter", {
                 from: 1,
@@ -76,17 +76,39 @@ class ExprAbstract extends React.Component {
                 count: 10,
                 lang: pageLang,
                 q: convertObjectToEncodedString(
-                    {years: [moment(abstract.date[1].value, "YYYY-MM-DD").year()]}
+                    query
                 )
             }
         );
+
+
+    countryAbstract = (abstract, q) => {
+        q.countries =  [abstract.country.value];
+        return q;
+    }
+
+    langAbstract = (abstract, q) => {
+        q.langs = [abstract.language.value];
+        return q;
+    }
+
+    yearAbstract = (abstract, q) => {
+        q.years = [moment(abstract.date[1].value, "YYYY-MM-DD").year()];
+        return q;
+    }
 
     render() {
         let abstract = this.props.abstract ;
         let pageLang = this.props.lang || this.props.match.params.lang; 
-        let yearLink = this.yearLink(pageLang, abstract);
-        let langLink = this.langLink(pageLang, abstract);
-        let countryLink = this.countryLink(pageLang, abstract);
+        
+        var Yquery = this.props.match === undefined || this.props.match.params.q===undefined ? {} : JSON.parse(decodeURIComponent(this.props.match.params.q));
+        var Lquery = this.props.match === undefined || this.props.match.params.q===undefined ? {} : JSON.parse(decodeURIComponent(this.props.match.params.q));
+        var Cquery = this.props.match === undefined || this.props.match.params.q===undefined ? {} : JSON.parse(decodeURIComponent(this.props.match.params.q));
+
+        let yearLink = this.yearLink(pageLang, abstract, this.yearAbstract(abstract, Yquery));
+        let langLink = this.langLink(pageLang, abstract, this.langAbstract(abstract, Lquery));
+        let countryLink = this.countryLink(pageLang, abstract, this.countryAbstract(abstract, Cquery));
+
         return (
             <DivFeed key={abstract['expr-iri']}>
                 <h2>
