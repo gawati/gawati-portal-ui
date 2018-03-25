@@ -93,7 +93,7 @@ class ExprAbstract extends React.Component {
     }
 
     yearAbstract = (abstract, q) => {
-        q.years = [moment(abstract.date[1].value, "YYYY-MM-DD").year()];
+        q.years = [moment(abstract.date[1].value, "YYYY-MM-DD").year().toString()];
         return q;
     }
 
