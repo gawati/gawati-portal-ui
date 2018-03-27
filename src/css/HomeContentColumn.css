@@ -1,20 +1,12 @@
-.w-button,
-.more-button {
+.w-button{
     display: inline-block;
     padding: 9px 15px;
     background-color: var(--home-wbutton-bg-color);
-    color: var(--home-more-color);
+    color: var(--home-wbutton-color);
     border: 0;
     line-height: inherit;
     text-decoration: none;
     cursor: pointer;
-}
-.more-button {
-    background-color:var(--home-more-bg-color);
-    float: right;
-}
-.more-button img{
-  margin:0!important;
 }
 
 /* tabs */

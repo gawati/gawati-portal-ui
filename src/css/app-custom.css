@@ -125,7 +125,7 @@ body{
     margin-top: 10px;
   }
   .feed .text-block a:hover{
-    color: var(--content-a-color);
+    color: var(--content-a-hover-color);
     text-decoration: underline;
   }
   .text-block {
@@ -177,7 +177,6 @@ body{
     font-size: 35px;
   }
   .search-result h1 span{
-    color: var(--content-search-result-span-color);
     font-size: 33px;
     font-style: italic;
   }
@@ -185,7 +184,6 @@ body{
     font-size:12px;
   }
   .search-result a:hover{
-    color: var(--content-search-result-a-color);
     text-decoration: underline;
   }
   .search-result .more{
