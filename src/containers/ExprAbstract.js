@@ -2,8 +2,8 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import moment from 'moment';
 
-import {shortTitle, displayDate} from '../utils/generalhelper';
-import {convertObjectToEncodedString, setInRoute} from '../utils/routeshelper';
+import {shortTitle, displayDate, cloneObject} from '../utils/generalhelper';
+import {convertObjectToEncodedString, convertEncodedStringToObject, setInRoute, editInRoute} from '../utils/routeshelper';
 import {documentServer} from '../constants.js';
 import {T} from '../utils/i18nhelper';
 
@@ -42,9 +42,9 @@ class ExprAbstract extends React.Component {
         super(props);
     } */
 
-    countryLink = (pageLang, abstract, query) =>
-        setInRoute(
-            "filter", {
+    filterLink = (match, pageLang, query) => {
+        if (match === undefined || match.params === undefined || ! match.params.q) {
+            return setInRoute("filter", {
                 from: 1,
                 to: 10,
                 count: 10,
@@ -52,47 +52,23 @@ class ExprAbstract extends React.Component {
                 q: convertObjectToEncodedString(
                     query
                 )
-            }
-        );
+            });
+        } else {
+            return editInRoute({q: convertObjectToEncodedString(query)}, match);
+        } 
+    }
     
-    langLink = (pageLang, abstract, query) =>
-        setInRoute(
-            "filter", {
-                from: 1,
-                to: 10,
-                count: 10,
-                lang: pageLang,
-                q: convertObjectToEncodedString(
-                    query
-                )
-            }
-        );
-
-    yearLink = (pageLang, abstract, query) =>
-        setInRoute(
-            "filter", {
-                from: 1,
-                to: 10,
-                count: 10,
-                lang: pageLang,
-                q: convertObjectToEncodedString(
-                    query
-                )
-            }
-        );
-
-
-    countryAbstract = (abstract, q) => {
+    countryFilter = (abstract, q) => {
         q.countries =  [abstract.country.value];
         return q;
     }
 
-    langAbstract = (abstract, q) => {
+    langFilter = (abstract, q) => {
         q.langs = [abstract.language.value];
         return q;
     }
 
-    yearAbstract = (abstract, q) => {
+    yearFilter = (abstract, q) => {
         q.years = [moment(abstract.date[1].value, "YYYY-MM-DD").year().toString()];
         return q;
     }
@@ -101,13 +77,10 @@ class ExprAbstract extends React.Component {
         let abstract = this.props.abstract ;
         let pageLang = this.props.lang || this.props.match.params.lang; 
         
-        var Yquery = this.props.match === undefined || this.props.match.params.q===undefined ? {} : JSON.parse(decodeURIComponent(this.props.match.params.q));
-        var Lquery = this.props.match === undefined || this.props.match.params.q===undefined ? {} : JSON.parse(decodeURIComponent(this.props.match.params.q));
-        var Cquery = this.props.match === undefined || this.props.match.params.q===undefined ? {} : JSON.parse(decodeURIComponent(this.props.match.params.q));
-
-        let yearLink = this.yearLink(pageLang, abstract, this.yearAbstract(abstract, Yquery));
-        let langLink = this.langLink(pageLang, abstract, this.langAbstract(abstract, Lquery));
-        let countryLink = this.countryLink(pageLang, abstract, this.countryAbstract(abstract, Cquery));
+        var query = this.props.match === undefined || this.props.match.params.q===undefined ? {} : convertEncodedStringToObject(this.props.match.params.q);
+        let yearLink = this.filterLink(this.props.match, pageLang, this.yearFilter(abstract, cloneObject(query)));
+        let langLink = this.filterLink(this.props.match, pageLang, this.langFilter(abstract, cloneObject(query)));
+        let countryLink = this.filterLink(this.props.match, pageLang, this.countryFilter(abstract, cloneObject(query)));
 
         return (
             <DivFeed key={abstract['expr-iri']}>
@@ -115,14 +88,14 @@ class ExprAbstract extends React.Component {
                     <DocumentLink abstract={abstract} lang={pageLang}>{shortTitle(abstract.publishedAs)}</DocumentLink>
                 </h2>
                 <div className="text-block">
-                    <NavLink to={ countryLink }> {T(abstract.country.showAs)} </NavLink> &#160;| &#160; 
-                    <NavLink to={ langLink }>{T(abstract.language.showAs)}</NavLink> &#160;| &#160;
+                    <NavLink to={ countryLink }> {abstract.country.showAs} </NavLink> &#160;| &#160; 
+                    <NavLink to={ langLink }>{abstract.language.showAs}</NavLink> &#160;| &#160;
                     <NavLink to={ yearLink }  key={this.props.lang}>{displayDate(abstract.date[1].value, pageLang)}</NavLink>
                 </div>  
                 <ThumbnailAbstract abstract={abstract} lang={pageLang}/>
                 <p>{abstract.publishedAs}</p>
                 <div className="div-block-18 w-clearfix">
-                    <DocumentLink abstract={abstract} lang={pageLang}>more...</DocumentLink>
+                    <DocumentLink abstract={abstract} lang={pageLang}>{T("more...")}</DocumentLink>
                 </div>
                 <div className="grey-rule"></div>                      
             </DivFeed>
