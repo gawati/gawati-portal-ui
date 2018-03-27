@@ -29,4 +29,15 @@ export const stringTemplate = (str, data) => {
     
             return false;
         }
-}     
+}
+
+/**
+ * Take a string, capitalize the first letter and return the whole string.
+ * "sherlock" -> "Sherlock"
+ * @param {string} str
+ */
+export const capitalizeFirst = (str) => {
+  if (str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+}

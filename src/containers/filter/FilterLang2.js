@@ -53,13 +53,13 @@ class FilterLang extends BaseFilter {
                     multi
                     onChange={this.handleSelectChange}
                     options={langs}
-                    placeholder="Select language"
+                    placeholder={T("Select language")}
                     removeSelected={true}
                     rtl={false}
                     value={value}
                 />
                 <small>
-                    <FilterLinkItems items={ langs } type="langs" />...
+                    <FilterLinkItems items={ langs } type="langs" lang={ this.props.match.params.lang }/>...
                 </small>
                 <div className="grey-rule"/>
             </Aux>

@@ -1,14 +1,11 @@
-#filter-container {
+.sidebar-col {
+  float: var(--sidebar-col-position);
   transition: width .1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#filter-container.show {
-  display: block;
-  right: 0px;
-}
 .cc-law-libray{
   margin-bottom: 0px;
-  font-family: Georgia, Times, 'Times New Roman', serif;
+  font-family: var(--font-2);
   color: var(--sidebar-footer-color);
   font-size: 11px;
   text-align: center;
@@ -16,13 +13,24 @@
   text-transform: uppercase;
 }
 
-.right.col-3 a:hover,
-.right.col-3 a:focus{
+.sidebar-col.col-3 a:hover,
+.sidebar-col.col-3 a:focus{
   color: var(--sidebar-a-color);
 }
 .white-wrapper {
   padding: 20px;
-  border-radius: 5px;
+  border-radius: var(--sidebar-border-radius);
   background-color: var(--sidebar-bg-color);
   box-shadow: var(--sidebar-box-shadow);
+}
+h2.small-heading {
+    background: var(--sidebar-small-heading-bg);
+    clear: both;
+    color: var(--sidebar-small-heading-color);
+    line-height: 20px;
+    padding: var(--sidebar-small-heading-padding);
+}
+
+.Select-control {
+  border-radius: var(--sidebar-border-radius);
 }

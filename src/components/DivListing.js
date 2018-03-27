@@ -30,7 +30,7 @@ class DivListing extends React.Component {
             lang = langMap[this.state.lang]
         }
         return (
-            <div className={ `left col-xs-12 col-lg-9 col-md-9 col-sm-12`}>
+            <div className={ `main-col col-xs-12 col-lg-9 col-md-9 col-sm-12`}>
                 <div className="search-result">
                 {this.props.children}
                 {

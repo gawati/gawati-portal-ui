@@ -25,7 +25,8 @@ class HomeContentColumn extends React.Component {
             latest:  {
                 content:  [],
                 loading: true
-            }
+            },
+            lang: this.props.lang
         };
     }
    
@@ -83,9 +84,14 @@ class HomeContentColumn extends React.Component {
         this.getThemesSummary();
     }
 
+    componentWillReceiveProps (nextProps) {
+        this.setState({lang: nextProps.lang})
+    }
+
     render() {
         const { latest, themes } = this.state;
         let content;
+        let _lang = this.state.lang;
         /*
         * BOOTSTRAP + REACT TABS
         *
@@ -116,17 +122,17 @@ class HomeContentColumn extends React.Component {
          * PURE REACT TABS
          */    
         content = 
-        <div className={ `left col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
+        <div className={ `main-col col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
             <Tabs>
                 <TabList>
                     <Tab>{ T("latest") }</Tab>
                     <Tab>{ T("in focus") }</Tab>
                 </TabList>
                 <TabPanel>
-                    <RecentDocs loading={latest.loading} recentDocs={latest.content} tab={1} /> 
+                    <RecentDocs loading={latest.loading} recentDocs={latest.content} tab={1} lang={_lang}/> 
                 </TabPanel>
                 <TabPanel>
-                    <ThemeOfTheMonth loading={themes.loading} themes={themes.content} tab={2} />
+                    <ThemeOfTheMonth loading={themes.loading} themes={themes.content} tab={2} lang={_lang}/>
                 </TabPanel>
             </Tabs>
         </div>

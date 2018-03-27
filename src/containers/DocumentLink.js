@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const DocumentLink = ({abstract, children}) => {
+const DocumentLink = ({abstract, lang, children}) => {
     return (
-        <Link to={'/doc/_lang/en/_iri' + abstract['expr-iri']}>{children}</Link>
+        <Link to={'/_lang/' + lang + '/doc/_iri' + abstract['expr-iri']}>{children}</Link>
     );
 };
 

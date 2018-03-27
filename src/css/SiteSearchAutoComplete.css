@@ -1,6 +1,5 @@
 .ui-ac-item-render {
-  color: var(--sitesearch-color);
-  font-family: Montserrat, sans-serif;
+  font-family: var(--font-1);
   font-size: 13px;
   text-transform:capitalize;
 }

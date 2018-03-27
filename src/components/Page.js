@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 
-import {Aux} from '../utils/generalhelper';
+import {Aux, defaultLang} from '../utils/generalhelper';
 import {getRoute} from '../utils/routeshelper';
 
 //import PageUpperBorder from './PageUpperBorder';
@@ -14,6 +14,7 @@ import PageContentArea from './PageContentArea';
 import Footer from './Footer';
 import { Redirect } from 'react-router'
 import {PropsRoute} from '../utils/routeshelper';
+import {Helmet} from "react-helmet";
 
 class Page extends React.Component {
 
@@ -48,22 +49,30 @@ class Page extends React.Component {
     };
 
     render() {
+        const prod = process.env.NODE_ENV === 'production';
+        var css;
+        if (prod) {
+            css = <Helmet>
+                    <link rel="stylesheet" type="text/css" href={`${process.env.PUBLIC_URL}/static/css/themes/${process.env.REACT_APP_THEME}/vars.css`} />
+                </Helmet>
+        }
         return (
             <Aux>
+                {css}
                 <Switch>
-                    <PropsRoute exact path="/:routeName/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
-                    <Redirect exact from="/" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
+                    <PropsRoute exact path="/_lang/:lang/:routeName/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
+                    <Redirect exact from="/" to={`/_lang/${this.props.i18n.language || defaultLang().langUI }/`} component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                     <Redirect exact from="/index.html" to="/_lang/en/"component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                     <PropsRoute path="/_lang/:lang/*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                     <PropsRoute path="*" component={TopBar} i18n={this.props.i18n} slideToggle={this.slideToggle} />
                 </Switch>
                 <Switch>
-                    <PropsRoute path="/_lang/:lang" component={HomeContentArea}  i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
-                    <PropsRoute path={ getRoute('content') } component={PageContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
-                    <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
-                    <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
-                    <PropsRoute path={ getRoute('themes') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
-                    <PropsRoute path={ getRoute('filter') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible}/>
+                    <PropsRoute exact path="/_lang/:lang" component={HomeContentArea}  i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('content') } component={PageContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('doc-iri') } component={DocumentContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('themes') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('filter') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
                 {/* <PropsRoute path={ getRoute('search-country') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-year') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-doclang') } component={ListContentArea} i18n={this.props.i18n} />

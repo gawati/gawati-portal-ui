@@ -1,7 +1,7 @@
   footer {
     padding-top: 21px;
     background-color: var(--footer-bg-color);
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--footer-color);
@@ -13,7 +13,6 @@
   footer .footer{
     padding-top: 14px;
     padding-bottom: 14px;
-    background-color: var(--footer-bg-color2);
   }
 
   footer a {
@@ -27,7 +26,7 @@
     display:none
   }
   .newsletter-form{
-    width:92.4%;
+    width: calc(100% - 35px);
     height: 40px;
     display: inline;
   }
@@ -48,7 +47,7 @@
   .social-icons h5{
     margin-top: 14px;
     margin-bottom: 0px;
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-family: var(--font-2);
     color: var(--footer-social-color);
     font-size: 12px;
     text-align: center;
@@ -68,10 +67,11 @@
   }
   .social-icon-link img{
     width:20px;
+    background: var(--social-img-bg);
   }
   footer p{
     margin-bottom: 11px;
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--footerp-color);

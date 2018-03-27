@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 import {filterMap} from '../utils/generalhelper';
 import BasePaginator from './BasePaginator';
 import { setInRoute } from '../utils/routeshelper';
+import FontAwesome from 'react-fontawesome';
+import 'font-awesome/css/font-awesome.css';
 
 /**
  * Generic Search List Paginator implementation
@@ -82,7 +84,7 @@ class SearchListPaginator extends BasePaginator {
                             filterProps, 
                             1, 
                             pgn.count, 
-                            'First'
+                            <FontAwesome name="angle-double-left" />
                         )
                     )
                 }
@@ -97,7 +99,7 @@ class SearchListPaginator extends BasePaginator {
                             filterProps, 
                             pgn.from - pgn.count,  
                             pgn.from - 1 , 
-                            'Previous'
+                            <FontAwesome name="angle-left" />
                         )
                     )
                 }
@@ -133,7 +135,7 @@ class SearchListPaginator extends BasePaginator {
                             filterProps, 
                             pgn.to + 1, 
                             pgn.to + pgn.count, 
-                            'Next'  
+                            <FontAwesome name="angle-right" />
                         )
                     )
                 }
@@ -147,7 +149,7 @@ class SearchListPaginator extends BasePaginator {
                             pgn, 
                             filterProps, 
                             ((pager.totalPages - 1) * pgn.count) + 1,  pgn.records === (pager.totalPages * pgn.count) ? pager.totalPages * pgn.count : (pager.totalPages * pgn.count) - pgn.records,  
-                            'Last'
+                            <FontAwesome name="angle-double-right" />
                         )
                     )
                 }

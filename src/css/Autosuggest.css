@@ -9,7 +9,7 @@
     max-width: 90%;
     height: 40px;
     float: left;
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: block;
@@ -25,7 +25,7 @@
     width: 87%;
     height: 30px;
     padding: 10px 20px;
-    font-family: Helvetica, sans-serif;
+    font-family: var(--font-3);
     font-weight: 300;
     font-size: 16px;
     border: 1px solid #aaa;
@@ -59,7 +59,7 @@
     width: 87%;
     border: 1px solid #aaa;
     background-color: #fff;
-    font-family: Helvetica, sans-serif;
+    font-family: var(--font-3);
     font-weight: 300;
     font-size: 16px;
     border-bottom-left-radius: 4px;
@@ -97,7 +97,7 @@
 
   .react-autosuggest__section-title {
     /*font-weight:bold; */
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-family: var(--font-2);
     /*font-size-adjust: .7;
     width: 300px !important;*/
     border-bottom: 2px solid #d8a133;

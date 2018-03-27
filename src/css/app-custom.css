@@ -12,7 +12,7 @@ body{
 
   /* Search input */
     .calendar{
-      font-family: Montserrat, sans-serif;
+      font-family: var(--font-1);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       font-size: 13px;
@@ -27,7 +27,7 @@ body{
       vertical-align: middle;
       background-color: #ffffff;
       border: 1px solid #cccccc;
-      font-family: Montserrat, sans-serif;
+      font-family: var(--font-1);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -36,7 +36,7 @@ body{
         width:87%;
         height: 40px;
         float: left;
-        font-family: Montserrat, sans-serif;
+        font-family: var(--font-1);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -53,14 +53,6 @@ body{
       color: #b3b0b0;
     }
   /* Search input */
-  .homepage .feed{
-    width: 50%;
-    display: inline-block;
-    vertical-align: top;
-  }
-  .homepage .feed:first-child{
-    width:100%;
-  }
   .button-2 {
       margin-top: -14px;
       float: right;
@@ -73,7 +65,7 @@ body{
     margin-top: 7px;
     padding-right: 0px;
     padding-left: 0px;
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #74737a;
@@ -82,7 +74,7 @@ body{
   .heading-2 {
       margin-top: 0px;
       margin-bottom: 3px;
-      font-family: Georgia, Times, 'Times New Roman', serif;
+      font-family: var(--font-2);
       color: #74737a;
   }
   .the-result{
@@ -120,7 +112,10 @@ body{
 /* UNUSED TILL HERE */
 
 
-/* left column - main*/
+/* column - main*/
+  .main-col {
+    float: var(--main-col-position);
+  }
   .feed {
     float: left;
     margin-bottom: 0px;
@@ -130,11 +125,11 @@ body{
     margin-top: 10px;
   }
   .feed .text-block a:hover{
-    color: var(--content-a-color);
+    color: var(--content-a-hover-color);
     text-decoration: underline;
   }
   .text-block {
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--content-text-block-color);
@@ -166,10 +161,10 @@ body{
   .search-result{
     float: left;
     margin-bottom: 30px;
-    border-radius: 5px;
+    border-radius: var(--reacttabs-border-radius);
     background-color: var(--content-search-result-bg-color);
     box-shadow: var(--content-search-result-box-shadow);
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--content-search-result-color);
@@ -177,12 +172,11 @@ body{
   }
   .search-result h1{
     margin-bottom: 7px;
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-family: var(--font-2);
     color: var(--content-search-result-h1-color);
     font-size: 35px;
   }
   .search-result h1 span{
-    color: var(--content-search-result-span-color);
     font-size: 33px;
     font-style: italic;
   }
@@ -190,7 +184,6 @@ body{
     font-size:12px;
   }
   .search-result a:hover{
-    color: var(--content-search-result-a-color);
     text-decoration: underline;
   }
   .search-result .more{
@@ -236,6 +229,12 @@ body{
     display:inline-block;
     width:19%;
     vertical-align: top;
+    background: var(--section-bg-color);
+    
+    text-align: center;
+    line-height: 20px;
+    margin-left: .25%;
+    margin-right: .25%;
   }
   .metadata li{
     margin: 7px 0;
@@ -252,15 +251,16 @@ body{
     cursor: pointer;
   }
   .breadcrumb-gw {
-    font-family: Montserrat, sans-serif;
+    font-family: var(--font-1);
     font-size:12px;
     color: var(--content-breadcrumb-color);
     padding: 0.75rem 1rem 0;
   }
-/* left column - main content column */
+/* column - main content column */
 
   .document-download li a {
     cursor: pointer;
+    color: var(--section-color);
   }
 
   /* clud tabs */

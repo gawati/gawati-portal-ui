@@ -6,38 +6,47 @@ import {getRoute} from '../utils/routeshelper';
 
 import ListContentColumn from '../containers/ListContentColumn';
 import ListThemeContentColumn from '../containers/ListThemeContentColumn';
-import SearchContentColumnYear from '../containers/SearchContentColumnYear';
-import SearchContentColumnCountry from '../containers/SearchContentColumnCountry';
-import SearchContentColumnLanguage from '../containers/SearchContentColumnLanguage';
-import SearchContentColumnSubject from '../containers/SearchContentColumnSubject';
 import SearchContentColumnFilter from '../containers/SearchContentColumnFilter';
 
 
 
 import SideBarColumn from './SideBarColumn';
 import Section from './Section';
-import DivRow from './DivRow';
 
 class ListContentArea extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            el: null,
+            flexDirection: null
+        };
+        this.setFlexDirection = this.setFlexDirection.bind(this);
+    }
+
+
+    setFlexDirection = (el) => {
+        if (el) {
+            this.el = el;
+        }
+    }
+
+    componentDidMount = () => {
+        if (this.el) {
+            this.setState({'flexDirection': window.getComputedStyle(this.el,null).flexDirection});
+        }
+    }
 
     render () {
         const { match, i18n } = this.props;
         return (
-            <Section>
-                <div className="container-fluid">
-                    <DivRow>
-                        <Switch>
-                            <Route path={ getRoute('recent') } component={ListContentColumn} />
-                            <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
-                            <Route path={ getRoute('filter') } component={SearchContentColumnFilter} />
-                            <Route path={ getRoute('search-country') } component={SearchContentColumnCountry} />
-                            <Route path={ getRoute('search-year') } component={SearchContentColumnYear} />
-                            <Route path={ getRoute('search-doclang') } component={SearchContentColumnLanguage} />
-                            <Route path={ getRoute('search-keyword') } component={SearchContentColumnSubject} />
-                        </Switch>
-                        <SideBarColumn  match={match} i18n={ i18n } setCollapsible={this.props.setCollapsible}/>
-                    </DivRow>
-                </div>
+            <Section setFlexDirection={this.setFlexDirection}>
+                <Switch>
+                    <Route path={ getRoute('recent') } component={ListContentColumn} />
+                    <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
+                    <Route path={ getRoute('filter') } component={SearchContentColumnFilter} />
+                </Switch>
+                <SideBarColumn  match={match} i18n={ i18n } setCollapsible={this.props.setCollapsible} slideToggle={this.props.slideToggle} flexDirection={this.state.flexDirection}/>
             </Section>
         );
     }

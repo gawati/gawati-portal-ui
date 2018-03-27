@@ -1,4 +1,4 @@
-ul.gw-pager {margin: auto; width: 60%; padding-bottom:40px;}
+ul.gw-pager {margin: auto; padding-bottom:40px; display: table;}
 .gw-pager>.active>a, .gw-pager>.active>a:focus, .gw-pager>.active>a:hover, .gw-pager>.active>span, 
 .gw-pager>.active>span:focus, .gw-pager>.active>span:hover {
     z-index: 2;
