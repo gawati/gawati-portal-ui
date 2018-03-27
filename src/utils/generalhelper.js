@@ -168,6 +168,15 @@ export const filterMap = (obj, blacklist) => {
     return filteredObject;
 }
 
+/**
+ * Clones an object
+ * @param {*} obj 
+ */
+export const cloneObject = (obj) => {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+
 export const isInt = (value) =>  {
     var x;
     if (isNaN(value)) {
