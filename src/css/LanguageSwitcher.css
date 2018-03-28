@@ -21,3 +21,12 @@
 .ui-lang-item:hover {
     background-color: var(--languageswitcher-bg-color)
 }
+
+ul.list-inline {
+    display: inline-block;
+}
+
+ul.list-inline > [class^="Select"] {
+    display: inline-table;
+    min-width: 150px;
+}
