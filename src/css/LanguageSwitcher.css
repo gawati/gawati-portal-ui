@@ -28,5 +28,18 @@ ul.list-inline {
 
 ul.list-inline > [class^="Select"] {
     display: inline-table;
-    min-width: 150px;
+    min-width: 120px;
+}
+
+ul.list-inline .Select-control {
+    display: contents;
+}
+
+ul.list-inline .Select-value {
+    padding-left: 0px !important;
+    padding-right: 25px !important;
+}
+
+ul.list-inline .Select-clear-zone, ul.list-inline .Select-input  {
+    display: none;
 }

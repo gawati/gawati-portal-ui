@@ -14,11 +14,11 @@ class LanguageSwitcher extends React.Component {
         super(props);
         if ( (props.i18n.language !== props.match.params.lang) && (props.match.params.lang) ) {
             props.i18n.changeLanguage(props.match.params.lang);
+            this.setState({ currentLang: props.i18n.language});
         }
-        const langs = getLangs();
-        const grouped = groupBy(langs, 'origin');
+        this.langs = getLangs();
+        const grouped = groupBy(this.langs, 'origin');
         this.groupedArr = Object.values(grouped);
-        this._defaultSelected = filter(langs, { 'lang': props.i18n.language });
     }
     
 
@@ -26,9 +26,18 @@ class LanguageSwitcher extends React.Component {
         var newRoute = editInRoute({lang:selected.lang}, this.props.match);
         const { router } = this.context;
         router.history.push(newRoute);
+        this.setState({ currentLang: selected.lang});
+    }
+
+    componentWillReceiveProps (props) {
+        if ( (props.i18n.language !== props.match.params.lang) && (props.match.params.lang) ) {
+            props.i18n.changeLanguage(props.match.params.lang);
+            this.setState({ currentLang: props.i18n.language});
+        }
     }
 
     render () {
+        _defaultSelected = filter(this.langs, { 'lang': this.props.i18n.language });
         return (
             <ul className="list-inline"> 
             {
@@ -37,11 +46,12 @@ class LanguageSwitcher extends React.Component {
                         (group.length > 1)  ?
                         <Select options={group} 
                             onChange={this.onLangChange} 
-                            value={indexOf(group, this._defaultSelected[0]) > -1 ? this._defaultSelected[0] : group[0]} 
+                            value={indexOf(group, _defaultSelected[0]) > -1 ? _defaultSelected[0] : group[0]} 
                             placeholder="Select an option" 
                             key={`ui-lang-${group[0].origin}`}
                             valueKey='lang'
                             labelKey='content'
+                            className={indexOf(group, _defaultSelected[0]) > -1 ? 'ui-lang-highlight' : ''}
                             />                      
                         :
                         <li key={ `ui-lang-${group[0].lang}`} 
