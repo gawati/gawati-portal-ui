@@ -37,7 +37,7 @@ class LanguageSwitcher extends React.Component {
     }
 
     render () {
-        _defaultSelected = filter(this.langs, { 'lang': this.props.i18n.language });
+        const _defaultSelected = filter(this.langs, { 'lang': this.props.i18n.language });
         return (
             <ul className="list-inline"> 
             {
@@ -51,13 +51,13 @@ class LanguageSwitcher extends React.Component {
                             key={`ui-lang-${group[0].origin}`}
                             valueKey='lang'
                             labelKey='content'
-                            className={indexOf(group, _defaultSelected[0]) > -1 ? 'ui-lang-highlight' : ''}
+                            className={indexOf(group, _defaultSelected[0]) > -1 ? 'list-inline-item ui-lang-item ui-lang-highlight' : 'list-inline-item ui-lang-item'}
                             />                      
                         :
-                        <li key={ `ui-lang-${group[0].lang}`} 
+                        <div key={ `ui-lang-${group[0].lang}`} 
                             className={ `list-inline-item ui-lang-item ${ group[0].lang === this.props.i18n.language ? "ui-lang-highlight": "" }`}>
                             <NavLink to={ editInRoute({lang:group[0].lang}, this.props.match) }>{group[0].content}</NavLink>
-                        </li>
+                        </div>
                 ) 
             }
             </ul>
