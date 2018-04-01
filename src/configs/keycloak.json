@@ -1,10 +1,11 @@
 {
-  "realm": "gawati",
-  "url": "http://localhost:11080/auth",
-  "ssl-required": "external",
-  "resource": "gawati-portal-ui",
-  "clientId": "gawati-portal-ui",
-  "public-client": true,
-  "use-resource-role-mappings": true,
-  "confidential-port": 0
+  "realm": "master",
+  "url": "http://13.127.16.77:8080/auth",
+  "ssl-required": "none",
+  "clientId": "auth",
+  "credentials": {
+    "secret": "da41583c-53b3-4d50-8312-36b72e181f34"
+  },
+  "confidential-port": 0,
+  "policy-enforcer": {}
 }

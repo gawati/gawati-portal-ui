@@ -125,7 +125,7 @@ class TopBar extends React.Component {
                                 </div>
                                 <div id="myDropdown" className="dropdown-content">
                                     <button className={ `btn btn-link loggedIn` }>
-                                        Logged in as <b>{this.state.username}</b>
+                                        <NavLink to="/profile">Logged in as <b>{this.state.username}</b></NavLink>
                                     </button>
                                     <button className={ `btn btn-link` }  onClick={this.logout}>
                                         Sign out
