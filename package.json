@@ -29,7 +29,8 @@
     "react-select": "^1.2.1",
     "react-spinkit": "^3.0.0",
     "react-swipeable": "^4.2.0",
-    "react-tabs": "2.2.1"
+    "react-tabs": "2.2.1",
+    "react-toastify": "^3.4.3"
   },
   "scripts": {
     "start": "shx cp -R node_modules/gawati-lang-packs/locales public && react-scripts start",

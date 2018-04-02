@@ -37,6 +37,12 @@ export default class EditableLabel extends React.Component {
         });
     }
 
+    componentWillReceiveProps (nextProps) {
+        if (nextProps.text !== this.state.text) {
+            this.setState({text: nextProps.text});
+        }
+    }
+
     render() {
     	if(this.state.isEditing) {
         	return <div>
@@ -83,7 +89,7 @@ EditableLabel.propTypes = {
     labelFontSize: PropTypes.string,
     labelFontWeight: PropTypes.string,
 
-    inputMaxLength: PropTypes.number,
+    inputMaxLength: PropTypes.string,
     inputPlaceHolder: PropTypes.string,
     inputTabIndex: PropTypes.number,
     inputWidth: PropTypes.string,

@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 
-import EditableLabel from '../utils/inlineedit';
+import EditableLabel from '../commons/editable_label';
 
 import {dataProxyServer} from '../constants';
 import GawatiAuthHelper from '../utils/GawatiAuthHelper';
+import {apiGetCall} from '../api';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProfileContentInfo = ({field, value}) => {
     if(value!==undefined && value!==""){
@@ -24,8 +26,8 @@ class ProfileContentArea extends React.Component {
 
     constructor(props) {
         super(props);
-        this._handleFocus = this._handleFocus.bind(this);
-        this._handleFocusOut = this._handleFocusOut.bind(this);
+        this.nickNameFocus = this.nickNameFocus.bind(this);
+        this.nickNameFocusOut = this.nickNameFocusOut.bind(this);
         this.onImageChange = this.onImageChange.bind(this);
         this.state = {
             loading: true,
@@ -40,74 +42,80 @@ class ProfileContentArea extends React.Component {
 
     handleChange = (e, { name, value }) => { this.setState({ [name]: value }); }
 
-    handleChange(propertyName, event) {
-        const profile = this.state.profile;
-        profile[propertyName] = event.target.value;
-        this.setState({ profile: profile });
-    }
-
-    _handleFocus(text) {
+    nickNameFocus(text) {
         console.log('Focused with text: ' + text);
     }
 
-    _handleFocusOut(text) {
-        const url = dataProxyServer() +  '/usr/profiles';
+    nickNameFocusOut(text) {
 
-        axios.post(url, {
+    	let apiProfile = apiGetCall(
+            'profile', {}
+        );
+
+        axios.post(apiProfile, {
             nickName: text,
             userName: this.state.userName
         })
         .then(response => {
             console.log(response);
+            toast("Nickname updated successfully");
         })
         .catch(function(error) {
             console.log('There is some error' + error);
+            toast("There is some problem. Kindly try again");
         }); 
     }
 
     onImageChange(e){
-        const url = dataProxyServer() +  'profiles';
-        const file = e.target.files[0];
-        const userName = this.state.userName;
-        const formData = new FormData();
+
+    	let apiProfile = apiGetCall(
+            'profile', {}
+        );
+
+        let file = e.target.files[0];
+        let userName = this.state.userName;
+        let formData = new FormData();
         formData.append('dpUrl',file);
         formData.set('userName',userName);
 
         axios({
             method: 'post',
-            url: url,
+            url: apiProfile,
             data: formData,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
         })
             .then(function (response) {
                 //handle success
                 console.log(response);
+                toast("Photo updated successfully");
             })
             .catch(function (response) {
                 //handle error
                 console.log(response);
+                toast("There is some problem. Kindly try again");
             });
     }
 
     componentDidMount() {
-        const url = dataProxyServer() +  '/usr/profiles';
-        const profile  = GawatiAuthHelper.getProfile();
-        const firstName = profile.firstName!==undefined ? profile.firstName : '';
-        const lastName = profile.lastName!==undefined ? profile.lastName : '';
-        const email = profile.email!==undefined ? profile.email : '';
-        const userName = profile.username!==undefined ? profile.username : '';
-        this.setState({ userName: userName});
-        this.setState({ firstName: firstName});
-        this.setState({ lastName: lastName});
-        this.setState({ email: email});
-        axios.get(url, {
+        
+    	let apiProfile = apiGetCall(
+            'profile', {}
+        );
+
+        let profile  = GawatiAuthHelper.getProfile();
+        let firstName = profile.firstName!==undefined ? profile.firstName : '';
+        let lastName = profile.lastName!==undefined ? profile.lastName : '';
+        let email = profile.email!==undefined ? profile.email : '';
+        let userName = profile.username!==undefined ? profile.username : '';
+        this.setState({ userName: userName, firstName: firstName, lastName: lastName, email: email});
+        
+        axios.get(apiProfile, {
             params:{   
                 userName: userName
             }
         }) 
         .then(response => {
-            this.setState({ nickName: response.data.data.nickName});
-            this.setState({ dpUrl: response.data.data.dpUrl});
+            this.setState({ nickName: response.data.data.nickName, dpUrl: response.data.data.dpUrl});
         })
         .catch(function(error) {
             console.log('There is some error' + error);
@@ -119,6 +127,7 @@ class ProfileContentArea extends React.Component {
     render() {
         return (
             <div className="container-fluid">
+            	<ToastContainer />
                 <div>
                     <h2>My Profile</h2>
                     <ProfileContentInfo field="First Name" value={this.state.firstName}/>
@@ -131,8 +140,8 @@ class ProfileContentArea extends React.Component {
                             inputWidth='200px'
                             inputHeight='25px'
                             inputMaxLength='1000'
-                            onFocus={this._handleFocus}
-                            onFocusOut={this._handleFocusOut}
+                            onFocus={this.nickNameFocus}
+                            onFocusOut={this.nickNameFocusOut}
                         />
                     </div>
                     <div><input type="file" onChange={this.onImageChange} /></div>
