@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Col, FormGroup, Label, Input} from 'reactstrap';
 
 export default class EditableLabel extends React.Component {
     constructor(props) {
@@ -8,6 +9,7 @@ export default class EditableLabel extends React.Component {
         this.state = {
         	isEditing: this.props.isEditing || false,
 			text: this.props.text || "",
+            label: this.props.label || "",
         };
         
         this._handleFocus = this._handleFocus.bind(this);
@@ -31,9 +33,9 @@ export default class EditableLabel extends React.Component {
         });
     }
 	
-    _handleChange() {
+    _handleChange(event) {
     	this.setState({
-        	text: this.textInput.value,
+        	text: event.target.value,
         });
     }
 
@@ -45,44 +47,31 @@ export default class EditableLabel extends React.Component {
 
     render() {
     	if(this.state.isEditing) {
-        	return <div>
-        	    <input type="text" 
-                    className={this.props.inputClassName}
-                    ref={(input) => { this.textInput = input; }}
-                    value={this.state.text} 
-                    onChange={this._handleChange}
-                    onBlur={this._handleFocus}
-                    style={{ 
-                    	width: this.props.inputWidth,
-                        height: this.props.inputHeight,
-                        fontSize: this.props.inputFontSize,
-                        fontWeight: this.props.inputFontWeight,
-                        borderWidth: this.props.inputBorderWidth,
-               			
-                    }}
-                    maxLength={this.props.inputMaxLength}
-                    placeholder={this.props.inputPlaceHolder}
-                    tabIndex={this.props.inputTabIndex}
-                    autoFocus/>
-        	</div>
+            return <FormGroup row>
+                    <Label for="label" sm={2}>{this.state.label}</Label>
+                        <Col sm={10}>
+                            <Input type="text" value={this.state.text} 
+                            onChange={this._handleChange} onBlur={this._handleFocus} 
+                            placeholder={this.props.inputPlaceHolder} autoFocus/>
+                        </Col>
+                </FormGroup>;
         }
     
-        return <div>
-            <label className={this.props.labelClassName}
-                onClick={this._handleFocus}
-                style={{
-                	fontSize: this.props.labelFontSize,
-                    fontWeight: this.props.labelFontWeight,
-                }}>
-                {this.state.text}
-            </label>
-            <span onClick={this._handleFocus}> Edit </span>
-        </div>;
+        return <FormGroup row onClick={this._handleFocus}>
+            <Label for="label" sm={2}><b>{this.state.label}</b></Label>
+            <Col sm={4}>
+                <Label for="label" >{this.state.text}</Label>
+            </Col>
+            <Col sm={2}>
+                <Label for="label">Edit</Label>
+            </Col>
+        </FormGroup>;
     }
 }
 
 EditableLabel.propTypes = {
     text: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
     isEditing: PropTypes.bool,
 
     labelClassName: PropTypes.string,

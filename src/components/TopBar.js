@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {versionInfo} from '../utils/versionhelper';
 import {T} from '../utils/i18nhelper';
+import { defaultLang } from '../utils/generalhelper';
 import SiteSearchAutoComplete from '../containers/SiteSearchAutoComplete';
 import LanguageSwitcher from '../containers/LanguageSwitcher';
 
@@ -97,6 +98,7 @@ class TopBar extends React.Component {
     }
 
     render() {
+        let lang = this.props.match.params.lang || defaultLang().langUI ;
     	return (
             <header className="navigation-bar">
                 <div className="version-info">{
@@ -125,7 +127,7 @@ class TopBar extends React.Component {
                                 </div>
                                 <div id="myDropdown" className="dropdown-content">
                                     <button className={ `btn btn-link loggedIn` }>
-                                        <NavLink to="/profile">Logged in as <b>{this.state.username}</b></NavLink>
+                                        <NavLink to={ `/_lang/${lang}/profile` }>Logged in as <b>{this.state.username}</b></NavLink>
                                     </button>
                                     <button className={ `btn btn-link` }  onClick={this.logout}>
                                         Sign out

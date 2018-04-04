@@ -1,23 +1,28 @@
 import React from 'react';
 import axios from 'axios';
 
-import EditableLabel from '../commons/editable_label';
+import EditableLabel from '../commons/EditableLabel';
 
-import {dataProxyServer} from '../constants';
 import GawatiAuthHelper from '../utils/GawatiAuthHelper';
 import {apiGetCall} from '../api';
 import { ToastContainer, toast } from 'react-toastify';
+import { Col, FormGroup, Label, Input, FormText} from 'reactstrap';
+import AvatarEditor from 'react-avatar-editor'
 
-const ProfileContentInfo = ({field, value}) => {
+const ProfileContentInfo = ({label, value}) => {
     if(value!==undefined && value!==""){
         return (
-            <div>
-                {field} : {value}
-            </div>
+            <FormGroup row>
+                <Label for="label" sm={2}><b>{label}</b></Label>
+                <Col sm={10}>
+                    <Label for="label" >{value}</Label>
+                </Col>
+            </FormGroup>
         );
     }else{
         return (
-            <div></div>
+            <FormGroup row>
+            </FormGroup>
         );
     }
 }
@@ -58,7 +63,11 @@ class ProfileContentArea extends React.Component {
         })
         .then(response => {
             console.log(response);
-            toast("Nickname updated successfully");
+            if(response.data.success==="true"){
+                toast("Nickname updated successfully");
+            }else{
+                toast("There is some problem. Kindly try again");
+            }
         })
         .catch(function(error) {
             console.log('There is some error' + error);
@@ -84,16 +93,19 @@ class ProfileContentArea extends React.Component {
             data: formData,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
         })
-            .then(function (response) {
-                //handle success
-                console.log(response);
+        .then(response => {
+            console.log(response);
+            if(response.data.success==="true"){
+                this.setState({dpUrl: response.data.data.dpUrl});
                 toast("Photo updated successfully");
-            })
-            .catch(function (response) {
-                //handle error
-                console.log(response);
+            }else{
                 toast("There is some problem. Kindly try again");
-            });
+            }
+        })
+        .catch(function(error) {
+            console.log(error);
+            toast("There is some problem. Kindly try again");
+        }); 
     }
 
     componentDidMount() {
@@ -130,21 +142,34 @@ class ProfileContentArea extends React.Component {
             	<ToastContainer />
                 <div>
                     <h2>My Profile</h2>
-                    <ProfileContentInfo field="First Name" value={this.state.firstName}/>
-                    <ProfileContentInfo field="Last Name" value={this.state.lastName} />
-                    <ProfileContentInfo field="User Name" value={this.state.userName} />
-                    <ProfileContentInfo field="Email" value={this.state.email} />
-                    <div className="row">Nick Name : <EditableLabel text={this.state.nickName}
-                            labelClassName='nicknameClass'
-                            inputClassName='nicknameClass'
-                            inputWidth='200px'
-                            inputHeight='25px'
-                            inputMaxLength='1000'
-                            onFocus={this.nickNameFocus}
-                            onFocusOut={this.nickNameFocusOut}
-                        />
-                    </div>
-                    <div><input type="file" onChange={this.onImageChange} /></div>
+                    <FormGroup row>
+                        <Label for="exampleFile" sm={2}><b>Profile Image</b></Label>
+                        <Col sm={3}>
+                            <AvatarEditor
+                                image={this.state.dpUrl}
+                                width={150}
+                                height={150}
+                                border={1}
+                            />
+                            <Input sm={3} type="file" name="file" id="imageFile" onChange={this.onImageChange}/>
+                            <FormText color="muted">
+                                Uppload new image to change the profile image.
+                            </FormText>
+                        </Col>
+                    </FormGroup>
+                    <ProfileContentInfo label="First Name" value={this.state.firstName}/>
+                    <ProfileContentInfo label="Last Name" value={this.state.lastName} />
+                    <ProfileContentInfo label="User Name" value={this.state.userName} />
+                    <ProfileContentInfo label="Email" value={this.state.email} />
+                    <EditableLabel text={this.state.nickName} label="Nick Name"
+                        labelClassName='nicknameClass'
+                        inputClassName='nicknameClass'
+                        inputWidth='200px'
+                        inputHeight='25px'
+                        inputMaxLength='1000'
+                        onFocus={this.nickNameFocus}
+                        onFocusOut={this.nickNameFocusOut}
+                    />
                 </div>
             </div>
         );
