@@ -51,6 +51,14 @@ class ProfileContentArea extends React.Component {
         console.log('Focused with text: ' + text);
     }
 
+    imageFullUrl(name){
+        let apiProfile = apiGetCall(
+            'profile-image', {}
+        );
+        console.log(apiProfile+name);
+        return apiProfile + '/' + name;
+    }
+
     nickNameFocusOut(text) {
 
     	let apiProfile = apiGetCall(
@@ -96,7 +104,7 @@ class ProfileContentArea extends React.Component {
         .then(response => {
             console.log(response);
             if(response.data.success==="true"){
-                this.setState({dpUrl: response.data.data.dpUrl});
+                this.setState({dpUrl: this.imageFullUrl(response.data.data.dpUrl)});
                 toast("Photo updated successfully");
             }else{
                 toast("There is some problem. Kindly try again");
@@ -127,7 +135,7 @@ class ProfileContentArea extends React.Component {
             }
         }) 
         .then(response => {
-            this.setState({ nickName: response.data.data.nickName, dpUrl: response.data.data.dpUrl});
+            this.setState({ nickName: response.data.data.nickName, dpUrl: this.imageFullUrl(response.data.data.dpUrl)});
         })
         .catch(function(error) {
             console.log('There is some error' + error);
