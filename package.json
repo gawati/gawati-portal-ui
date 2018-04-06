@@ -36,7 +36,8 @@
   },
   "scripts": {
     "start": "shx cp -R node_modules/gawati-lang-packs/locales public && react-scripts start",
-    "build": "react-scripts build && shx cp -R src/css/themes build/static/css && shx cp -R src/css/themes build && shx cp -R node_modules/gawati-lang-packs/locales build",
+    "build": "react-scripts build && shx cp -R src/css/themes build/static/css && shx cp -R node_modules/gawati-lang-packs/locales build && node scripts/symlink.js",
+    "symlink": "node scripts/symlink.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "vars": "env | grep npm_package_ | grep -v npm_lifecycle_script"
