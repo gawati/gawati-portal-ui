@@ -19,6 +19,12 @@ export default class GawatiAuthHelper{
 		return username;
 	}
 
+	static getProfile = function(){
+		var profile = localStorage.getItem('KC_profile');
+		profile = profile===undefined ? {} : JSON.parse(profile);
+		return profile;
+	}
+
 	static login = function(){
 		this.init();
 		window.gawati.KC.init();
@@ -36,6 +42,7 @@ export default class GawatiAuthHelper{
 		window.gawati.KC.init();
 	    localStorage.setItem('KC_authenticated', 'false');
 	    localStorage.setItem('KC_username', 'guest');
+	    localStorage.setItem('KC_profile', JSON.stringify({}));
 	    window.gawati.KC.logout();
 	}
 
@@ -45,15 +52,18 @@ export default class GawatiAuthHelper{
             if(authenticated){
             	localStorage.setItem('KC_authenticated', 'true');
                 window.gawati.KC.loadUserProfile().success(function(profile) {
+                	localStorage.setItem('KC_profile', JSON.stringify(profile));
                 	localStorage.setItem('KC_username', profile.username);
                     callback(true);
                 }).error(function() {
                 	localStorage.setItem('KC_username', 'guest');
+                	localStorage.setItem('KC_profile', JSON.stringify({}));
                     callback(false);
                 });
             }else{
             	localStorage.setItem('KC_authenticated', 'false');
                 localStorage.setItem('KC_username', 'guest');
+                localStorage.setItem('KC_profile', JSON.stringify({}));
                 callback(false);
             }
         }).error(function(error) {
