@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import ReactEcharts from 'echarts-for-react';
 
 import {apiGetCall} from '../api';
 import {isInt, coerceIntoArray} from '../utils/generalhelper';
@@ -147,7 +149,34 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             from: parseInt(nextProps.match.params.from, 10),
             to: parseInt(nextProps.match.params.to, 10)
         });
-    }    
+    }
+
+    getGraphOption = () =>{
+        var option = {
+            title: {
+                text: 'ECharts entry example'
+            },
+            tooltip: {},
+            legend: {
+                data:['Sales']
+            },
+            xAxis: {
+                data: ["shirt","cardign","chiffon shirt","pants","heels","socks"]
+            },
+            yAxis: {},
+            series: [{
+                name: 'Sales',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+        return option;
+    } 
+
+    onChartClick = (params) =>{
+        console.log(params.name);
+    } 
+
 
     renderDocumentLoading = () =>
         <ListingLoading>
@@ -162,25 +191,59 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     renderListing = () => {
         let pagination = this.generatePagination() ;
+        let onEvents = {
+            'click': this.onChartClick,
+        }
         let content = 
             <DivListing lang={this.props.match.params.lang}>
-                <h1 className="listingHeading">{T("Document Results")}</h1>
-                <DivFeed>
-                    <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
-                </DivFeed>
-                {
-                this.state.listing.map(abstract => {
-                    return (
-                    <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
-                    )
-                })
-                }
-                <DivFeed>
-                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage} />
-                </DivFeed>
+                <Tabs>
+                    <TabList>
+                        <Tab>{ T("Document Results") }</Tab>
+                        <Tab>{ T("Timelines") }</Tab>
+                    </TabList>
+                    <TabPanel>
+                        <div className="tab-pane tab-active" data-tab="1">
+                            <DivFeed>
+                                    <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
+                                </DivFeed>
+                                {
+                                this.state.listing.map(abstract => {
+                                    return (
+                                    <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
+                                    )
+                                })
+                                }
+                                <DivFeed>
+                                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage} />
+                            </DivFeed>
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <div className="tab-pane tab-active" data-tab="2">
+                            <ReactEcharts
+                                option={this.getGraphOption()}
+                                style={{height: '300px', width: '100%'}}
+                                className='echarts-for-echarts'
+                                onEvents={onEvents} />
+                            <DivFeed>
+                                    <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
+                                </DivFeed>
+                                {
+                                this.state.listing.map(abstract => {
+                                    return (
+                                    <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
+                                    )
+                                })
+                                }
+                                <DivFeed>
+                                    <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage} />
+                            </DivFeed>
+                        </div>
+                    </TabPanel>
+                </Tabs>
             </DivListing>
         ;
-         return content;
+        return content;
     };
 
     render() {
@@ -192,7 +255,28 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             return this.renderNoDocumentsFound();
         } else {
             return this.renderListing();
-        }   
+        }
+
+        // content = 
+        // <div className={ `main-col col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
+        //     <Tabs>
+        //         <TabList>
+        //             <Tab>{ T("document results") }</Tab>
+        //             <Tab>{ T("timelines") }</Tab>
+        //         </TabList>
+        //         <TabPanel>
+        //             <div className="tab-pane tab-active" data-tab="1">
+        //                 {result}
+        //             </div>
+        //         </TabPanel>
+        //         <TabPanel>
+        //             <div className="tab-pane tab-active" data-tab="2">
+        //                 {result}
+        //             </div>
+        //         </TabPanel>
+        //     </Tabs>
+        // </div> 
+        // return content;  
     }
 }
 
