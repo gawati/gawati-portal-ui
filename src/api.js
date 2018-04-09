@@ -21,6 +21,7 @@ const GAWATI_APIS = {
         'search-fulltext' : '/gwd/doc/search/json',
         'profile' : '/gwu/profile',
         'profile-image' : '/gwu/uploads'
+        'keycloak' : '/keycloak.json'
     }
 };
 

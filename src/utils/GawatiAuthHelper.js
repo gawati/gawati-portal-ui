@@ -1,11 +1,19 @@
 import Keycloak from 'keycloak-js';
+import axios from 'axios';
+import {apiGetCall} from '../api';
 import keycloakJson from '../configs/keycloak.json';
 
 export default class GawatiAuthHelper{
 
     static init = function(){
  		if(window.gawati.KC === undefined){
- 			window.gawati.KC = Keycloak(keycloakJson);
+			if (process.env.NODE_ENV === 'production') {
+				return axios.get(apiGetCall('keycloak', {})).then(response => {
+					window.gawati.KC = Keycloak(response.data);
+				})
+			} else {
+				window.gawati.KC = Keycloak(keycloakJson);
+			}
  		}
  	}
 
@@ -46,8 +54,7 @@ export default class GawatiAuthHelper{
 	    window.gawati.KC.logout();
 	}
 
-	static save = function(callback){
-		this.init();
+	static _save = function(callback) {
 	    window.gawati.KC.init().success(function(authenticated) {
             if(authenticated){
             	localStorage.setItem('KC_authenticated', 'true');
@@ -70,6 +77,17 @@ export default class GawatiAuthHelper{
             alert('failed to initialize'+error);
             callback(false);
         })
+	}
+
+	static save = function(callback){
+		let init = this.init();
+		if (init instanceof Promise) {
+			init.then(() => {
+				this._save(callback);
+			});
+		} else {
+			this._save(callback);
+		}
 	}
 
 	static getToken = function(callback){
