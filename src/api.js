@@ -20,7 +20,7 @@ const GAWATI_APIS = {
         'themes-summary' : '/gwd/themes/expressions/summary/json',
         'search-fulltext' : '/gwd/doc/search/json',
         'profile' : '/gwu/profile',
-        'profile-image' : '/gwu/uploads'
+        'profile-image' : '/gwu/uploads',
         'keycloak' : '/keycloak.json'
     }
 };

@@ -1,7 +1,6 @@
 import Keycloak from 'keycloak-js';
 import axios from 'axios';
 import {apiGetCall} from '../api';
-import keycloakJson from '../configs/keycloak.json';
 
 export default class GawatiAuthHelper{
 
