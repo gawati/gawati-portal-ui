@@ -7,14 +7,12 @@ export default class GawatiAuthHelper{
 
     static init = function(){
  		if(window.gawati.KC === undefined){
-			if (process.env.NODE_ENV === 'production') {
-				return axios.get(apiGetCall('keycloak', {})).then(response => {
-					window.gawati.KC = Keycloak(response.data);
-				})
-			} else {
-				window.gawati.KC = Keycloak(keycloakJson);
-			}
- 		}
+			 return axios.get(apiGetCall('keycloak', {})).then(response => {
+				 window.gawati.KC = Keycloak(response.data);
+			 })
+	} else {;
+			 return Promise.resolve(true);
+		 }
  	}
 
     static isUserLoggedIn = function(){
@@ -34,78 +32,86 @@ export default class GawatiAuthHelper{
 	}
 
 	static login = function(){
-		this.init();
-		window.gawati.KC.init();
+		this.init().then(() => {
+			window.gawati.KC.init();
 	    window.gawati.KC.login();
+		}).catch((e) => {
+			console.log(e);
+		});
 	}
 
 	static register = function(){
-		this.init();
-		window.gawati.KC.init();
+		this.init().then(() => {
+			window.gawati.KC.init();
 	    window.gawati.KC.register();
+		}).catch((e) => {
+			console.log(e);
+		});
 	}
 
 	static logout = function(){
-		this.init();
-		window.gawati.KC.init();
-	    localStorage.setItem('KC_authenticated', 'false');
-	    localStorage.setItem('KC_username', 'guest');
-	    localStorage.setItem('KC_profile', JSON.stringify({}));
-	    window.gawati.KC.logout();
-	}
-
-	static _save = function(callback) {
-	    window.gawati.KC.init().success(function(authenticated) {
-            if(authenticated){
-            	localStorage.setItem('KC_authenticated', 'true');
-                window.gawati.KC.loadUserProfile().success(function(profile) {
-                	localStorage.setItem('KC_profile', JSON.stringify(profile));
-                	localStorage.setItem('KC_username', profile.username);
-                    callback(true);
-                }).error(function() {
-                	localStorage.setItem('KC_username', 'guest');
-                	localStorage.setItem('KC_profile', JSON.stringify({}));
-                    callback(false);
-                });
-            }else{
-            	localStorage.setItem('KC_authenticated', 'false');
-                localStorage.setItem('KC_username', 'guest');
-                localStorage.setItem('KC_profile', JSON.stringify({}));
-                callback(false);
-            }
-        }).error(function(error) {
-            alert('failed to initialize'+error);
-            callback(false);
-        })
+		this.init().then(() => {
+			window.gawati.KC.init();
+			localStorage.setItem('KC_authenticated', 'false');
+			localStorage.setItem('KC_username', 'guest');
+			localStorage.setItem('KC_profile', JSON.stringify({}));
+			window.gawati.KC.logout();
+		}).catch((e) => {
+			console.log(e);
+		});
 	}
 
 	static save = function(callback){
-		let init = this.init();
-		if (init instanceof Promise) {
-			init.then(() => {
-				this._save(callback);
-			});
-		} else {
-			this._save(callback);
-		}
+		this.init().then(() => {
+			window.gawati.KC.init().success(function(authenticated) {
+				if(authenticated){
+					localStorage.setItem('KC_authenticated', 'true');
+					window.gawati.KC.loadUserProfile().success(function(profile) {
+						localStorage.setItem('KC_username', profile.username);
+						callback(true);
+					}).error(function() {
+						localStorage.setItem('KC_username', 'guest');
+						callback(false);
+					});
+				}else{
+					localStorage.setItem('KC_authenticated', 'false');
+					localStorage.setItem('KC_username', 'guest');
+					callback(false);
+				}
+			}).error(function(error) {
+				alert('failed to initialize'+error);
+				callback(false);
+			})
+		}).catch((e) => {
+			console.log(e);
+		});
 	}
 
 	static getToken = function(callback){
-		this.init();
-		window.gawati.KC.updateToken(5).success(function(refreshed) {
-	        callback(window.gawati.KC.token);
-	    }).error(function() {
-	        callback(false);
-	    });
+		this.init().then(() => {
+			window.gawati.KC.updateToken(5).success(function(refreshed) {
+				callback(window.gawati.KC.token);
+			}).error(function() {
+				callback(false);
+			});
+		}).catch((e) => {
+			console.log(e);
+		});
 	}
 
 	static hasRealmRole = function(role){
-		this.init();
-		return window.gawati.KC.hasRealmRole(role);
+		this.init().then(() => {
+			return window.gawati.KC.hasRealmRole(role);
+		}).catch((e) => {
+			console.log(e);
+		});
 	}
 
 	static hasResourceRole = function(role, resource){
-		this.init();
-		return window.gawati.KC.hasResourceRole(role, resource);
+		this.init().then(() => {
+			return window.gawati.KC.hasResourceRole(role, resource);
+		}).catch((e) => {
+			console.log(e);
+		});
 	}
 }
