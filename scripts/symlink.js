@@ -3,6 +3,12 @@
  */
 const fs = require('fs');
 const path = require('path');
-const from = path.resolve('./build/static/css/themes');
-const to = path.resolve('./build/themes');
+const isWin = process.platform === 'win32';
+
+const fromPath = path.join('.','build', 'static', 'css', 'themes');
+const toPath = path.join('.', 'build', 'themes');
+
+const from = isWin ? path.resolve(fromPath) : fromPath ;
+const to = isWin ? path.resolve(toPath) : toPath ;
+
 fs.symlink(from, to, "dir", function(err) { if (err !== null) {console.log("ERROR : ", err);}});
