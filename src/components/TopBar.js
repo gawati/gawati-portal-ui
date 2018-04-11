@@ -11,7 +11,7 @@ import NotifBar from './NotifBar';
 import DivRow from './DivRow';
 import '../css/TopBar.css';
 
-import GawatiAuthHelper from '../utils/GawatiAuthHelper';
+import { getUserName, siteLogout } from '../utils/GawatiAuthClient';
 
 
 const Logo = () =>
@@ -49,22 +49,15 @@ const SearchBox = (lang) =>
     ;
 
 class TopBar extends React.Component {
-    state = { username: 'guest', authenticated: 'false'}
+    state = { username: 'guest'}
     handleChange = (e, { name, value }) => { this.setState({ [name]: value }); }
-    login = () => {
-        GawatiAuthHelper.login();
-    }
 
     toggleDropDown = ()=>{
 	    document.getElementById("myDropdown").classList.toggle("show");
 	}
 
     logout = () => {
-        GawatiAuthHelper.logout();
-    }
-
-    register = () => {
-        GawatiAuthHelper.register();
+        siteLogout();
     }
 
     getParameterByName = (variable, url)=>{
@@ -77,24 +70,12 @@ class TopBar extends React.Component {
        return(false);
     }
 
-    updateState = (authenticated, username) =>{
-        this.setState({ authenticated: authenticated});
+    updateState = (username) => {
         this.setState({ username: username});
     }
 
-    checkLogin = () =>{
-        if(GawatiAuthHelper.isUserLoggedIn()){
-            this.updateState('true', GawatiAuthHelper.getUserName());
-        }else{
-            const me = this;
-            GawatiAuthHelper.save(function(response){
-                var auth = GawatiAuthHelper.isUserLoggedIn() ? 'true' : 'false';
-                me.updateState(auth, GawatiAuthHelper.getUserName());
-            });
-        }
-    }
     componentDidMount() {
-        this.checkLogin();
+        getUserName(this.updateState);
     }
 
     render() {
@@ -119,8 +100,6 @@ class TopBar extends React.Component {
                         <SearchBox lang={ this.props.match.params.lang }></SearchBox>
                         <NotifBar />
                         <div className="login col-3">
-                            {
-                            this.state.authenticated==='true' ? 
                             <div className="dropdown">
                                 <div onClick={this.toggleDropDown} className="dropbtn">
                                     <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
@@ -133,17 +112,7 @@ class TopBar extends React.Component {
                                         Sign out
                                     </button>
                                 </div>
-                            </div> : 
-                            <div className="inline-elements">
-                                <div className="click" onClick={ this.login }>
-                                    {T("Sign in")} 
-                                </div>
-                                <span className="or">&nbsp;&nbsp;{T("or")}&nbsp;&nbsp;</span>
-                                <div className="click" onClick={ this.register}> 
-                                    {T("Sign up")}
-                                </div>
-                            </div> 
-                            }
+                            </div>
                         </div>
                     </DivRow>
                     </div>
