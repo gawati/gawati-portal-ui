@@ -1,7 +1,7 @@
 {
   "realm": "gawati",
-  "auth-server-url": "http://localhost:11080/auth",
-  "url": "http://localhost:11080/auth",
+  "auth-server-url": "https://auth2.akomantoso.com/auth",
+  "url": "https://auth2.akomantoso.com/auth",
   "ssl-required": "external",
   "resource": "gawati-portal-ui",
   "clientId": "gawati-portal-ui",
