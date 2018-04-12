@@ -1,12 +1,13 @@
 import Keycloak from 'keycloak-js';
 import axios from 'axios';
-import {apiGetCall} from '../api';
+import {apiLocalGetCall} from '../api';
 
 export default class GawatiAuthHelper{
 
     static init = function(){
  		if(window.gawati.KC === undefined){
-			 return axios.get(apiGetCall('keycloak', {})).then(response => {
+			 const kcJson = apiLocalGetCall('keycloak');
+			 return axios.get(kcJson).then(response => {
 				 window.gawati.KC = Keycloak(response.data);
 			 })
 	} else {;
