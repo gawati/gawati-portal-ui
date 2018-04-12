@@ -7,6 +7,7 @@ const GAWATI_APIS = {
         'doc': '/gwd/doc/json',
         'doc-xml': '/gwd/doc',
         'filter': '/gwd/search/filter/json',
+        'timeline': '/gwd/filter/timeline/json',
         'keyword': '/gwp/keyword',
         'keyword-value': '/gwp/keywordValue',
         'recent-summary' : '/gwd/recent/expressions/summary/json',
