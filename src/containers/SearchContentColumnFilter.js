@@ -75,7 +75,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                             q: paramsObj.q
                         })
                     } else {
-                        console.log(" ITEMS ", items);
                         this.setState({
                             loading: false,
                             from: parseInt(items.itemsfrom, 10),
@@ -124,15 +123,22 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 		    	if(years.year!==undefined && years.year.length>0){
 		    		for(var i =0; i<years.year.length;i++){
 			    		xElements.push(years.year[i].year);
-			    		yElements.push(parseInt(years.year[i].count));
+			    		yElements.push(parseInt(years.year[i].count, 10));
 			    	}
 			    	var option = {
-			            title: {
-			                text: 'Timeline of data'
+ 			            title: {
+                            show: false,
+                            text: T('Timeline Listing'),
+                            textStyle: {
+                                color: "#ff0000",    
+                                fontSize: 12,
+                                fontStyle: "italic",
+                                align: "right"
+                            }
 			            },
 			            tooltip: {},
 			            legend: {
-			                data:['Number of documents']
+			                data:[T('Number of documents')]
 			            },
 			            xAxis: {
 			                data: xElements
