@@ -306,7 +306,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             <Tabs>
                 <TabList>
                     <Tab>{ T("Document Results") }</Tab>
-                    <Tab>{ T("Timelines") }</Tab>
+                    <Tab>{ T("Timeline") }</Tab>
                 </TabList>
                 <TabPanel>
                     <div className="tab-pane tab-active" data-tab="1">
