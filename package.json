@@ -8,7 +8,9 @@
   "dependencies": {
     "axios": "0.18.0",
     "bootstrap": "^4.0.0",
-    "core-js": "^2.5.5",
+    "core-js": "^2.5.5",    
+    "echarts": "^4.0.4",
+    "echarts-for-react": "^2.0.8",
     "font-awesome": "^4.7.0",
     "gawati-lang-packs": "^1.0.2",
     "i18next": "^10.5.0",

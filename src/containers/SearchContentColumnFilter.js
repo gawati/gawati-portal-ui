@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import ReactEcharts from 'echarts-for-react';
 
 import {apiGetCall} from '../api';
 import {isInt, coerceIntoArray} from '../utils/generalhelper';
@@ -8,11 +10,11 @@ import {convertEncodedStringToObject} from '../utils/routeshelper';
 import {T} from '../utils/i18nhelper';
 
 import DivFeed from '../components/DivFeed';
-import DivListing from '../components/DivListing';
+import DivTimelineListing from '../components/DivTimelineListing';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 import BaseSearchContentColumn from './BaseSearchContentColumn';
-import ListingLoading from '../components/ListingLoading';
+import TimelineListingLoading from '../components/TimelineListingLoading';
 import '../css/ListingContentColumn.css';
 
 class SearchContentColumnFilter extends BaseSearchContentColumn {
@@ -26,7 +28,8 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             count: this.props.match.params['count'],
             totalPages: 0,
             loading: true,
-            listing: undefined
+            listing: undefined,
+            timeline: {},
         };
         this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
         this.onChangePage = this.onChangePage.bind(this);
@@ -72,7 +75,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                             q: paramsObj.q
                         })
                     } else {
-                        console.log(" ITEMS ", items);
                         this.setState({
                             loading: false,
                             from: parseInt(items.itemsfrom, 10),
@@ -94,9 +96,74 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             });
     }
 
+     getTimeline(paramsObj) {
+        console.log( " GET Timeline ", paramsObj);
+        let apiTimeline = apiGetCall(
+            'timeline', 
+            paramsObj
+        );
+        // cancel the previous request
+        if (typeof this.timelineSource !== typeof undefined) {
+            this.timelineSource.cancel('Operation canceled due to new request.')
+        }
+
+        // save the new request for cancellation
+        this.timelineSource = axios.CancelToken.source();
+
+        axios.request({
+            method: "GET",
+            url: apiTimeline,
+            debounce: 600,
+            cancelToken:this.timelineSource.token
+        })
+            .then(response => {
+                const years = response.data.years;
+                var xElements = [];
+		    	var yElements = [];
+		    	if(years.year!==undefined && years.year.length>0){
+		    		for(var i =0; i<years.year.length;i++){
+			    		xElements.push(years.year[i].year);
+			    		yElements.push(parseInt(years.year[i].count, 10));
+			    	}
+			    	var option = {
+ 			            title: {
+                            show: false,
+                            text: T('Timeline Listing'),
+                            textStyle: {
+                                color: "#ff0000",    
+                                fontSize: 12,
+                                fontStyle: "italic",
+                                align: "right"
+                            }
+			            },
+			            tooltip: {},
+			            legend: {
+			                data:[T('Number of documents')]
+			            },
+			            xAxis: {
+			                data: xElements
+			            },
+			            yAxis: {},
+			            series: [{
+			                name: 'Numbers',
+			                type: 'bar',
+			                data: yElements
+			            }]
+			        };
+			        this.setState({timeline : option});
+		    	}else{
+		    		this.setState({timeline : {}});
+		    	}
+            })
+            .catch(function(error) {
+                console.log("error in Timeline()", error);
+            });
+    }
+
     onChangePage(newPage) {
         this.setState({loading: true});
         this.getSearch(newPage);
+        this.getTimeline(newPage);
     }
 
     generatePagination = () => {
@@ -136,6 +203,13 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             from: this.state.from,
             to: this.state.to
         });
+
+        this.getTimeline({
+            q: this.state.q,
+            count: this.state.count,
+            from: this.state.from,
+            to: this.state.to
+        });
         
     }
 
@@ -147,24 +221,36 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             from: parseInt(nextProps.match.params.from, 10),
             to: parseInt(nextProps.match.params.to, 10)
         });
-    }    
+        this.getTimeline({
+            q: this.convertRoutePropToXQuery(nextProps.match.params.q),
+            count: parseInt(nextProps.match.params.count, 10),
+            from: parseInt(nextProps.match.params.from, 10),
+            to: parseInt(nextProps.match.params.to, 10)
+        });
+        
+    }
+
+    onChartClick = (params) =>{
+        console.log(params.name);
+        console.log(this.state.q);
+    } 
+
 
     renderDocumentLoading = () =>
-        <ListingLoading>
+        <TimelineListingLoading>
             <h1 className="listingHeading">{T("Document Results")}</h1>
-        </ListingLoading> ;
+        </TimelineListingLoading> ;
 
     renderNoDocumentsFound = () =>
-        <DivListing>
+        <DivTimelineListing>
             <h1 className="listingHeading">{T("Document Results")}</h1>
             <div>No Documents Found</div>
-        </DivListing> ;
+        </DivTimelineListing> ;
 
     renderListing = () => {
-        let pagination = this.generatePagination() ;
+       	let pagination = this.generatePagination() ;
         let content = 
-            <DivListing lang={this.props.match.params.lang}>
-                <h1 className="listingHeading">{T("Document Results")}</h1>
+            <DivTimelineListing lang={this.props.match.params.lang}>
                 <DivFeed>
                     <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
                 </DivFeed>
@@ -178,21 +264,64 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 <DivFeed>
                     <SearchListPaginator pagination={pagination} onChangePage={this.onChangePage} />
                 </DivFeed>
-            </DivListing>
+            </DivTimelineListing>
         ;
-         return content;
+        return content;
+
     };
+
+    renderChart = () => {
+    	let content;
+    	let onEvents = {
+            'click': this.onChartClick,
+        }
+    	if(Object.keys(this.state.timeline).length !== 0){
+        	content = <ReactEcharts
+                    option={this.state.timeline}
+                    style={{height: '300px', width: '100%'}}
+                    className='echarts-for-echarts'
+                    onEvents={onEvents} />;
+        }else{
+        	content = <div></div>;
+        }
+        return content;
+    }
 
     render() {
         const { loading, listing, records } = this.state;
+        let result;
+
         if (loading === true || listing === undefined ) {
-            return this.renderDocumentLoading();
-        } else 
-        if (parseInt(records, 10) === 0 || listing === undefined) {
-            return this.renderNoDocumentsFound();
+            result = this.renderDocumentLoading();
+        } else if (parseInt(records, 10) === 0 || listing === undefined) {
+            result = this.renderNoDocumentsFound();
         } else {
-            return this.renderListing();
-        }   
+            result = this.renderListing();
+        }
+
+        let graph = this.renderChart();
+
+        let content = 
+        <div className={ `main-col col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
+            <Tabs>
+                <TabList>
+                    <Tab>{ T("Document Results") }</Tab>
+                    <Tab>{ T("Timeline") }</Tab>
+                </TabList>
+                <TabPanel>
+                    <div className="tab-pane tab-active" data-tab="1">
+                        {result}
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                    <div className="tab-pane tab-active" data-tab="2">
+                    	{graph}
+                        {result}
+                    </div>
+                </TabPanel>
+            </Tabs>
+        </div> 
+        return content;  
     }
 }
 
