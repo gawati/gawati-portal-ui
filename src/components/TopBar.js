@@ -61,6 +61,8 @@ class TopBar extends React.Component {
 
     logout = () => {
         GawatiAuthHelper.logout();
+        let lang = this.props.match.params.lang || defaultLang().langUI ;
+        this.props.history.push('/_lang/'+lang);
     }
 
     register = () => {
