@@ -6,7 +6,8 @@ import ReactEcharts from 'echarts-for-react';
 import {apiGetCall} from '../api';
 import {isInt, coerceIntoArray} from '../utils/generalhelper';
 import {xQueryFilterBuilder} from '../utils/xqueryhelper';
-import {convertEncodedStringToObject} from '../utils/routeshelper';
+import {convertEncodedStringToObject, setInRoute, convertObjectToEncodedString, editInRoute} from '../utils/routeshelper';
+
 import {T} from '../utils/i18nhelper';
 
 import DivFeed from '../components/DivFeed';
@@ -230,9 +231,35 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         
     }
 
-    onChartClick = (params) =>{
-        console.log(params.name);
-        console.log(this.state.q);
+    filterLink = (match, pageLang, query) => {
+        if (match === undefined || match.params === undefined || ! match.params.q) {
+            return setInRoute("filter", {
+                from: 1,
+                to: 10,
+                count: 10,
+                lang: pageLang,
+                q: convertObjectToEncodedString(
+                    query
+                )
+            });
+        } else {
+            return editInRoute({q: convertObjectToEncodedString(query)}, match);
+        } 
+    }
+
+    yearFilter = (year, q) => {
+        q.years = [year.toString()];
+        return q;
+    }
+
+    onChartClick = (chartParams) =>{
+        let pageLang = this.props.lang || this.props.match.params.lang; 
+        
+        let query = this.props.match === undefined || this.props.match.params.q===undefined ? {} : convertEncodedStringToObject(this.props.match.params.q);
+        
+        let yearLink = this.filterLink(this.props.match, pageLang, this.yearFilter(chartParams.name, query));
+        
+        this.props.history.push(yearLink);
     } 
 
 
