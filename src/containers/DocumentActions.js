@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { anBody, anBodyComponentRef, anExprFRBRthis } from '../utils/akomantoso';
-import { documentServer } from '../constants';
+import { documentServer, dataProxyServer } from '../constants';
 import { substringBeforeLastMatch } from '../utils/stringhelper';
-import { apiUrl } from '../api';
 import {T} from '../utils/i18nhelper';
 import FacebookProvider, { Like } from 'react-facebook';
 import socialApps from '../configs/social.json';
@@ -21,7 +20,7 @@ const DocumentPdfLink = ({doc, type}) => {
 }
 
 const DocumentXmlLink = ({doc, type}) => {
-    let url = apiUrl('doc-xml') + "?iri=" + anExprFRBRthis(doc, type).value; 
+    let url = dataProxyServer() + "?iri=" + anExprFRBRthis(doc, type).value; 
     return (
         <a href={ url } title="XML download" download="document.xml" >XML</a>
     );
