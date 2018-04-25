@@ -37,6 +37,7 @@ pipeline {
 wget -qO- http://dl.gawati.org/dev/jenkinslib-latest.tbz | tar -xvjf -
 . ./jenkinslib.sh
 cd build
+about >about
 PkgPack
 PkgLinkLatest
 '''

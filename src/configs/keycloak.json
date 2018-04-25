@@ -1,12 +1,12 @@
 {
-  "realm": "gawati",
-  "auth-server-url": "https://auth2.akomantoso.com/auth",
-  "url": "https://auth2.akomantoso.com/auth",
+  "realm": "kiribati",
+  "auth-server-url": "http://localhost:11080/auth",
+  "url": "http://localhost:11080/auth",
   "ssl-required": "external",
   "resource": "gawati-portal-ui",
   "clientId": "gawati-portal-ui",
   "credentials": {
-    "secret": "09efade5-803a-4f2e-81b1-d39260913ac7"
+    "secret": "5185663e-843d-4454-89a7-bb54ef2d561e"
   },
   "public-client": true,
   "use-resource-role-mappings": true,
