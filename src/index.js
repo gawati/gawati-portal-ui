@@ -6,7 +6,8 @@ import './polyfills';
 import { BrowserRouter } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 import './i18n';
-import {setup, initLoginRequired} from './utils/GawatiAuthClient';
+import {setup, initLoginRequired, refreshToken, siteLogout} from './utils/GawatiAuthClient';
+import { REFRESH_TOKEN_VALIDITY, REFRESH_TOKEN_INTERVAL } from './constants';
 
 //import './index.css';
 import 'bootstrap/dist/css/bootstrap-reboot.css';
@@ -16,6 +17,15 @@ import './css/app-custom.css';
 import './css/app-media.css';
 
 setup().then(() => {
+
+    setInterval(() => {
+        refreshToken(REFRESH_TOKEN_VALIDITY)
+        .catch(err => {
+            alert("The authentication session has expired. Please sign-in again.");
+            siteLogout();
+        });
+    }, REFRESH_TOKEN_INTERVAL);
+
     initLoginRequired(
         () => {
             ReactDOM.render(
