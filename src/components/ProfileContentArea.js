@@ -121,7 +121,7 @@ class ProfileContentArea extends React.Component {
             firstName: profile.firstName,
             lastName: profile.lastName,
             email: profile.email,
-            username: profile.username
+            userName: profile.username
         });
 
         let apiProfile = apiGetCall('profile', {});
