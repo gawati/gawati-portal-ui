@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import EditableLabel from '../commons/EditableLabel';
 
-import { getUserProfile } from '../utils/GawatiAuthClient';
+import GawatiAuthHelper from '../utils/GawatiAuthHelper';
 import {apiGetCall} from '../api';
 import { ToastContainer, toast } from 'react-toastify';
 import { Col, FormGroup, Label, Input, FormText} from 'reactstrap';
@@ -116,18 +116,22 @@ class ProfileContentArea extends React.Component {
         }); 
     }
 
-    updateProfile = (profile) => {
-        this.setState({
-            firstName: profile.firstName,
-            lastName: profile.lastName,
-            email: profile.email,
-            userName: profile.username
-        });
+    componentDidMount() {
+        
+    	let apiProfile = apiGetCall(
+            'profile', {}
+        );
 
-        let apiProfile = apiGetCall('profile', {});
+        let profile  = GawatiAuthHelper.getProfile();
+        let firstName = profile.firstName!==undefined ? profile.firstName : '';
+        let lastName = profile.lastName!==undefined ? profile.lastName : '';
+        let email = profile.email!==undefined ? profile.email : '';
+        let userName = profile.username!==undefined ? profile.username : '';
+        this.setState({ userName: userName, firstName: firstName, lastName: lastName, email: email});
+        
         axios.get(apiProfile, {
             params:{   
-                userName: profile.username
+                userName: userName
             }
         }) 
         .then(response => {
@@ -136,10 +140,7 @@ class ProfileContentArea extends React.Component {
         .catch(function(error) {
             console.log('There is some error' + error);
         }); 
-    }
 
-    componentDidMount() {
-        getUserProfile(this.updateProfile);
     }
 
 
