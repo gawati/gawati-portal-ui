@@ -12,6 +12,7 @@ import DocumentContentArea from './DocumentContentArea';
 import ListContentArea from './ListContentArea';
 import PageContentArea from './PageContentArea';
 import ProfileContentArea from './ProfileContentArea';
+import SearchCategoryArea from './SearchCategoryArea';
 import Footer from './Footer';
 import { Redirect } from 'react-router'
 import {PropsRoute} from '../utils/routeshelper';
@@ -79,6 +80,7 @@ class Page extends React.Component {
                     <PropsRoute path={ getRoute('search-doclang') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-keyword') } component={ListContentArea} i18n={this.props.i18n} /> */}
                     <PropsRoute path={ getRoute('profile') } component={ProfileContentArea} i18n={this.props.i18n} />
+                    <PropsRoute path={ getRoute('search-category') } component={SearchCategoryArea} i18n={this.props.i18n} />
                     <PropsRoute component={NoMatch} />
                 </Switch>
                 <PropsRoute path="*" component={Footer}  i18n={this.props.i18n}  />

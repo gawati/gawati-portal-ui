@@ -22,5 +22,9 @@
     {
         "route": "/_lang/:lang/profile",
         "name": "profile"
+    },
+    {
+        "route": "/_lang/:lang/search-category/:category/:term",
+        "name": "search-category"
     }
 ]}
