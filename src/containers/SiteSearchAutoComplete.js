@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
 
@@ -109,8 +109,13 @@ class SiteSearchAutoComplete extends React.Component {
     };
     
     renderSectionTitle = (section) => {
+        let term = this.state.value;
         return (
-          <strong>{ section.label }</strong>
+            <button className={ `btn btn-link` }>
+                <NavLink to={ `/_lang/${this.props.lang}/search-category/${term}/${section.name}/5/1` }>
+                    <strong>{ section.label }</strong>
+                </NavLink>
+            </button>
         );
     };
 
