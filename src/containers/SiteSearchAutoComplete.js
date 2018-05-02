@@ -112,7 +112,7 @@ class SiteSearchAutoComplete extends React.Component {
         let term = this.state.value;
         return (
             <button className={ `btn btn-link` }>
-                <NavLink to={ `/_lang/${this.props.lang}/search-category/${section.name}/${term}` }>
+                <NavLink to={ `/_lang/${this.props.lang}/search-category/${term}/${section.name}/5/1` }>
                     <strong>{ section.label }</strong>
                 </NavLink>
             </button>

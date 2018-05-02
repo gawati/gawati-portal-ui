@@ -24,7 +24,7 @@
         "name": "profile"
     },
     {
-        "route": "/_lang/:lang/search-category/:category/:term",
+        "route": "/_lang/:lang/search-category/:term/:category/:count/:from",
         "name": "search-category"
     }
 ]}

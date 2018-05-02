@@ -12,7 +12,6 @@ import DocumentContentArea from './DocumentContentArea';
 import ListContentArea from './ListContentArea';
 import PageContentArea from './PageContentArea';
 import ProfileContentArea from './ProfileContentArea';
-import SearchCategoryArea from './SearchCategoryArea';
 import Footer from './Footer';
 import { Redirect } from 'react-router'
 import {PropsRoute} from '../utils/routeshelper';
@@ -75,12 +74,12 @@ class Page extends React.Component {
                     <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
                     <PropsRoute path={ getRoute('themes') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
                     <PropsRoute path={ getRoute('filter') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('search-category') } component={ListContentArea} i18n={this.props.i18n} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
                 {/* <PropsRoute path={ getRoute('search-country') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-year') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-doclang') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-keyword') } component={ListContentArea} i18n={this.props.i18n} /> */}
                     <PropsRoute path={ getRoute('profile') } component={ProfileContentArea} i18n={this.props.i18n} />
-                    <PropsRoute path={ getRoute('search-category') } component={SearchCategoryArea} i18n={this.props.i18n} />
                     <PropsRoute component={NoMatch} />
                 </Switch>
                 <PropsRoute path="*" component={Footer}  i18n={this.props.i18n}  />
