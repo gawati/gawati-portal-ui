@@ -144,6 +144,14 @@ class SearchCategoryContentColumn extends BaseSearchContentColumn {
         });
     }
 
+    renderHeading = () => {
+        return (
+            <DivFeed>
+                <h5>Search results for term <em>'{this.state.term}'</em> in category <em>'{this.state.category}'</em>.</h5>
+            </DivFeed>
+        );
+    }
+
     renderDocumentLoading = () =>
         <TimelineListingLoading>
             <h1 className="listingHeading">{T("Document Results")}</h1>
@@ -159,6 +167,7 @@ class SearchCategoryContentColumn extends BaseSearchContentColumn {
        	let pagination = this.generatePagination() ;
         let content = 
             <DivTimelineListing lang={this.props.match.params.lang}>
+                {this.renderHeading()}
                 <DivFeed>
                     <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
                 </DivFeed>
