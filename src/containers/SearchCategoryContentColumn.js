@@ -1,12 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import ReactEcharts from 'echarts-for-react';
 
 import {apiGetCall} from '../api';
 import {isInt, coerceIntoArray} from '../utils/generalhelper';
-import {xQueryFilterBuilder} from '../utils/xqueryhelper';
-import {convertEncodedStringToObject, setInRoute, convertObjectToEncodedString, editInRoute} from '../utils/routeshelper';
 
 import {T} from '../utils/i18nhelper';
 
