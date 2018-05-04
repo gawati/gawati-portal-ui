@@ -45,8 +45,13 @@ class Filter extends React.Component {
      * This is called by the child filters - and is passed as a prop to individual child filters
      */
     setFilterValue = (filterName, filterValue) => {
-        console.log(" STATE.SEARCH ", this.state.q);
-        var filters = Object.assign({}, this.state.q);
+        /** 
+         * We merge the filter state "q" with the props.match.params.q coming from the URL param
+         * Otherwise the state goes out of sync with the URL filter param
+         * Fixes issue 62
+         */
+        const propsMatchQ = this.props.match.params.q ? convertEncodedStringToObject(this.props.match.params.q) : {} ;
+        var filters = this.props.match.params.q ? Object.assign({}, this.state.q, propsMatchQ): Object.assign({}, this.state.q);
         filters[filterName] = filterValue ; 
         this.setState({q: filters});
         setTimeout(() => 

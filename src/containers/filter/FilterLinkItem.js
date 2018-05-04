@@ -12,7 +12,6 @@ import {T} from '../../utils/i18nhelper';
 const FilterLinkItem = ({ item, type, lang }) => {
     let obj = {} ;
     obj[type] = [item.value];
-    console.log( " LINKITEM OBJ ", obj);
     const url = setInRoute(
         'filter', 
         {

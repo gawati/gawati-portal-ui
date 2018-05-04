@@ -18,5 +18,9 @@
     {
         "route": "/_lang/:lang/themes/:themes/_count/:count/_from/:from/_to/:to*",
         "name": "themes"
+    },
+    {
+        "route": "/_lang/:lang/profile",
+        "name": "profile"
     }
 ]}

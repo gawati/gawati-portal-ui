@@ -1,9 +1,13 @@
 {
-  "realm": "gawati",
+  "realm": "kiribati",
+  "auth-server-url": "http://localhost:11080/auth",
   "url": "http://localhost:11080/auth",
   "ssl-required": "external",
   "resource": "gawati-portal-ui",
   "clientId": "gawati-portal-ui",
+  "credentials": {
+    "secret": "5185663e-843d-4454-89a7-bb54ef2d561e"
+  },
   "public-client": true,
   "use-resource-role-mappings": true,
   "confidential-port": 0
