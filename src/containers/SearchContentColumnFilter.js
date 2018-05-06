@@ -31,6 +31,9 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             loading: true,
             listing: undefined,
             timeline: {},
+            timeline_bar:{},
+            timeline_pie:{}
+
         };
         this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
         this.onChangePage = this.onChangePage.bind(this);
@@ -128,6 +131,50 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         };
     };
 
+
+timelineOptions_bar = (xElements_bar, yElements_bar) => {
+        
+        return {
+            title: {
+               show: true,
+               text: "Country vs Number of Results",
+               left: 'center',
+               top: 20,
+               textStyle: {
+                   color: "#D3D3D3",    
+                   fontSize: 12,
+                   fontStyle: "italic",
+                   align: "center"
+               }
+           },
+           tooltip: {},
+           legend: {
+               data:[T('Number of documents')]
+           },
+           xAxis: {
+               data: xElements_bar
+           },
+           yAxis: {},
+           series: [{
+               name: 'Country vs Results',
+               type: 'bar',
+               data: yElements_bar
+           }]
+        };
+    };
+
+timelineOptions_pie = (xElements_pie, yElements_pie) => {
+        
+        return {
+           series: [{
+               name: 'Language vs Results',
+               type: 'pie',
+               radius: [0,'75%'],
+               data: yElements_pie
+           }]
+        };
+    };
+
     getTimeline(paramsObj) {
         console.log( " GET Timeline ", paramsObj);
         let apiTimeline = apiGetCall(
@@ -150,15 +197,58 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         })
             .then(response => {
                 const years = response.data.years;
+                const countries = response.data.countries;
+                const languages = response.data.languages;
                 var xElements = [];
 		    	var yElements = [];
+                var xElements_bar = [];
+                var yElements_bar = [];
+                var xElements_pie = [];
+                var yElements_pie = [];
+                var xElements_heatmap = [];
+                var yElements_heatmap = [];
+
+                console.log("years is"+ JSON.stringify(years.year));
+                console.log("countries is"+ JSON.stringify(countries.country));
+                console.log("languages is"+ JSON.stringify(languages.language));
+
 		    	if(years.year!==undefined && years.year.length>0){
+
 		    		for(var i =0; i<years.year.length;i++){
 			    		xElements.push(years.year[i].year);
 			    		yElements.push(parseInt(years.year[i].count, 10));
                     }
-			        var option = this.timelineOptions(xElements, yElements);
-			        this.setState({timeline : option});
+
+                    if(countries.country.length>0 && countries.country!==undefined){
+                        for(var j =0; j<countries.country.length;j++){
+                            xElements_bar.push(countries.country[j].name);
+                            yElements_bar.push(parseInt(countries.country[j].count, 10));
+                        }
+                    }else{
+                        xElements_bar.push(countries.country.name);
+                        yElements_bar.push(parseInt(countries.country.count, 10));
+                    }
+
+                   if(languages.language.length>0 && languages.language!==undefined){
+                        for(var k =0; k<languages.language.length;k++){
+                            xElements_pie.push(languages.language[k].lang);
+                            yElements_pie.push({value: parseInt(languages.language[k].count, 10),
+                                                name: languages.language[k].lang});
+                        }
+                    }else{
+                        xElements_pie.push(languages.language.name);
+                        yElements_pie.push({value: parseInt(languages.language.count, 10),
+                                            name: languages.language.lang});
+                    }
+                    console.log("yElements_pie is: " + JSON.stringify(yElements_pie));
+
+                    var option = this.timelineOptions(xElements, yElements);
+                    var option_bar = this.timelineOptions_bar(xElements_bar, yElements_bar);
+                    var option_pie = this.timelineOptions_pie(xElements_pie, yElements_pie);
+             
+			        this.setState({timeline : option,
+                                   timeline_bar : option_bar,
+                                   timeline_pie : option_pie});
 		    	}else{
 		    		this.setState({timeline : {}});
 		    	}
@@ -269,6 +359,8 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         this.props.history.push(yearLink);
     } 
 
+    onChartClickBar = () =>{} ;
+    onChartClickPie = () =>{} ;
 
     renderDocumentLoading = () =>
         <TimelineListingLoading>
@@ -321,6 +413,38 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         return content;
     }
 
+    renderChartBar = () => {
+        let content;
+        let onEvents = {
+            'click': this.onChartClickBar,
+        }
+        if(Object.keys(this.state.timeline_bar).length !== 0){
+            content = <ReactEcharts
+                    option={this.state.timeline_bar}
+                    style={{height: '300px', width: '100%'}}
+                    className='echarts-for-echarts-bar'
+                    onEvents={onEvents} />;
+        }else{
+            content = <div></div>;
+        }
+        return content;
+    }
+
+    renderChartPie = () => {
+        let content;
+        let onEvents = {
+            'click': this.onChartClickPie,
+        }
+        if(Object.keys(this.state.timeline_pie).length !== 0){
+            content = <ReactEcharts
+                    option={this.state.timeline_pie}
+                    className='echarts-for-echarts-pie'
+                    onEvents={onEvents} />;
+        }else{
+            content = <div></div>;
+        }
+        return content;
+    }
     render() {
         const { loading, listing, records } = this.state;
         let result;
@@ -334,6 +458,9 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         }
 
         let graph = this.renderChart();
+        let graph_bar = this.renderChartBar();
+        let graph_pie = this.renderChartPie();
+        //let graph_heatmap = this.renderChartHeatMap();
 
         let content = 
         <div className={ `main-col col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
@@ -350,7 +477,8 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 <TabPanel>
                     <div className="tab-pane tab-active" data-tab="2">
                     	{graph}
-                        {result}
+                        {graph_bar}
+                        {graph_pie}
                     </div>
                 </TabPanel>
             </Tabs>
