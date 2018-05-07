@@ -184,40 +184,51 @@ timelineOptions_heatmap = (xElements_heatmap, yElements_heatmap,yElements_heatma
         tooltip: {
             position: 'top',
             formatter: function (params) {
-                return params.value[1] + ' results containing ' + xElements_heatmap[params.value[0]] ;
+                return params.value[2] + ' results containing ' + xElements_heatmap[params.value[0]] ;
             }
         },
         xAxis: {
-            type: 'category',
-            data: xElements_heatmap,
-            boundaryGap: false,
-            splitLine: {
-                show: true,
-                lineStyle: {
-                    color: '#999',
-                    type: 'dashed'
-                }
-            },
-            axisLine: {
-                show: false
-            }
+            data: xElements_heatmap
         },
         yAxis: {
             data: yUniqueElements.sort(function(a, b){return a-b}),
-            axisLine: {
-                show: false
-            }
         },
+        dataZoom: [
+        {
+            type: 'slider',
+            show: true,
+            xAxisIndex: [0],
+            start: 1,
+            end: 100
+        },
+        {
+            type: 'slider',
+            show: true,
+            yAxisIndex: [0],
+            left: '93%',
+            start: 1,
+            end: 100
+        },
+        {
+            type: 'inside',
+            xAxisIndex: [0],
+            start: 1,
+            end: 100
+        },
+        {
+            type: 'inside',
+            yAxisIndex: [0],
+            start: 1,
+            end: 100
+        }
+       ],
         series: [{
             name: 'Keywords vs Results',
             type: 'scatter',
             symbolSize: function (val) {
-                return val[2] ;
+                return val[2];
             },
-            data: yElements_heatmap_data,
-            animationDelay: function (idx) {
-                return idx * 5;
-            }
+            data: yElements_heatmap_data
         }]
     };
 };
@@ -296,7 +307,7 @@ getTimeline(paramsObj) {
                     for(var l =0; l<keywords.key.length;l++){
                         xElements_heatmap.push(keywords.key[l].key);
                         yElements_heatmap.push(parseInt(keywords.key[l].count, 10));
-                        yElements_heatmap_data.push([l+5,parseInt(keywords.key[l].count, 10),parseInt(keywords.key[l].count, 10)]);
+                        yElements_heatmap_data.push([l+1,parseInt(keywords.key[l].count, 10),parseInt(keywords.key[l].count, 10)]);
 
                     }
                 }else{
