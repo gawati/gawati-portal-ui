@@ -65,8 +65,9 @@ export const xQueryFilterBuilder = (filter) => {
     let xQuery = [];
     
     for (let filterName in filter) {
-        
+
         let cfg = filterConfig[filterName];
+
         if (filter[filterName].length > 0 ) {
             let attrQuery = filter[filterName].map(
                 value => {
