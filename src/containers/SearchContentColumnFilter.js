@@ -30,11 +30,12 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             totalPages: 0,
             loading: true,
             listing: undefined,
+            tabIndex: 0,
             timeline: {},
             timeline_bar: {},
             timeline_pie: {},
             timeline_scatter: {},
-            timeline_bar_doctype: {}
+            timeline_pie_doctype: {}
         };
         this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
         this.onChangePage = this.onChangePage.bind(this);
@@ -133,7 +134,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     };
 
     timelineOptions_bar = (xElements_bar, yElements_bar) => {
-       return {
+        return {
             title: {
                 show: true,
                 text: "Country vs Number of Results",
@@ -149,8 +150,8 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             xAxis: {
                data: xElements_bar
             },
+            yAxis: {},
             series: [{
-                name: "Country vs Results",
                 type: "bar",
                 itemStyle: {
                     color: "#FFC733"
@@ -161,7 +162,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     };
 
     timelineOptions_pie = (xElements_pie, yElements_pie) => {
-       return {
+        return {
             title: {
                 text: "Language vs Number of Results",
                 left: "center",
@@ -179,7 +180,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     timelineOptions_scatter = (xElements_scatter,yElements_scatter,yElements_scatter_data) => {
         var yUniqueElements = yElements_scatter.filter(function(item, pos) {
-        return yElements_scatter.indexOf(item) == pos;
+        return yElements_scatter.indexOf(item) === pos;
         });
         return {
             tooltip: {
@@ -239,30 +240,20 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         };
     };
 
-    timelineOptions_bar_doctype = (xElements_bar_doctype, yElements_bar_doctype) => {
-        return {
+    timelineOptions_pie_doctype = (xElements_pie_doctype, yElements_pie_doctype) => {
+       return {
             title: {
-                show: true,
-                text: `Document Type vs Results`,
+                text: "Document Type vs Number of Results",
                 left: "center",
-                top: 20,
                 textStyle: {
-                    color: "#FD1A23",
-                    fontSize: 12,
-                    fontStyle: "italic",
-                    align: "center"
+                align: "center"
                 }
             },
-            xAxis: {
-                data: xElements_bar_doctype
-            },
             series: [{
-                type: "bar",
-                itemStyle: {
-                    color: "#22CC3E"
-                },
-                data: yElements_bar_doctype
-            }]
+                type: "pie",
+                radius: [0, "70%"],
+                data: yElements_pie_doctype
+           }]
         };
     };
 
@@ -303,14 +294,14 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 var xElements_scatter = [];
                 var yElements_scatter = [];
                 var yElements_scatter_data = [];
-                var xElements_bar_doctype = [];
-                var yElements_bar_doctype = [];
+                var xElements_pie_doctype = [];
+                var yElements_pie_doctype = [];
 
                 var option = {};
                 var option_bar = {};
                 var option_pie = {};
                 var option_scatter = {};
-                var option_bar_doctype = {};
+                var option_pie_doctype = {};
 
                 if (typeof(years.year) !== "undefined") {
                     if (years.year.constructor === Array) {
@@ -379,29 +370,34 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 if (typeof(docType.type) !== "undefined") {
                     if (docType.type.constructor === Array) {
                         for (var m = 0; m < docType.type.length; m++) {
-                            xElements_bar_doctype.push(docType.type[m].type);
-                            yElements_bar_doctype.push(parseInt(docType.type[m].count, 10));
-                        }
+                            xElements_pie_doctype.push(docType.type[m].type);
+                            yElements_pie_doctype.push({
+                                value: parseInt(docType.type[m].count, 10),
+                                name: docType.type[m].type
+                            });                        }
                     } else {
-                        xElements_bar_doctype.push(docType.type.type);
-                        yElements_bar_doctype.push(parseInt(docType.type.count, 10));
+                        xElements_pie_doctype.push(docType.type.type);
+                        yElements_pie_doctype.push({
+                                value: parseInt(docType.type.count, 10),
+                                name: docType.type.type
+                            });                     
                     }
                 } else {
-                    option_bar_doctype = null;
+                    option_pie_doctype = null;
                 }
-
+                
                 option = option ? this.timelineOptions(xElements, yElements) : {};
                 option_bar = option_bar ? this.timelineOptions_bar(xElements_bar, yElements_bar) : {};
                 option_pie = option_pie ? this.timelineOptions_pie(xElements_pie, yElements_pie) : {};
                 option_scatter = option_scatter ? this.timelineOptions_scatter(xElements_scatter,yElements_scatter,yElements_scatter_data) : {};
-                option_bar_doctype = option_bar_doctype ? this.timelineOptions_bar_doctype(xElements_bar_doctype, yElements_bar_doctype) : {};
+                option_pie_doctype = option_pie_doctype ? this.timelineOptions_pie_doctype(xElements_pie_doctype, yElements_pie_doctype) : {};
 
                 this.setState({
                     timeline: option,
                     timeline_bar: option_bar,
                     timeline_pie: option_pie,
                     timeline_scatter: option_scatter,
-                    timeline_bar_doctype: option_bar_doctype
+                    timeline_pie_doctype: option_pie_doctype
                 });
             })
             .catch(function(error) {
@@ -516,7 +512,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     };
 
     docTypeFilter = (doctype, q) => {
-        q.type = [doctype.toString()];
+        q.types = [doctype.toString()];
         return q;
     };
 
@@ -529,6 +525,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let yearLink = this.filterLink(this.props.match, pageLang, this.yearFilter(chartParams.name, query));
         
         this.props.history.push(yearLink);
+        this.setState({tabIndex : 0});
     } 
 
     onChartClickBar = (chartParams) =>{
@@ -539,6 +536,8 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let countryLink = this.filterLink(this.props.match, pageLang, this.countryFilter(chartParams.name, query));
         
         this.props.history.push(countryLink);
+        this.setState({tabIndex : 0});
+
     } 
 
     onChartClickPie = (chartParams) =>{
@@ -549,6 +548,9 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let languageLink = this.filterLink(this.props.match, pageLang, this.languageFilter(chartParams.name, query));
         
         this.props.history.push(languageLink);
+
+        this.setState({tabIndex : 0});
+
     } 
 
     onChartClickScatter = (chartParams) =>{
@@ -559,9 +561,12 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let keywordLink = this.filterLink(this.props.match, pageLang, this.keywordFilter(chartParams.name, query));
         
         this.props.history.push(keywordLink);
+
+        this.setState({tabIndex : 0});
+
     }  
 
-    onChartClickBarDocType = (chartParams) =>{
+    onChartClickPieDocType = (chartParams) =>{
         let pageLang = this.props.lang || this.props.match.params.lang; 
         
         let query = this.props.match === undefined || this.props.match.params.q===undefined ? {} : convertEncodedStringToObject(this.props.match.params.q);
@@ -569,6 +574,8 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let doctypeLink = this.filterLink(this.props.match, pageLang, this.docTypeFilter(chartParams.name, query));
         
         this.props.history.push(doctypeLink);
+        this.setState({tabIndex : 0});
+
     }     
 
     renderDocumentLoading = () =>
@@ -663,7 +670,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         if(Object.keys(this.state.timeline_scatter).length !== 0){
             content = <ReactEcharts
                     option={this.state.timeline_scatter}
-                    className='echarts-for-echarts'
+                    className='echarts-for-echarts-scatter'
                     onEvents={onEvents} />;
         }else{
             content = <div></div>;
@@ -671,16 +678,16 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         return content;
     }            
 
-    renderChartBarDocType = () => {
+    renderChartPieDocType = () => {
         let content;
         let onEvents = {
-            'click': this.onChartClickBarDocType,
+            'click': this.onChartClickPieDocType,
         }
-        if(Object.keys(this.state.timeline_bar_doctype).length !== 0){
+        if(Object.keys(this.state.timeline_pie_doctype).length !== 0){
             content = <ReactEcharts
-                    option={this.state.timeline_bar_doctype}
+                    option={this.state.timeline_pie_doctype}
                     style={{height: '300px', width: '100%'}}
-                    className='echarts-for-echarts'
+                    className='echarts-for-echarts-pie-doctype'
                     onEvents={onEvents} />;
         }else{
             content = <div></div>;
@@ -704,11 +711,11 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let graph_bar = this.renderChartBar();
         let graph_pie = this.renderChartPie();
         let graph_scatter = this.renderChartScatter();
-        let graph_bar_doctype = this.renderChartBarDocType();
+        let graph_pie_doctype = this.renderChartPieDocType();
 
         let content = 
         <div className={ `main-col col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
-            <Tabs>
+            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                 <TabList>
                     <Tab>{ T("Document Results") }</Tab>
                     <Tab>{ T("Timeline") }</Tab>
@@ -724,7 +731,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                         {graph_bar}
                         {graph_pie}
                         {graph_scatter}
-                        {graph_bar_doctype}
+                        {graph_pie_doctype}
                     </div>
                 </TabPanel>
             </Tabs>
