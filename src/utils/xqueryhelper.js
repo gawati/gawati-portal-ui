@@ -47,7 +47,12 @@ const filterConfig = {
       xqueryElementXPath: './/an:classification/an:keyword',
       xqueryAttr: '@value',
       xqueryAttrType: 'string'
-    } 
+    },
+    'type': {
+      xqueryElementXPath: ['.//an:act','.//an:amendment','.//an:amendmentList','.//an:bill','.//an:debate','.//an:debateReport','.//an:doc','.//an:documentCollection','.//an:judgment','.//an:officialGazette','.//an:portion','.//an:statement'],
+      xqueryAttr: '@name',
+      xqueryAttrType: 'string'
+    }
 };
 
 /**
@@ -65,8 +70,10 @@ export const xQueryFilterBuilder = (filter) => {
     let xQuery = [];
     
     for (let filterName in filter) {
-        
+      if(filterName!="type"){
+
         let cfg = filterConfig[filterName];
+
         if (filter[filterName].length > 0 ) {
             let attrQuery = filter[filterName].map(
                 value => {
@@ -79,6 +86,25 @@ export const xQueryFilterBuilder = (filter) => {
                 `[${cfg.xqueryElementXPath}[ ${attrQuery} ]]`
             );
         }
+      }else{
+
+        let cfg = filterConfig[filterName];
+
+        if (filter[filterName].length > 0 ) {
+            let attrQuery = filter[filterName].map(
+                value => {
+                    let qValue = cfg.xqueryAttrType === 'int' ? value : `'${value}'` ;
+                    return `${cfg.xqueryAttr} eq ${qValue}`;
+                }
+            ).join(" or ");
+            
+            for(let i=0; i<cfg.xqueryElementXPath.length; i++){
+              xQuery.push(
+                `[${cfg.xqueryElementXPath[i]}[ ${attrQuery} ]]`
+              );
+            }    
+        }
+      }  
     }
     return xQuery;
 };
