@@ -167,7 +167,10 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 text: "Language vs Number of Results",
                 left: "center",
                 textStyle: {
-                align: "center"
+                    color: "#D3D3D3",
+                    fontSize: 12,
+                    fontStyle: "italic",
+                    align: "center"
                 }
             },
             series: [{
@@ -183,6 +186,16 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         return yElements_scatter.indexOf(item) === pos;
         });
         return {
+            title: {
+                text: "Keywords vs Number of Results",
+                left: "center",
+                textStyle: {
+                    color: "#D3D3D3",
+                    fontSize: 12,
+                    fontStyle: "italic",
+                    align: "center"
+                }
+            },
             tooltip: {
                 position: "top",
                 formatter: function(params) {
@@ -232,9 +245,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 symbolSize: function(val) {
                     return val[2];
                 },
-                itemStyle: {
-                    color: "#3377FF"
-                },
                 data: yElements_scatter_data
             }]
         };
@@ -246,7 +256,10 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 text: "Document Type vs Number of Results",
                 left: "center",
                 textStyle: {
-                align: "center"
+                    color: "#D3D3D3",
+                    fontSize: 12,
+                    fontStyle: "italic",
+                    align: "center"
                 }
             },
             series: [{
@@ -299,8 +312,10 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 var option_scatter = {};
                 var option_pie_doctype = {};
 
+                var counter = 0;
+
                 // != null converts undefined to null also and also covers null 
-                if (years.year != null) {
+                if (years != null && years.year != null) {
                     // instead of checkig whether it is an object or an array,
                     // simply convert it to an array
                     const filterYears = coerceIntoArray(years.year);
@@ -313,57 +328,42 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                     option = null;
                 }
 
-                if (typeof(countries.country) !== "undefined") {
-                    if (countries.country.constructor === Array) {
-                        for (var j = 0; j < countries.country.length; j++) {
-                            xElements_bar.push(countries.country[j].name);
-                            yElements_bar.push(parseInt(countries.country[j].count, 10));
-                        }
-                    } else {
-                        xElements_bar.push(countries.country.name);
-                        yElements_bar.push(parseInt(countries.country.count, 10));
+                if (countries != null && countries.country != null) {
+                    const filterCountries = coerceIntoArray(countries.country);
+                    for (var filterCountry of filterCountries) {
+                        xElements_bar.push(filterCountry.name);
+                        yElements_bar.push(parseInt(filterCountry.count, 10));
                   }
                 } else {
                     option_bar = null;
                 }
 
-                if (typeof(languages.language) !== "undefined") {
-                    if (languages.language.constructor === Array) {
-                        for (var k = 0; k < languages.language.length; k++) {
-                            xElements_pie.push(languages.language[k].lang);
-                            yElements_pie.push({
-                                value: parseInt(languages.language[k].count, 10),
-                                name: languages.language[k].lang
-                            });
-                        }
-                    } else {
-                        xElements_pie.push(languages.language.lang);
+                if (languages != null && languages.language != null) {
+                    const filterLanguages = coerceIntoArray(languages.language);
+                    for (var filterLanguage of filterLanguages){
+                       xElements_pie.push(filterLanguage.lang);
                         yElements_pie.push({
-                            value: parseInt(languages.language.count, 10),
-                            name: languages.language.lang
+                            value: parseInt(filterLanguage.count, 10),
+                            name: filterLanguage.lang
                         });
                     }
                 } else {
                     option_pie = null;
                 }
 
-                if (typeof(keywords.key) !== "undefined") {
-                    if (keywords.key.constructor === Array) {
-                        for (var l = 0; l < keywords.key.length; l++) {
-                            xElements_scatter.push(keywords.key[l].key);
-                            yElements_scatter.push(parseInt(keywords.key[l].count, 10));
-                            yElements_scatter_data.push([l + 1,parseInt(keywords.key[l].count, 10),parseInt(keywords.key[l].count, 10)]);
-                        }
-                    } else {
-                        xElements_scatter.push(keywords.key.key);
-                        yElements_scatter.push(parseInt(keywords.key.count, 10));
-                        yElements_scatter_data.push([1,parseInt(keywords.key.count, 10),parseInt(keywords.key.count, 10)]);
+                if (keywords != null && keywords.key != null) {
+                    const filterKeywords = coerceIntoArray(keywords.key);
+                    for (var filterKeyword of filterKeywords){
+                        xElements_scatter.push(filterKeyword.key);
+                        yElements_scatter.push(parseInt(filterKeyword.count, 10));
+                        yElements_scatter_data.push([counter,parseInt(filterKeyword.count, 10),parseInt(filterKeyword.count, 10)]);
+                        counter += 1;
                     }
                 } else {
                     option_scatter = null;
                 }
 
-                if (docType.type != null) {
+                if (docType != null && docType.type != null) {
                     const filterDocTypes = coerceIntoArray(docType.type);
                     for (var filterDocType of filterDocTypes) {
                         xElements_pie_doctype.push(filterDocType.type);
@@ -544,6 +544,12 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     } 
 
     onChartClickScatter = (chartParams) =>{
+
+        for (var key in chartParams){
+            console.log("key is " + key);
+            console.log("value is " + chartParams[key]);
+        }
+
         let pageLang = this.props.lang || this.props.match.params.lang; 
         
         let query = this.props.match === undefined || this.props.match.params.q===undefined ? {} : convertEncodedStringToObject(this.props.match.params.q);
