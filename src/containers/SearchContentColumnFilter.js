@@ -279,11 +279,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             cancelToken:this.timelineSource.token
         })
             .then(response => {
-                const years = response.data.years;
-                const countries = response.data.countries;
-                const languages = response.data.langs;
-                const keywords = response.data.keywords;
-                const docType = response.data.docType;
+                const {years, countries, languages, keywords, docType} = response.data;
 
                 var xElements = [];
                 var yElements = [];
@@ -303,15 +299,15 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 var option_scatter = {};
                 var option_pie_doctype = {};
 
-                if (typeof(years.year) !== "undefined") {
-                    if (years.year.constructor === Array) {
-                        for (var i = 0; i < years.year.length; i++) {
-                            xElements.push(years.year[i].year);
-                            yElements.push(parseInt(years.year[i].count, 10));
-                        }
-                    } else {
-                        xElements.push(years.year.year);
-                        yElements.push(parseInt(years.year.count, 10));
+                // != null converts undefined to null also and also covers null 
+                if (years.year != null) {
+                    // instead of checkig whether it is an object or an array,
+                    // simply convert it to an array
+                    const filterYears = coerceIntoArray(years.year);
+                    // ES6 for-of syntatically simpler than for(;;)
+                    for (var filterYear of filterYears) {
+                        xElements.push(filterYear.year);
+                        yElements.push(parseInt(filterYear.count, 10));
                     }
                 } else {
                     option = null;
@@ -367,20 +363,14 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                     option_scatter = null;
                 }
 
-                if (typeof(docType.type) !== "undefined") {
-                    if (docType.type.constructor === Array) {
-                        for (var m = 0; m < docType.type.length; m++) {
-                            xElements_pie_doctype.push(docType.type[m].type);
-                            yElements_pie_doctype.push({
-                                value: parseInt(docType.type[m].count, 10),
-                                name: docType.type[m].type
-                            });                        }
-                    } else {
-                        xElements_pie_doctype.push(docType.type.type);
+                if (docType.type != null) {
+                    const filterDocTypes = coerceIntoArray(docType.type);
+                    for (var filterDocType of filterDocTypes) {
+                        xElements_pie_doctype.push(filterDocType.type);
                         yElements_pie_doctype.push({
-                                value: parseInt(docType.type.count, 10),
-                                name: docType.type.type
-                            });                     
+                            value: parseInt(filterDocType.count, 10),
+                            name: filterDocType.type
+                        });                        
                     }
                 } else {
                     option_pie_doctype = null;
