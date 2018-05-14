@@ -11,6 +11,7 @@ import FilterCountry from './FilterCountry2';
 // import FilterDate from './FilterDate2';
 import FilterLang from './FilterLang2';
 // import FilterKeywords from './FilterKeywords2';
+import FilterTypes from './FilterTypes2';
 
 import { filterTypes } from '../../constants.js';
 import { apiGetCall } from '../../api.js';
@@ -128,6 +129,7 @@ class Filter extends React.Component {
                     <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
                     <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
                     <FilterKeywords   filterType={filterType.FILTER_KEYWORD}  filter={this.getFilterFor('FILTER_KEYWORD')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
+                    <FilterTypes   filterType={filterType.FILTER_TYPE}  filter={this.getFilterFor('FILTER_TYPE')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
                 </Aux>
             );        
         }

@@ -65,5 +65,9 @@ export const filterTypes = () => ({
     "FILTER_KEYWORD": {
         label: "Subjects",
         key:  "keywords"
+    },
+    "FILTER_TYPE": {
+        label: "Document Type",
+        key:  "types"
     }
 });

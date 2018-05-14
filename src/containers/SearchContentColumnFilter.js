@@ -30,7 +30,12 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             totalPages: 0,
             loading: true,
             listing: undefined,
+            tabIndex: 0,
             timeline: {},
+            timeline_bar: {},
+            timeline_pie: {},
+            timeline_scatter: {},
+            timeline_pie_doctype: {}
         };
         this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
         this.onChangePage = this.onChangePage.bind(this);
@@ -128,6 +133,144 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         };
     };
 
+    timelineOptions_bar = (xElements_bar, yElements_bar) => {
+        return {
+            title: {
+                show: true,
+                text: "Country vs Number of Results",
+                left: "center",
+                top: 20,
+                textStyle: {
+                    color: "#D3D3D3",
+                    fontSize: 12,
+                    fontStyle: "italic",
+                    align: "center"
+                }
+            },
+            xAxis: {
+               data: xElements_bar
+            },
+            yAxis: {},
+            series: [{
+                type: "bar",
+                itemStyle: {
+                    color: "#FFC733"
+                },
+                data: yElements_bar
+            }]
+        };
+    };
+
+    timelineOptions_pie = (xElements_pie, yElements_pie) => {
+        return {
+            title: {
+                text: "Language vs Number of Results",
+                left: "center",
+                textStyle: {
+                    color: "#D3D3D3",
+                    fontSize: 12,
+                    fontStyle: "italic",
+                    align: "center"
+                }
+            },
+            series: [{
+                type: "pie",
+                radius: [0, "70%"],
+                data: yElements_pie
+           }]
+        };
+    };
+
+    timelineOptions_scatter = (xElements_scatter,yElements_scatter,yElements_scatter_data) => {
+        var yUniqueElements = yElements_scatter.filter(function(item, pos) {
+        return yElements_scatter.indexOf(item) === pos;
+        });
+        return {
+            title: {
+                text: "Keywords vs Number of Results",
+                left: "center",
+                textStyle: {
+                    color: "#D3D3D3",
+                    fontSize: 12,
+                    fontStyle: "italic",
+                    align: "center"
+                }
+            },
+            tooltip: {
+                position: "top",
+                formatter: function(params) {
+                    return (params.value[2] + " results containing " + xElements_scatter[params.value[0]]);
+                }
+            },
+            xAxis: {
+                data: xElements_scatter
+            },
+            yAxis: {
+                data: yUniqueElements.sort(function(a, b) {
+                    return a - b;
+                })
+            },
+            dataZoom: [
+              {
+                type: "slider",
+                show: true,
+                xAxisIndex: [0],
+                start: 1,
+                end: 100
+             },
+             {
+                type: "slider",
+                show: true,
+                yAxisIndex: [0],
+                left: "93%",
+                start: 1,
+                end: 100
+             },
+             {
+                type: "inside",
+                xAxisIndex: [0],
+                 start: 1,
+                 end: 100
+             },
+             {
+                type: "inside",
+                yAxisIndex: [0],
+                start: 1,
+                end: 100
+             }
+            ],
+            series: [{
+                name: "Keywords vs Results",
+                type: "scatter",
+                symbolSize: function(val) {
+                    return val[2];
+                },
+                data: yElements_scatter_data
+            }]
+        };
+    };
+
+    timelineOptions_pie_doctype = (xElements_pie_doctype, yElements_pie_doctype) => {
+       return {
+            title: {
+                text: "Document Type vs Number of Results",
+                left: "center",
+                textStyle: {
+                    color: "#D3D3D3",
+                    fontSize: 12,
+                    fontStyle: "italic",
+                    align: "center"
+                }
+            },
+            series: [{
+                type: "pie",
+                radius: [0, "70%"],
+                data: yElements_pie_doctype
+           }]
+        };
+    };
+
+
     getTimeline(paramsObj) {
         console.log( " GET Timeline ", paramsObj);
         let apiTimeline = apiGetCall(
@@ -149,19 +292,103 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             cancelToken:this.timelineSource.token
         })
             .then(response => {
-                const years = response.data.years;
+                const {years, countries, languages, keywords, docType} = response.data;
+
                 var xElements = [];
-		    	var yElements = [];
-		    	if(years.year!==undefined && years.year.length>0){
-		    		for(var i =0; i<years.year.length;i++){
-			    		xElements.push(years.year[i].year);
-			    		yElements.push(parseInt(years.year[i].count, 10));
+                var yElements = [];
+                var xElements_bar = [];
+                var yElements_bar = [];
+                var xElements_pie = [];
+                var yElements_pie = [];
+                var xElements_scatter = [];
+                var yElements_scatter = [];
+                var yElements_scatter_data = [];
+                var xElements_pie_doctype = [];
+                var yElements_pie_doctype = [];
+
+                var option = {};
+                var option_bar = {};
+                var option_pie = {};
+                var option_scatter = {};
+                var option_pie_doctype = {};
+
+                var counter = 0;
+
+                // != null converts undefined to null also and also covers null 
+                if (years != null && years.year != null) {
+                    // instead of checkig whether it is an object or an array,
+                    // simply convert it to an array
+                    const filterYears = coerceIntoArray(years.year);
+                    // ES6 for-of syntatically simpler than for(;;)
+                    for (var filterYear of filterYears) {
+                        xElements.push(filterYear.year);
+                        yElements.push(parseInt(filterYear.count, 10));
                     }
-			        var option = this.timelineOptions(xElements, yElements);
-			        this.setState({timeline : option});
-		    	}else{
-		    		this.setState({timeline : {}});
-		    	}
+                } else {
+                    option = null;
+                }
+
+                if (countries != null && countries.country != null) {
+                    const filterCountries = coerceIntoArray(countries.country);
+                    for (var filterCountry of filterCountries) {
+                        xElements_bar.push(filterCountry.name);
+                        yElements_bar.push(parseInt(filterCountry.count, 10));
+                  }
+                } else {
+                    option_bar = null;
+                }
+
+                if (languages != null && languages.language != null) {
+                    const filterLanguages = coerceIntoArray(languages.language);
+                    for (var filterLanguage of filterLanguages){
+                       xElements_pie.push(filterLanguage.lang);
+                        yElements_pie.push({
+                            value: parseInt(filterLanguage.count, 10),
+                            name: filterLanguage.lang
+                        });
+                    }
+                } else {
+                    option_pie = null;
+                }
+
+                if (keywords != null && keywords.key != null) {
+                    const filterKeywords = coerceIntoArray(keywords.key);
+                    for (var filterKeyword of filterKeywords){
+                        xElements_scatter.push(filterKeyword.key);
+                        yElements_scatter.push(parseInt(filterKeyword.count, 10));
+                        yElements_scatter_data.push([counter,parseInt(filterKeyword.count, 10),parseInt(filterKeyword.count, 10)]);
+                        counter += 1;
+                    }
+                } else {
+                    option_scatter = null;
+                }
+
+                if (docType != null && docType.type != null) {
+                    const filterDocTypes = coerceIntoArray(docType.type);
+                    for (var filterDocType of filterDocTypes) {
+                        xElements_pie_doctype.push(filterDocType.type);
+                        yElements_pie_doctype.push({
+                            value: parseInt(filterDocType.count, 10),
+                            name: filterDocType.type
+                        });                        
+                    }
+                } else {
+                    option_pie_doctype = null;
+                }
+                
+                option = option ? this.timelineOptions(xElements, yElements) : {};
+                option_bar = option_bar ? this.timelineOptions_bar(xElements_bar, yElements_bar) : {};
+                option_pie = option_pie ? this.timelineOptions_pie(xElements_pie, yElements_pie) : {};
+                option_scatter = option_scatter ? this.timelineOptions_scatter(xElements_scatter,yElements_scatter,yElements_scatter_data) : {};
+                option_pie_doctype = option_pie_doctype ? this.timelineOptions_pie_doctype(xElements_pie_doctype, yElements_pie_doctype) : {};
+
+                this.setState({
+                    timeline: option,
+                    timeline_bar: option_bar,
+                    timeline_pie: option_pie,
+                    timeline_scatter: option_scatter,
+                    timeline_pie_doctype: option_pie_doctype
+                });
             })
             .catch(function(error) {
                 console.log("error in Timeline()", error);
@@ -259,6 +486,27 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         return q;
     }
 
+    keywordFilter = (keyword, q) => {
+        q.keywords = [keyword.toString()];
+        return q;
+    };
+
+    languageFilter = (language, q) => {
+        q.langs = [language.toString()];
+        return q;
+    };
+
+    countryFilter = (country, q) => {
+        q.countries = [country.toString()];
+        return q;
+    };
+
+    docTypeFilter = (doctype, q) => {
+        q.types = [doctype.toString()];
+        return q;
+    };
+
+
     onChartClick = (chartParams) =>{
         let pageLang = this.props.lang || this.props.match.params.lang; 
         
@@ -267,8 +515,64 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let yearLink = this.filterLink(this.props.match, pageLang, this.yearFilter(chartParams.name, query));
         
         this.props.history.push(yearLink);
+        this.setState({tabIndex : 0});
     } 
 
+    onChartClickBar = (chartParams) =>{
+        let pageLang = this.props.lang || this.props.match.params.lang; 
+        
+        let query = this.props.match === undefined || this.props.match.params.q===undefined ? {} : convertEncodedStringToObject(this.props.match.params.q);
+        
+        let countryLink = this.filterLink(this.props.match, pageLang, this.countryFilter(chartParams.name, query));
+        
+        this.props.history.push(countryLink);
+        this.setState({tabIndex : 0});
+
+    } 
+
+    onChartClickPie = (chartParams) =>{
+        let pageLang = this.props.lang || this.props.match.params.lang; 
+        
+        let query = this.props.match === undefined || this.props.match.params.q===undefined ? {} : convertEncodedStringToObject(this.props.match.params.q);
+        
+        let languageLink = this.filterLink(this.props.match, pageLang, this.languageFilter(chartParams.name, query));
+        
+        this.props.history.push(languageLink);
+
+        this.setState({tabIndex : 0});
+
+    } 
+
+    onChartClickScatter = (chartParams) =>{
+
+        for (var key in chartParams){
+            console.log("key is " + key);
+            console.log("value is " + chartParams[key]);
+        }
+
+        let pageLang = this.props.lang || this.props.match.params.lang; 
+        
+        let query = this.props.match === undefined || this.props.match.params.q===undefined ? {} : convertEncodedStringToObject(this.props.match.params.q);
+        
+        let keywordLink = this.filterLink(this.props.match, pageLang, this.keywordFilter(chartParams.name, query));
+        
+        this.props.history.push(keywordLink);
+
+        this.setState({tabIndex : 0});
+
+    }  
+
+    onChartClickPieDocType = (chartParams) =>{
+        let pageLang = this.props.lang || this.props.match.params.lang; 
+        
+        let query = this.props.match === undefined || this.props.match.params.q===undefined ? {} : convertEncodedStringToObject(this.props.match.params.q);
+        
+        let doctypeLink = this.filterLink(this.props.match, pageLang, this.docTypeFilter(chartParams.name, query));
+        
+        this.props.history.push(doctypeLink);
+        this.setState({tabIndex : 0});
+
+    }     
 
     renderDocumentLoading = () =>
         <TimelineListingLoading>
@@ -316,7 +620,73 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                     className='echarts-for-echarts'
                     onEvents={onEvents} />;
         }else{
-        	content = <div></div>;
+            content = <div></div>;
+        }
+        return content;
+    }
+
+    renderChartBar = () => {
+        let content;
+        let onEvents = {
+            'click': this.onChartClickBar,
+        }
+        if(Object.keys(this.state.timeline_bar).length !== 0){
+            content = <ReactEcharts
+                    option={this.state.timeline_bar}
+                    style={{height: '300px', width: '100%'}}
+                    className='echarts-for-echarts-bar'
+                    onEvents={onEvents} />;
+        }else{
+            content = <div></div>;
+        }
+        return content;
+    }
+
+    renderChartPie = () => {
+        let content;
+        let onEvents = {
+            'click': this.onChartClickPie,
+        }
+        if(Object.keys(this.state.timeline_pie).length !== 0){
+            content = <ReactEcharts
+                    option={this.state.timeline_pie}
+                    className='echarts-for-echarts-pie'
+                    onEvents={onEvents} />;
+        }else{
+            content = <div></div>;
+        }
+        return content;
+    }
+
+    renderChartScatter = () => {
+        let content;
+        let onEvents = {
+            'click': this.onChartClickScatter,
+        }
+        if(Object.keys(this.state.timeline_scatter).length !== 0){
+            content = <ReactEcharts
+                    option={this.state.timeline_scatter}
+                    className='echarts-for-echarts-scatter'
+                    onEvents={onEvents} />;
+        }else{
+            content = <div></div>;
+        }
+        return content;
+    }            
+
+    renderChartPieDocType = () => {
+        let content;
+        let onEvents = {
+            'click': this.onChartClickPieDocType,
+        }
+        if(Object.keys(this.state.timeline_pie_doctype).length !== 0){
+            content = <ReactEcharts
+                    option={this.state.timeline_pie_doctype}
+                    style={{height: '300px', width: '100%'}}
+                    className='echarts-for-echarts-pie-doctype'
+                    onEvents={onEvents} />;
+        }else{
+            content = <div></div>;
         }
         return content;
     }
@@ -334,10 +704,14 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         }
 
         let graph = this.renderChart();
+        let graph_bar = this.renderChartBar();
+        let graph_pie = this.renderChartPie();
+        let graph_scatter = this.renderChartScatter();
+        let graph_pie_doctype = this.renderChartPieDocType();
 
         let content = 
         <div className={ `main-col col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
-            <Tabs>
+            <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                 <TabList>
                     <Tab>{ T("Document Results") }</Tab>
                     <Tab>{ T("Timeline") }</Tab>
@@ -349,8 +723,11 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 </TabPanel>
                 <TabPanel>
                     <div className="tab-pane tab-active" data-tab="2">
-                    	{graph}
-                        {result}
+                        {graph}
+                        {graph_bar}
+                        {graph_pie}
+                        {graph_scatter}
+                        {graph_pie_doctype}
                     </div>
                 </TabPanel>
             </Tabs>
