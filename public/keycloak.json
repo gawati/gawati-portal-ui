@@ -1,14 +1,14 @@
 {
-  "realm": "kiribati",
+  "realm": "auth.gawati.local",
   "auth-server-url": "http://localhost:11080/auth",
   "url": "http://localhost:11080/auth",
   "ssl-required": "external",
   "resource": "gawati-portal-ui",
-  "clientId": "gawati-portal-ui",
+  "clientId": "gawati-portal-ui",  
   "credentials": {
-    "secret": "a37106fb-4350-4bbe-b2c3-4235c029b17b"
+    "secret": "38c94915-cc56-41ed-b674-283e3ee7f73c"
   },
-  "public-client": true,
   "use-resource-role-mappings": true,
-  "confidential-port": 0
+  "confidential-port": 0,
+  "policy-enforcer": {}
 }
