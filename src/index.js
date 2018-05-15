@@ -23,13 +23,17 @@ axios.get(apiLocalUrl("keycloak"))
         const keycloakConfig = response.data;
         const isSetup = setupWithConfig(keycloakConfig);
         if (isSetup) {
+            
             setInterval(() => {
                 refreshToken(REFRESH_TOKEN_VALIDITY)
                 .catch(err => {
                     alert("The authentication session has expired. Please sign-in again.");
                     siteLogout();
                 });
-            }, REFRESH_TOKEN_INTERVAL);
+                }, 
+                REFRESH_TOKEN_INTERVAL
+            );
+            
             console.log(" WINDOW.KEYCLOAK ", window.GAWATI_AUTH);
             initSSORequired(
                 // onSuccess callback

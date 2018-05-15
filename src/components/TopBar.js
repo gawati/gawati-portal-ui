@@ -10,7 +10,7 @@ import mobileButton from '../images/th-menu.png';
 import NotifBar from './NotifBar';
 import DivRow from './DivRow';
 import '../css/TopBar.css';
-import { siteLogin, siteLogout, siteRegister, getUserInfo } from '../utils/GawatiAuthClient';
+import { siteLogin, siteLogout, siteRegister, getUserInfo, getToken } from '../utils/GawatiAuthClient';
 
 //import GawatiAuthHelper from '../utils/GawatiAuthHelper';
 
@@ -101,7 +101,13 @@ class TopBar extends React.Component {
     } */
 
     componentDidMount = () => {
-        getUserInfo()
+        if (getToken() != null) {
+            // using getToken() here because there is no clear isLoggedIn() APi in keycloak
+            // calling getUserInfo() is an option which makes an Ajax request, and an error return
+            // (ajax resposne 401 forbidden ) indicates a user who is not logged in. 
+            // however, just checking if a token is set seems to provide the same outcome without the 
+            // overhead of the ajax request, so using getToken() here. 
+            getUserInfo()
             .success( (data) => {
                 console.log(" getUserName (data) = ", data);
                 this.setState({username: data.preferred_username});
@@ -110,6 +116,7 @@ class TopBar extends React.Component {
                 this.setState({username: "guest"});
                 console.log(" getUserName (err) = ", err);
             });
+        }
     };
 
     renderLoggedin =  (lang, userName) => {
