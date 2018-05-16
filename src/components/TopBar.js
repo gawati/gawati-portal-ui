@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {versionInfo} from '../utils/versionhelper';
 import {T} from '../utils/i18nhelper';
-import { defaultLang } from '../utils/generalhelper';
+import { defaultLang, isAuthEnabled } from '../utils/generalhelper';
 import SiteSearchAutoComplete from '../containers/SiteSearchAutoComplete';
 import LanguageSwitcher from '../containers/LanguageSwitcher';
 
@@ -101,21 +101,23 @@ class TopBar extends React.Component {
     } */
 
     componentDidMount = () => {
-        if (getToken() != null) {
-            // using getToken() here because there is no clear isLoggedIn() APi in keycloak
-            // calling getUserInfo() is an option which makes an Ajax request, and an error return
-            // (ajax resposne 401 forbidden ) indicates a user who is not logged in. 
-            // however, just checking if a token is set seems to provide the same outcome without the 
-            // overhead of the ajax request, so using getToken() here. 
-            getUserInfo()
-            .success( (data) => {
-                console.log(" getUserName (data) = ", data);
-                this.setState({username: data.preferred_username});
-            })
-            .error( (err) => {
-                this.setState({username: "guest"});
-                console.log(" getUserName (err) = ", err);
-            });
+        if (isAuthEnabled()) {
+            if (getToken() != null) {
+                // using getToken() here because there is no clear isLoggedIn() APi in keycloak
+                // calling getUserInfo() is an option which makes an Ajax request, and an error return
+                // (ajax resposne 401 forbidden ) indicates a user who is not logged in. 
+                // however, just checking if a token is set seems to provide the same outcome without the 
+                // overhead of the ajax request, so using getToken() here. 
+                getUserInfo()
+                .success( (data) => {
+                    console.log(" getUserName (data) = ", data);
+                    this.setState({username: data.preferred_username});
+                })
+                .error( (err) => {
+                    this.setState({username: "guest"});
+                    console.log(" getUserName (err) = ", err);
+                });
+            }
         }
     };
 
