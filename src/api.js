@@ -29,7 +29,7 @@ const __GAWATI_APIS = [
             'search-category' : '/gwd/search-category/json',
             'profile' : '/gwu/profile',
             'profile-image' : '/gwu/uploads',
-            'keycloak' : '/keycloak.json'
+            'keycloak' : '/gwp/auth.json'
         }
     },
     {
