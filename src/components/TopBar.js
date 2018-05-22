@@ -1,10 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+
 import {versionInfo} from '../utils/versionhelper';
 import {T} from '../utils/i18nhelper';
 import { defaultLang, isAuthEnabled } from '../utils/generalhelper';
 import SiteSearchAutoComplete from '../containers/SiteSearchAutoComplete';
 import LanguageSwitcher from '../containers/LanguageSwitcher';
+import {apiGetCall} from '../api.js';
 
 import mobileButton from '../images/th-menu.png';
 import NotifBar from './NotifBar';
@@ -50,7 +53,7 @@ const SearchBox = (lang) =>
     ;
 
 class TopBar extends React.Component {
-    state = { username: 'guest', authenticated: 'false'}
+    state = { username: 'guest', authenticated: 'false', profile: ''}
 
     handleChange = (e, { name, value }) => { this.setState({ [name]: value }); };
 
@@ -112,6 +115,17 @@ class TopBar extends React.Component {
                 .success( (data) => {
                     console.log(" getUserName (data) = ", data);
                     this.setState({username: data.preferred_username});
+                    let apiProfile = apiGetCall(
+                        'profile', 
+                        {}
+                    );
+                    axios.get(apiProfile)
+                        .then(response => {
+                            this.setState({profile: response.data.url});
+                        })
+                        .catch(function(error) {
+                            console.log("error in getDocument()", error);
+                        });
                 })
                 .error( (err) => {
                     this.setState({username: "guest"});
@@ -121,7 +135,7 @@ class TopBar extends React.Component {
         }
     };
 
-    renderLoggedin =  (lang, userName) => {
+    renderLoggedin =  (lang, userName, profile) => {
         if (userName === "guest") {
             return (
             <div className="inline-elements">
@@ -141,9 +155,7 @@ class TopBar extends React.Component {
                     <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
                 </div>
                 <div id="myDropdown" className="dropdown-content">
-                    <button className={ `btn btn-link loggedIn` }>
-                        <NavLink to={ `/_lang/${lang}/profile` }>Logged in as <b>{userName}</b></NavLink>
-                    </button>
+                    <NavLink to={profile} target="_blank" className={ `btn btn-link loggedIn` }>Logged in as <b>{userName}</b></NavLink>
                     <button className={ `btn btn-link` }  onClick={this.logout}>
                         Sign out
                     </button>
@@ -156,7 +168,7 @@ class TopBar extends React.Component {
 
     render() {
         let lang = this.props.match.params.lang || defaultLang().langUI ;
-        const {username} = this.state ;
+        const {username, profile} = this.state ;
     	return (
             <header className="navigation-bar">
                 <div className="version-info">{
@@ -178,7 +190,7 @@ class TopBar extends React.Component {
                         <NotifBar />
                         <div className="login col-3">
                             {
-                                this.renderLoggedin(lang, username)
+                                this.renderLoggedin(lang, username, profile)
                             }
                         </div>
                     </DivRow>
