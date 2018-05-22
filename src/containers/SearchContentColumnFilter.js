@@ -4,18 +4,21 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ReactEcharts from 'echarts-for-react';
 
 import {apiGetCall} from '../api';
-import {isInt, coerceIntoArray} from '../utils/generalhelper';
+import {isInt, coerceIntoArray, isAuthEnabled} from '../utils/generalhelper';
 import {xQueryFilterBuilder} from '../utils/xqueryhelper';
 import {convertEncodedStringToObject, setInRoute, convertObjectToEncodedString, editInRoute} from '../utils/routeshelper';
+import { ToastContainer, toast } from 'react-toastify';
+import Popup from "reactjs-popup";
 
 import {T} from '../utils/i18nhelper';
-
+import { getUserInfo, getToken } from '../utils/GawatiAuthClient';
 import DivFeed from '../components/DivFeed';
 import DivTimelineListing from '../components/DivTimelineListing';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 import BaseSearchContentColumn from './BaseSearchContentColumn';
 import TimelineListingLoading from '../components/TimelineListingLoading';
+import SaveSearchAutoComplete from './SaveSearchAutoComplete';
 import '../css/ListingContentColumn.css';
 
 class SearchContentColumnFilter extends BaseSearchContentColumn {
@@ -35,10 +38,20 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             timeline_bar: {},
             timeline_pie: {},
             timeline_scatter: {},
-            timeline_pie_doctype: {}
+            timeline_pie_doctype: {},
+            save_modal: false,
+            search_modal: false,
+            save_name:'',
+            username:''
         };
         this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
         this.onChangePage = this.onChangePage.bind(this);
+        this.toggleSaveModal = this.toggleSaveModal.bind(this);
+        this.toggleSearchModal = this.toggleSearchModal.bind(this);
+        this.handleSubmitSave = this.handleSubmitSave.bind(this);
+        this.handleSaveName = this.handleSaveName.bind(this);
+        this.closeSearchModal = this.closeSearchModal.bind(this);
+        this.closeSearchModal = this.closeSearchModal.bind(this);
     }
 
     convertRoutePropToXQuery = (paramQ) => 
@@ -445,6 +458,20 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             from: this.state.from,
             to: this.state.to
         });
+
+        if (isAuthEnabled()) {
+            if (getToken() != null) {
+                getUserInfo()
+                .success( (data) => {
+                    console.log(" getUserName (data) = ", data);
+                    this.setState({username: data.preferred_username});
+                })
+                .error( (err) => {
+                    this.setState({username: "guest"});
+                    console.log(" getUserName (err) = ", err);
+                });
+            }
+        }
         
     }
 
@@ -462,6 +489,20 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             from: parseInt(nextProps.match.params.from, 10),
             to: parseInt(nextProps.match.params.to, 10)
         });
+
+        if (isAuthEnabled()) {
+            if (getToken() != null) {
+                getUserInfo()
+                .success( (data) => {
+                    console.log(" getUserName (data) = ", data);
+                    this.setState({username: data.preferred_username});
+                })
+                .error( (err) => {
+                    this.setState({username: "guest"});
+                    console.log(" getUserName (err) = ", err);
+                });
+            }
+        }
         
     }
 
@@ -572,8 +613,109 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         this.props.history.push(doctypeLink);
         this.setState({tabIndex : 0});
 
-    }     
+    }
 
+    toggleSaveModal = () =>{
+        if (isAuthEnabled()) {
+            console.log(getToken());
+            if (getToken() != null) {
+                this.setState({
+                    save_modal: !this.state.save_modal
+                });
+            }else{
+                toast("Kindly Login");
+            }
+        }else{
+            toast("Kindly Login");
+        }
+    }
+
+    toggleSearchModal = () =>{
+        if (isAuthEnabled()) {
+            if (getToken() != null) {
+                this.setState({
+                    search_modal: !this.state.search_modal
+                });
+            }else{
+                toast("Kindly Login");
+            }
+        }else{
+            toast("Kindly Login");
+        }
+    }
+
+    closeSaveModal = () =>{
+        this.setState({
+            save_modal: false
+        });
+    }
+    closeSearchModal = () =>{
+        this.setState({
+            search_modal: false
+        });
+    }  
+
+    handleSubmitSave = (event) =>{
+        event.preventDefault();
+        let apiSaveSearch = apiGetCall(
+            'save-search-name', {}
+        );
+        let query = this.props.match === undefined || this.props.match.params.q===undefined ? {} : convertEncodedStringToObject(this.props.match.params.q);
+
+        axios.post(apiSaveSearch, {
+            searchName: this.state.save_name,
+            userName: this.state.username,
+            data: JSON.stringify({query: query, count: this.state.count, from: this.state.from, to: this.state.to, lang:this.state.lang})
+        })
+        .then(response => {
+            if(response.data.success==="true"){
+                toast("Search saved successfully");
+                this.toggleSaveModal();
+            }else{
+                toast("There is some problem. Kindly try again");
+                this.toggleSaveModal();
+            }
+        })
+        .catch(function(error) {
+            console.log('There is some error' + error);
+            toast("There is some problem. Kindly try again");
+            this.toggleSaveModal();
+        });
+    } 
+
+    handleSaveName = (event) =>{
+        this.setState({save_name: event.target.value});
+    }    
+
+    renderSaveModal = () =>
+        <Popup
+            position="bottom center"
+            open={this.state.save_modal}
+            onClose={this.closeSaveModal}
+        >
+            <div className="full-width">
+                <div className="header">Save Search</div>
+                <div className="content">
+                    <form onSubmit={this.handleSubmitSave}>
+                        <div className="row">
+                            <div className="form-group col-12">
+                                <label> Name </label><input type="text" value={this.state.save_name} onChange={this.handleSaveName} className="form-control" />
+                            </div>
+                        </div>
+                        <input type="submit" value="Submit" color="primary" className="btn btn-primary btn-sm right" />
+                    </form>
+                </div>
+            </div>
+        </Popup>
+
+    renderSearchModal = () =>
+        <Popup
+            position="bottom center"
+            open={this.state.search_modal}
+            onClose={this.closeSearchModal}
+        >
+            <div className="full-width"><SaveSearchAutoComplete  lang="eng"/></div>
+        </Popup>
     renderDocumentLoading = () =>
         <TimelineListingLoading>
             <h1 className="listingHeading">{T("Document Results")}</h1>
@@ -586,12 +728,24 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         </DivTimelineListing> ;
 
     renderListing = () => {
-       	let pagination = this.generatePagination() ;
+        let pagination = this.generatePagination();
+
+        let save_modal_content = this.renderSaveModal();
+        let search_modal_content = this.renderSearchModal();
+
         let content = 
             <DivTimelineListing lang={this.props.match.params.lang}>
-                <DivFeed>
-                    <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
-                </DivFeed>
+                <div className="row col-12">
+                    <div className="col-10">
+                    <DivFeed>
+                        <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
+                    </DivFeed>
+                    </div>
+                    <div className="col-2 feed w-clearfix">
+                    <a onClick={() => this.toggleSaveModal()}>Save</a> | <a onClick={() => this.toggleSearchModal()}>Search</a>
+                        {save_modal_content}{search_modal_content}
+                    </div>
+                </div>
                 {
                 this.state.listing.map(abstract => {
                     return (
@@ -609,12 +763,12 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     };
 
     renderChart = () => {
-    	let content;
-    	let onEvents = {
+        let content;
+        let onEvents = {
             'click': this.onChartClick,
         }
-    	if(Object.keys(this.state.timeline).length !== 0){
-        	content = <ReactEcharts
+        if(Object.keys(this.state.timeline).length !== 0){
+            content = <ReactEcharts
                     option={this.state.timeline}
                     style={{height: '300px', width: '100%'}}
                     className='echarts-for-echarts'
@@ -711,6 +865,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
         let content = 
         <div className={ `main-col col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
+            <ToastContainer />
             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                 <TabList>
                     <Tab>{ T("Document Results") }</Tab>
