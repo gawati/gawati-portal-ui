@@ -649,6 +649,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             save_modal: false
         });
     }
+
     closeSearchModal = () =>{
         this.setState({
             search_modal: false
@@ -689,6 +690,7 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     renderSaveModal = () =>
         <Popup
+            trigger={ <button class="btn btn-light"><i className="fa fa-floppy-o" />&#160;Save</button> }
             position="bottom center"
             open={this.state.save_modal}
             onClose={this.closeSaveModal}
@@ -715,7 +717,9 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             onClose={this.closeSearchModal}
         >
             <div className="full-width"><SaveSearchAutoComplete  lang="eng"/></div>
-        </Popup>
+        </Popup>;
+
+
     renderDocumentLoading = () =>
         <TimelineListingLoading>
             <h1 className="listingHeading">{T("Document Results")}</h1>
@@ -742,8 +746,8 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                     </DivFeed>
                     </div>
                     <div className="col-2 feed w-clearfix">
-                    <a onClick={() => this.toggleSaveModal()}>Save</a> | <a onClick={() => this.toggleSearchModal()}>Search</a>
-                        {save_modal_content}{search_modal_content}
+                    {save_modal_content} | <a onClick={() => this.toggleSearchModal()}>Search</a>
+                        {search_modal_content}
                     </div>
                 </div>
                 {
