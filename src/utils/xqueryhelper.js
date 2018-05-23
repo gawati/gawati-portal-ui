@@ -47,7 +47,12 @@ const filterConfig = {
       xqueryElementXPath: './/an:classification/an:keyword',
       xqueryAttr: '@value',
       xqueryAttrType: 'string'
-    } 
+    },
+    'types': {
+      xqueryElementXPath: ['.//an:act','.//an:amendment','.//an:amendmentList','.//an:bill','.//an:debate','.//an:debateReport','.//an:doc','.//an:documentCollection','.//an:judgment','.//an:officialGazette','.//an:portion','.//an:statement'],
+      xqueryAttr: '@name',
+      xqueryAttrType: 'string'
+    }
 };
 
 /**
@@ -65,7 +70,8 @@ export const xQueryFilterBuilder = (filter) => {
     let xQuery = [];
     
     for (let filterName in filter) {
-        
+      if(filterName!=="type"){
+
         let cfg = filterConfig[filterName];
         if (filter[filterName].length > 0 ) {
             let attrQuery = filter[filterName].map(
@@ -78,6 +84,7 @@ export const xQueryFilterBuilder = (filter) => {
             xQuery.push(
                 `[${cfg.xqueryElementXPath}[ ${attrQuery} ]]`
             );
+            }
         }
     }
     return xQuery;

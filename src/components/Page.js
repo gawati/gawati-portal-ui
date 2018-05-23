@@ -74,6 +74,7 @@ class Page extends React.Component {
                     <PropsRoute path={ getRoute('recent') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
                     <PropsRoute path={ getRoute('themes') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
                     <PropsRoute path={ getRoute('filter') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
+                    <PropsRoute path={ getRoute('search-category') } component={ListContentArea} i18n={this.props.i18n} setCollapsible={this.setCollapsible} slideToggle={this.slideToggle} />
                 {/* <PropsRoute path={ getRoute('search-country') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-year') } component={ListContentArea} i18n={this.props.i18n} />
                     <PropsRoute path={ getRoute('search-doclang') } component={ListContentArea} i18n={this.props.i18n} />

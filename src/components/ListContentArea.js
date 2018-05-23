@@ -7,7 +7,7 @@ import {getRoute} from '../utils/routeshelper';
 import ListContentColumn from '../containers/ListContentColumn';
 import ListThemeContentColumn from '../containers/ListThemeContentColumn';
 import SearchContentColumnFilter from '../containers/SearchContentColumnFilter';
-
+import SearchCategoryContentColumn from '../containers/SearchCategoryContentColumn';
 
 
 import SideBarColumn from './SideBarColumn';
@@ -45,6 +45,7 @@ class ListContentArea extends React.Component{
                     <Route path={ getRoute('recent') } component={ListContentColumn} />
                     <Route path={ getRoute('themes') } component={ListThemeContentColumn} />
                     <Route path={ getRoute('filter') } component={SearchContentColumnFilter} />
+                    <Route path={ getRoute('search-category') } component={SearchCategoryContentColumn} i18n={this.props.i18n} />
                 </Switch>
                 <SideBarColumn  match={match} i18n={ i18n } setCollapsible={this.props.setCollapsible} slideToggle={this.props.slideToggle} flexDirection={this.state.flexDirection}/>
             </Section>

@@ -26,9 +26,10 @@ const __GAWATI_APIS = [
             'smart-filter-cache': '/gwp/smart-filter-cache',
             'themes-summary' : '/gwd/themes/expressions/summary/json',
             'search-fulltext' : '/gwd/doc/search/json',
+            'search-category' : '/gwd/search-category/json',
             'profile' : '/gwu/profile',
             'profile-image' : '/gwu/uploads',
-            'keycloak' : '/keycloak.json'
+            'keycloak' : '/gwp/auth.json'
         }
     },
     {

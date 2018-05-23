@@ -65,5 +65,19 @@ export const filterTypes = () => ({
     "FILTER_KEYWORD": {
         label: "Subjects",
         key:  "keywords"
+    },
+    "FILTER_TYPE": {
+        label: "Document Type",
+        key:  "types"
     }
 });
+
+/**
+ * Updating the Access Token using the Refresh Token.
+ * Call the refreshToken function every REFRESH_TOKEN_INTERVAL.
+ * Refresh Token minValidity = REFRESH_TOKEN_VALIDITY.
+ * Keep REFRESH_TOKEN_INTERVAL < REFRESH_TOKEN_VALIDITY < Access Token Lifespan
+ * See Realm Settings -> Tokens -> Access Token Lifespan (default is 5 minutes)
+ */
+export const REFRESH_TOKEN_INTERVAL = 60000 * 3; //3 minutes
+export const REFRESH_TOKEN_VALIDITY = 240; //4 minutes

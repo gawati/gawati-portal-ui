@@ -1,6 +1,7 @@
 //import {documentTypes} from '../constants';
 import docTypes from '../configs/docTypes.json';
 import languageCodes from '../configs/shortLanguageCodes.json';
+import dev from '../configs/dev.json';
 
 import moment from 'moment';
 import "moment/min/locales.min";
@@ -174,7 +175,7 @@ export const filterMap = (obj, blacklist) => {
  */
 export const cloneObject = (obj) => {
     return JSON.parse(JSON.stringify(obj));
-}
+};
 
 
 export const isInt = (value) =>  {
@@ -184,4 +185,9 @@ export const isInt = (value) =>  {
     }
     x = parseFloat(value);
     return (x | 0) === x;
-}
+};
+
+export const isAuthEnabled = () => {
+    console.log(" DEV AUTH ", dev);
+    return dev.auth;
+};
