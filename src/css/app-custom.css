@@ -455,7 +455,14 @@ body{
     padding: 20px;
   }
 
-  .full-width > .react-autosuggest__container > input.react-autosuggest__input{
+  .content > .react-autosuggest__container > input.react-autosuggest__input{
     width:100% !important;
     max-width: 100% !important;
+  }
+
+  .center{
+    text-align: center;
+  }
+  .pointer{
+    cursor: pointer;
   }

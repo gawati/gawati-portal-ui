@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Form, Input } from 'reactstrap';
 import ReactEcharts from 'echarts-for-react';
 
 import {apiGetCall} from '../api';
@@ -39,19 +40,14 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             timeline_pie: {},
             timeline_scatter: {},
             timeline_pie_doctype: {},
-            save_modal: false,
-            search_modal: false,
             save_name:'',
-            username:''
+            username:'guest'
         };
         this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
         this.onChangePage = this.onChangePage.bind(this);
-        this.toggleSaveModal = this.toggleSaveModal.bind(this);
-        this.toggleSearchModal = this.toggleSearchModal.bind(this);
+        this.loggedInRequired = this.loggedInRequired.bind(this);
         this.handleSubmitSave = this.handleSubmitSave.bind(this);
         this.handleSaveName = this.handleSaveName.bind(this);
-        this.closeSearchModal = this.closeSearchModal.bind(this);
-        this.closeSearchModal = this.closeSearchModal.bind(this);
     }
 
     convertRoutePropToXQuery = (paramQ) => 
@@ -615,45 +611,8 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     }
 
-    toggleSaveModal = () =>{
-        if (isAuthEnabled()) {
-            console.log(getToken());
-            if (getToken() != null) {
-                this.setState({
-                    save_modal: !this.state.save_modal
-                });
-            }else{
-                toast("Kindly Login");
-            }
-        }else{
-            toast("Kindly Login");
-        }
-    }
-
-    toggleSearchModal = () =>{
-        if (isAuthEnabled()) {
-            if (getToken() != null) {
-                this.setState({
-                    search_modal: !this.state.search_modal
-                });
-            }else{
-                toast("Kindly Login");
-            }
-        }else{
-            toast("Kindly Login");
-        }
-    }
-
-    closeSaveModal = () =>{
-        this.setState({
-            save_modal: false
-        });
-    }
-
-    closeSearchModal = () =>{
-        this.setState({
-            search_modal: false
-        });
+    loggedInRequired = () =>{
+        toast("Kindly Login");
     }  
 
     handleSubmitSave = (event) =>{
@@ -671,16 +630,13 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         .then(response => {
             if(response.data.success==="true"){
                 toast("Search saved successfully");
-                this.toggleSaveModal();
             }else{
                 toast("There is some problem. Kindly try again");
-                this.toggleSaveModal();
             }
         })
         .catch(function(error) {
             console.log('There is some error' + error);
             toast("There is some problem. Kindly try again");
-            this.toggleSaveModal();
         });
     } 
 
@@ -688,37 +644,60 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         this.setState({save_name: event.target.value});
     }    
 
-    renderSaveModal = () =>
-        <Popup
-            trigger={ <button class="btn btn-light"><i className="fa fa-floppy-o" />&#160;Save</button> }
-            position="bottom center"
-            open={this.state.save_modal}
-            onClose={this.closeSaveModal}
-        >
-            <div className="full-width">
-                <div className="header">Save Search</div>
-                <div className="content">
-                    <form onSubmit={this.handleSubmitSave}>
-                        <div className="row">
-                            <div className="form-group col-12">
-                                <label> Name </label><input type="text" value={this.state.save_name} onChange={this.handleSaveName} className="form-control" />
-                            </div>
-                        </div>
-                        <input type="submit" value="Submit" color="primary" className="btn btn-primary btn-sm right" />
-                    </form>
-                </div>
-            </div>
-        </Popup>
+    renderSaveModal = () =>{
+    	if(this.state.username==="guest"){
+    		return (
+    			<a className="pointer" onClick={this.loggedInRequired}>&#160;<i className="fa fa-floppy-o" />&#160;Save</a>
+    		);
+    	}else{
+    		return (
+    			<Popup
+		            trigger={ <a className="pointer" onClick={this.toggleSaveModal}><i className="fa fa-floppy-o" />&#160;Save</a> }
+		            position="bottom center"
+		            on="hover"
+		            closeOnDocumentClick
+		        >
+		            <div className="full-width">
+		                <div className="header center">Save your search</div><hr className="search-line"></hr>
+		                <div className="content">
+		                    <Form onSubmit={this.handleSubmitSave}>
+		                        <div className="row">
+		                            <div>
+		                                <Input type="text" value={this.state.save_name} placeholder="search name" onChange={this.handleSaveName} bsSize="sm" />
+		                            </div>
+		                        </div>
+		                        <input type="submit" value="Save" color="primary" className="btn btn-primary btn-sm right" />
+		                    </Form>
+		                </div>
+		            </div>
+		        </Popup>
+    		);
+    	}
+    }
 
-    renderSearchModal = () =>
-        <Popup
-            position="bottom center"
-            open={this.state.search_modal}
-            onClose={this.closeSearchModal}
-        >
-            <div className="full-width"><SaveSearchAutoComplete  lang="eng"/></div>
-        </Popup>;
-
+    renderSearchModal = () =>{
+    	if(this.state.username==="guest"){
+    		return (
+    			<a className="pointer" onClick={this.loggedInRequired}>&#160;<i className="fa fa-search" />&#160;Search</a>
+    		);
+    	}else{
+    		return (
+    			<Popup
+		        	trigger={ <a className="pointer">&#160;<i className="fa fa-search" />&#160;Search</a> }
+		            position="bottom center"
+		            on="hover"
+		            closeOnDocumentClick
+		        >
+		            <div className="full-width">
+		            	<div className="header center">Search from saved searches</div><hr className="search-line"></hr>
+		            	<div className="content">
+		            		<SaveSearchAutoComplete  lang="eng"/>
+		            	</div>
+		            </div>
+		        </Popup>
+    		);
+    	}
+    }
 
     renderDocumentLoading = () =>
         <TimelineListingLoading>
@@ -740,14 +719,13 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let content = 
             <DivTimelineListing lang={this.props.match.params.lang}>
                 <div className="row col-12">
-                    <div className="col-10">
+                    <div className="col-9">
                     <DivFeed>
                         <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
                     </DivFeed>
                     </div>
-                    <div className="col-2 feed w-clearfix">
-                    {save_modal_content} | <a onClick={() => this.toggleSearchModal()}>Search</a>
-                        {search_modal_content}
+                    <div className="col-3 feed w-clearfix">
+                    {save_modal_content} | {search_modal_content}
                     </div>
                 </div>
                 {
