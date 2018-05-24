@@ -141,7 +141,8 @@ class DocumentContentColumn extends React.Component {
                 this.setState({
                     loading: false,
                     doc: doc,
-                    docType: anDocType(doc)
+                    docType: anDocType(doc),
+                    iri: iri
                 });
                
                 document.title =  `${T("african law library")}  ${anDocTitle(doc)}`;
@@ -153,9 +154,8 @@ class DocumentContentColumn extends React.Component {
 
 
    
-    componentDidMount() {
-        this.getDocument(this.state.iri);
-        
+    componentDidMount() {      
+        this.getDocument(this.state.iri);        
     }
 
     /**
@@ -163,7 +163,10 @@ class DocumentContentColumn extends React.Component {
      * @param {object} nextProps 
      */
     componentWillReceiveProps(nextProps) {
-        this.getDocument(prefixIri(nextProps.match.params['iri']));
+        //  Fixed :: https://github.com/gawati/gawati-portal-ui/issues/82 
+        if (prefixIri(nextProps.match.params['iri']) !== this.state.iri) {           
+            this.getDocument(prefixIri(nextProps.match.params['iri']));
+        }        
     }    
 
     render() {
