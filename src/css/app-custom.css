@@ -454,3 +454,8 @@ body{
   .fb-comments iframe {
     padding: 20px;
   }
+
+  .full-width > .react-autosuggest__container > input.react-autosuggest__input{
+    width:100% !important;
+    max-width: 100% !important;
+  }

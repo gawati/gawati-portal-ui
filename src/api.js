@@ -27,8 +27,10 @@ const __GAWATI_APIS = [
             'themes-summary' : '/gwd/themes/expressions/summary/json',
             'search-fulltext' : '/gwd/doc/search/json',
             'search-category' : '/gwd/search-category/json',
-            'profile' : '/gwu/profile',
-            'profile-image' : '/gwu/uploads',
+            'profile' : '/gwp/profile.json',
+            'save-search-name' : '/gwu/save/search',
+            'search-from-save-name' : '/gwu/search/search',
+            'recent-search-from-save-name' : '/gwu/latest/search',
             'keycloak' : '/gwp/auth.json'
         }
     },
