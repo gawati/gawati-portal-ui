@@ -33,12 +33,17 @@ function launchWithAuth ()  {
     setInterval(() => {
         refreshToken(REFRESH_TOKEN_VALIDITY)
         .catch(err => {
-            alert("The authentication session has expired. Please sign-in again.");
-            siteLogout();
+            console.log("The authentication session has expired. Please sign-in again.");
+            //siteLogout();
+            initSSO();
         });
         }, 
         REFRESH_TOKEN_INTERVAL
     );
+    initSSO();            
+};
+
+function initSSO(){
     console.log(" calling InitSSO ");
     initSSORequired(
         // onSuccess callback
@@ -51,8 +56,8 @@ function launchWithAuth ()  {
             alert("There was an error while initializing login", error);
             console.log(" initializing login error ", error);
         }
-    );            
-};
+    );
+}
 
 // in development mode we can chose to disable authentication integration
 // for testing purposes in configs/dev.json
