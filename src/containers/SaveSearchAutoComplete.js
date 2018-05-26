@@ -192,7 +192,7 @@ class SaveSearchAutoComplete extends React.Component {
                     inputProps={inputProps} />
                 <div><b>Recent saved searches</b></div> 
                 {this.state.latest_search.map(member =>
-                    <div><NavLink to={this.getFilterRoute(member.data)}> {member.searchName} </NavLink></div>
+                    <div key={member._id} ><NavLink to={this.getFilterRoute(member.data)}> {member.searchName} </NavLink></div>
                 )}
               </Aux>
           );
