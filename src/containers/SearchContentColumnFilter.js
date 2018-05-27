@@ -45,7 +45,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         };
         this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
         this.onChangePage = this.onChangePage.bind(this);
-        this.loggedInRequired = this.loggedInRequired.bind(this);
         this.handleSubmitSave = this.handleSubmitSave.bind(this);
         this.handleSaveName = this.handleSaveName.bind(this);
     }
@@ -611,10 +610,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     }
 
-    loggedInRequired = () =>{
-        toast("Kindly Login");
-    }  
-
     handleSubmitSave = (event) =>{
         event.preventDefault();
         let apiSaveSearch = apiGetCall(
@@ -645,58 +640,56 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     }    
 
     renderSaveModal = () =>{
-    	if(this.state.username==="guest"){
-    		return (
-    			<a className="pointer" onClick={this.loggedInRequired}>&#160;<i className="fa fa-floppy-o" />&#160;Save</a>
-    		);
-    	}else{
-    		return (
-    			<Popup
-		            trigger={ <a className="pointer" onClick={this.toggleSaveModal}><i className="fa fa-floppy-o" />&#160;Save</a> }
-		            position="bottom center"
-		            on="hover"
-		            closeOnDocumentClick
-		        >
-		            <div className="full-width">
-		                <div className="header center">Save your search</div><hr className="search-line"></hr>
-		                <div className="content">
-		                    <Form onSubmit={this.handleSubmitSave}>
-		                        <div className="row">
-		                            <div>
-		                                <Input type="text" value={this.state.save_name} placeholder="search name" onChange={this.handleSaveName} bsSize="sm" />
-		                            </div>
-		                        </div>
-		                        <input type="submit" value="Save" color="primary" className="btn btn-primary btn-sm right" />
-		                    </Form>
-		                </div>
-		            </div>
-		        </Popup>
-    		);
-    	}
+    	return (
+            <Popup
+                trigger={ <a className="pointer" onClick={this.toggleSaveModal}><i className="fa fa-floppy-o" />&#160;Save</a> }
+                position="bottom center"
+                on="hover"
+                closeOnDocumentClick
+            >
+                <div className="full-width">
+                    <div className="header center">Save your search</div><hr className="search-line"></hr>
+                    <div className="content">
+                        <Form onSubmit={this.handleSubmitSave}>
+                            <div className="row">
+                                <Input type="text" value={this.state.save_name} placeholder="search name" autoFocus onChange={this.handleSaveName} bsSize="sm" />
+                            </div>
+                            <input type="submit" value="Save" color="primary" className="btn btn-primary btn-sm right" />
+                        </Form>
+                    </div>
+                </div>
+            </Popup>
+        );
     }
 
     renderSearchModal = () =>{
-    	if(this.state.username==="guest"){
-    		return (
-    			<a className="pointer" onClick={this.loggedInRequired}>&#160;<i className="fa fa-search" />&#160;Search</a>
-    		);
-    	}else{
-    		return (
-    			<Popup
-		        	trigger={ <a className="pointer">&#160;<i className="fa fa-search" />&#160;Search</a> }
-		            position="bottom center"
-		            on="hover"
-		            closeOnDocumentClick
-		        >
-		            <div className="full-width">
-		            	<div className="header center">Search from saved searches</div><hr className="search-line"></hr>
-		            	<div className="content">
-		            		<SaveSearchAutoComplete  lang="eng"/>
-		            	</div>
-		            </div>
-		        </Popup>
-    		);
-    	}
+    	return (
+            <Popup
+                trigger={ <a className="pointer">&#160;<i className="fa fa-search" />&#160;Search</a> }
+                position="bottom center"
+                on="hover"
+                closeOnDocumentClick
+            >
+                <div className="full-width">
+                    <div className="header center">Search from saved searches</div><hr className="search-line"></hr>
+                    <div className="content">
+                        <SaveSearchAutoComplete  lang="eng"/>
+                    </div>
+                </div>
+            </Popup>
+        );
+    }
+
+    renderSaveSearchModal = () =>{
+        console.log('init');
+        if(this.state.username==="guest"){
+            return (<div>register/ login to save searches</div>);
+        }else{
+            let save_modal_content = this.renderSaveModal();
+            let search_modal_content = this.renderSearchModal();
+            let content = <div>{save_modal_content} | {search_modal_content}</div>;
+            return content;
+        }
     }
 
     renderDocumentLoading = () =>
@@ -712,20 +705,17 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     renderListing = () => {
         let pagination = this.generatePagination();
-
-        let save_modal_content = this.renderSaveModal();
-        let search_modal_content = this.renderSearchModal();
-
+        let save_search_modal_content = this.renderSaveSearchModal();
         let content = 
             <DivTimelineListing lang={this.props.match.params.lang}>
                 <div className="row col-12">
-                    <div className="col-9">
+                    <div className="col-8">
                     <DivFeed>
                         <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
                     </DivFeed>
                     </div>
-                    <div className="col-3 feed w-clearfix">
-                    {save_modal_content} | {search_modal_content}
+                    <div className="col-4 feed w-clearfix">
+                    {save_search_modal_content}
                     </div>
                 </div>
                 {

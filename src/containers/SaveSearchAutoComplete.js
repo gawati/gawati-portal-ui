@@ -175,6 +175,7 @@ class SaveSearchAutoComplete extends React.Component {
         const { value, suggestions, loading} = this.state;
         const inputProps = {
           placeholder: T("type at least 3 letters"),
+          autoFocus:true,
           value,
           loading: loading ? "yes" : "no",
           onChange: this.onChange
