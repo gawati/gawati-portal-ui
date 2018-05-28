@@ -115,13 +115,13 @@ class TopBar extends React.Component {
                 .success( (data) => {
                     console.log(" getUserName (data) = ", data);
                     this.setState({username: data.preferred_username});
-                    let apiProfile = apiGetCall(
-                        'profile', 
+                    let apiGawati = apiGetCall(
+                        'gawati',
                         {}
                     );
-                    axios.get(apiProfile)
+                    axios.get(apiGawati)
                         .then(response => {
-                            this.setState({profile: response.data.url});
+                            this.setState({profile: response.data["gawati-profiles-ui"].urlBase});
                         })
                         .catch(function(error) {
                             console.log("error in getDocument()", error);
