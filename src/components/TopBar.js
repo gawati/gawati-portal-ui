@@ -15,9 +15,6 @@ import DivRow from './DivRow';
 import '../css/TopBar.css';
 import { siteLogin, siteLogout, siteRegister, getUserInfo, getToken } from '../utils/GawatiAuthClient';
 
-//import GawatiAuthHelper from '../utils/GawatiAuthHelper';
-
-
 const Logo = () =>
     <NavLink className="nav-brand" to="/">
         <div className="logo-img"/>
@@ -91,17 +88,6 @@ class TopBar extends React.Component {
         this.setState({ username: username});
     }
 
-/*     checkLogin = () =>{
-        if(GawatiAuthHelper.isUserLoggedIn()){
-            this.updateState('true', GawatiAuthHelper.getUserName());
-        }else{
-            const me = this;
-            GawatiAuthHelper.save(function(response){
-                var auth = GawatiAuthHelper.isUserLoggedIn() ? 'true' : 'false';
-                me.updateState(auth, GawatiAuthHelper.getUserName());
-            });
-        }
-    } */
 
     componentDidMount = () => {
         if (isAuthEnabled()) {

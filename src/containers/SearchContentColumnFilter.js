@@ -625,6 +625,8 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         .then(response => {
             if(response.data.success==="true"){
                 toast("Search saved successfully");
+            }else if(response.data.error!==undefined){
+                toast(response.data.data.message);
             }else{
                 toast("There is some problem. Kindly try again");
             }
