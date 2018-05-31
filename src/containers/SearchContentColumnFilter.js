@@ -624,16 +624,16 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         })
         .then(response => {
             if(response.data.success==="true"){
-                toast("Search saved successfully");
+                toast.success("Search saved successfully");
             }else if(response.data.error!==undefined){
-                toast(response.data.data.message);
+                toast.error(response.data.data.message);
             }else{
-                toast("There is some problem. Kindly try again");
+                toast.error("There is some problem. Kindly try again");
             }
         })
         .catch(function(error) {
             console.log('There is some error' + error);
-            toast("There is some problem. Kindly try again");
+            toast.error("There is some problem. Kindly try again");
         });
     } 
 
