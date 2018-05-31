@@ -37,7 +37,7 @@
     "reactstrap": "^5.0.0"
   },
   "scripts": {
-    "start": "shx cp -R node_modules/gawati-lang-packs/locales public &&  shx cp src/configs/keycloak.json public && react-scripts start",
+    "start": "shx cp -R node_modules/gawati-lang-packs/locales public &&  shx cp src/configs/keycloak.json public && node scripts/copyScript.js && react-scripts start",
     "build": "react-scripts build && shx cp -R src/css/themes build/static/css && shx cp -R node_modules/gawati-lang-packs/locales build && node scripts/symlink.js && shx cp src/configs/keycloak.json build",
     "symlink": "node scripts/symlink.js",
     "test": "react-scripts test --env=jsdom",
@@ -45,6 +45,8 @@
     "vars": "env | grep npm_package_ | grep -v npm_lifecycle_script"
   },
   "devDependencies": {
+    "dotenv": "^5.0.1",
+    "shelljs": "^0.8.2",
     "shx": "^0.2.2"
   },
   "overrides": {
