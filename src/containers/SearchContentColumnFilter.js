@@ -361,7 +361,11 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
                 if (keywords != null && keywords.key != null) {
                     const filterKeywords = coerceIntoArray(keywords.key);
-                    for (var filterKeyword of filterKeywords){
+                    const sortedKeywords = filterKeywords.sort(function(a, b) {
+                        return b.count - a.count;
+                    });
+                    
+                    for (var filterKeyword of sortedKeywords){
                         xElements_scatter.push(filterKeyword.key);
                         yElements_scatter.push(parseInt(filterKeyword.count, 10));
                         yElements_scatter_data.push([counter,parseInt(filterKeyword.count, 10),parseInt(filterKeyword.count, 10)]);
