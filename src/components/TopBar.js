@@ -24,7 +24,7 @@ const Logo = () =>
 const SiteHeading = () =>
     <div className="logotype">
         <h1>{ T("african law library")}</h1>
-        <h2>{ T("innovative access to law") }</h2>
+        <h2>{ T("custom:innovative access to law") }</h2>
     </div>
     ;
 
