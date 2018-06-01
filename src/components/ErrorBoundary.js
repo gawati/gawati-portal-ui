@@ -2,8 +2,12 @@ import React from 'react';
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 
 const style = {
-  justifyContent: 'center',
+  width: '50%',
+  height: '100%',
+  overflow: 'hidden',
   alignItems: 'center',
+  position: 'relative',
+  margin: 10,
 };
 
 class ErrorBoundary extends React.Component {
