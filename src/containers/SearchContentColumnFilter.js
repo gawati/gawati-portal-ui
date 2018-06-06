@@ -361,7 +361,11 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
                 if (keywords != null && keywords.key != null) {
                     const filterKeywords = coerceIntoArray(keywords.key);
-                    for (var filterKeyword of filterKeywords){
+                    const sortedKeywords = filterKeywords.sort(function(a, b) {
+                        return b.count - a.count;
+                    });
+                    
+                    for (var filterKeyword of sortedKeywords){
                         xElements_scatter.push(filterKeyword.key);
                         yElements_scatter.push(parseInt(filterKeyword.count, 10));
                         yElements_scatter_data.push([counter,parseInt(filterKeyword.count, 10),parseInt(filterKeyword.count, 10)]);
@@ -624,16 +628,16 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         })
         .then(response => {
             if(response.data.success==="true"){
-                toast("Search saved successfully");
+                toast.success("Search saved successfully");
             }else if(response.data.error!==undefined){
-                toast(response.data.data.message);
+                toast.error(response.data.data.message);
             }else{
-                toast("There is some problem. Kindly try again");
+                toast.error("There is some problem. Kindly try again");
             }
         })
         .catch(function(error) {
             console.log('There is some error' + error);
-            toast("There is some problem. Kindly try again");
+            toast.error("There is some problem. Kindly try again");
         });
     } 
 
