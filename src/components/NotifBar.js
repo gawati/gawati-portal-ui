@@ -3,7 +3,7 @@ import bellIcon from '../images/bell.png';
 
 function NotifBar() {
     return (
-        <div className="col-1 col-xs-2">
+        <div className="offset-lg-2 col-xs-6 col-lg-2 col-sm-1 offset-sm-0">
             <img alt="notif" className="bell" src={bellIcon} width="27" />
         </div>
     );

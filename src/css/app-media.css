@@ -26,15 +26,24 @@
     .sidebar-col.col-3{
       display:block;
     }
+
+    .react-autosuggest__input {
+      max-width: calc(100% - 50px);
+    }
     .nav-brand{
-      margin:0 auto;
-      display: block;
+      /* margin:0 auto; */
+      display: var(--navbrand-display-994);
       text-align: center;
+      margin-top: var(--navbrand-mtop-994);
     }
     .logotype{
       display: block;
       text-align: center;
     }
+    .nav-brand .logotype {
+      display: initial;
+      text-align: center;
+  }
     .col-6{
       -webkit-box-flex: 0; 
       -webkit-flex: 0 0 100%; 
@@ -44,6 +53,25 @@
     }
     .search-form .div-block.w-clearfix{
       margin: 1% auto 0
+    }
+
+    .search-form-container .side-col {
+      max-width: var(--sidecol-mwidth-994);
+      /* margin-left: var(--search-form-side-col-mleft-994); */
+      margin-top: var(--search-form-side-col-mtop-994);
+    }
+
+    .login {
+      line-height: var(--login-lineht-994);
+      font-size: var(--login-font-size-994);
+    }
+
+    .bell {
+      width: 1.4em;
+    }
+
+    .nav-brand, .logo-img {
+      float: var(--logo-img-float-994);
     }
   
   }
@@ -84,15 +112,18 @@
     .navigation-bar .container{
       height: auto
     }
-    .nav-brand,
     .logotype{
       float: none;
       text-align: center;
-      margin:0;
+    }
+    .nav-brand{
+      float: var(--navbrand-float-767);
+      text-align: center;
     }
     .nav-brand .logo-img{
       display: block;
       margin:0 auto;
+      float: initial;
     }
     .search-form-container,
     .main-col.col-9,{
@@ -133,7 +164,7 @@
     }
     .search-form .w-button{
       padding:1%;
-      width:10%;
+      /* width:10%; */
     }
      
     .text-field-2{
@@ -212,6 +243,12 @@
     .sidebar-col.col-3 {
       transition: width .3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+    .search-form-container .side-col {
+      margin-left: var(--side-col-mleft-767);
+      width: 30%;
+      margin-top: var(--search-form-side-col-mtop-767); 
+    }
   }
   
   @media all and (max-width:430px){
@@ -238,6 +275,12 @@
     .document-download li{
       width:32%;
     }
+
+    .search-form-container .side-col {
+      margin-left: var(--side-col-mleft-767);
+      width: 40%;
+    }
+    
   }
 
 @media all and (min-width: 768px){

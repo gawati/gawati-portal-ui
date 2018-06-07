@@ -112,13 +112,52 @@
   --logo-img: url("../../themes/default/assets/logo.png");
   --logo-color: #7a737a;
   --logo-color2: #7a737a;
+  --logo-top-margin: 10px;
+  --logo-left-margin: 50px;
+  --logo-img-height: 50px;
+  --logo-h1-mbottom: initial;
+  --heading-alongside-search: none;
+  --heading-alongside-logo: inline-block;
+  --second-header-row-display: initial;
+  --search-input-height: 40px;
+  --second-header-text-align: initial;
+  --logo-h1-font-size: 1.4rem;
+  --logo-h2-font-size: 1.2rem;
+  --navbrand-h1-display: block;
+  --logo-h2-mleft: 0px;
+  --logo-img-float-994: none;
+  --logo-img-width: 90px;
+  
+  --search-form-side-col-position: relative;
+  --search-form-side-col-mtop: auto;
+  --search-form-side-col-mleft: auto;
+
+  --version-float: left;
+  --version-margin-right: 50px;
+  --version-rotate: none;
+  --version-transform-origin: right;
+  --version-line-height: inherit;
+  --version-font-size: inherit;
+  --version-margin-top: auto;
 
   --languageswitcher-highlight-bg-color: #e0ddd7;
   --languageswitcher-bg-color: #e0ddd7;
   --languageswitcher-color: #a9a9a9;
+  --lang-switch-font-size: 12px;
 
   /* Media */
   --sidebar-left-margin: auto;
   --sidebar-right-margin: 0px;
+  --navbrand-mtop-994: 30px;
+  --navbrand-display-994: block;
+  --sidecol-mwidth-994: auto;
+  --search-form-side-col-mleft-994: auto;
+  --search-form-side-col-mtop-767: auto;
+  --search-form-side-col-mtop-994: auto;
+  --login-lineht-994: auto;
+  --login-font-size-994: 1em;
+  --login-font-size: 12px;
+  --navbrand-float-767: none;
+  --side-col-mleft-767: auto;
  
 }

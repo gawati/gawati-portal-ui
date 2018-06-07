@@ -1,4 +1,7 @@
-.ui-lang-item {padding:5px;}
+.ui-lang-item {
+    font-size: var(--lang-switch-font-size);
+    padding: .1em;
+}
 
 .ui-lang-item > button {
     background:none!important;
@@ -29,11 +32,11 @@ ul.list-inline {
 
 ul.list-inline > [class^="Select"] {
     display: inline-block;
-    min-width: 120px;
+    min-width: 80px;
 }
 ul.list-inline .Select {
     float: left;
-    height: 28px;
+    /* height: 28px; */
 }
 ul.list-inline .Select-control {
     background: transparent !important;
@@ -64,4 +67,7 @@ ul.list-inline .Select-input {
 
 ul.list-inline .Select-arrow-zone {
     float: right;
+}
+.Select-placeholder, .Select--single > .Select-control .Select-value {
+    line-height: inherit!important;
 }

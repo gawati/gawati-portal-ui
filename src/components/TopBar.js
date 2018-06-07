@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import {versionInfo} from '../utils/versionhelper';
 import {T} from '../utils/i18nhelper';
-import { defaultLang, isAuthEnabled } from '../utils/generalhelper';
+import { Aux, defaultLang, isAuthEnabled } from '../utils/generalhelper';
 import SiteSearchAutoComplete from '../containers/SiteSearchAutoComplete';
 import LanguageSwitcher from '../containers/LanguageSwitcher';
 import {apiGetCall} from '../api.js';
@@ -16,9 +16,13 @@ import '../css/TopBar.css';
 import { siteLogin, siteLogout, siteRegister, getUserInfo, getToken } from '../utils/GawatiAuthClient';
 
 const Logo = () =>
-    <NavLink className="nav-brand" to="/">
-        <div className="logo-img"/>
-    </NavLink>
+    <Aux>
+        <NavLink className="nav-brand" to="/">
+            <div className="logo-img"/>
+            <SiteHeading />
+        </NavLink>
+        {/* <h2>{ T("custom:innovative access to law") }</h2> */}
+    </Aux>
     ;
 
 const SiteHeading = () =>
@@ -30,20 +34,22 @@ const SiteHeading = () =>
 
 const TopBarUpper = ({i18n, match}) => {
         return (
-            <div className="col-12">
-                <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"10px"} }>
-                <LanguageSwitcher i18n={i18n} match={match} />
+            <div className="row lang-switcher-wrapper">
+                <div className="col-12">
+                    <div style={ {"width":"50%:", "textAlign": "right"} }>
+                    <LanguageSwitcher i18n={i18n} match={match} />
+                    </div>
                 </div>
             </div>
         );
 };
     ;
 
-const SearchBox = (lang) =>
-    <div className={ `col ` }>
+const SearchBox = (obj) =>
+    <div className={ `${obj.cName2}` }>
         <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
             <div className="div-block w-clearfix">
-               <SiteSearchAutoComplete  lang={lang}/> 
+               <SiteSearchAutoComplete  lang={obj.lang}/> 
             </div>
         </form>
     </div>
@@ -155,33 +161,45 @@ class TopBar extends React.Component {
     render() {
         let lang = this.props.match.params.lang || defaultLang().langUI ;
         const {username, profile} = this.state ;
+        const theme = process.env.REACT_APP_THEME;
+        let cName = "col-lg-11 offset-lg-2", cName2 = "col-11", cName3 = "col-3";
+        if (theme === "ke" || theme === "default") {
+            cName = "col-lg-7";
+            cName2 = "col-8 offset-lg-1";
+            cName3 = "col-3";
+        }
     	return (
             <header className="navigation-bar">
+                
                 <div className="version-info">{
                     T("version") + " = " + versionInfo().version
                 }
                 </div>
-                <div>
-                <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
-                </div>
-                <div className="container-fluid">
-                    <Logo />
+                <Logo />
+                
+                <div className="container-fluid second-header-row">
+                    
                     <SiteHeading />
                     <div className="mobile-button" onClick={this.props.slideToggle}>
                         <img alt="menu" src={mobileButton}  />
                     </div>
-                    <div className="search-form-container col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div className={`search-form-container ${cName} col-md-12 col-sm-12 col-xs-12`}>
                     <DivRow>
-                        <SearchBox lang={ this.props.match.params.lang }></SearchBox>
-                        <NotifBar />
-                        <div className="login col-3">
-                            {
-                                this.renderLoggedin(lang, username, profile)
-                            }
+                        <SearchBox lang={ this.props.match.params.lang } cName2={ cName2 }></SearchBox>
+                        <div className={`side-col ${cName3}`}>
+                            <div className="row">
+                                <NotifBar />
+                                <div className="login col-sm-9 col-lg-8 col-md-8">
+                                    {
+                                        this.renderLoggedin(lang, username, profile)
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </DivRow>
                     </div>
                 </div>
+                <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
                 <div className="w-nav-overlay" data-wf-ignore=""/>
             </header>
         

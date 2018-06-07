@@ -6,8 +6,8 @@
   
 .react-autosuggest__input   {
     width: calc(100% - 50px);
-    max-width: 90%;
-    height: 40px;
+    
+    height: var(--search-input-height);
     float: left;
     font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
