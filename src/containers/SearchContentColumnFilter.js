@@ -190,9 +190,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     };
 
     timelineOptions_scatter = (xElements_scatter,yElements_scatter,yElements_scatter_data) => {
-        var yUniqueElements = yElements_scatter.filter(function(item, pos) {
-        return yElements_scatter.indexOf(item) === pos;
-        });
         return {
             title: {
                 text: "Keywords vs Number of Results",
@@ -214,9 +211,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
                 data: xElements_scatter
             },
             yAxis: {
-                data: yUniqueElements.sort(function(a, b) {
-                    return a - b;
-                })
             },
             dataZoom: [
               {
