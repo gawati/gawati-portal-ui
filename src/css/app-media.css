@@ -55,12 +55,6 @@
       margin: 1% auto 0
     }
 
-    .search-form-container .side-col {
-      max-width: var(--sidecol-mwidth-994);
-      /* margin-left: var(--search-form-side-col-mleft-994); */
-      margin-top: var(--search-form-side-col-mtop-994);
-    }
-
     .login {
       line-height: var(--login-lineht-994);
       font-size: var(--login-font-size-994);
@@ -243,12 +237,6 @@
     .sidebar-col.col-3 {
       transition: width .3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    .search-form-container .side-col {
-      margin-left: var(--side-col-mleft-767);
-      width: 30%;
-      margin-top: var(--search-form-side-col-mtop-767); 
-    }
   }
   
   @media all and (max-width:430px){
@@ -274,11 +262,6 @@
     }
     .document-download li{
       width:32%;
-    }
-
-    .search-form-container .side-col {
-      margin-left: var(--side-col-mleft-767);
-      width: 40%;
     }
     
   }

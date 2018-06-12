@@ -34,3 +34,14 @@
     border-right: var(--reacttabs-selected-border);
     border-top: var(--reacttabs-selected-border);
 }
+
+#root .react-tabs__tab {
+    width: 50%;
+    text-align: center;
+}
+
+.react-tabs__tab-panel {
+    border-bottom: var(--reacttab-panel-border);
+    border-left: var(--reacttab-panel-border);
+    border-right: var(--reacttab-panel-border);
+}

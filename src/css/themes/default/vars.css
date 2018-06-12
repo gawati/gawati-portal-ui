@@ -78,6 +78,7 @@
   --reacttabs-hover-bg-color: initial;
   --reacttabs-hover-color: initial;
   --reacttabs-selected-border: 1px solid rgb(170, 170, 170);
+  --reacttab-panel-border: none;
 
   /* RecentDocs */
   --feed-container-heading-bg-color: white;
@@ -112,7 +113,7 @@
   --logo-img: url("../../themes/default/assets/logo.png");
   --logo-color: #7a737a;
   --logo-color2: #7a737a;
-  --logo-top-margin: 10px;
+  --logo-top-margin: 30px;
   --logo-left-margin: 50px;
   --logo-img-height: 50px;
   --logo-h1-mbottom: initial;
@@ -121,24 +122,23 @@
   --second-header-row-display: initial;
   --search-input-height: 40px;
   --second-header-text-align: initial;
+  --logotype-h1-bg: white;
+  --logotype-h1-height: 20%;
+  --logotype-h1-width: auto;
+  --logotype-h1-lineht: auto;
+  --logotype-h1-font: auto;
   --logo-h1-font-size: 1.4rem;
   --logo-h2-font-size: 1.2rem;
   --navbrand-h1-display: block;
   --logo-h2-mleft: 0px;
   --logo-img-float-994: none;
   --logo-img-width: 90px;
-  
-  --search-form-side-col-position: relative;
-  --search-form-side-col-mtop: auto;
-  --search-form-side-col-mleft: auto;
 
-  --version-float: left;
-  --version-margin-right: 50px;
-  --version-rotate: none;
-  --version-transform-origin: right;
-  --version-line-height: inherit;
+  --search-form-container-mtop: 30px;
+  --search-form-container-mbottom: auto;
+
   --version-font-size: inherit;
-  --version-margin-top: auto;
+  --version-color: lightgrey;
 
   --languageswitcher-highlight-bg-color: #e0ddd7;
   --languageswitcher-bg-color: #e0ddd7;
