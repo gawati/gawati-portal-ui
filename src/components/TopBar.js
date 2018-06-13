@@ -174,8 +174,10 @@ class TopBar extends React.Component {
     render() {
         const theme = process.env.REACT_APP_THEME;
         let {cName, cName2} = themes[theme];
+        let route = this.props.match.params.routeName;
+        let routeClass = route === undefined ? "home" : "notHome";
     	return (
-            <header className="navigation-bar">
+            <header className={`navigation-bar ${theme} ${routeClass}`}>
                 <Logo />
                 <div className="container-fluid second-header-row">
                     
