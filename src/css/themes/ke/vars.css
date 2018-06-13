@@ -69,12 +69,12 @@
 
   /* React tabs */
   --reacttabs-bg-color: linear-gradient(to bottom, #2d2d2d 0%,#2b2b2b 30%,#292929 51%,#272727 75%,#252525 100%);;
-  --reacttabs-color: #fff!important;
+  --reacttabs-color: #cbcaca;
   --reacttabs-selected-bg-color: linear-gradient(to bottom, #2d2d2d 0%,#2b2b2b 30%,#292929 51%,#272727 75%,#252525 100%);;;
   --reacttabs-selected-color: rgb(250, 162, 28);
   --reacttabs-border: 0px !important;
   --reacttabs-border-radius: 0px !important;
-  --reacttabs-bg-image: #2d2d2d url(../../themes/ke/assets/main-divider.jpg) no-repeat center right;
+  --reacttabs-bg-image: #545454; /*url(../../themes/ke/assets/main-divider.jpg) no-repeat center right;*/
   --reacttabs-hover-bg-color: black;
   --reacttabs-hover-color: #f9a11b;
   --reacttab-panel-border: none;
@@ -124,7 +124,7 @@
   --heading-alongside-search: none;
   --second-header-row-display: inline;
   --second-header-text-align: initial;
-  --logotype-h1-bg: #3bb8cd;
+  --logotype-h1-bg: transparent;
   --logotype-h1-height: 20%;
   --logotype-h1-width: auto;
   --logo-h1-font-size: 1.4rem;
@@ -135,7 +135,7 @@
   --logo-h2-mleft: 0px;
   --logo-img-float-994: none;
 
-  --search-form-container-mtop: auto;
+  --search-form-container-mtop: 30px;
   --search-form-container-mbottom: auto;
   
   --version-font-size: inherit;

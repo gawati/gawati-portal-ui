@@ -14,6 +14,8 @@ import NotifBar from './NotifBar';
 import '../css/TopBar.css';
 import { siteLogin, siteLogout, siteRegister, getUserInfo, getToken } from '../utils/GawatiAuthClient';
 
+import themes from '../configs/themes.json';
+
 const Logo = () =>
     <Aux>
         <NavLink className="nav-brand" to="/">
@@ -171,14 +173,7 @@ class TopBar extends React.Component {
     
     render() {
         const theme = process.env.REACT_APP_THEME;
-        let cName = "col-lg-11 offset-lg-2", cName2 = "col-11";
-        if (theme === "ke") {
-            cName = "col-lg-7";
-            cName2 = "col-8 offset-lg-1";
-        } else if (theme === "default") {
-            cName = "col-lg-7";
-            cName2 = "col-6 offset-lg-1";
-        }
+        let {cName, cName2} = themes[theme];
     	return (
             <header className="navigation-bar">
                 <Logo />

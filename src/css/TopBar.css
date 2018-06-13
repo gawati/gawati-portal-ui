@@ -76,7 +76,7 @@ float:right;
 display: inline-block;
 margin: 14px auto 20px;
 vertical-align: top;
-margin-right:25px;
+/* margin-right:25px; */
 
 }
 
@@ -194,6 +194,10 @@ box-shadow: var(--topbar-box-shadow);
     font-size: var(--logo-h2-font-size);
     margin-left: var(--logo-h2-mleft);
     font-family: var(--font-2);
+}
+
+.nav-brand .logotype {
+    vertical-align: sub;
 }
 
 .search-form-container {
