@@ -166,3 +166,22 @@
   --side-col-mleft-767: calc(76% - 15px);
 
 }
+
+/* THEME CLASSES */
+
+
+.default2.notHome .container-fluid > .logotype {
+  width: auto;
+}
+
+.default2.notHome .container-fluid > .logotype h1 {
+  width: auto;
+}
+
+.default2.notHome .container-fluid {
+  text-align: left;
+}
+
+.default2.notHome .search-form-container {
+  margin-top: 0px;
+}
