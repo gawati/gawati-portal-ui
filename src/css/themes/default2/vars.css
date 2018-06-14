@@ -183,5 +183,11 @@
 }
 
 .default2.notHome .search-form-container {
-  margin-top: 0px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  float: left;
+}
+
+.nav-brand .logotype, .nav-brand .logotype h2  {
+  vertical-align: sub;
 }

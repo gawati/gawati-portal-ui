@@ -190,14 +190,9 @@ box-shadow: var(--topbar-box-shadow);
 .nav-brand .logotype h2 {
     /* Used only for default2 */
     display: inline-block;
-    vertical-align: sub;
     font-size: var(--logo-h2-font-size);
     margin-left: var(--logo-h2-mleft);
     font-family: var(--font-2);
-}
-
-.nav-brand .logotype {
-    vertical-align: sub;
 }
 
 .search-form-container {
