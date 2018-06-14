@@ -77,8 +77,8 @@
   --reacttabs-bg-image: #e0ddd7;
   --reacttabs-hover-bg-color: initial;
   --reacttabs-hover-color: initial;
-  --reacttabs-selected-border: 1px solid rgb(170, 170, 170);
-  --reacttab-panel-border: solid 1px rgb(170, 170, 170);
+  --reacttabs-selected-border: 1px solid #f0f0f0;
+  --reacttab-panel-border: solid 1px #f0f0f0;
 
   /* RecentDocs */
   --feed-container-heading-bg-color: white;
@@ -171,7 +171,7 @@
 
 
 .default2.notHome .container-fluid > .logotype {
-  width: auto;
+  display: none;
 }
 
 .default2.notHome .container-fluid > .logotype h1 {
@@ -183,5 +183,10 @@
 }
 
 .default2.notHome .search-form-container {
-  margin-top: 0px;
+  margin-top: 25px;
+  float: left;
+}
+
+.default2.notHome .second-header-row {
+  display: inline;  
 }

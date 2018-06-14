@@ -185,7 +185,7 @@ class TopBar extends React.Component {
                     <div className="mobile-button" onClick={this.props.slideToggle}>
                         <img alt="menu" src={mobileButton}  />
                     </div>
-                    <div className={`search-form-container ${cName} col-md-12 col-sm-12 col-xs-12`}>
+                    <div className={`search-form-container ${cName} `}>
                         <SearchBox lang={ this.props.match.params.lang } cName2={ cName2 }></SearchBox>
                     </div>
                 </div>
