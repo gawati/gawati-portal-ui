@@ -1,6 +1,6 @@
 .ui-lang-item {
     font-size: var(--lang-switch-font-size);
-    padding: .1em;
+    font-family: var(--font-3);
 }
 
 .ui-lang-item > button {

@@ -8,6 +8,8 @@
     border-radius: var(--reacttabs-border-radius);    
     background: var(--reacttabs-bg-image);
     transition: background-color 200ms linear;
+    font-family: var(--font-2);
+    font-size: 1.2em;
 }
 
 #root .react-tabs__tab:last-child{

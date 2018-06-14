@@ -17,6 +17,15 @@
 .sidebar-col.col-3 a:focus{
   color: var(--sidebar-a-color);
 }
+
+.sidebar-col.col-3 .Select-control {
+  font-family: var(--font-3);
+}
+
+.sidebar-col.col-3 small {
+  font-family: var(--font-3);
+}
+
 .white-wrapper {
   padding: 20px;
   border-radius: var(--sidebar-border-radius);

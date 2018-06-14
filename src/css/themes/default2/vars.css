@@ -10,8 +10,8 @@
 
   /* Fonts */
     --font-1: 'Aldrich', sans-serif;
-    --font-2: 'Teko', sans-serif;
-    --font-3: 'Oswald', sans-serif;
+    --font-2: 'Oswald', sans-serif;
+    --font-3: 'Arimo', sans-serif;
   /* Fonts */
 
   /* app-custom */
@@ -69,7 +69,7 @@
 
   /* React tabs */
   --reacttabs-bg-color: #fff;
-  --reacttabs-color: initial;
+  --reacttabs-color: #4e7a86;
   --reacttabs-selected-bg-color: #fff;
   --reacttabs-selected-color: black;
   --reacttabs-border: 1px solid transparent;
@@ -147,7 +147,7 @@
   --languageswitcher-highlight-bg-color: #e0ddd7;
   --languageswitcher-bg-color: #e0ddd7;
   --languageswitcher-color: #a9a9a9;
-  --lang-switch-font-size: 1.2em;
+  --lang-switch-font-size: 1em;
 
   /* Media */
   --sidebar-left-margin: auto;
