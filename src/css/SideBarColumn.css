@@ -30,7 +30,7 @@
   padding: 20px;
   border-radius: var(--sidebar-border-radius);
   background-color: var(--sidebar-bg-color);
-  box-shadow: var(--sidebar-box-shadow);
+  box-shadow: var(--content-search-result-box-shadow);
 }
 h2.small-heading {
     background: var(--sidebar-small-heading-bg);

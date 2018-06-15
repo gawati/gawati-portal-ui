@@ -79,8 +79,8 @@
   --reacttabs-bg-image: #e0ddd7;
   --reacttabs-hover-bg-color: initial;
   --reacttabs-hover-color: initial;
-  --reacttabs-selected-border: 1px solid rgb(170, 170, 170);
-  --reacttab-panel-border: solid 1px rgb(170, 170, 170);
+  --reacttabs-selected-border: 1px solid #f0f0f0;
+  --reacttab-panel-border: solid 1px #f0f0f0;
 
   /* RecentDocs */
   --feed-container-heading-bg-color: white;
@@ -173,11 +173,7 @@
 
 
 .default2.notHome .container-fluid > .logotype {
-  width: auto;
-}
-
-.default2.notHome .container-fluid > .logotype h1 {
-  width: auto;
+  display: none;
 }
 
 .default2.notHome .container-fluid {
@@ -185,11 +181,24 @@
 }
 
 .default2.notHome .search-form-container {
-  margin-top: 40px;
-  margin-bottom: 20px;
+  margin-top: 25px;
   float: left;
 }
 
-.nav-brand .logotype, .nav-brand .logotype h2  {
-  vertical-align: sub;
+.default2.notHome .second-header-row {
+  display: inline;  
+}
+
+.default2.notHome .nav-brand .logotype h2 {
+  display: none;
+}
+
+.default2.notHome .nav-brand .logotype h1 {
+  display: inline-block;
+  line-height: 20px;
+  font-size: 20px;
+  height: 25px;
+  width: auto;
+  padding: 0px 5px 0px 5px;
+  margin-left: 5px;
 }
