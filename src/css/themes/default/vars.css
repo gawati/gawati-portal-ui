@@ -9,9 +9,11 @@
   /* Overrides */
 
   /* Fonts */
-    --font-1: Montserrat, sans-serif;
+    --font-1: Helvetica, sans-serif;
     --font-2: Georgia, Times, 'Times New Roman', serif;
-    --font-3: Helvetica, sans-serif;
+    --font-3: Montserrat, sans-serif;
+    --small-heading-font: Montserrat, sans-serif;
+    --react-tabs-tab-font: Montserrat, sans-serif;
   /* Fonts */
 
   /* app-custom */
@@ -113,7 +115,7 @@
   --logo-img: url("../../themes/default/assets/logo.png");
   --logo-color: #7a737a;
   --logo-color2: #7a737a;
-  --logo-top-margin: 30px;
+  --logo-top-margin: 55px;
   --logo-left-margin: 30px;
   --logo-img-height: 50px;
   --logo-h1-mbottom: initial;
@@ -134,8 +136,8 @@
   --logo-img-float-994: none;
   --logo-img-width: 90px;
 
-  --search-form-container-mtop: 30px;
-  --search-form-container-mbottom: auto;
+  --search-form-container-mtop: 60px;
+  --search-form-container-mbottom: 20px;
 
   --version-font-size: inherit;
   --version-color: lightgrey;

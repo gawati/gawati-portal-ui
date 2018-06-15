@@ -34,7 +34,7 @@
 .small-heading {
   margin-top: 0px;
   margin-bottom: 2px;
-  font-family: var(--font-2);
+  font-family: var(--small-heading-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
