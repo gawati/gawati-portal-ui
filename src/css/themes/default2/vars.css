@@ -26,7 +26,7 @@
       --content-button-color: #fff;
       --content-tab-pane-bg-color: #fff;
       --content-search-result-bg-color: #fff;
-      --content-search-result-box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
+      --content-search-result-box-shadow: 0 0 0 1px #d0d0d0;
       --content-search-result-color: rgba(51, 51, 51, .67);
       --content-search-result-h1-color: #74737a;
       --content-doc-download-border-color: #000;
@@ -76,11 +76,11 @@
   --reacttabs-selected-color: black;
   --reacttabs-border: 1px solid transparent;
   --reacttabs-border-radius: 0 0 0 0;;
-  --reacttabs-bg-image: #e0ddd7;
+  --reacttabs-bg-image: #fffdd0;
   --reacttabs-hover-bg-color: initial;
   --reacttabs-hover-color: initial;
-  --reacttabs-selected-border: 1px solid #f0f0f0;
-  --reacttab-panel-border: solid 1px #f0f0f0;
+  --reacttabs-selected-border: 1px solid #d0d0d0;
+  --reacttab-panel-border: solid 1px #d0d0d0;
 
   /* RecentDocs */
   --feed-container-heading-bg-color: white;
@@ -95,7 +95,7 @@
   --sidebar-footer-color: #aaa;
   --sidebar-a-color: #a9a9a9;
   --sidebar-bg-color: #fff;
-  --sidebar-box-shadow: 0 0 0 1px rgb(170, 170, 170);
+  --sidebar-box-shadow: 0 0 0 1px #d0d0d0;
   --sidebar-border-radius: 0px;
   --sidebar-small-heading-color: rgb(116, 115, 122);
   --sidebar-small-heading-padding: auto;
@@ -128,7 +128,7 @@
   --second-header-text-align: center;
   --heading-alongside-logo: inline-block;
   --second-header-mtop: 50px;
-  --logotype-h1-bg: #6dc2f5;
+  --logotype-h1-bg: #40daa1;
   --logotype-h1-height: 75px;
   --logotype-h1-width: 75%;
   --logo-h1-font-size: 2rem;
@@ -195,10 +195,33 @@
 
 .default2.notHome .nav-brand .logotype h1 {
   display: inline-block;
-  line-height: 20px;
-  font-size: 20px;
-  height: 25px;
+}
+
+.default2 .nav-brand .logotype h1 {
+  line-height: 25px;
+  font-size: 24px;
   width: auto;
   padding: 0px 5px 0px 5px;
   margin-left: 5px;
+  background: transparent;
+  color: #40daa1;
+}
+
+.default2 .nav-brand .logotype {
+  vertical-align: center;
+  height: 25px;
+}
+
+.default2 .nav-brand .logotype h2 {
+  line-height: 25px;
+  font-size: 24px;
+  width: auto;
+  padding: 0px 5px 0px 5px;
+  margin-left: 5px;
+  background: transparent;
+  margin-top: 0px;
+}
+
+.react-autosuggest__suggestions-container--open {
+  top: 60px;
 }

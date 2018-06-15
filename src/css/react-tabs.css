@@ -10,6 +10,7 @@
     transition: background-color 200ms linear;
     font-family: var(--react-tabs-tab-font);
     font-size: 1.2em;
+    border-bottom: var(--reacttabs-selected-border);
 }
 
 #root .react-tabs__tab:last-child{
@@ -31,7 +32,7 @@
 #root .react-tabs__tab.react-tabs__tab--selected {
     background: var(--reacttabs-selected-bg-color);
     color: var(--reacttabs-selected-color);
-    border-bottom: 0px!important;
+    border-bottom-color: transparent !important;
     border-left: var(--reacttabs-selected-border);
     border-right: var(--reacttabs-selected-border);
     border-top: var(--reacttabs-selected-border);

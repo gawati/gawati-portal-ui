@@ -71,3 +71,7 @@ ul.list-inline .Select-arrow-zone {
 .Select-placeholder, .Select--single > .Select-control .Select-value {
     line-height: inherit!important;
 }
+.lang-switcher-wrapper {
+    width: 30%;
+    text-align: right;
+}
