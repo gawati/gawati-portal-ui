@@ -38,7 +38,7 @@
     border-top: var(--reacttabs-selected-border);
 }
 
-.home-content-area .react-tabs__tab {
+.home-content-area .react-tabs__tab, .search-content-area .react-tabs__tab {
     width: 50%;
     text-align: center;
 }

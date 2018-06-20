@@ -263,6 +263,11 @@
     .document-download li{
       width:32%;
     }
+
+    .lang-switcher-wrapper {
+      left: 150px;
+      min-width: 330px;
+    }
     
   }
 

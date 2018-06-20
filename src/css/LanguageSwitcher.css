@@ -28,6 +28,7 @@
 ul.list-inline {
     display: inline-block;
     height: 34px;
+    white-space: nowrap;
 }
 
 ul.list-inline > [class^="Select"] {
@@ -72,6 +73,5 @@ ul.list-inline .Select-arrow-zone {
     line-height: inherit!important;
 }
 .lang-switcher-wrapper {
-    width: 30%;
     text-align: right;
 }
