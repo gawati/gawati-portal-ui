@@ -135,25 +135,19 @@ class TopBarUpper extends React.Component {
     render () {
         return (
         <div className="row lang-switcher-wrapper">
-            <div className="col-10">
-                <div style={ {"width":"50%:", "textAlign": "right"} }>
-                <LanguageSwitcher i18n={this.props.i18n} match={this.props.match} />
+            <LanguageSwitcher i18n={this.props.i18n} match={this.props.match} />
+            <div onClick={this.toggleDropDown} className="dropbtn">
+                <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+            </div>
+            <div id="myDropdown" className="dropdown-content">
+                {this.renderLoggedin()}
+                <NotifBar/>
+                <div className="version-info">{
+                        T("version") + " = " + versionInfo().version
+                    }
                 </div>
             </div>
-            <div className="dropdown col-2">
-                <div onClick={this.toggleDropDown} className="dropbtn">
-                    <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
-                </div>
-                <div id="myDropdown" className="dropdown-content">
-                    {this.renderLoggedin()}
-                    <NotifBar/>
-                    <div className="version-info">{
-                            T("version") + " = " + versionInfo().version
-                        }
-                    </div>
-                </div>
                 
-            </div>
         </div>
         )
     };

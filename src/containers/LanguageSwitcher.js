@@ -36,31 +36,50 @@ class LanguageSwitcher extends React.Component {
         }
     }
 
+    toggleDropDown = () => {
+        document.getElementById("lang-dropdown").classList.toggle("show");
+    }; 
+
+
     render () {
         const _defaultSelected = filter(this.langs, { 'lang': this.props.i18n.language });
         return (
-            <ul className="list-inline"> 
-            {
-                this.groupedArr.map(
-                    group => 
-                        (group.length > 1)  ?
-                        <Select options={group} 
-                            onChange={this.onLangChange} 
-                            value={indexOf(group, _defaultSelected[0]) > -1 ? _defaultSelected[0] : group[0]} 
-                            placeholder="Select an option" 
-                            key={`ui-lang-${group[0].origin}`}
-                            valueKey='lang'
-                            labelKey='content'
-                            className={indexOf(group, _defaultSelected[0]) > -1 ? 'list-inline-item ui-lang-item ui-lang-highlight' : 'list-inline-item ui-lang-item'}
-                            />                      
-                        :
-                        <div key={ `ui-lang-${group[0].lang}`} 
-                            className={ `list-inline-item ui-lang-item ${ group[0].lang === this.props.i18n.language ? "ui-lang-highlight": "" }`}>
-                            <NavLink to={ editInRoute({lang:group[0].lang}, this.props.match) }>{group[0].content}</NavLink>
-                        </div>
-                ) 
-            }
-            </ul>
+            <div className="dropdown">
+                <div onClick={this.toggleDropDown} className="lang dropbtn">
+                    <span className={`current-lang`}>{ _defaultSelected[0].content }</span>
+                    <i className="fa fa-language fa-2x" aria-hidden="true"></i>
+                    &nbsp;
+                    <i className="fa fa-caret-down" aria-hidden="true"></i>
+                </div>
+                <ul className="lang-list dropdown-content" id="lang-dropdown"> 
+                {
+                    this.groupedArr.map(
+                        group => 
+                            (group.length > 1)  ?
+                            // <Select options={group} 
+                            //     onChange={this.onLangChange} 
+                            //     value={indexOf(group, _defaultSelected[0]) > -1 ? _defaultSelected[0] : group[0]} 
+                            //     placeholder="Select an option" 
+                            //     key={`ui-lang-${group[0].origin}`}
+                            //     valueKey='lang'
+                            //     labelKey='content'
+                            //     className={indexOf(group, _defaultSelected[0]) > -1 ? 'lang-list-item ui-lang-item ui-lang-highlight' : 'lang-list-item ui-lang-item'}
+                            //     />                      
+                            group.map(g => (
+                                <div key={ `ui-lang-${g.lang}`} 
+                                    className={ `lang-list-item ui-lang-item ${ g.lang === this.props.i18n.language ? "ui-lang-highlight": "" }`}>
+                                    <NavLink to={ editInRoute({lang:g.lang}, this.props.match) }>{g.content}</NavLink>
+                                </div>
+                            ))
+                            :
+                            <div key={ `ui-lang-${group[0].lang}`} 
+                                className={ `lang-list-item ui-lang-item ${ group[0].lang === this.props.i18n.language ? "ui-lang-highlight": "" }`}>
+                                <NavLink to={ editInRoute({lang:group[0].lang}, this.props.match) }>{group[0].content}</NavLink>
+                            </div>
+                    ) 
+                }
+                </ul>
+            </div>
         ); 
     }
     

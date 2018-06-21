@@ -25,19 +25,42 @@
     background-color: var(--languageswitcher-bg-color)
 }
 
-ul.list-inline {
-    display: inline-block;
-    height: 34px;
+ul.lang-list {
+    display: none;
     white-space: nowrap;
 }
 
+ul.lang-list.show {
+    display: inline-block;
+}
+.lang-switcher-wrapper {
+    position: absolute;
+    top: 0px;
+    right: 30px;
+    text-align: right;
+}
+
+.current-lang {
+    line-height: 2em;
+    vertical-align: bottom;
+    padding-right: 4px;
+    color: #74737a;
+}
+.lang.dropbtn {
+    background: var(--reacttabs-bg-image);
+    color: #74737a;    
+}
+
+.dropbtn {
+    padding: 2px;
+}
+/* 
 ul.list-inline > [class^="Select"] {
     display: inline-block;
     min-width: 80px;
 }
 ul.list-inline .Select {
     float: left;
-    /* height: 28px; */
 }
 ul.list-inline .Select-control {
     background: transparent !important;
@@ -71,7 +94,4 @@ ul.list-inline .Select-arrow-zone {
 }
 .Select-placeholder, .Select--single > .Select-control .Select-value {
     line-height: inherit!important;
-}
-.lang-switcher-wrapper {
-    text-align: right;
-}
+} */

@@ -53,12 +53,6 @@ color: var(--logo-color2);
 display: var(--logo-h2-display);
 }
 
-.lang-switcher-wrapper {
-    position: absolute;
-    top: 0px;
-    right: 15px;
-}
-
 .logo-img {
     background-image: var(--logo-img);
     background-position: center;
@@ -126,6 +120,7 @@ box-shadow: var(--topbar-box-shadow);
     font-size: 13px;
     border: none;
     cursor: pointer;
+    margin-left: 5px;
 }
 
 
@@ -138,7 +133,7 @@ box-shadow: var(--topbar-box-shadow);
 .dropdown-content {
     display: none;
     position: absolute;
-    min-width: 160px;
+    /* min-width: 160px; */
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     right: 0;
