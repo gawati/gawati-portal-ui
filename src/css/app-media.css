@@ -83,6 +83,14 @@
   }*/
   
   @media all and (max-width: 767px){
+
+    .dropdown.lang-list {
+      display: inline;
+    }
+
+    ul.list-inline {
+      display: none;
+    }
   
     .section .container{
       padding: 0

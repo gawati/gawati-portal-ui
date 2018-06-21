@@ -54,7 +54,11 @@ ul.lang-list.show {
 .dropbtn {
     padding: 2px;
 }
-/* 
+
+.dropdown.lang-list {
+    display: none;
+}
+
 ul.list-inline > [class^="Select"] {
     display: inline-block;
     min-width: 80px;
@@ -94,4 +98,4 @@ ul.list-inline .Select-arrow-zone {
 }
 .Select-placeholder, .Select--single > .Select-control .Select-value {
     line-height: inherit!important;
-} */
+}
