@@ -130,7 +130,7 @@
   --second-header-mtop: 50px;
   --logotype-h1-bg: #40daa1;
   --logotype-h1-height: 75px;
-  --logotype-h1-width: 75%;
+  --logotype-h1-width: auto;
   --logo-h1-font-size: 2rem;
   --logotype-h1-lineht: 75px;
   --logotype-h1-font: inherit;
@@ -197,14 +197,8 @@
   display: inline-block;
 }
 
-.default2 .nav-brand .logotype h1 {
-  line-height: 25px;
-  font-size: 24px;
-  width: auto;
-  padding: 0px 5px 0px 5px;
-  margin-left: 5px;
-  background: transparent;
-  color: #40daa1;
+.default2 .second-header-row .logotype h1 {
+  padding: 0px 15px 0px 15px;
 }
 
 .default2 .nav-brand .logotype {
