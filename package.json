@@ -1,8 +1,8 @@
 {
   "name": "gawati-portal-ui",
-  "version": "2.0.30",
+  "version": "2.0.31",
   "private": true,
-  "proxy": "http://localhost",
+  "proxy": "http://data.local",
   "xhomepage": "http://localhost:9000",
   "homepage": "http://localhost",
   "dependencies": {

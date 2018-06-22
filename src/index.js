@@ -5,7 +5,7 @@ import axios from 'axios';
 import './polyfills';
 import { BrowserRouter } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
-
+import  ErrorBoundary from './components/ErrorBoundary.js';
 import './i18n';
 import {apiUrl} from './api';
 import { setupWithConfig, initSSORequired, refreshToken } from './utils/GawatiAuthClient';
@@ -23,7 +23,9 @@ import { isAuthEnabled } from './utils/generalhelper';
 function appRender() {
     ReactDOM.render(
         <BrowserRouter>
-            <App />
+            <ErrorBoundary>
+                <App />
+            </ErrorBoundary>
         </BrowserRouter>,
         document.getElementById('root')
     );
