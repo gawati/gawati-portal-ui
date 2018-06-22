@@ -136,7 +136,7 @@ class SiteSearchAutoComplete extends React.Component {
         let itemDate = displayDate(suggestion.exprAbstract.date[1].value) || suggestion.exprAbstract.date[1].value ;
         return (
         <div className="ui-ac-item-render">
-            <DocumentLink abstract={suggestion.exprAbstract} { ...this.props.lang } >
+            <DocumentLink abstract={suggestion.exprAbstract} lang={this.props.lang } >
                 <div className="ui-ac-item-render-content">
                     <h3>{   stringCut(199, suggestion.exprAbstract.publishedAs || "unknown")  }</h3>
                     <nav className="ui-act-item-meta">

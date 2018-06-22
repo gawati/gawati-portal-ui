@@ -1,7 +1,7 @@
 {
     "langs": [
         {
-            "lang": "en",
+            "lang": "en-US",
             "origin": "en",
             "default": true,
             "content": "english"
