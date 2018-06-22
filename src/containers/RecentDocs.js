@@ -34,8 +34,8 @@ const getRecentDocs = (loading, recentDocs, tab, lang) => {
 
 const RecentIntro = ({loading}) => 
     <DivFeed customClass="white-feed">
-        <h2>{T("Latest Documents")}</h2>
         <a>
+            <h2>{T("Latest Documents")}</h2>
             <p>{T("The most recently published documents")}</p>
         </a>
         <div className="grey-rule"/>
