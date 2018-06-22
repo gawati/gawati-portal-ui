@@ -11,7 +11,7 @@ import {apiUrl} from './api';
 import { setupWithConfig, initSSORequired, refreshToken } from './utils/GawatiAuthClient';
 import { REFRESH_TOKEN_VALIDITY, REFRESH_TOKEN_INTERVAL } from './constants';
 
-import './index.css';
+//import './index.css';
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/bootstrap-overrides.css';
