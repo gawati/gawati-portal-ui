@@ -4,21 +4,26 @@ import axios from 'axios';
 
 import {versionInfo} from '../utils/versionhelper';
 import {T} from '../utils/i18nhelper';
-import { defaultLang, isAuthEnabled } from '../utils/generalhelper';
+import { Aux, defaultLang, isAuthEnabled } from '../utils/generalhelper';
 import SiteSearchAutoComplete from '../containers/SiteSearchAutoComplete';
 import LanguageSwitcher from '../containers/LanguageSwitcher';
 import {apiGetCall} from '../api.js';
 
 import mobileButton from '../images/th-menu.png';
 import NotifBar from './NotifBar';
-import DivRow from './DivRow';
 import '../css/TopBar.css';
 import { siteLogin, siteLogout, siteRegister, getUserInfo, getToken } from '../utils/GawatiAuthClient';
 
+import themes from '../configs/themes.json';
+
 const Logo = () =>
-    <NavLink className="nav-brand" to="/">
-        <div className="logo-img"/>
-    </NavLink>
+    <Aux>
+        <NavLink className="nav-brand" to="/">
+            <div className="logo-img"/>
+            <SiteHeading />
+        </NavLink>
+        {/* <h2>{ T("custom:innovative access to law") }</h2> */}
+    </Aux>
     ;
 
 const SiteHeading = () =>
@@ -28,39 +33,19 @@ const SiteHeading = () =>
     </div>
     ;
 
-const TopBarUpper = ({i18n, match}) => {
-        return (
-            <div className="col-12">
-                <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"10px"} }>
-                <LanguageSwitcher i18n={i18n} match={match} />
-                </div>
-            </div>
-        );
-};
-    ;
+class TopBarUpper extends React.Component {
 
-const SearchBox = (lang) =>
-    <div className={ `col ` }>
-        <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
-            <div className="div-block w-clearfix">
-               <SiteSearchAutoComplete  lang={lang}/> 
-            </div>
-        </form>
-    </div>
-    ;
-
-class TopBar extends React.Component {
     state = { username: 'guest', authenticated: 'false', profile: ''}
 
     handleChange = (e, { name, value }) => { this.setState({ [name]: value }); };
 
-    toggleDropDown = ()=>{
-	    document.getElementById("myDropdown").classList.toggle("show");
-	};
-
     login = () => {
         siteLogin();
     };
+
+    toggleDropDown = () => {
+        document.getElementById("myDropdown").classList.toggle("show");
+    };  
 
     logout = () => {
         siteLogout();
@@ -121,67 +106,84 @@ class TopBar extends React.Component {
         }
     };
 
-    renderLoggedin =  (lang, userName, profile) => {
+    renderLoggedin =  () => {
+        const userName = this.state.username;
+        const profile = this.state.profile;
         if (userName === "guest") {
             return (
-            <div className="inline-elements">
-                <div className="click" onClick={ this.login }>
-                    {T("Sign in")} 
-                </div>
-                <span className="or">&nbsp;&nbsp;{T("or")}&nbsp;&nbsp;</span>
-                <div className="click" onClick={ this.register}> 
-                    {T("Sign up")}
-                </div>
-            </div> 
+                <Aux>
+                    <div className="click" onClick={ this.login }>
+                        {T("Sign in")} 
+                    </div>
+                    <div className="click" onClick={ this.register}> 
+                        {T("Sign up")}
+                    </div>
+                </Aux>
             );
         } else {
             return (
-            <div className="dropdown">
-                <div onClick={this.toggleDropDown} className="dropbtn">
-                    <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
-                </div>
-                <div id="myDropdown" className="dropdown-content">
-                    <NavLink to={profile} target="_blank" className={ `btn btn-link loggedIn` }>Logged in as <b>{userName}</b></NavLink>
-                    <button className={ `btn btn-link` }  onClick={this.logout}>
-                        Sign out
-                    </button>
-                </div>
-            </div> 
+                    <Aux>
+                        <NavLink to={profile} target="_blank" className={ `btn btn-link loggedIn` }>Logged in as <b>{userName}</b></NavLink>
+                        <button className={ `btn btn-link` }  onClick={this.logout}>
+                            Sign out
+                        </button>
+                    </Aux>
             );   
         }
     };
 
-
-    render() {
-        let lang = this.props.match.params.lang || defaultLang().langUI ;
-        const {username, profile} = this.state ;
-    	return (
-            <header className="navigation-bar">
+    render () {
+        return (
+        <div className="row lang-switcher-wrapper">
+            <LanguageSwitcher i18n={this.props.i18n} match={this.props.match} />
+            <div onClick={this.toggleDropDown} className="dropbtn">
+                <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+            </div>
+            <div id="myDropdown" className="dropdown-content">
+                {this.renderLoggedin()}
+                <NotifBar/>
                 <div className="version-info">{
-                    T("version") + " = " + versionInfo().version
-                }
+                        T("version") + " = " + versionInfo().version
+                    }
                 </div>
-                <div>
-                <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
-                </div>
-                <div className="container-fluid">
-                    <Logo />
+            </div>
+                
+        </div>
+        )
+    };
+};
+
+const SearchBox = (obj) =>
+    <div className={ `${obj.cName2}` }>
+        <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
+            <div className="div-block w-clearfix">
+               <SiteSearchAutoComplete  lang={obj.lang}/> 
+            </div>
+        </form>
+    </div>
+    ;
+
+class TopBar extends React.Component {
+    
+    render() {
+        const theme = process.env.REACT_APP_THEME;
+        let route = this.props.match.params.routeName;
+        let routeClass = route === undefined ? "home" : "notHome";
+        let {cName, cName2} = themes[theme][routeClass];
+    	return (
+            <header className={`navigation-bar ${theme} ${routeClass}`}>
+                <Logo />
+                <div className="container-fluid second-header-row">
+                    
                     <SiteHeading />
                     <div className="mobile-button" onClick={this.props.slideToggle}>
                         <img alt="menu" src={mobileButton}  />
                     </div>
-                    <div className="search-form-container col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                    <DivRow>
-                        <SearchBox lang={ this.props.match.params.lang }></SearchBox>
-                        <NotifBar />
-                        <div className="login col-3">
-                            {
-                                this.renderLoggedin(lang, username, profile)
-                            }
-                        </div>
-                    </DivRow>
+                    <div className={`search-form-container ${cName} `}>
+                        <SearchBox lang={ this.props.match.params.lang } cName2={ cName2 }></SearchBox>
                     </div>
                 </div>
+                <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
                 <div className="w-nav-overlay" data-wf-ignore=""/>
             </header>
         

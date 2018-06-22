@@ -709,12 +709,12 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let content = 
             <DivTimelineListing lang={this.props.match.params.lang}>
                 <div className="row col-12">
-                    <div className="col-8">
+                    <div className="col-8 offset-2">
                     <DivFeed>
                         <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
                     </DivFeed>
                     </div>
-                    <div className="col-4 feed w-clearfix">
+                    <div className="col-2 feed w-clearfix">
                     {save_search_modal_content}
                     </div>
                 </div>

@@ -125,7 +125,7 @@ class HomeContentColumn extends React.Component {
         <div className={ `main-col col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
             <Tabs>
                 <TabList>
-                    <Tab>{ T("latest") }</Tab>
+                    <Tab>{ T("Latest documents") }</Tab>
                     <Tab>{ T("in focus") }</Tab>
                 </TabList>
                 <TabPanel>
