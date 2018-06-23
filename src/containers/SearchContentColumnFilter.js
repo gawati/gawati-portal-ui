@@ -1,25 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { Form, Input } from 'reactstrap';
 import ReactEcharts from 'echarts-for-react';
 
 import {apiGetCall} from '../api';
-import {isInt, coerceIntoArray, isAuthEnabled} from '../utils/generalhelper';
+import {isInt, coerceIntoArray} from '../utils/generalhelper';
 import {xQueryFilterBuilder} from '../utils/xqueryhelper';
 import {convertEncodedStringToObject, setInRoute, convertObjectToEncodedString, editInRoute} from '../utils/routeshelper';
-import { ToastContainer, toast } from 'react-toastify';
-import Popup from "reactjs-popup";
 
 import {T} from '../utils/i18nhelper';
-import { getUserInfo, getToken } from '../utils/GawatiAuthClient';
 import DivFeed from '../components/DivFeed';
 import DivTimelineListing from '../components/DivTimelineListing';
 import ExprAbstract from './ExprAbstract';
 import SearchListPaginator from '../components/SearchListPaginator';
 import BaseSearchContentColumn from './BaseSearchContentColumn';
 import TimelineListingLoading from '../components/TimelineListingLoading';
-import SaveSearchAutoComplete from './SaveSearchAutoComplete';
 import '../css/ListingContentColumn.css';
 
 class SearchContentColumnFilter extends BaseSearchContentColumn {
@@ -40,13 +35,9 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             timeline_pie: {},
             timeline_scatter: {},
             timeline_pie_doctype: {},
-            save_name:'',
-            username:'guest'
         };
         this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
         this.onChangePage = this.onChangePage.bind(this);
-        this.handleSubmitSave = this.handleSubmitSave.bind(this);
-        this.handleSaveName = this.handleSaveName.bind(this);
     }
 
     convertRoutePropToXQuery = (paramQ) => 
@@ -451,20 +442,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             from: this.state.from,
             to: this.state.to
         });
-
-        if (isAuthEnabled()) {
-            if (getToken() != null) {
-                getUserInfo()
-                .success( (data) => {
-                    console.log(" getUserName (data) = ", data);
-                    this.setState({username: data.preferred_username});
-                })
-                .error( (err) => {
-                    this.setState({username: "guest"});
-                    console.log(" getUserName (err) = ", err);
-                });
-            }
-        }
         
     }
 
@@ -482,21 +459,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
             from: parseInt(nextProps.match.params.from, 10),
             to: parseInt(nextProps.match.params.to, 10)
         });
-
-        if (isAuthEnabled()) {
-            if (getToken() != null) {
-                getUserInfo()
-                .success( (data) => {
-                    console.log(" getUserName (data) = ", data);
-                    this.setState({username: data.preferred_username});
-                })
-                .error( (err) => {
-                    this.setState({username: "guest"});
-                    console.log(" getUserName (err) = ", err);
-                });
-            }
-        }
-        
     }
 
     filterLink = (match, pageLang, query) => {
@@ -608,90 +570,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     }
 
-    handleSubmitSave = (event) =>{
-        event.preventDefault();
-        let apiSaveSearch = apiGetCall(
-            'save-search-name', {}
-        );
-        let query = this.props.match === undefined || this.props.match.params.q===undefined ? {} : convertEncodedStringToObject(this.props.match.params.q);
-
-        axios.post(apiSaveSearch, {
-            searchName: this.state.save_name,
-            userName: this.state.username,
-            data: JSON.stringify({query: query, count: this.state.count, from: this.state.from, to: this.state.to, lang:this.state.lang})
-        })
-        .then(response => {
-            if(response.data.success==="true"){
-                toast.success("Search saved successfully");
-            }else if(response.data.error!==undefined){
-                toast.error(response.data.data.message);
-            }else{
-                toast.error("There is some problem. Kindly try again");
-            }
-        })
-        .catch(function(error) {
-            console.log('There is some error' + error);
-            toast.error("There is some problem. Kindly try again");
-        });
-    } 
-
-    handleSaveName = (event) =>{
-        this.setState({save_name: event.target.value});
-    }    
-
-    renderSaveModal = () =>{
-    	return (
-            <Popup
-                trigger={ <a className="pointer" onClick={this.toggleSaveModal}><i className="fa fa-floppy-o" />&#160;Save</a> }
-                position="bottom center"
-                on="hover"
-                closeOnDocumentClick
-            >
-                <div className="full-width">
-                    <div className="header center">Save your search</div><hr className="search-line"></hr>
-                    <div className="content">
-                        <Form onSubmit={this.handleSubmitSave}>
-                            <div className="row">
-                                <Input type="text" value={this.state.save_name} placeholder="search name" autoFocus onChange={this.handleSaveName} bsSize="sm" />
-                            </div>
-                            <input type="submit" value="Save" color="primary" className="btn btn-primary btn-sm right" />
-                        </Form>
-                    </div>
-                </div>
-            </Popup>
-        );
-    }
-
-    renderSearchModal = () =>{
-    	return (
-            <Popup
-                trigger={ <a className="pointer">&#160;<i className="fa fa-search" />&#160;Search</a> }
-                position="bottom center"
-                on="hover"
-                closeOnDocumentClick
-            >
-                <div className="full-width">
-                    <div className="header center">Search from saved searches</div><hr className="search-line"></hr>
-                    <div className="content">
-                        <SaveSearchAutoComplete  lang="eng"/>
-                    </div>
-                </div>
-            </Popup>
-        );
-    }
-
-    renderSaveSearchModal = () =>{
-        console.log('init');
-        if(this.state.username==="guest"){
-            return (<div>register/ login to save searches</div>);
-        }else{
-            let save_modal_content = this.renderSaveModal();
-            let search_modal_content = this.renderSearchModal();
-            let content = <div>{save_modal_content} | {search_modal_content}</div>;
-            return content;
-        }
-    }
-
     renderDocumentLoading = () =>
         <TimelineListingLoading>
             <h1 className="listingHeading">{T("Document Results")}</h1>
@@ -705,17 +583,13 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     renderListing = () => {
         let pagination = this.generatePagination();
-        let save_search_modal_content = this.renderSaveSearchModal();
         let content = 
             <DivTimelineListing lang={this.props.match.params.lang}>
                 <div className="row col-12">
-                    <div className="col-8">
+                    <div className="col-12">
                     <DivFeed>
                         <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
                     </DivFeed>
-                    </div>
-                    <div className="col-4 feed w-clearfix">
-                    {save_search_modal_content}
                     </div>
                 </div>
                 {
@@ -837,7 +711,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
         let content = 
         <div className={ `main-col col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
-            <ToastContainer />
             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
                 <TabList>
                     <Tab>{ T("Document Results") }</Tab>
