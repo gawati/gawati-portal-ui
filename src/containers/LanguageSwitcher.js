@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {groupBy, filter, indexOf} from 'lodash';
 import Select from 'react-select';
 import {NavLink} from 'react-router-dom';
-import { getLangs } from "../utils/i18nhelper";
+import { getLangs, defaultUiLang } from "../utils/i18nhelper";
 import { editInRoute } from "../utils/routeshelper";
 import {Aux} from "../utils/generalhelper";
 import '../css/LanguageSwitcher.css';
@@ -43,12 +43,12 @@ class LanguageSwitcher extends React.Component {
 
 
     render () {
-        const _defaultSelected = filter(this.langs, { 'lang': this.props.i18n.language });
+        const _defaultSelected = filter(this.langs, { 'lang': this.props.i18n.language })[0] || defaultUiLang();
         return (
             <Aux>
                 <div className="dropdown lang-list">
                     <div onClick={this.toggleDropDown} className="lang dropbtn">
-                        <span className={`current-lang`}>{ _defaultSelected[0].content }</span>
+                        <span className={`current-lang`}>{ _defaultSelected.content }</span>
                         <i className="fa fa-language fa-2x" aria-hidden="true"></i>
                         &nbsp;
                         <i className="fa fa-caret-down" aria-hidden="true"></i>
