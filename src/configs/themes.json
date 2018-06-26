@@ -25,7 +25,7 @@
             "cName2": "col-11"
         },
         "notHome": {
-            "cName": "col-lg-6 offset-lg-1 col-md-8 col-sm-8 col-xs-12 offset-md-2 offset-sm-2",
+            "cName": "col-lg-6 offset-lg-3 col-md-8 col-sm-8 col-xs-12 offset-md-2 offset-sm-2",
             "cName2": "col-12"
         }
     },
