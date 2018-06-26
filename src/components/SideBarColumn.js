@@ -144,11 +144,18 @@ class SideBarColumn extends React.Component{
     renderSaveSearchModal = () =>{
         console.log('init');
         if(this.state.username==="guest"){
-            return (<div>register/ login to save searches</div>);
+            return (
+                <div class="save-search-container">
+                    register/ login to save searches
+                </div
+                >);
         }else{
             let save_modal_content = this.renderSaveModal();
             let search_modal_content = this.renderSearchModal();
-            let content = <div>{save_modal_content} | {search_modal_content}</div>;
+            let content = 
+                <div class="save-search-container">
+                    {save_modal_content} | {search_modal_content}
+                </div>;
             return content;
         }
     }
