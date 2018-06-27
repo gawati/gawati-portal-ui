@@ -10,7 +10,7 @@ import {apiGetCall} from '../api';
 import Filter from '../containers/filter/Filter2';
 import {isAuthEnabled} from '../utils/generalhelper';
 import { getUserInfo, getToken } from '../utils/GawatiAuthClient';
-import {convertEncodedStringToObject} from '../utils/routeshelper';
+import {convertEncodedStringToObject, getRoute} from '../utils/routeshelper';
 import {xQueryFilterBuilder} from '../utils/xqueryhelper';
 import {T} from '../utils/i18nhelper';
 import '../css/SideBarColumn.css';
@@ -141,29 +141,38 @@ class SideBarColumn extends React.Component{
         );
     }
 
-    renderSaveSearchModal = () =>{
+    renderSaveSearchModal = (match) =>{
         console.log('init');
+        console.log(match);
         if(this.state.username==="guest"){
             return (
-                <div class="save-search-container">
+                <div className="save-search-container">
                     register/ login to save searches
                 </div
                 >);
         }else{
-            let save_modal_content = this.renderSaveModal();
-            let search_modal_content = this.renderSearchModal();
-            let content = 
-                <div class="save-search-container">
+            let content;
+            if(getRoute("doc-iri")===match.path || (getRoute("recent")===match.path && match.params.from==="1" && match.params.q===undefined) || "/_lang/:lang"===match.path){
+                let search_modal_content = this.renderSearchModal();
+                content = 
+                <div className="save-search-container">
+                    {search_modal_content}
+                </div>;
+            }else{
+                let save_modal_content = this.renderSaveModal();
+                let search_modal_content = this.renderSearchModal();
+                content = 
+                <div className="save-search-container">
                     {save_modal_content} | {search_modal_content}
                 </div>;
+            }
             return content;
         }
     }
 
     render() {
         const {match, i18n} = this.props;
-        console.log( " SIDEBAR i18n", i18n);
-        let save_search_modal_content = this.renderSaveSearchModal();
+        let save_search_modal_content = this.renderSaveSearchModal(match);
         return (
             <Swipeable
                 className="swipe"
