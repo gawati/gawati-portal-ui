@@ -3,7 +3,7 @@
 
 @media all and (max-width:1348px){
     .newsletter-form {
-      width: calc(100% - 32px);
+      width: calc(100% - 30px);
     }
   }
   

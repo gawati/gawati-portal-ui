@@ -38,6 +38,7 @@ h2.small-heading {
     color: var(--sidebar-small-heading-color);
     line-height: 20px;
     padding: var(--sidebar-small-heading-padding);
+    border-radius: var(--sidebar-border-radius);
 }
 
 .Select-control {

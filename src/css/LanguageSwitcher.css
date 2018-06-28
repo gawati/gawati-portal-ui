@@ -53,12 +53,19 @@ ul.lang-list.show {
 
 .dropbtn {
     padding: 2px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    margin-left: 15px;
+    color: var(--logo-color);
 }
 
 .dropdown.lang-list {
     display: none;
 }
-
+.lang-switcher-wrapper ul.list-inline {
+    line-height: 32px;
+}
 ul.list-inline > [class^="Select"] {
     display: inline-block;
     min-width: 80px;

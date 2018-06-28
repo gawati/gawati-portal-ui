@@ -116,14 +116,6 @@ box-shadow: var(--topbar-box-shadow);
 	cursor: pointer;
 }
 
-.dropbtn {
-    font-size: 13px;
-    border: none;
-    cursor: pointer;
-    margin-left: 5px;
-}
-
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -194,6 +186,17 @@ box-shadow: var(--topbar-box-shadow);
     margin-top: var(--search-form-container-mtop);
     margin-bottom: var(--search-form-container-mbottom);
 }
+
+.search-form input {
+    border-top-left-radius: var(--sidebar-border-radius);
+    border-bottom-left-radius: var(--sidebar-border-radius);
+}
+
+.search-form .submit-button.w-button {
+    border-top-right-radius: var(--sidebar-border-radius);
+    border-bottom-right-radius: var(--sidebar-border-radius);
+}
+
 
 .login {
     line-height: 27px;
