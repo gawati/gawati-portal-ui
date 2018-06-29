@@ -116,6 +116,15 @@ box-shadow: var(--topbar-box-shadow);
 	cursor: pointer;
 }
 
+.dropbtn {
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+    float: right;
+}
+
+
 .dropdown {
     position: relative;
     display: inline-block;

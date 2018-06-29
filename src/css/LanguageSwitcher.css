@@ -62,9 +62,11 @@ ul.lang-list.show {
 
 .dropdown.lang-list {
     display: none;
+    float: right;
 }
-.lang-switcher-wrapper ul.list-inline {
-    line-height: 32px;
+ul.list-inline {
+    display: inline-block;
+    line-height: 30px;
 }
 ul.list-inline > [class^="Select"] {
     display: inline-block;
