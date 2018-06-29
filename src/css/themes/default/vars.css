@@ -162,3 +162,10 @@
   --side-col-mleft-767: auto;
  
 }
+
+
+@media all and (max-width: 767px){
+  .sidebar-col.col-3 .white-wrapper {
+    background: #e0ddd7;
+  }
+}
