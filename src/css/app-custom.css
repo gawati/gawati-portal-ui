@@ -162,8 +162,6 @@ body{
     float: left;
     margin-bottom: 30px;
     border-radius: var(--reacttabs-border-radius);
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
     background-color: var(--content-tab-pane-bg-color);
     box-shadow: var(--content-search-result-box-shadow);
     font-family: var(--font-1);
@@ -172,6 +170,12 @@ body{
     color: var(--content-search-result-color);
     width: 100%;
   }
+
+  .react-tabs .search-result {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+  
   .search-result h1{
     margin-bottom: 7px;
     font-family: var(--font-2);
