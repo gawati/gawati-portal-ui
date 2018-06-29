@@ -73,7 +73,6 @@ class LanguageSwitcher extends React.Component {
                     }
                     </ul>
                 </div>
-                <div>
                     <ul className="list-inline"> 
                     {
                         this.groupedArr.map(
@@ -96,7 +95,6 @@ class LanguageSwitcher extends React.Component {
                             ) 
                         }
                     </ul>
-                </div>
             </Aux>
         ); 
     }

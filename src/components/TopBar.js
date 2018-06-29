@@ -134,11 +134,11 @@ class TopBarUpper extends React.Component {
 
     render () {
         return (
-        <div className="row lang-switcher-wrapper">
-            <LanguageSwitcher i18n={this.props.i18n} match={this.props.match} />
+        <div className="lang-switcher-wrapper">
             <div onClick={this.toggleDropDown} className="dropbtn">
                 <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
             </div>
+            <LanguageSwitcher i18n={this.props.i18n} match={this.props.match} />
             <div id="myDropdown" className="dropdown-content">
                 {this.renderLoggedin()}
                 <NotifBar/>
