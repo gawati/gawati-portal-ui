@@ -25,7 +25,7 @@
       --content-text-block-color: #74737a;
       --content-button-bg-color: rgb(250, 162, 28);
       --content-button-color: #fff;
-      --content-tab-pane-bg-color: white;
+      --content-tab-pane-bg-color: transparent;
       --content-search-result-box-shadow: 0 0 0 2px #33cccc9e;
       --content-search-result-color: rgba(51, 51, 51, .67);
       --content-search-result-h1-color: #white;
@@ -201,7 +201,3 @@ footer li {
   text-align: center;
   max-width: 200px;
 }
-
-/* footer {
-  border-top: solid 5px #33cccc9e;
-} */
