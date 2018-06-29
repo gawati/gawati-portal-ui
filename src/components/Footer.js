@@ -19,7 +19,7 @@ function Footer({match, i18n}) {
     <footer>
         <div className="container-fluid">
             <div className="row">
-                <div className="col-4">
+                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <ul>
                         <li>
                             <ContentLink lang={lang} page="policies">{T("Policies")}</ContentLink>
@@ -36,7 +36,7 @@ function Footer({match, i18n}) {
                     </ul>
                 </div>
 
-                <div className="col-4">
+                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <ul>
                         <li>
                             <ContentLink lang={lang} page="who_we_are">{T("Who We Are")}</ContentLink>
@@ -56,7 +56,7 @@ function Footer({match, i18n}) {
                     </ul>
                 </div>
 
-                <div className="col-4">
+                <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <p>{T("Join over 14,000 people who receive weekly information")}</p>
                     <div className="w-form">
                         <form className="w-clearfix" data-name="Email Form 2" id="email-form-2"

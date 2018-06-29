@@ -25,7 +25,6 @@
       --content-button-bg-color: #4e7a86;
       --content-button-color: #fff;
       --content-tab-pane-bg-color: #fff;
-      --content-search-result-bg-color: #fff;
       --content-search-result-box-shadow: 0 0 0 1px #d0d0d0;
       --content-search-result-color: rgba(51, 51, 51, .67);
       --content-search-result-h1-color: #74737a;
@@ -83,7 +82,6 @@
   --reacttab-panel-border: solid 1px #d0d0d0;
 
   /* RecentDocs */
-  --feed-container-heading-bg-color: white;
 
   /* Section */
   --section-bg-color: white; /* SIG */

@@ -7,7 +7,7 @@
     width:100%;
     min-width: 400px;
     float: left;
-    overflow-x: auto;
+    overflow-x: hidden;
 }
 
 .left{

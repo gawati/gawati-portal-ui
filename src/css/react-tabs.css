@@ -5,7 +5,7 @@
     border-top: var(--reacttabs-border);
     border-left: var(--reacttabs-border);
     border-right: var(--reacttabs-border);
-    border-radius: var(--reacttabs-border-radius);    
+     
     background: var(--reacttabs-bg-image);
     transition: background-color 200ms linear;
     font-family: var(--react-tabs-tab-font);
@@ -15,6 +15,13 @@
 
 #root .react-tabs__tab:last-child{
     background-image: none;
+    border-top-right-radius: var(--reacttabs-border-radius);   
+}
+#root .react-tabs__tab--selected {
+    border-radius: 0px;
+}
+#root .react-tabs__tab:first-child{
+    border-top-left-radius: var(--reacttabs-border-radius);   
 }
 
 #root .react-tabs__tab:hover{
@@ -47,4 +54,6 @@
     border-bottom: var(--reacttab-panel-border);
     border-left: var(--reacttab-panel-border);
     border-right: var(--reacttab-panel-border);
+    border-bottom-left-radius: var(--sidebar-border-radius);
+    border-bottom-right-radius: var(--sidebar-border-radius);
 }

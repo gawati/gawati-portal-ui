@@ -585,8 +585,8 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
         let pagination = this.generatePagination();
         let content = 
             <DivTimelineListing lang={this.props.match.params.lang}>
-                <div className="row col-12">
-                    <div className="col-12 offset-2">
+                <div className="row">
+                    <div className="col-12">
                     <DivFeed>
                         <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
                     </DivFeed>
