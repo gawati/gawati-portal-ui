@@ -26,7 +26,7 @@
     display:none
   }
   .newsletter-form{
-    width: calc(100% - 30px);
+    width: calc(100% - 32px);
     height: 40px;
     display: inline;
     border-top-right-radius: 0px;
