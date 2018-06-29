@@ -134,6 +134,10 @@ box-shadow: var(--topbar-box-shadow);
     background: white; 
 }
 
+#myDropdown {
+    top: 30px;
+}
+
 .dropdown-content button {
     width: 100%;
     color: black;
