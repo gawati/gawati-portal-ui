@@ -13,16 +13,16 @@
   text-transform: uppercase;
 }
 
-.sidebar-col.col-3 a:hover,
-.sidebar-col.col-3 a:focus{
+.sidebar-col a:hover,
+.sidebar-col a:focus{
   color: var(--sidebar-a-color);
 }
 
-.sidebar-col.col-3 .Select-control {
+.sidebar-col .Select-control {
   font-family: var(--font-3);
 }
 
-.sidebar-col.col-3 small {
+.sidebar-col small {
   font-family: var(--font-3);
 }
 
@@ -43,4 +43,9 @@ h2.small-heading {
 
 .Select-control {
   border-radius: var(--sidebar-border-radius);
+}
+
+.swipe {
+  width: 25%;
+  padding-right: 15px;
 }

@@ -18,7 +18,7 @@
     float:right;
 }
 
-.sidebar-col.col-3{
+.sidebar-col{
   font-family: var(--font-2);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,7 +27,7 @@
   padding-left:0;
 }
 
-.sidebar-col.col-3{
+.sidebar-col{
   display: block;
 }
 

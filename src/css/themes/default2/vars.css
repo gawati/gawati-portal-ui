@@ -223,7 +223,7 @@
     display: none;
   }
   .default2.home .nav-brand {
-    margin-left: 50px;
+    margin-left: 30px;
   }
 
   .default2.notHome .nav-brand .logo-img {
@@ -233,11 +233,26 @@
   .default2.notHome .nav-brand .logotype {
     display: inline-block;
   }
-  .sidebar-col.col-3 .white-wrapper {
+  .sidebar-col .white-wrapper {
     background: var(--reacttabs-bg-image);
+  }
+  .sidebar-col {
+    bottom: 0px;
+    position: absolute;
+  }
+}
+
+.navigation-bar {
+  min-width: 400px;
+}
+
+@media all and (max-width: 767px)and (orientation: landscape) {
+  .sidebar-col {
+    top: 140px;
   }
 }
 
 .dropbtn {
   color: black;
 }
+

@@ -141,9 +141,6 @@ box-shadow: var(--topbar-box-shadow);
     z-index: 1;
     color:grey;
     background: white; 
-}
-
-#myDropdown {
     top: 30px;
 }
 

@@ -23,13 +23,10 @@
   }
   
   @media all and (max-width:994px){
-    .sidebar-col.col-3{
+    .sidebar-col{
       display:block;
     }
 
-    .react-autosuggest__input {
-      max-width: calc(100% - 50px);
-    }
     .nav-brand{
       /* margin:0 auto; */
       display: var(--navbrand-display-994);
@@ -136,10 +133,9 @@
       -webkit-flex: 0 0 100%!important;
       -ms-flex: 0 0 100%!important;
       flex: 0 0 100%!important;
-      padding: 0;
     }
 
-    .sidebar-col.col-3{
+    .sidebar-col{
       float:none;
       max-width: 100%!important;
       -webkit-box-flex: 0;
@@ -151,16 +147,11 @@
       max-height: 80%;
     }
 
-    .sidebar-col.col-3 .white-wrapper {
+    .sidebar-col .white-wrapper {
       height: 100%;
-    }
-     
-    .row{
-      margin:0;
     }
     .search-form-container{
       margin-top:21px;
-      padding:0;
       float: none;
     }
     .search-form .w-button{
@@ -171,7 +162,7 @@
     .text-field-2{
       width:90%;
     }
-    .sidebar-col.col-3{
+    .sidebar-col{
       max-width: 100%;
       flex: 0 0 100%;
       padding: 0;
@@ -181,7 +172,6 @@
       left: var(--sidebar-left-margin);
       right: var(--sidebar-right-margin);
       overflow-y: auto;
-      width: auto;
     }
     .d-tabs{
       margin:0;
@@ -241,14 +231,18 @@
       font-size: 12px;
       text-align: center;
     }
-    .sidebar-col.col-3 {
+    .sidebar-col {
       transition: width .3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .second-header-row {
+      padding: 0px;
     }
   }
   
-  @media all and (max-width:430px){
+  @media all and (max-width:430px) and (orientation: portrait){
 
-    .sidebar-col.col-3 {
+    .sidebar-col {
       transition: width .5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -268,19 +262,35 @@
       width: 100%;
     }
     .document-download li{
-      width:32%;
+      width:48%;
+      border-color: #40daa1;
+      border-style: dotted;
+      border-width: 1px;
+      margin-right: 4px;
     }
 
     .lang-switcher-wrapper {
-      left: 200px;
+      margin-left: calc(100% - 135px);
+      top: -220px;
+      position: relative;
+    }
+
+    .logotype h1 {
+      font-size: calc(.7 * var(--logo-h1-font-size));
     }
     
   }
 
-@media all and (min-width: 768px){
-  .sidebar-col.col-3 {
-    width: 100%!important;
+@media all and (max-width:767px) and (orientation: portrait){
+  .search-form-container {
+      padding: 0;
+    }
+}
 
+@media all and (min-width: 768px){
+  .sidebar-col {
+    width: 100%!important;
+    max-width: none;
   }
 }
   

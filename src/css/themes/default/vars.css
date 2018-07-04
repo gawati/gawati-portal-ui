@@ -165,7 +165,7 @@
 
 
 @media all and (max-width: 767px){
-  .sidebar-col.col-3 .white-wrapper {
+  .sidebar-col .white-wrapper {
     background: #e0ddd7;
   }
 }
