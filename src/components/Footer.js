@@ -39,12 +39,6 @@ function Footer({match, i18n}) {
                 <div className="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <ul>
                         <li>
-                            <ContentLink lang={lang} page="who_we_are">{T("Who We Are")}</ContentLink>
-                        </li>
-                        <li>
-                            <ContentLink lang={lang} page="what_we_do">{T("What We Do")}</ContentLink>
-                        </li>
-                        <li>
                             <ContentLink lang={lang} page="faq">{T("FAQ")}</ContentLink>
                         </li>
                         <li>
