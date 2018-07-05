@@ -72,6 +72,8 @@ function Footer({match, i18n}) {
             </div>
         </div>
         <div className="social-icons">
+            <h6 className="powered-by">{T("Powered by")}&nbsp;</h6><div className="logo-img"/>
+            <h5>{T("The African Law Library")}</h5>
             <div className="social-link-group">
                 <a
                     className="social-icon-link"
@@ -101,7 +103,6 @@ function Footer({match, i18n}) {
                     <img alt="linkedin" src={imgLinkedin} width="25"/>
                 </a>*/}
             </div>
-            <h5>{T("The African Law Library")}</h5>
         </div>
     </footer>
     );

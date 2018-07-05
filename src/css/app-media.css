@@ -81,8 +81,8 @@
   
   @media all and (max-width: 767px){
 
-    .dropdown.lang-list {
-      display: inline;
+    .logotype h1 {
+      font-size: calc(.7 * var(--logo-h1-font-size));
     }
 
     ul.list-inline {
@@ -106,8 +106,7 @@
     .d-tabs .tab-menu li{
       width: 100%;
     }
-    .navigation-bar{
-    }
+    
     .navigation-bar .container{
       height: auto
     }
@@ -269,17 +268,15 @@
       margin-right: 4px;
     }
 
-    .lang-switcher-wrapper {
-      margin-left: calc(100% - 135px);
-      top: -220px;
-      position: relative;
-    }
-
-    .logotype h1 {
-      font-size: calc(.7 * var(--logo-h1-font-size));
-    }
-    
   }
+
+@media all and (max-width:500px) and (orientation: portrait){
+  .lang-switcher-wrapper {
+    margin-left: calc(100% - 135px);
+    top: -220px;
+    position: relative;
+  }
+}
 
 @media all and (max-width:767px) and (orientation: portrait){
   .search-form-container {

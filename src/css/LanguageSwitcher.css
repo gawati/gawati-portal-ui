@@ -38,6 +38,7 @@ ul.lang-list.show {
     top: 0px;
     right: 30px;
     text-align: right;
+    font-size: 12px;
 }
 
 .current-lang {
@@ -49,11 +50,11 @@ ul.lang-list.show {
 .lang.dropbtn {
     background: var(--reacttabs-bg-image);
     color: #74737a;    
+    display: none;
 }
 
 .dropbtn {
-    padding: 2px;
-    font-size: 13px;
+    font-size: 12px;
     border: none;
     cursor: pointer;
     margin-left: 15px;
@@ -61,7 +62,7 @@ ul.lang-list.show {
 }
 
 .dropdown.lang-list {
-    display: none;
+    display: inline;
     float: right;
 }
 ul.list-inline {

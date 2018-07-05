@@ -19,7 +19,7 @@ import themes from '../configs/themes.json';
 const Logo = () =>
     <Aux>
         <NavLink className="nav-brand" to="/">
-            <div className="logo-img"/>
+            <div className="logo-img-top"/>
             <SiteHeading />
         </NavLink>
         {/* <h2>{ T("custom:innovative access to law") }</h2> */}
@@ -171,7 +171,7 @@ class TopBar extends React.Component {
         let routeClass = route === undefined ? "home" : "notHome";
         let {cName, cName2} = themes[theme][routeClass];
     	return (
-            <header className={`navigation-bar ${theme} ${routeClass}`}>
+            <header className={`navigation-bar ${theme}`}>
                 <Logo />
                 <div className="container-fluid second-header-row">
                     

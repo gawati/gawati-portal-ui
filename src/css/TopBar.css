@@ -7,10 +7,6 @@
     margin-left: var(--logo-left-margin);
 }
 
-/* .nav-brand .logo-img{
-width:90px;
-} */
-
 .nav-brand > .logotype h1{
     display: var(--navbrand-h1-display);
 }
@@ -53,17 +49,17 @@ color: var(--logo-color2);
 display: var(--logo-h2-display);
 }
 
-.logo-img {
-    background-image: var(--logo-img);
+.logo-img-top {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    height: var(--logo-img-height); /*or your image's height*/
-    margin: 0;
+    height: 24px; /*or your image's height*/
+    margin: 2px 0 0 8px;
     padding: 0;
-    width: var(--logo-img-width); /*or your image's width*/
+    width: 24px; /*or your image's width*/
     display: inline-block;
     float: var(--logo-img-float);
+    background-image: var(--logo-img-top);
 }
 .search-form-container {
 float:right;
@@ -76,7 +72,7 @@ vertical-align: top;
 
 .navigation-bar{
 width:100%;
-min-width: 430px;
+min-width: 480px;
 float: left;
 padding-bottom: 0;
 background: var(--topbar-bg);

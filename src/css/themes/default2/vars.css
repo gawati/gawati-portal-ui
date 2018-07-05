@@ -111,6 +111,7 @@
   --topbar-submit-button-bg-color: #4e7a86;
   --topbar-box-shadow:  0 1px 0 0 rgba(0, 0, 0, .06);
   --logo-img: url("../../themes/default/assets/logo.png");
+  --logo-img-top: url("../../themes/default/assets/creative-commons-logo.png");  
   --logo-img-float: left;
   --logo-img-height: 25px;
   --logo-img-width: 45px;
@@ -242,9 +243,9 @@
   }
 }
 
-.navigation-bar {
-  min-width: 400px;
-}
+/* .navigation-bar {
+  min-width: 480px;
+} */
 
 @media all and (max-width: 767px)and (orientation: landscape) {
   .sidebar-col {
@@ -256,3 +257,6 @@
   color: black;
 }
 
+.lang.dropbtn {
+  display: initial;
+}
