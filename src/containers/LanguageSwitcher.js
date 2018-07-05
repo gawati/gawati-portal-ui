@@ -28,6 +28,7 @@ class LanguageSwitcher extends React.Component {
         const { router } = this.context;
         router.history.push(newRoute);
         this.setState({ currentLang: selected.lang});
+        this.toggleDropDown();
     }
 
     componentWillReceiveProps (props) {
@@ -61,19 +62,19 @@ class LanguageSwitcher extends React.Component {
                                 group.map(g => (
                                     <div key={ `ui-lang-${g.lang}`} 
                                         className={ `lang-list-item ui-lang-item ${ g.lang === this.props.i18n.language ? "ui-lang-highlight": "" }`}>
-                                        <NavLink to={ editInRoute({lang:g.lang}, this.props.match) }>{g.content}</NavLink>
+                                        <p onClick={ () => this.onLangChange({lang:g.lang}) }>{g.content}</p>
                                     </div>
                                 ))
                                 :
                                 <div key={ `ui-lang-${group[0].lang}`} 
                                     className={ `lang-list-item ui-lang-item ${ group[0].lang === this.props.i18n.language ? "ui-lang-highlight": "" }`}>
-                                    <NavLink to={ editInRoute({lang:group[0].lang}, this.props.match) }>{group[0].content}</NavLink>
+                                    <p onClick={ () => this.onLangChange({lang:group[0].lang}) }>{group[0].content}</p>
                                 </div>
                         ) 
                     }
                     </ul>
                 </div>
-                    <ul className="list-inline"> 
+                    {/* <ul className="list-inline"> 
                     {
                         this.groupedArr.map(
                             group => 
@@ -94,7 +95,7 @@ class LanguageSwitcher extends React.Component {
                                 </div>
                             ) 
                         }
-                    </ul>
+                    </ul> */}
             </Aux>
         ); 
     }
