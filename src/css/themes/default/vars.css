@@ -127,7 +127,7 @@
   --logotype-h1-bg: white;
   --logotype-h1-height: 20%;
   --logotype-h1-width: auto;
-  --logotype-h1-lineht: auto;
+  --logotype-h1-lineht: 24px;
   --logotype-h1-font: auto;
   --logo-h1-font-size: 1.4rem;
   --logo-h2-font-size: 1.2rem;
@@ -169,4 +169,13 @@
   .sidebar-col .white-wrapper {
     background: #e0ddd7;
   }
+}
+
+@media (max-width: 500px) and (orientation: portrait)
+{
+.lang-switcher-wrapper {
+    margin-left: calc(100% - 160px);
+    top: -205px;
+    position: relative;
+}
 }

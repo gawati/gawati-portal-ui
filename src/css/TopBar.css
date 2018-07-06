@@ -53,8 +53,8 @@ display: var(--logo-h2-display);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 24px; /*or your image's height*/
-    margin: 2px 0 0 8px;
+    height: calc( 1.7 * var(--logotype-h1-lineht));
+    margin: 0px 2px 0 0px;
     padding: 0;
     width: 24px; /*or your image's width*/
     display: inline-block;

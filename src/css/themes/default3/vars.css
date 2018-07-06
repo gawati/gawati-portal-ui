@@ -211,7 +211,6 @@ footer li {
   padding: 0;
   width: 24px;
   display: inline-block;
-  float: var(--logo-img-float);
   background-image: var(--logo-img-top);
 }
 
