@@ -202,18 +202,6 @@ footer li {
   max-width: 200px;
 }
 
-.logo-img-top {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: calc( 1.7 * var(--logotype-h1-lineht));
-  margin: 0px 2px 0 8px;
-  padding: 0;
-  width: 24px;
-  display: inline-block;
-  background-image: var(--logo-img-top);
-}
-
 @media (max-width: 994px) {
   .nav-brand .logo-img-top {
     float: none;

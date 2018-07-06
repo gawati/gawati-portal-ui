@@ -131,7 +131,7 @@
   --logotype-h1-width: auto;
   --logo-h1-font-size: 1.4rem;
   --logo-h2-font-size: 1.2rem;
-  --logotype-h1-lineht: auto;
+  --logotype-h1-lineht: 24px;
   --logotype-h1-font: auto;
   --navbrand-h1-display: block;
   --logo-h2-mleft: 0px;
@@ -165,4 +165,35 @@
   --search-form-side-col-mtop-994: initial;
   --search-form-side-col-mtop-767: initial;
  
+}
+
+@media (max-width: 994px) {
+  .nav-brand .logo-img-top {
+    float: none;
+  }
+}
+
+.navigation-bar, section.section {
+  min-width: 400px;
+}
+
+@media (max-width: 500px) and (orientation: portrait)
+{
+  .lang-switcher-wrapper {
+    margin-left: calc(100% - 150px);
+    top: -190px;
+    position: relative;
+}
+}
+
+.lang.dropbtn {
+  background: white;
+}
+
+@media all and (max-width: 767px){
+  .sidebar-col {
+    top: 140px;
+    border: solid 1px rgb(250, 162, 28);
+  }
+  
 }
