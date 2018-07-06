@@ -88,6 +88,10 @@
     ul.list-inline {
       display: none;
     }
+
+    .lang.dropbtn {
+      display: inline;
+    }
   
     .section .container{
       padding: 0

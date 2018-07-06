@@ -5,7 +5,7 @@
     background-color: var(--section-bg-color);
     color: var(--section-color);
     width:100%;
-    min-width: 400px;
+    min-width: 480px;
     float: left;
     overflow-x: hidden;
 }

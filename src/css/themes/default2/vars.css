@@ -110,8 +110,8 @@
   --topbar-bg: white; /* SIG */ 
   --topbar-submit-button-bg-color: #4e7a86;
   --topbar-box-shadow:  0 1px 0 0 rgba(0, 0, 0, .06);
-  --logo-img: url("../../themes/default/assets/logo.png");
-  --logo-img-top: url("../../themes/default/assets/creative-commons-logo.png");  
+  --logo-img: url("../../themes/default2/assets/logo.png");
+  --logo-img-top: url("../../themes/default2/assets/creative-commons-logo.png");  
   --logo-img-float: left;
   --logo-img-height: 25px;
   --logo-img-width: 45px;

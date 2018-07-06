@@ -109,3 +109,6 @@ ul.list-inline .Select-arrow-zone {
 .Select-placeholder, .Select--single > .Select-control .Select-value {
     line-height: inherit!important;
 }
+.Select-option {
+    line-height: 13px;
+}
