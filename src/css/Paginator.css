@@ -20,9 +20,9 @@ ul.gw-pager {margin: auto; padding-bottom:40px; display: table;}
 }
 
 .gw-pager>.disabled>a, .gw-pager>.disabled>a:focus, .gw-pager>.disabled>a:hover, .gw-pager>.disabled>span, .gw-pager>.disabled>span:focus, .gw-pager>.disabled>span:hover {
-    color: var(--paginator-li-disabled-color);
+    color: #777777;
     cursor: not-allowed;
-    border-color: var(--paginator-li-disabled-border-color);
+    border-color: #ddd;
 }
 
 .gw-pager>li {

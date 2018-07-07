@@ -6,7 +6,7 @@
 .cc-law-libray{
   margin-bottom: 0px;
   font-family: var(--font-2);
-  color: var(--sidebar-footer-color);
+  color: #aaa;
   font-size: 11px;
   text-align: center;
   letter-spacing: 1.2px;
@@ -29,7 +29,7 @@
 .white-wrapper {
   padding: 20px;
   border-radius: var(--sidebar-border-radius);
-  background-color: var(--sidebar-bg-color);
+  background-color: white;
   box-shadow: var(--content-search-result-box-shadow);
 }
 h2.small-heading {

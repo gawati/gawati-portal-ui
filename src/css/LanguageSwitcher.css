@@ -11,7 +11,7 @@
     /*optional*/
     font-family:arial,sans-serif;  /*input has OS specific font-family*/
     /* color:#069; */
-    color: var(--languageswitcher-color);
+    color: #a9a9a9;
     /*text-decoration:underline;*/
     cursor:pointer;
     text-transform: uppercase; 

@@ -58,7 +58,7 @@ display: var(--logo-h2-display);
     padding: 0;
     width: 24px; /*or your image's width*/
     display: inline-block;
-    float: var(--logo-img-float);
+    float: left;
     background-image: var(--logo-img-top);
 }
 .search-form-container {
@@ -72,17 +72,16 @@ vertical-align: top;
 
 .navigation-bar{
 width:100%;
-min-width: 480px;
 float: left;
 padding-bottom: 0;
 background: var(--topbar-bg);
-box-shadow: var(--topbar-box-shadow);
+box-shadow: 0 1px 0 0 rgba(0, 0, 0, .06);
 }
 
 .navigation-bar .version-info {
     padding: 5px;
-    color: var(--version-color);
-    font-size: var(--version-font-size);
+    color: lightgrey;
+    font-size: initial;
 }
 
 .submit-button {
@@ -173,11 +172,11 @@ box-shadow: var(--topbar-box-shadow);
 .second-header-row {
     display: var(--second-header-row-display);
     text-align: var(--second-header-text-align);
-    margin-top: var(--second-header-mtop);
+    margin-top: 50px;
 }
 
 .search-form .w-button {
-    height: var(--search-input-height);
+    height: 40px;
 }
 
 .nav-brand .logotype h2 {

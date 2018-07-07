@@ -171,7 +171,7 @@ class TopBar extends React.Component {
         let routeClass = route === undefined ? "home" : "notHome";
         let {cName, cName2} = themes[theme][routeClass];
     	return (
-            <header className={`navigation-bar ${theme}`}>
+            <header className={`navigation-bar ${theme} ${routeClass}`}>
                 <Logo />
                 <div className="container-fluid second-header-row">
                     
