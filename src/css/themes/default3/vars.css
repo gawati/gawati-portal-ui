@@ -87,10 +87,10 @@
   /* Section */
   --section-bg-color: #fff; /* SIG */
   --section-color: rgb(250, 162, 28);
-  --section-flex-dir: row-reverse;
+  --section-flex-dir: row;
 
   /* Sidebar */
-  --sidebar-col-position: left;
+  --sidebar-col-position: right;
   --sidebar-footer-color: #aaa;
   --sidebar-a-color: #a9a9a9;
   --sidebar-bg-color: white;
@@ -151,8 +151,8 @@
 
   
   /* Media */
-  --sidebar-left-margin: 0px;
-  --sidebar-right-margin: auto;
+  --sidebar-left-margin: auto;
+  --sidebar-right-margin: 0px;
   --search-form-submit-btn-ht: 40px;
   --navbrand-mtop-994: 30px;
   --navbrand-display-994: block;
