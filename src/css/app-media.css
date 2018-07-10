@@ -310,4 +310,10 @@
     max-width: none;
   }
 }
+
+@media (max-width: 576px) {
+  .lang-switcher-wrapper {
+    right: 15px;
+  }
+}
   

@@ -31,7 +31,7 @@ class HomeContentArea extends React.Component {
     render() {
         const {match} = this.props;
         return (
-            <Section setFlexDirection={this.setFlexDirection} altClasses="home-content-area">
+            <Section setFlexDirection={this.setFlexDirection} altClasses="home-content-area home">
                 <HomeContentColumn lang={match.params.lang}/>
                 <SideBarColumn match={match} setCollapsible={this.props.setCollapsible} slideToggle={this.props.slideToggle} flexDirection={this.state.flexDirection}/>
             </Section>

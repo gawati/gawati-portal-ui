@@ -88,7 +88,7 @@
   --logotype-h1-bg: #40daa1;
   --logotype-h1-height: 75px;
   --logo-h1-font-size: 2rem;
-  --logotype-h1-lineht: 75px;
+  --logotype-h1-lineht: 75px!important;
   --logotype-h1-font: inherit;
   --logo-h2-font-size: 1.4em;
   --navbrand-h1-display: none;
@@ -116,35 +116,41 @@
 /* THEME CLASSES */
 
 /* Second header row */
-.default2-op2.notHome .second-header-row > .logotype {
+.notHome .second-header-row > .logotype {
   width: calc(100% - 30px);
 }
 
-.default2-op2.notHome .second-header-row > .logotype h1 {
+.notHome .second-header-row > .logotype h1 {
   width: auto;
   height: 30px;
   font-size: 20px;
-  line-height: 30px;
   padding: 0px 10px 0px 10px;
 }
 
-.default2-op2.notHome .second-header-row {
+ .second-header-row .logotype h2 {
+  display: none;
+}
+
+.notHome .second-header-row {
   text-align: center;
   display: inline;
 }
 
-/* Nav-brand */
-.default2-op2 .second-header-row .logotype h1 {
+.second-header-row .logotype h1 {
   padding: 0px 15px 0px 15px;
   margin-top: 5px;
 }
 
-.default2-op2 .nav-brand .logotype {
+.home .second-header-row .logotype h1 {
+  line-height: 75px;
+}
+/* Nav-brand */
+ .nav-brand .logotype {
   vertical-align: center;
   height: 25px;
 }
 
-.default2-op2 .nav-brand .logotype h2 {
+ .nav-brand .logotype h2 {
   line-height: 25px;
   font-size: 24px;
   width: auto;
@@ -159,7 +165,7 @@
   height: 30px;
 }
 
-.default2-op2.notHome .search-form-container {
+.notHome .search-form-container {
   margin-top: 40px;
   margin-bottom: 20px;
   float: left;
@@ -172,10 +178,6 @@ ul.list-inline {
   display: none;
 }
 
-@media (max-width: 994px)
-{  
-}
-
 @media (max-width: 767px) {
 
   .nav-brand .logo-img {
@@ -184,7 +186,7 @@ ul.list-inline {
     float: left;
   }
 
-  .default2-op2 .nav-brand .logotype h2 {
+   .nav-brand .logotype h2 {
     font-size: 12px;
   }
   .notHome .sidebar-col {

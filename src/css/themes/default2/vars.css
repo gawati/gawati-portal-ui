@@ -88,7 +88,7 @@
   --logotype-h1-bg: #40daa1;
   --logotype-h1-height: 75px;
   --logo-h1-font-size: 2rem;
-  --logotype-h1-lineht: 75px;
+  --logotype-h1-lineht: 75px!important;
   --logotype-h1-font: inherit;
   --logo-h2-font-size: 1.4em;
   --navbrand-h1-display: none;
@@ -115,25 +115,33 @@
 /* THEME CLASSES */
 
 /* Second header row */
-.default2.notHome .second-header-row {
+
+.second-header-row {
+  margin-top: 0px;
+}
+.notHome .second-header-row {
   text-align: left;
   display: inline;  
 }
 
-.default2.notHome .second-header-row > .logotype {
+.notHome .second-header-row > .logotype {
   display: none;
 }
 
-.default2 .second-header-row .logotype h1 {
+ .second-header-row .logotype h1 {
   padding: 0px 15px 0px 15px;
 }
 
-/* nav-brand */
-.default2.notHome .nav-brand .logotype h2 {
+ .second-header-row .logotype h2 {
   display: none;
 }
 
-.default2.notHome .nav-brand .logotype h1 {
+/* nav-brand */
+.notHome .nav-brand .logotype h2 {
+  display: none;
+}
+
+.notHome .nav-brand .logotype h1 {
   display: inline-block;
   height: 25px;
   line-height: 25px;
@@ -141,13 +149,13 @@
   padding: 2px 10px;  
 }
 
-.default2 .nav-brand .logotype {
+ .nav-brand .logotype {
   vertical-align: center;
   height: 25px;
   padding: 0px 5px;
 }
 
-.default2 .nav-brand .logotype h2 {
+ .nav-brand .logotype h2 {
   line-height: 30px;
   font-size: 24px;
   width: auto;
@@ -161,7 +169,7 @@
   height: 30px;
 }
 
-.default2.notHome .search-form-container {
+.notHome .search-form-container {
   margin-top: 25px;
   float: left;
 }
@@ -186,18 +194,18 @@ ul.list-inline {
 /* Media */
 
 @media all and (max-width: 767px){
-  .default2.home .nav-brand .logotype h2 {
+  .home .nav-brand .logotype h2 {
     display: none;
   }
-  .default2.home .nav-brand {
+  .home .nav-brand {
     margin-left: 30px;
   }
 
-  .default2.notHome .nav-brand .logo-img {
+  .notHome .nav-brand .logo-img {
     display: inline-block;
     margin-left: 10px;
   }
-  .default2.notHome .nav-brand .logotype {
+  .notHome .nav-brand .logotype {
     display: inline-block;
   }
   .sidebar-col .white-wrapper {

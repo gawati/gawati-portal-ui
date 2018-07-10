@@ -383,3 +383,7 @@ body{
   .navigation-bar, section.section {
     min-width: 400px;
   }
+
+  .main-col, .sidebar-col{
+    text-align: left;
+  }
