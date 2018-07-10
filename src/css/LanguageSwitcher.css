@@ -39,6 +39,7 @@ ul.lang-list.show {
     right: 30px;
     text-align: right;
     font-size: 12px;
+    margin-bottom: 10px;
 }
 
 .current-lang {

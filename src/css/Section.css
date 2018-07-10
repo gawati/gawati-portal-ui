@@ -41,6 +41,6 @@
   /*line-height: 135%;*/
   text-align: left;
 }
-#root > section > .container-fluid > .row {
+#root > section > .second-header-row .row {
   flex-direction: var(--section-flex-dir);
 }

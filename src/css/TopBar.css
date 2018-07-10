@@ -3,19 +3,19 @@
     vertical-align:top;
     clear: both;
     float: left;
-    margin-top: var(--logo-top-margin);
-    margin-left: var(--logo-left-margin);
+    margin-top: var(--navbrand-top-margin);
+    margin-left: 30px;
 }
 
 .nav-brand > .logotype h1{
     display: var(--navbrand-h1-display);
 }
 
-.container-fluid > .logotype {
-    display: var(--heading-alongside-search);
+.second-header-row .logotype {
+    display: var(--heading-above-search);
 }
 
-.container-fluid > .logotype h1{
+.second-header-row .logotype h1{
     display: inherit;
     font-family: var(--font-1);
 }
@@ -25,28 +25,15 @@ display:inline-block;
 vertical-align:top;
 }
 
-.second-header-row .logotype {
-    width: var(--logotype-h1-width);
-}
-
 .logotype h1{
     font-size: var(--logo-h1-font-size);
     color: var(--logo-color);
-    margin-bottom: var(--logo-h1-mbottom);
+    margin-bottom: 0px;
     background: var(--logotype-h1-bg);
     height: var(--logotype-h1-height);
-    width: var(--logotype-h1-width);
-    line-height: var(--logotype-h1-lineht);
+    /* width: var(--logotype-h1-width); */
+    /* line-height: var(--logotype-h1-lineht); */
     
-}
-
-.logotype h2{
-margin-top: -12px;
-margin-bottom: 0px;
-font-size:1.2rem;
-letter-spacing: 0.07rem;
-color: var(--logo-color2);
-display: var(--logo-h2-display);
 }
 
 .logo-img-top {

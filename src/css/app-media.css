@@ -56,11 +56,6 @@
       margin: 1% auto 0
     }
 
-    .login {
-      line-height: var(--login-lineht-994);
-      font-size: var(--login-font-size-994);
-    }
-
     .bell {
       width: 1.4em;
     }
@@ -70,7 +65,7 @@
     }
 
     .search-form-container {
-      margin-top: 20px
+      margin-top: 0px
     }
   
   }
@@ -180,8 +175,8 @@
       position: fixed;
       bottom: 0px;
       z-index: 7;
-      left: var(--sidebar-left-margin);
-      right: var(--sidebar-right-margin);
+      left: var(--sidebar-left-margin-767);
+      right: var(--sidebar-right-margin-767);
       overflow-y: auto;
     }
     .d-tabs{

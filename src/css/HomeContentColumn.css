@@ -9,6 +9,10 @@
     cursor: pointer;
 }
 
+.button-wrapper {
+  padding: 16px;
+}
+
 /* tabs */
     /*.tab-menu {
         position: relative;

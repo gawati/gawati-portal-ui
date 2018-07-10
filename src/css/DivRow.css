@@ -1,4 +1,4 @@
-#root .notHome > section > .container-fluid > .row  {
+#root .notHome > section > .second-header-row .row  {
   display: table !important;
   /* width: 100%; */
 }

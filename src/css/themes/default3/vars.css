@@ -82,18 +82,12 @@
   --logo-img-height: 50px;
   --logo-img-width: 90px;
   --logo-color: white;
-  --logo-color2: white;
-  --logo-h2-display: inherit;
-  --logo-top-margin: 30px;
-  --logo-left-margin: 20px;
-  --logo-h1-mbottom: 0px;
-  --heading-alongside-logo: inline-block;
-  --heading-alongside-search: none;
+  --navbrand-top-margin: 30px;
+  --heading-above-search: none;
   --second-header-row-display: inline;
   --second-header-text-align: initial;
   --logotype-h1-bg: transparent;
   --logotype-h1-height: 20%;
-  --logotype-h1-width: auto;
   --logo-h1-font-size: 1.4rem;
   --logo-h2-font-size: 1.2rem;
   --logotype-h1-lineht: 30px;
@@ -110,15 +104,12 @@
   --lang-switch-font-size: 13px;
   
   /* Media */
-  --sidebar-left-margin: auto;
-  --sidebar-right-margin: 0px;
+  --sidebar-left-margin-767: auto;
+  --sidebar-right-margin-767: 0px;
   --search-form-submit-btn-ht: 40px;
   --navbrand-mtop-994: 30px;
   --navbrand-display-994: block;
-  --login-lineht-994: 2em;
-  --login-font-size-994: 1em;
-  --login-font-size: 12px;
-  --navbrand-float-767: none;
+  --navbransd-float-767: none;
  
 }
 

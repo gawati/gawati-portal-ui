@@ -29,7 +29,6 @@
   /* Footer */
   --footer-bg-color: #3f474d;
     --footer-color: #dddada;
-  --footer-bg-color2: #171b1d;
   --footer-a-color: #dddada;
   --footer-submit-bg: #3898ec;
     --footer-submit-color: #fff;
@@ -82,18 +81,12 @@
   --logo-img-height: 50px;
   --logo-img-width: 90px;
   --logo-color: #7a737a;
-  --logo-color2: #7a737a;
-  --logo-h2-display: initial;
-  --logo-top-margin: 50px;
-  --logo-left-margin: 30px;
-  --logo-h1-mbottom: initial;
-  --heading-alongside-search: none;
-  --heading-alongside-logo: inline-block;
+  --navbrand-top-margin: 50px;
+  --heading-above-search: none;
   --second-header-row-display: initial;
   --second-header-text-align: initial;
   --logotype-h1-bg: white;
   --logotype-h1-height: 20%;
-  --logotype-h1-width: auto;
   --logotype-h1-lineht: 24px;
   --logotype-h1-font: auto;
   --logo-h1-font-size: 1.4rem;
@@ -110,13 +103,10 @@
   --lang-switch-font-size: 12px;
 
   /* Media */
-  --sidebar-left-margin: auto;
-  --sidebar-right-margin: 0px;
+  --sidebar-left-margin-767: auto;
+  --sidebar-right-margin-767: 0px;
   --navbrand-mtop-994: 30px;
   --navbrand-display-994: block;
-  --login-lineht-994: auto;
-  --login-font-size-994: 1em;
-  --login-font-size: 12px;
   --navbrand-float-767: none;
  
 }
