@@ -141,6 +141,11 @@
       flex: 0 0 100%!important;
     }
 
+    .main-col {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
     .sidebar-col{
       float:none;
       max-width: 100%!important;
@@ -285,13 +290,13 @@
 
   }
 
-@media all and (max-width:500px) and (orientation: portrait){
+/* @media all and (max-width:500px) and (orientation: portrait){
   .lang-switcher-wrapper {
     margin-left: calc(100% - 135px);
     top: -220px;
     position: relative;
   }
-}
+} */
 
 @media all and (max-width:767px) and (orientation: portrait){
   .search-form-container {

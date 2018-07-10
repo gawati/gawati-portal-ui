@@ -113,14 +113,33 @@
   
 }
 
-@media (max-width: 500px) and (orientation: portrait)
+.logo-img-top {
+  height: 50px;
+  width: 45px;
+  margin-right: 5px;
+}
+
+.swipe {
+  width: 25%;
+  padding-left: 30px;
+  padding-right: 0px;
+}
+
+@media (min-width: 767px) {
+  .main-col {
+    padding-left:15px;
+    padding-right: 30px;
+  }
+}
+
+/* @media (max-width: 500px) and (orientation: portrait)
 {
   .lang-switcher-wrapper {
     margin-left: calc(100% - 150px);
     top: -190px;
     position: relative;
 }
-}
+} */
 
 .lang.dropbtn {
   background: white;

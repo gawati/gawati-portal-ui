@@ -195,7 +195,7 @@ ul.list-inline {
 .dropbtn {
   color: black;
 }
-
+/* 
 @media (max-width: 500px) and (orientation: portrait) {
   .lang-switcher-wrapper {
     margin-left: calc(100% - 160px);
@@ -204,8 +204,8 @@ ul.list-inline {
 .notHome .lang-switcher-wrapper {
     margin-left: calc(100% - 180px);
     top: -190px;
-}
-}
+} 
+} */
 .lang.dropbtn {
   display: initial;
 }

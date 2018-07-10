@@ -147,7 +147,7 @@ footer li {
   max-width: 200px;
 }
 
-@media (max-width: 500px) and (orientation: portrait) {
+/* @media (max-width: 500px) and (orientation: portrait) {
   .lang-switcher-wrapper {
     margin-left: calc(100% - 160px);
     top: -235px;
@@ -156,5 +156,5 @@ footer li {
     margin-left: calc(100% - 180px);
     top: -190px;
 }
-}
+} */
 
