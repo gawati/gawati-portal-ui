@@ -19,7 +19,7 @@ import themes from '../configs/themes.json';
 const Logo = () =>
     <Aux>
         <NavLink className="nav-brand" to="/">
-            <div className="logo-img"/>
+            <div className="logo-img-top"/>
             <SiteHeading />
         </NavLink>
         {/* <h2>{ T("custom:innovative access to law") }</h2> */}

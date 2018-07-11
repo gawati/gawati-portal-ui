@@ -29,7 +29,7 @@ li.ui-ac-item:hover ,.ui-ac-item-render:hover, .ui-ac-item-render-content:hover 
 .ui-act-item-meta li {
   display: inline;
   text-transform: uppercase;
-  color: var(--sitesearch-li-color);
+  color: #a9a9a9;
   /* white-space: nowrap should be moved to child A because IE fails to wrap resulting list completely */
 }
 .ui-act-item-meta li::before {
@@ -42,7 +42,7 @@ li.ui-ac-item:hover ,.ui-ac-item-render:hover, .ui-ac-item-render-content:hover 
   content: ' ';
   white-space: normal;
   word-spacing: 1em; 
-  background-image: var(--sitesearch-bg-image);
+  background-image: radial-gradient(circle, black, black 7%, transparent 15%, transparent 35%, black 45%, black 48%, transparent 55%);
   background-size: .5em .5em;
   background-repeat: no-repeat;
   background-position: center center;
@@ -50,8 +50,8 @@ li.ui-ac-item:hover ,.ui-ac-item-render:hover, .ui-ac-item-render-content:hover 
 }
 
 input[data-loading="yes"] {
-  background-color: var(--sitesearch-loading-bg-color);
-  background-image: var(--sitesearch-loading-bg-image);
+  background-color: #ffffff;
+  background-image: url("http://loadinggif.com/images/image-selection/3.gif");
   background-size: 25px 25px;
   background-position:right center;
   background-repeat: no-repeat;

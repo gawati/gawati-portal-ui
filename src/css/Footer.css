@@ -51,8 +51,8 @@
   }
 
   .social-icons h5{
-    margin-top: 14px;
-    margin-bottom: 0px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     font-family: var(--font-2);
     color: var(--footer-social-color);
     font-size: 12px;
@@ -83,4 +83,20 @@
     color: var(--footerp-color);
     font-size: 14px;
   }
-/* footer */
+
+  footer .powered-by {
+    line-height: 36px;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+  .logo-img {
+    height: var(--logo-img-height); /*or your image's height*/
+    background-image: var(--logo-img);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: var(--logo-img-width); /*or your image's width*/
+    display: inline-block;
+    vertical-align: text-bottom;
+}

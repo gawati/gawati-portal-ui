@@ -182,7 +182,7 @@ class SideBarColumn extends React.Component{
                 >
                 <div id="filter-container">
                     <ToastContainer />
-                    <div className={ `sidebar-col col-3` } ref={this.props.setCollapsible}>
+                    <div className={ `sidebar-col` } ref={this.props.setCollapsible}>
                         <div className={ `w-clearfix white-wrapper` }>
                             {save_search_modal_content}
                             <Filter match={ match } i18n={ i18n }/>

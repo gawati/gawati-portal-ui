@@ -23,11 +23,14 @@ class LanguageSwitcher extends React.Component {
     }
     
 
-    onLangChange = (selected) => {
+    onLangChange = (selected, full) => {
         var newRoute = editInRoute({lang:selected.lang}, this.props.match);
         const { router } = this.context;
         router.history.push(newRoute);
         this.setState({ currentLang: selected.lang});
+        if (full) {
+            this.toggleDropDown();
+        }
     }
 
     componentWillReceiveProps (props) {
@@ -40,7 +43,6 @@ class LanguageSwitcher extends React.Component {
     toggleDropDown = () => {
         document.getElementById("lang-dropdown").classList.toggle("show");
     }; 
-
 
     render () {
         const _defaultSelected = filter(this.langs, { 'lang': this.props.i18n.language })[0] || defaultUiLang();
@@ -61,13 +63,13 @@ class LanguageSwitcher extends React.Component {
                                 group.map(g => (
                                     <div key={ `ui-lang-${g.lang}`} 
                                         className={ `lang-list-item ui-lang-item ${ g.lang === this.props.i18n.language ? "ui-lang-highlight": "" }`}>
-                                        <NavLink to={ editInRoute({lang:g.lang}, this.props.match) }>{g.content}</NavLink>
+                                        <p onClick={ () => this.onLangChange({lang:g.lang}, 'full') }>{g.content}</p>
                                     </div>
                                 ))
                                 :
                                 <div key={ `ui-lang-${group[0].lang}`} 
                                     className={ `lang-list-item ui-lang-item ${ group[0].lang === this.props.i18n.language ? "ui-lang-highlight": "" }`}>
-                                    <NavLink to={ editInRoute({lang:group[0].lang}, this.props.match) }>{group[0].content}</NavLink>
+                                    <p onClick={ () => this.onLangChange({lang:group[0].lang}, 'full') }>{group[0].content}</p>
                                 </div>
                         ) 
                     }

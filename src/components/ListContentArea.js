@@ -40,7 +40,7 @@ class ListContentArea extends React.Component{
     render () {
         const { match, i18n } = this.props;
         return (
-            <Section setFlexDirection={this.setFlexDirection} altClasses="search-content-area">
+            <Section setFlexDirection={this.setFlexDirection} altClasses={`search-content-area notHome`}>
                 <Switch>
                     <Route path={ getRoute('recent') } component={ListContentColumn} />
                     <Route path={ getRoute('themes') } component={ListThemeContentColumn} />

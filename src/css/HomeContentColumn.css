@@ -2,11 +2,15 @@
     display: inline-block;
     padding: 9px 15px;
     background-color: var(--home-wbutton-bg-color);
-    color: var(--home-wbutton-color);
+    color: #ffffff;
     border: 0;
     line-height: inherit;
     text-decoration: none;
     cursor: pointer;
+}
+
+.button-wrapper {
+  padding: 16px;
 }
 
 /* tabs */

@@ -3,23 +3,19 @@
     vertical-align:top;
     clear: both;
     float: left;
-    margin-top: var(--logo-top-margin);
-    margin-left: var(--logo-left-margin);
+    margin-top: var(--navbrand-top-margin);
+    margin-left: 30px;
 }
-
-/* .nav-brand .logo-img{
-width:90px;
-} */
 
 .nav-brand > .logotype h1{
     display: var(--navbrand-h1-display);
 }
 
-.container-fluid > .logotype {
-    display: var(--heading-alongside-search);
+.second-header-row .logotype {
+    display: var(--heading-above-search);
 }
 
-.container-fluid > .logotype h1{
+.second-header-row .logotype h1{
     display: inherit;
     font-family: var(--font-1);
 }
@@ -29,41 +25,28 @@ display:inline-block;
 vertical-align:top;
 }
 
-.second-header-row .logotype {
-    width: var(--logotype-h1-width);
-}
-
 .logotype h1{
     font-size: var(--logo-h1-font-size);
     color: var(--logo-color);
-    margin-bottom: var(--logo-h1-mbottom);
+    margin-bottom: 0px;
     background: var(--logotype-h1-bg);
     height: var(--logotype-h1-height);
-    width: var(--logotype-h1-width);
-    line-height: var(--logotype-h1-lineht);
+    /* width: var(--logotype-h1-width); */
+    /* line-height: var(--logotype-h1-lineht); */
     
 }
 
-.logotype h2{
-margin-top: -12px;
-margin-bottom: 0px;
-font-size:1.2rem;
-letter-spacing: 0.07rem;
-color: var(--logo-color2);
-display: var(--logo-h2-display);
-}
-
-.logo-img {
-    background-image: var(--logo-img);
+.logo-img-top {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    height: var(--logo-img-height); /*or your image's height*/
-    margin: 0;
+    height: calc( 1.7 * var(--logotype-h1-lineht));
+    margin: 0px 2px 0 0px;
     padding: 0;
-    width: var(--logo-img-width); /*or your image's width*/
+    width: 24px; /*or your image's width*/
     display: inline-block;
-    float: var(--logo-img-float);
+    float: left;
+    background-image: var(--logo-img-top);
 }
 .search-form-container {
 float:right;
@@ -76,17 +59,16 @@ vertical-align: top;
 
 .navigation-bar{
 width:100%;
-min-width: 430px;
 float: left;
 padding-bottom: 0;
 background: var(--topbar-bg);
-box-shadow: var(--topbar-box-shadow);
+box-shadow: 0 1px 0 0 rgba(0, 0, 0, .06);
 }
 
 .navigation-bar .version-info {
     padding: 5px;
-    color: var(--version-color);
-    font-size: var(--version-font-size);
+    color: lightgrey;
+    font-size: initial;
 }
 
 .submit-button {
@@ -141,9 +123,6 @@ box-shadow: var(--topbar-box-shadow);
     z-index: 1;
     color:grey;
     background: white; 
-}
-
-#myDropdown {
     top: 30px;
 }
 
@@ -180,11 +159,11 @@ box-shadow: var(--topbar-box-shadow);
 .second-header-row {
     display: var(--second-header-row-display);
     text-align: var(--second-header-text-align);
-    margin-top: var(--second-header-mtop);
+    margin-top: 50px;
 }
 
 .search-form .w-button {
-    height: var(--search-input-height);
+    height: 40px;
 }
 
 .nav-brand .logotype h2 {

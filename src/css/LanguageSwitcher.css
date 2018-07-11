@@ -11,7 +11,7 @@
     /*optional*/
     font-family:arial,sans-serif;  /*input has OS specific font-family*/
     /* color:#069; */
-    color: var(--languageswitcher-color);
+    color: #a9a9a9;
     /*text-decoration:underline;*/
     cursor:pointer;
     text-transform: uppercase; 
@@ -38,6 +38,8 @@ ul.lang-list.show {
     top: 0px;
     right: 30px;
     text-align: right;
+    font-size: 12px;
+    margin-bottom: 10px;
 }
 
 .current-lang {
@@ -49,11 +51,11 @@ ul.lang-list.show {
 .lang.dropbtn {
     background: var(--reacttabs-bg-image);
     color: #74737a;    
+    display: none;
 }
 
 .dropbtn {
-    padding: 2px;
-    font-size: 13px;
+    font-size: 12px;
     border: none;
     cursor: pointer;
     margin-left: 15px;
@@ -61,7 +63,7 @@ ul.lang-list.show {
 }
 
 .dropdown.lang-list {
-    display: none;
+    display: inline;
     float: right;
 }
 ul.list-inline {
@@ -107,4 +109,7 @@ ul.list-inline .Select-arrow-zone {
 }
 .Select-placeholder, .Select--single > .Select-control .Select-value {
     line-height: inherit!important;
+}
+.Select-option {
+    line-height: 13px;
 }
