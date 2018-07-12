@@ -198,13 +198,15 @@ class DocumentPDF extends React.Component {
           return (
             str.str
               .split(pattern)
-              .reduce((strArray, currentValue, currentIndex) => (
-                currentIndex === 0 ?
-                  ([...strArray, currentValue]) :
-                  ([...strArray,
-                  <mark className="highlight" key={currentIndex}>{spaces}</mark>,
-                  currentValue])
-              ), [])
+              .reduce((strArray, currentValue, currentIndex) => {
+                return currentIndex === 0 ? 
+                    ([...strArray, currentValue]) : 
+                    ([...strArray,
+                      <mark className="highlight" key={currentIndex}>{spaces}</mark>,
+                      currentValue
+                    ])
+                    ;
+                }, [])
           )
         }
         pageProps = Object.assign({}, pageProps, {customTextRenderer});
