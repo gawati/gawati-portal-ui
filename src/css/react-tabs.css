@@ -56,4 +56,5 @@
     border-right: var(--reacttab-panel-border);
     border-bottom-left-radius: var(--sidebar-border-radius);
     border-bottom-right-radius: var(--sidebar-border-radius);
+    overflow: auto;
 }
