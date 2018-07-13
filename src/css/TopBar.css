@@ -32,7 +32,7 @@ vertical-align:top;
     background: var(--logotype-h1-bg);
     height: var(--logotype-h1-height);
     /* width: var(--logotype-h1-width); */
-    /* line-height: var(--logotype-h1-lineht); */
+    line-height: var(--logotype-h1-lineht);
     
 }
 
@@ -41,7 +41,7 @@ vertical-align:top;
     background-repeat: no-repeat;
     background-size: contain;
     height: calc( 1.7 * var(--logotype-h1-lineht));
-    margin: 0px 2px 0 0px;
+    margin: 0px 10px 0 0px;
     padding: 0;
     width: 24px; /*or your image's width*/
     display: inline-block;
