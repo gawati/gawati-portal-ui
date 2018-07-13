@@ -30,7 +30,7 @@ class DocumentContentArea  extends React.Component { //({ match, setCollapsible,
 
     render () {
         return (
-            <Section setFlexDirection={this.setFlexDirection}>
+            <Section setFlexDirection={this.setFlexDirection} altClasses="notHome">
                 <DocumentContentColumn match={this.props.match} />
                 <SideBarColumn match={this.props.match} setCollapsible={this.props.setCollapsible} slideToggle={this.props.slideToggle} flexDirection={this.state.flexDirection}/>
             </Section>

@@ -7,7 +7,7 @@
 .react-autosuggest__input   {
     width: calc(100% - 50px);
     
-    height: var(--search-input-height);
+    height: 40px;
     float: left;
     font-family: var(--font-1);
     -webkit-font-smoothing: antialiased;
@@ -17,7 +17,7 @@
     margin-bottom: 10px;
     font-size: 13px;
     line-height: 1.42857143;
-    color: var(--autosuggest-color);
+    color: #333333;
     vertical-align: middle;
     background-color: #ffffff;
     border: 1px solid #cccccc;
@@ -32,12 +32,6 @@
     border-radius: 4px;
     */
 }
-
- @media all and (max-width: 715px){
-   .react-autosuggest__input   {
-      width: 90%;
-   }
- }
   
   .react-autosuggest__input--focused {
     outline: none;

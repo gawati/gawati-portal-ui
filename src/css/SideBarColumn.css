@@ -6,30 +6,30 @@
 .cc-law-libray{
   margin-bottom: 0px;
   font-family: var(--font-2);
-  color: var(--sidebar-footer-color);
+  color: #aaa;
   font-size: 11px;
   text-align: center;
   letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 
-.sidebar-col.col-3 a:hover,
-.sidebar-col.col-3 a:focus{
+.sidebar-col a:hover,
+.sidebar-col a:focus{
   color: var(--sidebar-a-color);
 }
 
-.sidebar-col.col-3 .Select-control {
+.sidebar-col .Select-control {
   font-family: var(--font-3);
 }
 
-.sidebar-col.col-3 small {
+.sidebar-col small {
   font-family: var(--font-3);
 }
 
 .white-wrapper {
   padding: 20px;
   border-radius: var(--sidebar-border-radius);
-  background-color: var(--sidebar-bg-color);
+  background-color: white;
   box-shadow: var(--content-search-result-box-shadow);
 }
 h2.small-heading {
@@ -43,4 +43,9 @@ h2.small-heading {
 
 .Select-control {
   border-radius: var(--sidebar-border-radius);
+}
+
+.swipe {
+  width: 25%;
+  padding-right: 15px;
 }

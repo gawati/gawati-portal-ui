@@ -190,21 +190,23 @@ class DocumentPDF extends React.Component {
       };
 
       if (this.props.searchTerm) {
-        let customTextRenderer = textItem => {
+        let customTextRenderer = ( str, itemIndex ) => {
           var lower = new RegExp(this.props.searchTerm);
           var upper = new RegExp(capitalizeFirst(this.props.searchTerm));
           var pattern = new RegExp( lower.source + "|" + upper.source );
           var spaces = '\u00A0'.repeat(this.props.searchTerm.length);
           return (
-            textItem.str
+            str.str
               .split(pattern)
-              .reduce((strArray, currentValue, currentIndex) => (
-                currentIndex === 0 ?
-                  ([...strArray, currentValue]) :
-                  ([...strArray,
-                  <mark className="highlight">{spaces}</mark>,
-                  currentValue])
-              ), [])
+              .reduce((strArray, currentValue, currentIndex) => {
+                return currentIndex === 0 ? 
+                    ([...strArray, currentValue]) : 
+                    ([...strArray,
+                      <mark className="highlight" key={currentIndex}>{spaces}</mark>,
+                      currentValue
+                    ])
+                    ;
+                }, [])
           )
         }
         pageProps = Object.assign({}, pageProps, {customTextRenderer});

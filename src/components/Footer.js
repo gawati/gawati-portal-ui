@@ -39,12 +39,6 @@ function Footer({match, i18n}) {
                 <div className="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <ul>
                         <li>
-                            <ContentLink lang={lang} page="who_we_are">{T("Who We Are")}</ContentLink>
-                        </li>
-                        <li>
-                            <ContentLink lang={lang} page="what_we_do">{T("What We Do")}</ContentLink>
-                        </li>
-                        <li>
                             <ContentLink lang={lang} page="faq">{T("FAQ")}</ContentLink>
                         </li>
                         <li>
@@ -78,6 +72,8 @@ function Footer({match, i18n}) {
             </div>
         </div>
         <div className="social-icons">
+            <h6 className="powered-by">{T("Powered by")}&nbsp;</h6><div className="logo-img"/>
+            <h5>{T("The African Law Library")}</h5>
             <div className="social-link-group">
                 <a
                     className="social-icon-link"
@@ -107,7 +103,6 @@ function Footer({match, i18n}) {
                     <img alt="linkedin" src={imgLinkedin} width="25"/>
                 </a>*/}
             </div>
-            <h5>{T("The African Law Library")}</h5>
         </div>
     </footer>
     );

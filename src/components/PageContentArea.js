@@ -9,7 +9,7 @@ class PageContentArea extends React.Component {
 
     render() {
         return (
-            <Section>
+            <Section altClasses={"notHome"}>
                 <PageContentColumn {...this.props} />
             </Section>
         );

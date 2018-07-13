@@ -23,13 +23,14 @@
   }
   
   @media all and (max-width:994px){
-    .sidebar-col.col-3{
+    .sidebar-col{
       display:block;
     }
 
-    .react-autosuggest__input {
-      max-width: calc(100% - 50px);
+    .nav-brand .logo-img-top {
+      float: none;
     }
+
     .nav-brand{
       /* margin:0 auto; */
       display: var(--navbrand-display-994);
@@ -43,7 +44,7 @@
     .nav-brand .logotype {
       display: initial;
       text-align: center;
-  }
+    }
     .col-6{
       -webkit-box-flex: 0; 
       -webkit-flex: 0 0 100%; 
@@ -55,17 +56,16 @@
       margin: 1% auto 0
     }
 
-    .login {
-      line-height: var(--login-lineht-994);
-      font-size: var(--login-font-size-994);
-    }
-
     .bell {
       width: 1.4em;
     }
 
     .nav-brand, .logo-img {
       float: var(--logo-img-float-994);
+    }
+
+    .search-form-container {
+      margin-top: 0px
     }
   
   }
@@ -84,12 +84,16 @@
   
   @media all and (max-width: 767px){
 
-    .dropdown.lang-list {
-      display: inline;
+    .logotype h1 {
+      font-size: calc(.7 * var(--logo-h1-font-size));
     }
 
     ul.list-inline {
       display: none;
+    }
+
+    .lang.dropbtn {
+      display: inline;
     }
   
     .section .container{
@@ -109,8 +113,7 @@
     .d-tabs .tab-menu li{
       width: 100%;
     }
-    .navigation-bar{
-    }
+    
     .navigation-bar .container{
       height: auto
     }
@@ -136,10 +139,14 @@
       -webkit-flex: 0 0 100%!important;
       -ms-flex: 0 0 100%!important;
       flex: 0 0 100%!important;
-      padding: 0;
     }
 
-    .sidebar-col.col-3{
+    .main-col {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .sidebar-col{
       float:none;
       max-width: 100%!important;
       -webkit-box-flex: 0;
@@ -151,16 +158,11 @@
       max-height: 80%;
     }
 
-    .sidebar-col.col-3 .white-wrapper {
+    /* .sidebar-col .white-wrapper {
       height: 100%;
-    }
-     
-    .row{
-      margin:0;
-    }
+    } */
     .search-form-container{
       margin-top:21px;
-      padding:0;
       float: none;
     }
     .search-form .w-button{
@@ -171,17 +173,16 @@
     .text-field-2{
       width:90%;
     }
-    .sidebar-col.col-3{
+    .sidebar-col{
       max-width: 100%;
       flex: 0 0 100%;
       padding: 0;
       position: fixed;
       bottom: 0px;
       z-index: 7;
-      left: var(--sidebar-left-margin);
-      right: var(--sidebar-right-margin);
+      left: var(--sidebar-left-margin-767);
+      right: var(--sidebar-right-margin-767);
       overflow-y: auto;
-      width: auto;
     }
     .d-tabs{
       margin:0;
@@ -241,15 +242,27 @@
       font-size: 12px;
       text-align: center;
     }
-    .sidebar-col.col-3 {
+    .sidebar-col {
       transition: width .3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .second-header-row {
+      padding: 0px;
     }
   }
   
-  @media all and (max-width:430px){
+  @media all and (max-width:430px) and (orientation: portrait){
 
-    .sidebar-col.col-3 {
+    .sidebar-col {
       transition: width .5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-brand .logotype h2 {
+      display: none;
+    }
+
+    .logo-img-top {
+      margin-left: 4px;
     }
 
     .document-download  .left.col-3{
@@ -268,19 +281,39 @@
       width: 100%;
     }
     .document-download li{
-      width:32%;
+      width:48%;
+      border-color: #40daa1;
+      border-style: dotted;
+      border-width: 1px;
+      margin-right: 4px;
     }
 
-    .lang-switcher-wrapper {
-      left: 200px;
-    }
-    
   }
 
-@media all and (min-width: 768px){
-  .sidebar-col.col-3 {
-    width: 100%!important;
+/* @media all and (max-width:500px) and (orientation: portrait){
+  .lang-switcher-wrapper {
+    margin-left: calc(100% - 135px);
+    top: -220px;
+    position: relative;
+  }
+} */
 
+@media all and (max-width:767px) and (orientation: portrait){
+  .search-form-container {
+      padding: 0;
+    }
+}
+
+@media all and (min-width: 768px){
+  .sidebar-col {
+    width: 100%!important;
+    max-width: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .lang-switcher-wrapper {
+    right: 15px;
   }
 }
   

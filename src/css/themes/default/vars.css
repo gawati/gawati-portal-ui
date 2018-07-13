@@ -1,11 +1,7 @@
 :root {
   
   /* Overrides */
-    --overrides-breadcrumb-color: rgba(51, 51, 51, .67);
-    --overrides-p-color: #74737a;
-    --overrides-a-color: #a9a9a9;
-    --overrides-a-focus-color: #a9a9a9;
-    --overrides-h-color: #74737a; /* SIG */
+    --overrides-h-color: #74737a;
   /* Overrides */
 
   /* Fonts */
@@ -21,52 +17,34 @@
       --main-col-position: left;
       --content-grey-rule-bg-color: #c7c7c7;
       --content-a-hover-color: #3898EC;
-      --content-text-block-color: #74737a;
       --content-button-bg-color: #483332;
-      --content-button-color: #fff;
       --content-tab-pane-bg-color: #fff;
       --content-search-result-box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
       --content-search-result-color: rgba(51, 51, 51, .67);
       --content-search-result-h1-color: #74737a;
-      --content-doc-download-border-color: #000;
 
     /* main column */
   /* app-custom */
 
   /* Footer */
   --footer-bg-color: #3f474d;
-  --footer-color: #dddada;
-  --footer-bg-color2: #171b1d;
+    --footer-color: #dddada;
   --footer-a-color: #dddada;
   --footer-submit-bg: #3898ec;
-  --footer-submit-color: #fff;
+    --footer-submit-color: #fff;
   --footer-social-bg-color: #171b1d;
   --footer-social-color: #7e7979;
 
   /* HomeContentColumn */
   --home-wbutton-bg-color: #483332;
-  --home-wbutton-color: #fff;
 
   /* PageContentColumn */
-  --pagecontentcolumn-bg-color: #fff;
   --pagecontentcolumn-color: rgba(51, 51, 51, .67);
-
-  /* PageUpperBorder - Retained for later use*/
-  /* --div-block-2-bg-color: #000;
-  --div-block-4-bg-color: #1abc9c;
-  --div-block-5-bg-color: #f2ca27;
-  --div-block-6-bg-color: #e67e22;
-  --div-block-7-bg-color: #16a085;
-  --div-block-8-bg-color: #2980b9;
-  --div-block-9-bg-color: #e74c3c;
-  --div-block-10-bg-color: #1abc9c; */
 
   /* Paginator */
   --paginator-li-bg-color: #337ab7;
   --paginator-li-border-color: #337ab7;
   --paginator-li-color: #337ab7;
-  --paginator-li-disabled-color: #777;
-  --paginator-li-disabled-border-color: #ddd;
 
   /* React tabs */
   --reacttabs-bg-color: #fff;
@@ -78,94 +56,77 @@
   --reacttabs-bg-image: initial;
   --reacttabs-hover-bg-color: initial;
   --reacttabs-hover-color: initial;
-  --reacttabs-selected-border: 1px solid rgb(170, 170, 170);
-  --reacttab-panel-border: none;
-
-  /* RecentDocs */
-  
+  --reacttabs-selected-border: 1px solid rgba(0, 0, 0, .06);
+  --reacttab-panel-border: 1px solid rgba(0, 0, 0, .06);
 
   /* Section */
-  --section-bg-color: #e0ddd7; /* SIG */
+  --section-bg-color: #e0ddd7;  
   --section-color: #1abc9c;
   --section-flex-dir: initial;
 
   /* Sidebar */
   --sidebar-col-position: right;
-  --sidebar-footer-color: #aaa;
   --sidebar-a-color: #a9a9a9;
-  --sidebar-bg-color: #fff;
   --sidebar-box-shadow: 0 0 0 1px rgba(0, 0, 0, .06);
   --sidebar-border-radius: 5px;
   --sidebar-small-heading-color: rgb(116, 115, 122);
   --sidebar-small-heading-padding: auto;
   --sidebar-small-heading-bg: transparent;
 
-  /* SiteSearchAutoComplete */
-  --autosuggest-color: #333333;
-  --sitesearch-li-color: #a9a9a9; 
-  --sitesearch-bg-image: radial-gradient(circle, black, black 7%, transparent 15%, transparent 35%, black 45%, black 48%, transparent 55%);
-  --sitesearch-loading-bg-image: url("http://loadinggif.com/images/image-selection/3.gif");
-  --sitesearch-loading-bg-color: #ffffff;
-
   /* TopBar */
-  --topbar-bg: #fff; /* SIG */ 
+  --topbar-bg: #fff;   
   --topbar-submit-button-bg-color: #1abc9c;
-  --topbar-box-shadow:  0 1px 0 0 rgba(0, 0, 0, .06);
   --logo-img: url("../../themes/default/assets/logo.png");
-  --logo-color: #7a737a;
-  --logo-color2: #7a737a;
-  --logo-top-margin: 50px;
-  --logo-left-margin: 30px;
+  --logo-img-top: url("../../themes/default/assets/creative-commons-logo.png");  
   --logo-img-height: 50px;
-  --logo-h1-mbottom: initial;
-  --heading-alongside-search: none;
-  --heading-alongside-logo: inline-block;
+  --logo-img-width: 90px;
+  --logo-color: #7a737a;
+  --navbrand-top-margin: 50px;
+  --heading-above-search: none;
   --second-header-row-display: initial;
-  --search-input-height: 40px;
   --second-header-text-align: initial;
   --logotype-h1-bg: white;
   --logotype-h1-height: 20%;
-  --logotype-h1-width: auto;
-  --logotype-h1-lineht: auto;
+  --logotype-h1-lineht: 24px;
   --logotype-h1-font: auto;
   --logo-h1-font-size: 1.4rem;
   --logo-h2-font-size: 1.2rem;
   --navbrand-h1-display: block;
   --logo-h2-mleft: 0px;
   --logo-img-float-994: none;
-  --logo-img-width: 90px;
 
   --search-form-container-mtop: 60px;
   --search-form-container-mbottom: 20px;
 
-  --version-font-size: inherit;
-  --version-color: lightgrey;
-
   --languageswitcher-highlight-bg-color: #e0ddd7;
   --languageswitcher-bg-color: #e0ddd7;
-  --languageswitcher-color: #a9a9a9;
   --lang-switch-font-size: 12px;
 
   /* Media */
-  --sidebar-left-margin: auto;
-  --sidebar-right-margin: 0px;
+  --sidebar-left-margin-767: auto;
+  --sidebar-right-margin-767: 0px;
   --navbrand-mtop-994: 30px;
   --navbrand-display-994: block;
-  --sidecol-mwidth-994: auto;
-  --search-form-side-col-mleft-994: auto;
-  --search-form-side-col-mtop-767: auto;
-  --search-form-side-col-mtop-994: auto;
-  --login-lineht-994: auto;
-  --login-font-size-994: 1em;
-  --login-font-size: 12px;
   --navbrand-float-767: none;
-  --side-col-mleft-767: auto;
  
 }
 
+.logo-img-top {
+  height: 50px;
+  width: 50px;
+}
 
 @media all and (max-width: 767px){
-  .sidebar-col.col-3 .white-wrapper {
+  .sidebar-col .white-wrapper {
     background: #e0ddd7;
   }
 }
+/* 
+@media (max-width: 500px) and (orientation: portrait)
+{
+.lang-switcher-wrapper {
+    margin-right: 30px;
+    top: -180px;
+    position: relative;
+}
+} */

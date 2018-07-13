@@ -1,9 +1,9 @@
 import React from 'react';
 
-function NotifBar(obj) {
+function NotifBar() {
     return (
-        <div className={` ${obj.notifCname} `}> 
-            Notifications
+        <div> 
+            <span>Notifications</span>
         </div>
     );
 }
