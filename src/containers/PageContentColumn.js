@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import {apiGetCall} from '../api';
+import {T} from '../utils/i18nhelper';
 
 import '../css/PageContentColumn.css';
 import GwSpinner from '../components/GwSpinner';
@@ -37,6 +38,8 @@ class PageContentColumn extends React.Component {
                     content: content,
                     loading: false
                 });
+                document.title =  `${T("african law library")}`; 
+                
             })
             .catch(function(error) {
                 console.log("error in getPage()", error);
