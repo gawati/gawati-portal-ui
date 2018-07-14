@@ -24,7 +24,7 @@ function Footer({match, i18n}) {
                     <ul>
                         {
                         footerLinks.column1.map((link) => 
-                            <li>
+                            <li key={link.label}>
                                 <ContentLink lang={lang} page={link.label}>{T(link.label)}</ContentLink>
                             </li>
                         )}
@@ -36,12 +36,12 @@ function Footer({match, i18n}) {
                     {
                         footerLinks.column2.map((link) => 
                             link.href? 
-                            (<li>
+                            (<li key={link.label}>
                                 <a href={link.href}>{T(link.label)}</a>
                             </li> 
                             )
                             :
-                            (<li>
+                            (<li key={link.label}>
                                 <ContentLink lang={lang} page={link.label}>{T(link.label)}</ContentLink>
                             </li>)
                         )}
