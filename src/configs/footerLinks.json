@@ -1,36 +1,29 @@
 
 {"column1": [
         {
-            "label": "policies",
-            "text": "Policies"
+            "label": "policies"
         },
         {
-            "label": "privacy_policy",
-            "text": "Privacy Policy"
+            "label": "privacy_policy"
         },
         {
-            "label": "copyright",
-            "text": "Copyright"
+            "label": "copyright"
         },
         {
-            "label": "terms_of_service",
-            "text": "Terms of Service"
+            "label": "terms_of_service"
         }
     ],
 
     "column2": [
         {
-            "label": "faq",
-            "text": "FAQ"
+            "label": "faq"
         },
         {
             "label": "Blog",
-            "text": "Blog",
             "href": "https://www.gawati.org"
         },
         {
             "label": "contact_us",
-            "text": "Contact Us",
             "href": "/"
         }
     ]
