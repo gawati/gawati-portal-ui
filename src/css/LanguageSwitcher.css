@@ -96,10 +96,6 @@ ul.list-inline .Select-clear-zone, ul.list-inline .Select-input  {
     display: none !important;
 }
 
-ul.list-inline .Select-value .Select-value-label{
-    color: var(--overrides-a-color) !important;
-}
-
 ul.list-inline .Select-input {
     height: 100%;
 }
