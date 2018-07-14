@@ -167,11 +167,14 @@ footer li {
   width: 70px;
 }
 
-/* @media (max-width: 500px) and (orientation: portrait) {
-  .lang-switcher-wrapper {
-    margin-left: calc(100% - 160px);
-    top: -235px;
+ @media (max-width: 994px) {
+  .logotype h1, .logotype h2{
+    width: 65%;
+    text-align: -webkit-center;
+    display: block;
+  }
 }
+/*
 .notHome .lang-switcher-wrapper {
     margin-left: calc(100% - 180px);
     top: -190px;
