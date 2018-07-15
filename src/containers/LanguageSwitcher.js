@@ -15,7 +15,7 @@ class LanguageSwitcher extends React.Component {
         super(props);
         if ( (props.i18n.language !== props.match.params.lang) && (props.match.params.lang) ) {
             props.i18n.changeLanguage(props.match.params.lang);
-            this.setState({ currentLang: props.i18n.language});
+            this.state = { currentLang: props.i18n.language};
         }
         this.langs = getLangs();
         const grouped = groupBy(this.langs, 'origin');

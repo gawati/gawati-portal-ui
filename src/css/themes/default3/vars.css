@@ -89,7 +89,7 @@
   --logotype-h1-bg: orange;
   --logotype-h1-height: 20%;
   --logo-h1-font-size: 1.4rem;
-  --logo-h2-font-size: 1.2rem;
+  --logo-h2-font-size: 1.1rem;
   --logotype-h1-lineht: 30px;
   --logotype-h1-font: auto;
   --navbrand-h1-display: block;
@@ -123,18 +123,23 @@ h2.small-heading {
   padding-bottom: 0px;
 }
 
+.logotype {
+  text-align: center;
+}
+
 .logotype h1, .logotype h2{
   font-family: "Bungee Inline", cursive;
   border-radius: 10px;
-  padding: 2px; 
+  padding: 3px 5px;
 }
 
 .logotype h2 {
   color: rgb(255, 182, 71);
   background: white;
-  width: 75%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
   margin-top: 4px;
+  border-radius: 7px;
 }
 
 .Select-control {
@@ -162,11 +167,14 @@ footer li {
   width: 70px;
 }
 
-/* @media (max-width: 500px) and (orientation: portrait) {
-  .lang-switcher-wrapper {
-    margin-left: calc(100% - 160px);
-    top: -235px;
+ @media (max-width: 994px) {
+  .logotype h1, .logotype h2{
+    width: 65%;
+    text-align: -webkit-center;
+    display: block;
+  }
 }
+/*
 .notHome .lang-switcher-wrapper {
     margin-left: calc(100% - 180px);
     top: -190px;

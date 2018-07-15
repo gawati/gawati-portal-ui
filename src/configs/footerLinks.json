@@ -1,0 +1,30 @@
+
+{"column1": [
+        {
+            "label": "policies"
+        },
+        {
+            "label": "privacy_policy"
+        },
+        {
+            "label": "copyright"
+        },
+        {
+            "label": "terms_of_service"
+        }
+    ],
+
+    "column2": [
+        {
+            "label": "faq"
+        },
+        {
+            "label": "Blog",
+            "href": "https://www.gawati.org"
+        },
+        {
+            "label": "contact_us",
+            "href": "/"
+        }
+    ]
+}

@@ -9,6 +9,7 @@ import imgFace from '../images/face.svg';
 import imgTwitter from '../images/twitter.svg';
 import imgInstagram from '../images/instagram.svg';
 import '../css/Footer.css';
+import footerLinks from '../configs/footerLinks.json';
 
 const ContentLink = ({lang, page, children}) =>
     <NavLink to={ `/_lang/${lang}/content/_page/${page}` }>{children}</NavLink>;
@@ -21,32 +22,29 @@ function Footer({match, i18n}) {
             <div className="row">
                 <div className="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <ul>
-                        <li>
-                            <ContentLink lang={lang} page="policies">{T("Policies")}</ContentLink>
-                        </li>
-                        <li>
-                            <ContentLink lang={lang} page="privacy_policy">{T("Privacy Policy")}</ContentLink>
-                        </li>
-                        <li>
-                            <ContentLink lang={lang} page="copyright">{T("Copyright")}</ContentLink>
-                        </li>
-                        <li>
-                            <ContentLink lang={lang} page="terms_of_service">{T("Terms of Service")}</ContentLink>
-                        </li>
+                        {
+                        footerLinks.column1.map((link) => 
+                            <li key={link.label}>
+                                <ContentLink lang={lang} page={link.label}>{T(link.label)}</ContentLink>
+                            </li>
+                        )}
                     </ul>
                 </div>
 
                 <div className="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <ul>
-                        <li>
-                            <ContentLink lang={lang} page="faq">{T("FAQ")}</ContentLink>
-                        </li>
-                        <li>
-                            <a href="https://www.gawati.org">{T("Blog")}</a>
-                        </li>
-                        <li>
-                            <a href="/">{T("Contact Us")}</a>
-                        </li>
+                    {
+                        footerLinks.column2.map((link) => 
+                            link.href? 
+                            (<li key={link.label}>
+                                <a href={link.href}>{T(link.label)}</a>
+                            </li> 
+                            )
+                            :
+                            (<li key={link.label}>
+                                <ContentLink lang={lang} page={link.label}>{T(link.label)}</ContentLink>
+                            </li>)
+                        )}
                     </ul>
                 </div>
 
