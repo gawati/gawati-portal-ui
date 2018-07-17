@@ -33,12 +33,6 @@ const __GAWATI_APIS = [
             'recent-search-from-save-name' : '/gwu/latest/search',
             'keycloak' : '/gwp/auth.json'
         }
-    },
-    {
-        name: "local",
-        apis: {
-            'keycloak': '/keycloak.json'
-        }
     }
 ];
 
