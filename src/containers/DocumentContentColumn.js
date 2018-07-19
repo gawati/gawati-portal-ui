@@ -16,7 +16,7 @@ import DocumentNavBlock from './DocumentNavBlock';
 import DocumentSignature from './DocumentSignature';
 import DocumentActions from './DocumentActions';
 import DocumentTagCloud from './DocumentTagCloud';
-import DocumentPDF from './DocumentPDF';
+import GawatiViewer from 'gawati-viewer';
 import SearchFullText from './SearchFullText';
 
 import DivListing from '../components/DivListing';
@@ -92,7 +92,7 @@ const DocumentContentInfo = ({doc, type, iri}) => {
         </TabPanel>        
         <TabPanel>
           <DivFeed>
-            <DocumentPDF doc={doc} type={type} />
+            <GawatiViewer doc={doc} type={type} />
           </DivFeed>
         </TabPanel>
       </Tabs>
@@ -110,7 +110,7 @@ DocumentMetadata.propTypes = {
     type: PropTypes.string.isRequired
 }
 
-DocumentPDF.propTypes = {
+GawatiViewer.propTypes = {
     doc: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired
 }
