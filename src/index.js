@@ -19,7 +19,9 @@ import './css/app-custom.css';
 import './css/app-media.css';
 import { isAuthEnabled } from './utils/generalhelper';
 
-
+/**
+ * Renders the main Application component
+ */
 function appRender() {
     ReactDOM.render(
         <BrowserRouter>
@@ -31,6 +33,9 @@ function appRender() {
     );
 };
 
+/**
+ * Invokes the application with authentication
+ */
 function launchWithAuth ()  {
     setInterval(() => {
         refreshToken(REFRESH_TOKEN_VALIDITY)
@@ -45,6 +50,9 @@ function launchWithAuth ()  {
     initSSO();            
 };
 
+/**
+ * Initializes the Single Sign on - logs you in if already authenticated in another gawati application
+ */
 function initSSO(){
     console.log(" calling InitSSO ");
     initSSORequired(
@@ -59,37 +67,68 @@ function initSSO(){
             console.log(" initializing login error ", error);
         }
     );
-}
+};
 
+/**
+ * Loads the basic data configurations from portal-fe. 
+ * gawati.json in portal-fe is a "glue" json that specifices the base URLs of other service components
+ * in the gawati application
+ * 
+ * Only GAWATI_PROXY is required to be set in the portal-ui index.html, since that is required to discover where 
+ * gawati.json configuration is. 
+ */
+function setDataConfigs() {
+    return axios.get(apiUrl("gawati"))
+        .then( (response) => {
+            const {client} = response.data; 
+            window.gawati.GAWATI_DOCUMENT_SERVER = client['gawati-media-server'].urlBase;
+            window.gawati.GAWATI_PROFILE_SERVER = client['gawati-profiles-ui'].urlBase;
+        })
+        .catch( (error) => {
+            console.log(" Unable to contact front-end services ", error);
+        });
+};
+
+// entru point function for starting the application
 // in development mode we can chose to disable authentication integration
 // for testing purposes in configs/dev.json
-if (!isAuthEnabled()) {
-    appRender();
-} else {
-    axios.get(apiUrl("keycloak"))
-    .then( (response) => {
-        try {
-            const keycloakConfig = response.data;
-            console.log("CALLING setupWithConfig ");
-            const isSetup = setupWithConfig(keycloakConfig);
-            if (isSetup) {
-                console.log("CALLING launchWithAuth ");
-                launchWithAuth();                
-            } else {
-                console.log("CALLING appRender, isSetup false ");
-                console.log(" ERROR: Authentication could not be setup ");
+function startApp() {
+    if (!isAuthEnabled()) {
+        appRender();
+    } else {
+        axios.get(apiUrl("keycloak"))
+        .then( (response) => {
+            try {
+                const keycloakConfig = response.data;
+                console.log("CALLING setupWithConfig ");
+                const isSetup = setupWithConfig(keycloakConfig);
+                if (isSetup) {
+                    console.log("CALLING launchWithAuth ");
+                    launchWithAuth();                
+                } else {
+                    console.log("CALLING appRender, isSetup false ");
+                    console.log(" ERROR: Authentication could not be setup ");
+                    appRender();
+                }
+            } catch (err) {
+                console.log("ERROR : Authentication server connect / integration failed: ", err);
                 appRender();
             }
-        } catch (err) {
-            console.log("ERROR : Authentication server connect / integration failed: ", err);
+        })
+        .catch( (error) => {
+            console.log(" Unable to load authentication profile on startup ", error, " possibly url is wrong ? ", apiUrl("keycloak"));
             appRender();
-        }
+        });
+    }
+}
+
+setDataConfigs()
+    .then( (resp) => {
+        startApp();
     })
-    .catch( (error) => {
-        console.log(" Unable to load authentication profile on startup ", error, " possibly url is wrong ? ", apiUrl("keycloak"));
-        appRender();
+    .catch( (err) => {
+        console.log(" SetDataConfigs error ", err);
+        startApp();
     });
 
-
-}
-    registerServiceWorker();
+registerServiceWorker();

@@ -31,7 +31,7 @@ class ErrorBoundary extends React.Component {
         <Card>
           <CardImg style={style} src={oops} />
           <CardBody>
-            <CardTitle>{T("Portal-fe server is not running.Please start the portal-fe server")}</CardTitle>
+            <CardTitle class="text-center">{T("Portal-fe server is not running.Please start the portal-fe server")}</CardTitle>
           </CardBody>
         </Card>
       </div>
