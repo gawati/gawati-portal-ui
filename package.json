@@ -13,6 +13,7 @@
     "echarts-for-react": "^2.0.8",
     "font-awesome": "^4.7.0",
     "gawati-lang-packs": "^1.0.2",
+    "gawati-viewer": "file:..",
     "i18next": "^10.5.0",
     "i18next-browser-languagedetector": "^2.1.0",
     "i18next-xhr-backend": "^1.5.1",
@@ -22,6 +23,7 @@
     "react-autosuggest": "9.3.4",
     "react-dom": "16.3.2",
     "react-facebook": "^4.2.1",
+    "react-fast-highlight": "^2.2.2",
     "react-fontawesome": "^1.6.1",
     "react-helmet": "^5.2.0",
     "react-i18next": "^7.4.0",
@@ -34,8 +36,7 @@
     "react-tabs": "2.2.1",
     "react-toastify": "^3.4.3",
     "reactjs-popup": "^1.1.1",
-    "reactstrap": "^5.0.0",
-    "gawati-viewer": "file:.."
+    "reactstrap": "^5.0.0"
   },
   "scripts": {
     "start": "shx cp -R node_modules/gawati-lang-packs/locales public &&  node scripts/copyScript.js && react-scripts start",
