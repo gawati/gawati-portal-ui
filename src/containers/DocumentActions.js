@@ -7,7 +7,7 @@ import {T} from '../utils/i18nhelper';
 import FacebookProvider, { Like } from 'react-facebook';
 import socialApps from '../configs/social.json';
 
-const DocumentPdfLink = ({doc, type}) => {
+const PdfDocumentViewerLink = ({doc, type}) => {
     let body = anBody(doc, type);
     let cRef = anBodyComponentRef(body);
 
@@ -43,7 +43,7 @@ const DocumentActions = ({doc, type}) =>
                         <DocumentXmlLink doc={doc} type={type} />
                     </li>
                     <li>
-                        <DocumentPdfLink doc={doc} type={type} />
+                        <PdfDocumentViewerLink doc={doc} type={type} />
                     </li>
                     <li>
                         <FacebookProvider appId={socialApps.fb.appId}>

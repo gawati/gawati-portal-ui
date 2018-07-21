@@ -72,13 +72,20 @@ const DocumentMetadata = ({doc, type}) => {
     );
 }; 
 
+const supported = ["PDF", "PNG", "DOCX", "XML"];
+
+const renderTabTitle = (doc) => {
+    const docType = doc.akomaNtoso.act.meta.proprietary.gawati.embeddedContents.embeddedContent.type.toUpperCase();
+    return (supported.indexOf(docType) === -1)? "Unsupported" : docType;
+};
+
 const DocumentContentInfo = ({doc, type, iri}) => {
     return (
         <Tabs>
         <TabList>
           <Tab>Metadata</Tab>
           <Tab>Search</Tab>
-          <Tab>PDF</Tab>
+          <Tab>{renderTabTitle(doc)}</Tab>          
         </TabList>
         <TabPanel>
           <DivFeed>
@@ -92,7 +99,7 @@ const DocumentContentInfo = ({doc, type, iri}) => {
         </TabPanel>        
         <TabPanel>
           <DivFeed>
-            <GawatiViewer doc={doc} type={type} />
+            <GawatiViewer doc={doc} />
           </DivFeed>
         </TabPanel>
       </Tabs>
@@ -112,7 +119,6 @@ DocumentMetadata.propTypes = {
 
 GawatiViewer.propTypes = {
     doc: PropTypes.object.isRequired,
-    type: PropTypes.string.isRequired
 }
 
 class DocumentContentColumn extends React.Component {
