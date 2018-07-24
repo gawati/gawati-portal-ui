@@ -47,7 +47,7 @@ export const setupWithConfig = (keycloakConfig) => {
             console.log(" There was an error initializing the keycloak config ", keycloakConfig, " error: ", error);
             return false;
         }
-    } else {;
+    } else {
         return false;
     }
 };
