@@ -21,7 +21,8 @@ const ThumbnailAbstract = ({abstract, lang}) => {
     let componentSrc = componentLink.src;
     let componentValue = componentLink.value;
     let thumbnailFolder = componentSrc.substring(0, componentSrc.lastIndexOf("/"));
-    let thumbnailUrl = documentServer() + thumbnailFolder +   "/th_" + componentValue.replace(".pdf", ".png");
+    const lastIndex = componentValue.lastIndexOf(".");
+    let thumbnailUrl = documentServer() + thumbnailFolder +   "/th_" + componentValue.substring(0, lastIndex) + ".png";
     return (
       <DocumentLink abstract={abstract} lang={lang}>
         <img src={ thumbnailUrl } alt={componentLink.value} className="docThumb" />
