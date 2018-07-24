@@ -123,6 +123,10 @@ h2.small-heading {
   padding-bottom: 0px;
 }
 
+.search-result h1 {
+  color: rgb(250, 162, 28);
+}
+
 .logotype {
   text-align: center;
 }

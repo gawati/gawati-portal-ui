@@ -1,4 +1,4 @@
-
+import {T} from './utils/i18nhelper';
 /**
  * Provides access to the window.gawati object created in index.html
  */
