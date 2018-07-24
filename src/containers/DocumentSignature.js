@@ -5,7 +5,7 @@ import {T} from '../utils/i18nhelper';
 
 const DocumentSignature = ({doc, type}) =>
             <div className="document-warning"> {T(
-                    "This document has not been digitally signed")}
+                    "document not signed")}
             </div>
             ;
 

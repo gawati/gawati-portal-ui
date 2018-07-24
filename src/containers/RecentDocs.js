@@ -36,7 +36,7 @@ const RecentIntro = ({loading}) =>
     <DivFeed customClass="white-feed">
         <a>
             <h2>{T("Latest Documents")}</h2>
-            <p>{T("The most recently published documents")}</p>
+            <p>{T("most recently published")}</p>
         </a>
         <div className="grey-rule"/>
         {loading === true ? <GwSpinner />: <noscript /> }

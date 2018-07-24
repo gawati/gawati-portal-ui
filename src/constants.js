@@ -35,7 +35,7 @@ export const dataProxyServer = () =>
  */
 export const homePageFilterWords = () => ({
     "name":"Trade",
-    "description": "The theme of the month is Trade !",
+    "description": T("theme of the month"),
     //"description": T("The theme of the month is") + " Trade !",
     "keywords":["trade", "goods", "supplies"]
 })
