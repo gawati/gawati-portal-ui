@@ -70,7 +70,7 @@ if (!isAuthEnabled()) {
     .then( (response) => {
         try {
             const keycloakConfig = response.data;
-            console.log("CALLING setupWithConfig ");
+            console.log("CALLING setupWithConfig ", keycloakConfig);
             const isSetup = setupWithConfig(keycloakConfig);
             if (isSetup) {
                 console.log("CALLING launchWithAuth ");
