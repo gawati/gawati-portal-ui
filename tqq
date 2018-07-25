@@ -1,0 +1,27 @@
+[1mdiff --git a/src/css/TopBar.css b/src/css/TopBar.css[m
+[1mindex 6032610..d175085 100644[m
+[1m--- a/src/css/TopBar.css[m
+[1m+++ b/src/css/TopBar.css[m
+[36m@@ -141,9 +141,6 @@[m [mbox-shadow: var(--topbar-box-shadow);[m
+     z-index: 1;[m
+     color:grey;[m
+     background: white; [m
+[31m-}[m
+[31m-[m
+[31m-#myDropdown {[m
+     top: 30px;[m
+ }[m
+ [m
+[1mdiff --git a/src/css/app-media.css b/src/css/app-media.css[m
+[1mindex de8eaf6..2bdfd0d 100644[m
+[1m--- a/src/css/app-media.css[m
+[1m+++ b/src/css/app-media.css[m
+[36m@@ -272,7 +272,7 @@[m
+     }[m
+ [m
+     .lang-switcher-wrapper {[m
+[31m-      left: 200px;[m
+[32m+[m[32m      right: -30px;[m
+     }[m
+     [m
+   }[m

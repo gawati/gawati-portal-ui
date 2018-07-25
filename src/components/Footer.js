@@ -49,7 +49,7 @@ function Footer({match, i18n}) {
                 </div>
 
                 <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <p>{T("Join over 14,000 people who receive weekly information")}</p>
+                    <p>{T("Join over 14,000 people")}</p>
                     <div className="w-form">
                         <form className="w-clearfix" data-name="Email Form 2" id="email-form-2"
                             name="email-form-2">
@@ -60,10 +60,10 @@ function Footer({match, i18n}) {
                                 value=">"/>
                         </form>
                         <div className="form-done">
-                            <div>{T("Thank you! Your submission has been received!")}</div>
+                            <div>{T("submission received")}</div>
                         </div>
                         <div className="form-fail">
-                            <div>{T("Oops! Something went wrong while submitting the form")}</div>
+                            <div>{T("wrong while submitting")}</div>
                         </div>
                     </div>
                 </div>
