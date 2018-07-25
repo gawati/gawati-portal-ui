@@ -7,11 +7,12 @@ import {substringBeforeLastMatch } from '../utils/stringhelper';
 import {documentServer} from '../constants';
 import {anBody} from '../utils/akomantoso';
 import GwSpinner from '../components/GwSpinner'
-import DocumentPDF from './DocumentPDF';
+import GawatiViewer from 'gawati-viewer';
 
 import '../css/SearchFullText.css';
 import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';
+import  Highlight from 'react-fast-highlight';
 
 /**
  * Component to search for a word/phrase in the full text of a PDF document.
@@ -92,7 +93,11 @@ class SearchFullText extends React.Component {
                 The search term <b>{this.state.term}</b> was found in the following pages:
                 <ul className="inline-list">{pageLinks}</ul>
                 <hr />
-                <DocumentPDF doc={this.props.doc} type={this.props.type} searchTerm={this.state.term} />
+                <Highlight
+                    languages={['js']}
+                >
+                    <GawatiViewer doc={this.props.doc} searchTerm={this.state.term} />
+                </Highlight>
             </div>
         );
     }
