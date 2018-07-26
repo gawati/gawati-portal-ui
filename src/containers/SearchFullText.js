@@ -96,7 +96,7 @@ class SearchFullText extends React.Component {
                 <Highlight
                     languages={['js']}
                 >
-                    <GawatiViewer doc={this.props.doc} searchTerm={this.state.term} />
+                    <GawatiViewer doc={this.props.doc} searchTerm={this.state.term} format='PDF'/>
                 </Highlight>
             </div>
         );
