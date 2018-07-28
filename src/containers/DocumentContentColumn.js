@@ -94,7 +94,6 @@ const DocumentContentInfo = ({doc, type, iri}) => {
     }        
     const cRef = mainDocument.componentRef;
     const attLink = documentServer() + substringBeforeLastMatch(cRef.src, "/") + "/" + cRef.alt;
-    debugger;
     return (
         <Tabs>
         <TabList>
