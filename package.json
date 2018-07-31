@@ -13,7 +13,7 @@
     "echarts-for-react": "^2.0.8",
     "font-awesome": "^4.7.0",
     "gawati-lang-packs": "^1.0.2",
-    "gawati-viewer": "file:...",
+    "gawati-viewer": "^2.0.1",
     "i18next": "^10.5.0",
     "i18next-browser-languagedetector": "^2.1.0",
     "i18next-xhr-backend": "^1.5.1",
