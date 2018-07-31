@@ -21,7 +21,10 @@ import SearchFullText from './SearchFullText';
 
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
-import {anDocType, anDocTitle} from '../utils/akomantoso';
+import {anDocType, anDocTitle, anMeta2, anBody} from '../utils/akomantoso';
+import {substringBeforeLastMatch } from '../utils/stringhelper';
+import { documentServer } from '../constants';
+
 
 import 'react-tabs/style/react-tabs.css';
 import '../css/react-tabs.css';
@@ -75,17 +78,28 @@ const DocumentMetadata = ({doc, type}) => {
 const supported = ["PDF", "PNG", "DOCX", "XML"];
 
 const renderTabTitle = (doc) => {
-    const docType = doc.akomaNtoso.act.meta.proprietary.gawati.embeddedContents.embeddedContent.type.toUpperCase();
-    return (supported.indexOf(docType) === -1)? "Unsupported" : docType;
+    const meta = anMeta2(doc);
+    const format = meta.proprietary.gawati.embeddedContents.embeddedContent.type.toUpperCase();
+    return (supported.indexOf(format) === -1)? "Unsupported" : format;
 };
 
 const DocumentContentInfo = ({doc, type, iri}) => {
+    const formatUc = renderTabTitle(doc)
+    const body = anBody(doc, type);
+    let mainDocument ;
+    if (Array.isArray(body.book)) {
+        mainDocument = body.book.filter(book => book.refersTo === '#mainDocument');
+    } else {
+        mainDocument = body.book;
+    }        
+    const cRef = mainDocument.componentRef;
+    const attLink = documentServer() + substringBeforeLastMatch(cRef.src, "/") + "/" + cRef.alt;
     return (
         <Tabs>
         <TabList>
           <Tab>Metadata</Tab>
           <Tab>Search</Tab>
-          <Tab>{renderTabTitle(doc)}</Tab>          
+          <Tab>{formatUc}</Tab>          
         </TabList>
         <TabPanel>
           <DivFeed>
@@ -99,7 +113,7 @@ const DocumentContentInfo = ({doc, type, iri}) => {
         </TabPanel>        
         <TabPanel>
           <DivFeed>
-            <GawatiViewer doc={doc} />
+            <GawatiViewer attLink={attLink} format={formatUc} />
           </DivFeed>
         </TabPanel>
       </Tabs>
@@ -117,9 +131,9 @@ DocumentMetadata.propTypes = {
     type: PropTypes.string.isRequired
 }
 
-GawatiViewer.propTypes = {
-    doc: PropTypes.object.isRequired,
-}
+// GawatiViewer.propTypes = {
+//     doc: PropTypes.object.isRequired,
+// }
 
 class DocumentContentColumn extends React.Component {
     

@@ -50,5 +50,10 @@ export const anBody = (doc, type) => {
     return anDocTypeRoot(doc, type)[bodyProp];
 }
 
+export const anMeta2 = (doc) => {
+    const docType = anDocType(doc);
+    return anMeta(doc, docType);
+}
+
 export const anBodyComponentRef = (body) =>  body.book.componentRef ;
 
