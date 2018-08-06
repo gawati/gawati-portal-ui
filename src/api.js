@@ -1,40 +1,12 @@
 import querystring from 'querystring';
 import {dataProxyServer} from './constants';
+import apis from "./configs/api.json";
 
 /**
  * Use `data` for data APIs
  * Use `local` for file requests on the same current domain
  */
-const __GAWATI_APIS = [
-    {
-        name: "data",
-        apis : {
-            'content': '/gwp/content',
-            'doc': '/gwd/doc/json',
-            'doc-xml': '/gwd/doc',
-            'filter': '/gwd/search/filter/json',
-            'timeline': '/gwd/filter/timeline/json',
-            'keyword': '/gwp/keyword',
-            'keyword-value': '/gwp/keywordValue',
-            'recent-summary' : '/gwd/recent/expressions/summary/json',
-            'search-by-country' : '/gwd/search/countries/summary/json',
-            'search-by-language' : '/gwd/search/languages/summary/json',
-            'search-by-subject' : '/gwd/search/keywords/summary/json',
-            'search-by-year': '/gwd/search/years/summary/json',
-            'search-grouped': '/gwd/searchAC/json' ,
-            'short-filter-cache': '/gwp/short-filter-cache',
-            'smart-filter-cache': '/gwp/smart-filter-cache',
-            'themes-summary' : '/gwd/themes/expressions/summary/json',
-            'search-fulltext' : '/gwd/doc/search/json',
-            'search-category' : '/gwd/search-category/json',
-            'gawati' : '/gwp/gawati.json',
-            'save-search-name' : '/gwu/save/search',
-            'search-from-save-name' : '/gwu/search/search',
-            'recent-search-from-save-name' : '/gwu/latest/search',
-            'keycloak' : '/gwp/auth.json'
-        }
-    }
-];
+const __GAWATI_APIS = apis.apis;
 
 /**
  * Get the data apis
