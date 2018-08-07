@@ -83,7 +83,7 @@ const renderTabTitle = (doc) => {
     return (supported.indexOf(format) === -1)? "Unsupported" : format;
 };
 
-const DocumentContentInfo = ({doc, type, iri}) => {
+const DocumentContentInfo = ({doc, type, typeName, iri}) => {
     const formatUc = renderTabTitle(doc)
     const body = anBody(doc, type);
     let mainDocument ;
@@ -158,13 +158,14 @@ class DocumentContentColumn extends React.Component {
         axios.get(apiDoc)
             .then(response => {
                 const doc = response.data;
-                this.setState({
+                const objType = anDocType(doc);
+                const objState = {
                     loading: false,
                     doc: doc,
-                    docType: anDocType(doc),
-                    iri: iri
-                });
-               
+                    iri: iri,
+                    ...objType
+                };
+                this.setState(objState);
                 document.title =  `${T("african law library")}  ${anDocTitle(doc)}`;
             })
             .catch(function(error) {
@@ -197,17 +198,18 @@ class DocumentContentColumn extends React.Component {
                 </ListingLoading>
             );
         } else {        
-            console.log("DOC TYPES ", this.props.match);
+            const {docType, docName, doc, iri} = this.state;
+            const lang = this.props.match.params.lang ;
             let content = 
-            <DivListing lang={this.props.match.params.lang}>
-                <DocumentBreadcrumb doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+            <DivListing lang={lang}>
+                <DocumentBreadcrumb doc={doc} type={docType} typeName={docName} lang={lang} />
                 <div className={ `feed w-clearfix`}>
-                    <DocumentTitle doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentNavBlock doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentSignature doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentActions doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentTagCloud doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentContentInfo doc={this.state.doc} type={this.state.docType} iri={this.state.iri} lang={this.props.match.params.lang} />
+                    <DocumentTitle doc={doc} type={docType} typeName={docName} lang={lang} />
+                    <DocumentNavBlock doc={doc} type={docType} typeName={docName} lang={lang} />
+                    <DocumentSignature doc={doc} type={docType}  typeName={docName}  lang={lang} />
+                    <DocumentActions doc={doc} type={docType}  typeName={docName}  lang={lang} />
+                    <DocumentTagCloud doc={doc} type={docType}  typeName={docName}  lang={lang} />
+                    <DocumentContentInfo doc={doc} type={docType}  typeName={docName}  iri={iri} lang={lang} />
                 </div>
             </DivListing>
             ;
