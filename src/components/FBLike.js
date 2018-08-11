@@ -1,14 +1,6 @@
 import React from 'react';
 import socialApps from '../configs/social.json';
 
-const langMap = {
-    en: "en_US",
-    fr: "fr_FR",
-    pt: "pt_PT",
-    ik: "en_US"
-}
-
-
 class FBLike extends React.Component {
 
     constructor (props) {
