@@ -252,16 +252,28 @@ export const anBodyComponentRef = (body) =>  {
  */
 export const iriComponents = (iri) => iri.split("/").filter((item) => item !== "");
 
+/**
+ * Get AKN doc type from IRI
+ * @param  {string} iri
+ */
 export const aknDocTypeFromIri = (iri) => {
     const iriCompos = iriComponents(iri);
     return iriCompos[2];
 };
 
+/**
+ * Get AKN country code from IRI
+ * @param  {string} iri
+ */
 export const aknCountryCodeFromIri = (iri) => {
     const iriCompos = iriComponents(iri);
     return iriCompos[1];
 };
 
+/**
+ * Returns collection components
+ * @param  {} doc
+ */
 export const aknCollectionContents = (doc) => {
     const docType = anDocType(doc).docType;
     if (docType === "documentCollection") {
@@ -273,7 +285,11 @@ export const aknCollectionContents = (doc) => {
     }
 };
 
+/**
+ * Returns the meta element of a document
+ * @param  {object} doc
+ */
 export const anMeta2 = (doc) => {
     const {docType} = anDocType(doc);
     return anMeta(doc, docType );
-}
+};
