@@ -1,4 +1,6 @@
 import Keycloak from 'keycloak-js';
+import {apiGetCall} from '../api.js'
+import axios from 'axios';
 // removed axios depdency to factor this out into a separate package
 //import axios from 'axios';
 
@@ -207,3 +209,34 @@ export const getUserInfo = () => {
     .error((err) => console.log(err));
     */
   };
+
+  export const getUserSettings = (userName) => {
+    let apiProfile = apiGetCall(
+        'profile', {}
+    );
+
+    return axios.get(apiProfile, {
+        params:{   
+            userName: userName
+        }
+    }) 
+        // .then(response => {
+        //     this.setState({ 
+        //         nickName: response.data.data.nickName, 
+        //         phone: response.data.data.phone, 
+        //         country: response.data.data.country, 
+        //         language: response.data.data.language, 
+        //         dpUrl: this.imageFullUrl(response.data.data.dpUrl),
+        //         socialMedia: response.data.data.socialMedia    
+        //     });
+        // })
+        // .catch(function(error) {
+        //     console.log('There is some error' + error);
+        // });
+    // })
+    // .error( (err) => {
+    //     console.log(" getUserProfile (err) = ", err);
+    // });
+
+}
+

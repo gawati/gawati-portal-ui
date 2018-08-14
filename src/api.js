@@ -31,6 +31,7 @@ const __GAWATI_APIS = [
             'save-search-name' : '/gwu/save/search',
             'search-from-save-name' : '/gwu/search/search',
             'recent-search-from-save-name' : '/gwu/latest/search',
+            'profile': '/gwu/profile',
             'keycloak' : '/gwp/auth.json'
         }
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import socialApps from '../configs/social.json';
+import { getUserProfile, getUserSettings } from '../utils/GawatiAuthClient';
 
 const langMap = {
     en: "en_US",
@@ -16,10 +17,7 @@ class FBComments extends React.Component {
         this.state = {lang: props.lang};
         this.state.Comments = <span></span>;
         this.state.FacebookProvider = <span></span>;
-        if (process.env.REACT_APP_FB === 'yes') {
-            this.state.FacebookProvider = require('react-facebook').FacebookProvider;
-            this.state.Comments = require('react-facebook').Comments;
-        }
+        
     }
 
     componentWillReceiveProps (nextProps) {
@@ -28,22 +26,38 @@ class FBComments extends React.Component {
         }
     }
 
+    componentDidMount () {
+        getUserProfile().success((data) => {
+            getUserSettings(data.userName).then((response) =>{
+                if (!response.data.data.socialMedia) {
+                    // this.setState({'social': true});
+                    // this.setState({'FacebookProvider': require('react-facebook').FacebookProvider});
+                    // this.setState({'Comments': require('react-facebook').Comments});
+                }
+            });
+        })
+    }
+
 
     render () {
         let lang = null;
         const FacebookProvider = this.state.FacebookProvider;
         const Comments = this.state.Comments;
-        const fb = process.env.REACT_APP_FB === 'yes';
+        const social = this.state.social === true;
         if (this.state && this.state.lang){
             lang = langMap[this.state.lang]
         }
         return (
-            lang & fb?
-                <FacebookProvider appId={socialApps.fb.appId} language={lang} >
+            <div key={this.state.social} >
+            {lang && social?
+                <FacebookProvider appId={socialApps.fb.appId} language={lang}>
                     <Comments href={window.location.href.replace('@', '&#064;')} width="100%" />
                 </FacebookProvider>
             :
-                ''
+              
+            ''
+            }
+            </div>
         );
     }
 }
