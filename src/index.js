@@ -85,9 +85,10 @@ function initSSO(){
 function setDataConfigs() {
     return axios.get(apiUrl("gawati"))
         .then( (response) => {
-            const {client} = response.data; 
-            window.gawati.GAWATI_DOCUMENT_SERVER = client['gawati-media-server'].urlBase;
-            window.gawati.GAWATI_PROFILE_SERVER = client['gawati-profiles-ui'].urlBase;
+            const {portal} = response.data; 
+            window.gawati.GAWATI_DOCUMENT_SERVER = portal['gawati-media-server'].urlBase;
+            window.gawati.GAWATI_PROFILE_SERVER = portal['gawati-profiles-ui'].urlBase;
+            console.log(" WINDOW>GAWATI ", window.gawati);
         })
         .catch( (error) => {
             console.log(" Unable to contact front-end services ", error);

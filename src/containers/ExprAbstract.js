@@ -23,6 +23,7 @@ const ThumbnailAbstract = ({abstract, lang}) => {
     let thumbnailFolder = componentSrc.substring(0, componentSrc.lastIndexOf("/"));
     const lastIndex = componentValue.lastIndexOf(".");
     let thumbnailUrl = documentServer() + thumbnailFolder +   "/th_" + componentValue.substring(0, lastIndex) + ".png";
+    console.log(" THUMBNAIL_ABSTRACT ", thumbnailUrl);
     return (
       <DocumentLink abstract={abstract} lang={lang}>
         <img src={ thumbnailUrl } alt={componentLink.value} className="docThumb" />

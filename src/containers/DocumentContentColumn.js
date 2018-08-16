@@ -21,7 +21,10 @@ import SearchFullText from './SearchFullText';
 
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
-import {anDocType, anDocTitle} from '../utils/akomantoso';
+import {anDocType, anDocTitle, anMeta2, anBody} from '../utils/akomantoso';
+import {substringBeforeLastMatch } from '../utils/stringhelper';
+import { documentServer } from '../constants';
+
 
 import 'react-tabs/style/react-tabs.css';
 import '../css/react-tabs.css';
@@ -75,17 +78,28 @@ const DocumentMetadata = ({doc, type}) => {
 const supported = ["PDF", "PNG", "DOCX", "XML"];
 
 const renderTabTitle = (doc) => {
-    const docType = doc.akomaNtoso.act.meta.proprietary.gawati.embeddedContents.embeddedContent.type.toUpperCase();
-    return (supported.indexOf(docType) === -1)? "Unsupported" : docType;
+    const meta = anMeta2(doc);
+    const format = meta.proprietary.gawati.embeddedContents.embeddedContent.type.toUpperCase();
+    return (supported.indexOf(format) === -1)? "Unsupported" : format;
 };
 
-const DocumentContentInfo = ({doc, type, iri}) => {
+const DocumentContentInfo = ({doc, type, typeName, iri}) => {
+    const formatUc = renderTabTitle(doc)
+    const body = anBody(doc, type);
+    let mainDocument ;
+    if (Array.isArray(body.book)) {
+        mainDocument = body.book.filter(book => book.refersTo === '#mainDocument');
+    } else {
+        mainDocument = body.book;
+    }        
+    const cRef = mainDocument.componentRef;
+    const attLink = documentServer() + substringBeforeLastMatch(cRef.src, "/") + "/" + cRef.alt;
     return (
         <Tabs>
         <TabList>
           <Tab>Metadata</Tab>
           <Tab>Search</Tab>
-          <Tab>{renderTabTitle(doc)}</Tab>          
+          <Tab>{formatUc}</Tab>          
         </TabList>
         <TabPanel>
           <DivFeed>
@@ -99,7 +113,7 @@ const DocumentContentInfo = ({doc, type, iri}) => {
         </TabPanel>        
         <TabPanel>
           <DivFeed>
-            <GawatiViewer doc={doc} />
+            <GawatiViewer attLink={attLink} format={formatUc} />
           </DivFeed>
         </TabPanel>
       </Tabs>
@@ -117,9 +131,9 @@ DocumentMetadata.propTypes = {
     type: PropTypes.string.isRequired
 }
 
-GawatiViewer.propTypes = {
-    doc: PropTypes.object.isRequired,
-}
+// GawatiViewer.propTypes = {
+//     doc: PropTypes.object.isRequired,
+// }
 
 class DocumentContentColumn extends React.Component {
     
@@ -144,13 +158,14 @@ class DocumentContentColumn extends React.Component {
         axios.get(apiDoc)
             .then(response => {
                 const doc = response.data;
-                this.setState({
+                const objType = anDocType(doc);
+                const objState = {
                     loading: false,
                     doc: doc,
-                    docType: anDocType(doc),
-                    iri: iri
-                });
-               
+                    iri: iri,
+                    ...objType
+                };
+                this.setState(objState);
                 document.title =  `${T("african law library")}  ${anDocTitle(doc)}`;
             })
             .catch(function(error) {
@@ -183,17 +198,18 @@ class DocumentContentColumn extends React.Component {
                 </ListingLoading>
             );
         } else {        
-            console.log("DOC TYPES ", this.props.match);
+            const {docType, docName, doc, iri} = this.state;
+            const lang = this.props.match.params.lang ;
             let content = 
-            <DivListing lang={this.props.match.params.lang}>
-                <DocumentBreadcrumb doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
+            <DivListing lang={lang}>
+                <DocumentBreadcrumb doc={doc} type={docType} typeName={docName} lang={lang} />
                 <div className={ `feed w-clearfix`}>
-                    <DocumentTitle doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentNavBlock doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentSignature doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentActions doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentTagCloud doc={this.state.doc} type={this.state.docType} lang={this.props.match.params.lang} />
-                    <DocumentContentInfo doc={this.state.doc} type={this.state.docType} iri={this.state.iri} lang={this.props.match.params.lang} />
+                    <DocumentTitle doc={doc} type={docType} typeName={docName} lang={lang} />
+                    <DocumentNavBlock doc={doc} type={docType} typeName={docName} lang={lang} />
+                    <DocumentSignature doc={doc} type={docType}  typeName={docName}  lang={lang} />
+                    <DocumentActions doc={doc} type={docType}  typeName={docName}  lang={lang} />
+                    <DocumentTagCloud doc={doc} type={docType}  typeName={docName}  lang={lang} />
+                    <DocumentContentInfo doc={doc} type={docType}  typeName={docName}  iri={iri} lang={lang} />
                 </div>
             </DivListing>
             ;
