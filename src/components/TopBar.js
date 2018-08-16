@@ -92,7 +92,7 @@ class TopBarUpper extends React.Component {
                     );
                     axios.get(apiGawati)
                         .then(response => {
-                            this.setState({profile: response.data["gawati-profiles-ui"].urlBase});
+                            this.setState({profile: response.data.portal["gawati-profiles-ui"].urlBase});
                         })
                         .catch(function(error) {
                             console.log("error in getDocument()", error);

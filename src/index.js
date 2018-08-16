@@ -8,7 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 import  ErrorBoundary from './components/ErrorBoundary.js';
 import './i18n';
 import {apiUrl} from './api';
-import { setupWithConfig, initSSORequired, refreshToken } from './utils/GawatiAuthClient';
+import { setupWithConfig, initSSORequired, refreshToken, getUserSettings, getUserProfile } from './utils/GawatiAuthClient';
 import { REFRESH_TOKEN_VALIDITY, REFRESH_TOKEN_INTERVAL } from './constants';
 
 //import './index.css';
@@ -59,6 +59,11 @@ function initSSO(){
         // onSuccess callback
         (authenticated) => {
             console.log(" SSO Authenticated = ", authenticated);
+            getUserProfile().success((data) => {
+                getUserSettings(data.username).then((response) =>{
+                        window.gawati.USER_SETTINGS_SOCIAL_MEDIA = response.data.data.socialMedia;
+                });
+            })
             appRender();
         },
         // onError callback
