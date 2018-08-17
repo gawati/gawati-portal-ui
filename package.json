@@ -22,7 +22,7 @@
     "react": "16.3.2",
     "react-autosuggest": "9.3.4",
     "react-dom": "16.3.2",
-    "react-facebook": "^4.2.1",
+    "react-facebook": "^5.0.3",
     "react-fast-highlight": "^2.2.2",
     "react-fontawesome": "^1.6.1",
     "react-helmet": "^5.2.0",
@@ -44,7 +44,8 @@
     "symlink": "node scripts/symlink.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "vars": "env | grep npm_package_ | grep -v npm_lifecycle_script"
+    "vars": "env | grep npm_package_ | grep -v npm_lifecycle_script",
+    "postinstall": "node scripts/postinstall.js"
   },
   "devDependencies": {
     "dotenv": "^5.0.1",

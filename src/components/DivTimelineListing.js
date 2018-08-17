@@ -1,14 +1,5 @@
 import React from 'react';
-import FacebookProvider, { Comments } from 'react-facebook';
-import socialApps from '../configs/social.json';
-
-const langMap = {
-    en: "en_US",
-    fr: "fr_FR",
-    pt: "pt_PT",
-    ik: "en_US"
-}
-
+import FBComments from './FBComments.js';
 
 class DivTimelineListing extends React.Component {
 
@@ -25,21 +16,12 @@ class DivTimelineListing extends React.Component {
 
 
     render () {
-        let lang = null;
-        if (this.state && this.state.lang){
-            lang = langMap[this.state.lang]
-        }
         return (
             <div className="search-result">
                 {this.props.children}
-            {
-                lang? (
-                <FacebookProvider appId={socialApps.fb.appId} language={lang} >
-                    <Comments href={window.location.href.replace('@', '&#064;')} width="100%" />
-                </FacebookProvider>
-                ) : (<span></span>
-                )
-            }
+                {
+                    <FBComments lang={this.state.lang}/>
+                }
             </div>
         );
     }

@@ -73,7 +73,7 @@ class TopBarUpper extends React.Component {
         this.setState({ username: username});
     }
 
-
+   
     componentDidMount = () => {
         if (isAuthEnabled()) {
             if (getToken() != null) {

@@ -4,8 +4,7 @@ import { anBody, anBodyComponentRef, anExprFRBRthis } from '../utils/akomantoso'
 import { documentServer, dataProxyServer } from '../constants';
 import { substringBeforeLastMatch } from '../utils/stringhelper';
 import {T} from '../utils/i18nhelper';
-import FacebookProvider, { Like } from 'react-facebook';
-import socialApps from '../configs/social.json';
+import FBLike from '../components/FBLike.js';
 
 const PdfDocumentViewerLink = ({doc, type}) => {
     let body = anBody(doc, type);
@@ -46,9 +45,7 @@ const DocumentActions = ({doc, type}) =>
                         <PdfDocumentViewerLink doc={doc} type={type} />
                     </li>
                     <li>
-                        <FacebookProvider appId={socialApps.fb.appId}>
-                            <Like href={window.location.href.replace('@', '&#064;')} colorScheme="dark" showFaces share layout="button_count"/>
-                        </FacebookProvider>
+                        <FBLike/>
                     </li>
                 </ul>
             </div>
